@@ -161,25 +161,24 @@ export default function Home() {
     }
 
     // Effect 7: Custom Cursor
-    let cursorElement: HTMLElement | null = null
     const handleMouseMove = (e: MouseEvent) => {
       if (!effects.cursor) return
-      if (!cursorElement) {
-        cursorElement = document.querySelector('.custom-cursor')
-      }
-      if (cursorElement) {
-        cursorElement.style.left = e.clientX + 'px'
-        cursorElement.style.top = e.clientY + 'px'
-        cursorElement.classList.add('active')
+      const cursor = document.querySelector('.custom-cursor') as HTMLElement | null
+      if (cursor) {
+        cursor.style.left = e.clientX + 'px'
+        cursor.style.top = e.clientY + 'px'
+        cursor.classList.add('active')
       }
     }
 
     const handleMouseEnter = () => {
-      if (cursorElement) cursorElement.classList.add('hover')
+      const cursor = document.querySelector('.custom-cursor') as HTMLElement | null
+      if (cursor) cursor.classList.add('hover')
     }
 
     const handleMouseLeave = () => {
-      if (cursorElement) cursorElement.classList.remove('hover')
+      const cursor = document.querySelector('.custom-cursor') as HTMLElement | null
+      if (cursor) cursor.classList.remove('hover')
     }
 
     if (effects.cursor) {
@@ -191,7 +190,8 @@ export default function Home() {
       })
     } else {
       document.body.classList.remove('cursor-enabled')
-      if (cursorElement) cursorElement.classList.remove('active')
+      const cursor = document.querySelector('.custom-cursor') as HTMLElement | null
+      if (cursor) cursor.classList.remove('active')
     }
 
     if (effects.parallax) {
