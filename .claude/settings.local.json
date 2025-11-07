@@ -8,7 +8,12 @@
       "Bash(git remote set-url origin https://github.com/Michaelminas/Mythos_wesite-7-11-2025.git)",
       "Bash(git push -u origin main)",
       "Bash(git rm --cached \"Videos/*.mov\")",
-      "Bash(git log --all --pretty=format: --name-only --diff-filter=A)"
+      "Bash(git log --all --pretty=format: --name-only --diff-filter=A)",
+      "Bash(git push -u origin master)",
+      "Bash(git add vercel.json)",
+      "Bash(git commit -m \"Add Vercel configuration for static site deployment\n\n- Configure Vercel to serve index.html as static site\n- Fix Python process error by specifying no build command\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\")",
+      "Bash(git push)",
+      "Bash(git add -A)"
     ],
     "deny": [],
     "ask": []

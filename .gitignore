@@ -1,2 +1,13 @@
 # Large video files not used by the website
 Videos/*.mov
+
+# Next.js
+.next/
+out/
+node_modules/
+*.log
+.env*.local
+
+# TypeScript
+*.tsbuildinfo
+next-env.d.ts
