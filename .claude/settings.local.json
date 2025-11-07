@@ -13,7 +13,15 @@
       "Bash(git add vercel.json)",
       "Bash(git commit -m \"Add Vercel configuration for static site deployment\n\n- Configure Vercel to serve index.html as static site\n- Fix Python process error by specifying no build command\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\")",
       "Bash(git push)",
-      "Bash(git add -A)"
+      "Bash(git add -A)",
+      "Bash(git commit -m \"Convert to Next.js application\n\n- Migrate from static HTML to Next.js with TypeScript\n- Create App Router structure with app/layout.tsx and app/page.tsx\n- Move all static assets (images, videos, branding) to public/ folder\n- Extract all CSS to globals.css\n- Convert JavaScript to React hooks (useEffect) for client-side interactivity\n- Maintain all original functionality (scroll animations, video controls, etc.)\n- Configure Next.js for static export with next.config.js\n- Update .gitignore for Next.js build artifacts\n- Remove old vercel.json (not needed for Next.js)\n\nThis enables better performance, SEO, and easier deployment on Vercel.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\")",
+      "Bash(git mv Context docs/)",
+      "Bash(git mv \"Mythos Site Requirements[34].docx\" docs/)",
+      "Bash(git mv \"style guide1.v1ai.pdf\" docs/)",
+      "Bash(git mv \"ss for context\" docs/)",
+      "Bash(git mv debug docs/)",
+      "Bash(git rm index.html)",
+      "Bash(git rm -r \"Event Photos\" \"Mythos Branding\" Videos)"
     ],
     "deny": [],
     "ask": []
