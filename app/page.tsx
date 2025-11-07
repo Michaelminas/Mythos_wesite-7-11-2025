@@ -12,6 +12,8 @@ export default function Home() {
     cursor: false,
   })
 
+  const [showControls, setShowControls] = useState(true)
+
   const toggleEffect = (effect: keyof typeof effects) => {
     setEffects(prev => ({ ...prev, [effect]: !prev[effect] }))
   }
@@ -236,31 +238,41 @@ export default function Home() {
       {/* Particles Container */}
       <div className="particles-container"></div>
 
-      {/* Effects Control Panel */}
-      <div className="fixed top-[120px] right-5 z-[10001] bg-black/90 p-5 rounded-xl text-white font-cormorant min-w-[280px] max-[600px]:top-[80px] max-[600px]:right-2.5 max-[600px]:min-w-[240px]">
-        <h4 className="m-0 mb-4 text-base uppercase tracking-[0.15em] text-gold border-b border-gold/30 pb-2">Visual Effects</h4>
+      {/* Toggle Button for Controls */}
+      <button
+        onClick={() => setShowControls(!showControls)}
+        className="fixed top-5 right-5 z-[10002] bg-black/90 px-4 py-2 rounded-lg text-white font-cormorant text-sm uppercase tracking-[0.1em] transition-all duration-300 hover:bg-gold hover:text-black border border-gold/30"
+      >
+        {showControls ? 'Hide Controls' : 'Show Controls'}
+      </button>
 
-        {[
-          { key: 'parallax', label: 'Parallax Scroll' },
-          { key: 'particles', label: 'Floating Particles' },
-          { key: 'stagger', label: 'Stagger Animation' },
-          { key: 'cursor', label: 'Custom Cursor' },
-        ].map(({ key, label }) => (
-          <div key={key} className="flex items-center justify-between mb-3 last:mb-0">
-            <span className="text-sm tracking-[0.05em]">{label}</span>
-            <button
-              onClick={() => toggleEffect(key as keyof typeof effects)}
-              className={`px-3 py-1 text-xs rounded-full transition-all duration-300 ${
-                effects[key as keyof typeof effects]
-                  ? 'bg-gold text-black font-semibold'
-                  : 'bg-white/10 text-white border border-white/30'
-              }`}
-            >
-              {effects[key as keyof typeof effects] ? 'ON' : 'OFF'}
-            </button>
-          </div>
-        ))}
-      </div>
+      {/* Effects Control Panel */}
+      {showControls && (
+        <div className="fixed top-[60px] right-5 z-[10001] bg-black/90 p-5 rounded-xl text-white font-cormorant min-w-[280px] max-[600px]:top-[50px] max-[600px]:right-2.5 max-[600px]:min-w-[240px] transition-all duration-300">
+          <h4 className="m-0 mb-4 text-base uppercase tracking-[0.15em] text-gold border-b border-gold/30 pb-2">Visual Effects</h4>
+
+          {[
+            { key: 'parallax', label: 'Parallax Scroll' },
+            { key: 'particles', label: 'Floating Particles' },
+            { key: 'stagger', label: 'Stagger Animation' },
+            { key: 'cursor', label: 'Custom Cursor' },
+          ].map(({ key, label }) => (
+            <div key={key} className="flex items-center justify-between mb-3 last:mb-0">
+              <span className="text-sm tracking-[0.05em]">{label}</span>
+              <button
+                onClick={() => toggleEffect(key as keyof typeof effects)}
+                className={`px-3 py-1 text-xs rounded-full transition-all duration-300 ${
+                  effects[key as keyof typeof effects]
+                    ? 'bg-gold text-black font-semibold'
+                    : 'bg-white/10 text-white border border-white/30'
+                }`}
+              >
+                {effects[key as keyof typeof effects] ? 'ON' : 'OFF'}
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Background elements */}
       <div className="bg-circles"></div>
@@ -277,21 +289,23 @@ export default function Home() {
       </a>
 
       {/* Video Speed Testing Controls */}
-      <div className="fixed bottom-5 left-5 z-[10000] bg-black/80 p-5 rounded-xl text-white font-cormorant min-w-[300px] max-[600px]:left-2.5 max-[600px]:bottom-2.5 max-[600px]:min-w-[250px] max-[600px]:p-[15px] max-[430px]:min-w-[200px] max-[430px]:p-2.5 max-[430px]:left-[5px] max-[430px]:bottom-[5px]">
-        <h4 className="m-0 mb-[15px] text-[0.9rem] uppercase tracking-[0.1em] text-gold max-[600px]:text-[0.75rem] max-[430px]:text-[0.7rem] max-[430px]:mb-2.5">Video Speed Test</h4>
-        <div className="mb-[15px] max-[430px]:mb-2.5">
-          <label className="block text-[0.85rem] mb-[5px] tracking-[0.05em] max-[600px]:text-[0.75rem] max-[430px]:text-[0.7rem]">
-            Left Video: <span className="inline-block ml-2.5 text-gold font-bold" id="leftSpeedValue">1.0x</span>
-          </label>
-          <input type="range" id="leftSpeedSlider" min="0.1" max="2" step="0.1" defaultValue="1" className="w-full cursor-pointer" />
+      {showControls && (
+        <div className="fixed bottom-5 left-5 z-[10000] bg-black/80 p-5 rounded-xl text-white font-cormorant min-w-[300px] max-[600px]:left-2.5 max-[600px]:bottom-2.5 max-[600px]:min-w-[250px] max-[600px]:p-[15px] max-[430px]:min-w-[200px] max-[430px]:p-2.5 max-[430px]:left-[5px] max-[430px]:bottom-[5px] transition-all duration-300">
+          <h4 className="m-0 mb-[15px] text-[0.9rem] uppercase tracking-[0.1em] text-gold max-[600px]:text-[0.75rem] max-[430px]:text-[0.7rem] max-[430px]:mb-2.5">Video Speed Test</h4>
+          <div className="mb-[15px] max-[430px]:mb-2.5">
+            <label className="block text-[0.85rem] mb-[5px] tracking-[0.05em] max-[600px]:text-[0.75rem] max-[430px]:text-[0.7rem]">
+              Left Video: <span className="inline-block ml-2.5 text-gold font-bold" id="leftSpeedValue">1.0x</span>
+            </label>
+            <input type="range" id="leftSpeedSlider" min="0.1" max="2" step="0.1" defaultValue="1" className="w-full cursor-pointer" />
+          </div>
+          <div className="mb-[15px] max-[430px]:mb-2.5">
+            <label className="block text-[0.85rem] mb-[5px] tracking-[0.05em] max-[600px]:text-[0.75rem] max-[430px]:text-[0.7rem]">
+              Right Video: <span className="inline-block ml-2.5 text-gold font-bold" id="rightSpeedValue">1.0x</span>
+            </label>
+            <input type="range" id="rightSpeedSlider" min="0.1" max="2" step="0.1" defaultValue="1" className="w-full cursor-pointer" />
+          </div>
         </div>
-        <div className="mb-[15px] max-[430px]:mb-2.5">
-          <label className="block text-[0.85rem] mb-[5px] tracking-[0.05em] max-[600px]:text-[0.75rem] max-[430px]:text-[0.7rem]">
-            Right Video: <span className="inline-block ml-2.5 text-gold font-bold" id="rightSpeedValue">1.0x</span>
-          </label>
-          <input type="range" id="rightSpeedSlider" min="0.1" max="2" step="0.1" defaultValue="1" className="w-full cursor-pointer" />
-        </div>
-      </div>
+      )}
 
       {/* Hero Section - Split Screen */}
       <section className="min-h-screen flex relative overflow-hidden max-md:block">
