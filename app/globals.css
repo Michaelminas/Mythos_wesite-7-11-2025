@@ -94,6 +94,11 @@
     @apply opacity-50 scale-100;
   }
 
+  /* Prevent atmosphere images from overlapping hero section */
+  section:first-of-type ~ section .atmosphere-img {
+    clip-path: inset(0);
+  }
+
   /* Fixed tickets button visibility */
   .fixed-tickets-btn.visible {
     @apply opacity-100 translate-y-0 pointer-events-auto;
@@ -136,74 +141,33 @@
     }
   }
 
-  /* Effect 3: Gradient Overlays on Hover */
-  .gradient-hover-enabled .bg-white\/\[0\.08\]:hover::after {
-    content: '';
-    @apply absolute inset-0 bg-gradient-to-br from-gold/20 to-terracotta/20 pointer-events-none rounded-[20px] opacity-0 transition-opacity duration-500;
-  }
-
-  .gradient-hover-enabled .bg-white\/\[0\.08\]:hover::after {
-    @apply opacity-100;
-  }
-
-  /* Effect 4: Staggered Reveal Animations */
+  /* Effect 4: Improved Staggered Reveal Animations */
   @keyframes stagger-fade-in {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(50px) scale(0.95);
     }
     to {
       opacity: 1;
-      transform: translateY(0);
+      transform: translateY(0) scale(1);
     }
   }
 
   .stagger-enabled .grid > div {
-    animation: stagger-fade-in 0.6s ease-out forwards;
+    animation: stagger-fade-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
     opacity: 0;
   }
 
   .stagger-enabled .grid > div:nth-child(1) {
-    animation-delay: 0.1s;
+    animation-delay: 0.2s;
   }
 
   .stagger-enabled .grid > div:nth-child(2) {
-    animation-delay: 0.3s;
+    animation-delay: 0.4s;
   }
 
   .stagger-enabled .grid > div:nth-child(3) {
-    animation-delay: 0.5s;
-  }
-
-  /* Effect 5: Enhanced Typography */
-  .typography-enhanced h2 {
-    text-shadow: 0 0 20px rgba(212, 165, 116, 0.3);
-    transition: letter-spacing 0.3s ease;
-  }
-
-  .typography-enhanced h2:hover {
-    letter-spacing: 0.25em;
-  }
-
-  /* Effect 6: Video Grain Overlay */
-  .video-grain::after {
-    content: '';
-    @apply absolute inset-0 pointer-events-none z-10;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' /%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23grain)' opacity='0.15'/%3E%3C/svg%3E");
-    animation: grain 8s steps(10) infinite;
-  }
-
-  @keyframes grain {
-    0%, 100% { transform: translate(0, 0); }
-    10% { transform: translate(-5%, -5%); }
-    20% { transform: translate(-10%, 5%); }
-    30% { transform: translate(5%, -10%); }
-    40% { transform: translate(-5%, 15%); }
-    50% { transform: translate(-10%, 5%); }
-    60% { transform: translate(15%, 0); }
-    70% { transform: translate(0, 10%); }
-    80% { transform: translate(-15%, 0); }
-    90% { transform: translate(10%, 5%); }
+    animation-delay: 0.6s;
   }
 
   /* Effect 7: Interactive Cursor */

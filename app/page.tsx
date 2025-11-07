@@ -8,10 +8,7 @@ export default function Home() {
   const [effects, setEffects] = useState({
     parallax: false,
     particles: false,
-    gradientHover: false,
     stagger: false,
-    typography: false,
-    videoGrain: false,
     cursor: false,
   })
 
@@ -28,8 +25,16 @@ export default function Home() {
     // Force mobile video to autoplay
     const mobileVideo = document.querySelector('.mobile-hero-video') as HTMLVideoElement
     if (mobileVideo) {
-      mobileVideo.play().catch(error => {
-        console.log('Mobile video autoplay prevented:', error)
+      // Try immediate play
+      mobileVideo.play().catch(() => {
+        // If blocked, try again on user interaction
+        const playOnInteraction = () => {
+          mobileVideo.play()
+          document.removeEventListener('touchstart', playOnInteraction)
+          document.removeEventListener('click', playOnInteraction)
+        }
+        document.addEventListener('touchstart', playOnInteraction, { once: true })
+        document.addEventListener('click', playOnInteraction, { once: true })
       })
     }
 
@@ -130,13 +135,27 @@ export default function Home() {
 
   // Effects implementation
   useEffect(() => {
-    // Effect 1: Parallax Scrolling
+    // Effect 1: Improved Parallax Scrolling
     const handleParallax = () => {
       if (!effects.parallax) return
       const scrolled = window.scrollY
-      document.querySelectorAll('.atmosphere-img').forEach((img, index) => {
-        const speed = index % 2 === 0 ? 0.5 : -0.3
-        ;(img as HTMLElement).style.transform = `translateY(${scrolled * speed}px)`
+      document.querySelectorAll('.atmosphere-img').forEach((img) => {
+        const element = img as HTMLElement
+        const rect = element.getBoundingClientRect()
+        const elementTop = rect.top + scrolled
+        const elementVisible = rect.top < window.innerHeight && rect.bottom > 0
+
+        if (elementVisible) {
+          // Calculate parallax based on viewport position
+          const relativeScroll = scrolled - elementTop + window.innerHeight
+          const speed = 0.15 // Subtle parallax
+          const parallaxOffset = relativeScroll * speed
+
+          // Preserve original transform while adding parallax
+          const originalTransform = element.style.transform || ''
+          const transformWithoutTranslateY = originalTransform.replace(/translateY\([^)]*\)/g, '').trim()
+          element.style.transform = `${transformWithoutTranslateY} translateY(${parallaxOffset}px)`.trim()
+        }
       })
     }
 
@@ -224,10 +243,7 @@ export default function Home() {
         {[
           { key: 'parallax', label: 'Parallax Scroll' },
           { key: 'particles', label: 'Floating Particles' },
-          { key: 'gradientHover', label: 'Gradient Hover' },
           { key: 'stagger', label: 'Stagger Animation' },
-          { key: 'typography', label: 'Enhanced Typography' },
-          { key: 'videoGrain', label: 'Video Grain' },
           { key: 'cursor', label: 'Custom Cursor' },
         ].map(({ key, label }) => (
           <div key={key} className="flex items-center justify-between mb-3 last:mb-0">
@@ -278,9 +294,9 @@ export default function Home() {
       </div>
 
       {/* Hero Section - Split Screen */}
-      <section className={`min-h-screen flex relative overflow-hidden max-md:block ${effects.parallax ? 'parallax-enabled' : ''}`}>
+      <section className="min-h-screen flex relative overflow-hidden max-md:block">
         {/* Desktop: Split Screen Videos */}
-        <div className={`hero-split flex-1 relative overflow-hidden max-md:hidden ${effects.videoGrain ? 'video-grain' : ''}`}>
+        <div className="hero-split flex-1 relative overflow-hidden max-md:hidden">
           <video autoPlay loop muted playsInline preload="metadata" className="absolute top-0 left-0 w-full h-full object-cover">
             <source src="/Videos/First half.webm" type="video/webm" />
             Your browser does not support the video tag.
@@ -288,7 +304,7 @@ export default function Home() {
           <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
         </div>
 
-        <div className={`hero-split flex-1 relative overflow-hidden max-md:hidden ${effects.videoGrain ? 'video-grain' : ''}`}>
+        <div className="hero-split flex-1 relative overflow-hidden max-md:hidden">
           <video autoPlay loop muted playsInline preload="metadata" className="absolute top-0 left-0 w-full h-full object-cover">
             <source src="/Videos/Second half.webm" type="video/webm" />
             Your browser does not support the video tag.
@@ -297,7 +313,7 @@ export default function Home() {
         </div>
 
         {/* Mobile: Single Full-Screen Video */}
-        <div className={`hidden max-md:block relative w-full h-screen overflow-hidden ${effects.videoGrain ? 'video-grain' : ''}`}>
+        <div className="hidden max-md:block relative w-full h-screen overflow-hidden">
           <video
             autoPlay
             loop
@@ -341,7 +357,7 @@ export default function Home() {
       </section>
 
       {/* Lineup Section */}
-      <section className={`reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''} ${effects.gradientHover ? 'gradient-hover-enabled' : ''} ${effects.typography ? 'typography-enhanced' : ''}`}>
+      <section className={`reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''}`}>
         <div className="atmosphere-img absolute w-[700px] h-[800px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] right-[-5%] top-[12%] rotate-[8deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0675-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
@@ -352,7 +368,7 @@ export default function Home() {
           <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] text-center mb-20 text-section-dark-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
             Lineup
           </h2>
-          <div className={`grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10 max-w-[1200px] mx-auto max-md:grid-cols-1 max-md:gap-[25px] ${effects.stagger ? 'stagger-enabled' : ''}`}>
+          <div className={`grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10 max-w-[1200px] mx-auto max-md:grid-cols-3 max-md:gap-5 max-md:overflow-x-auto max-md:pb-4 ${effects.stagger ? 'stagger-enabled' : ''}`}>
             <div className="bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[35px_25px]">
               <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5">DJ</div>
               <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.5rem]">DJ 1</h3>
@@ -377,7 +393,7 @@ export default function Home() {
       </section>
 
       {/* Event Details Section */}
-      <section className={`reveal text-center py-20 px-5 bg-section-light-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''} ${effects.typography ? 'typography-enhanced' : ''}`}>
+      <section className={`reveal text-center py-20 px-5 bg-section-light-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''}`}>
         <div className="atmosphere-img absolute w-[720px] h-[820px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] left-[-10%] top-[8%] -rotate-[3deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0662 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
@@ -398,7 +414,7 @@ export default function Home() {
       </section>
 
       {/* VIP Bookings Section */}
-      <section className={`reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''} ${effects.typography ? 'typography-enhanced' : ''}`} id="tickets">
+      <section className={`reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''}`} id="tickets">
         <div className="atmosphere-img absolute w-[680px] h-[780px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] right-[-12%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0814-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
@@ -453,7 +469,7 @@ export default function Home() {
           <h3 className="font-playfair text-[clamp(0.85rem,1.5vw,1rem)] font-normal tracking-[0.3em] text-center mb-10 text-gold uppercase max-[600px]:text-[0.8rem] max-[600px]:mb-[30px]">
             In Partnership With
           </h3>
-          <div className="flex justify-center items-center gap-[50px] flex-wrap max-w-[1200px] mx-auto max-[600px]:gap-5 max-[600px]:flex-col">
+          <div className="flex justify-center items-center gap-[50px] flex-wrap max-w-[1200px] mx-auto max-[600px]:gap-5">
             <div className="flex justify-center items-center p-0 transition-all duration-300 opacity-85 hover:scale-105 hover:opacity-100">
               <div className="bg-cream/10 border border-gold/40 px-[35px] py-[15px] rounded-lg font-playfair text-[0.8rem] tracking-[0.2em] text-light-cream text-center min-w-[140px] min-h-[50px] flex items-center justify-center max-[600px]:min-w-[200px]">
                 SPONSOR 1
