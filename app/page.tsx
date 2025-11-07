@@ -161,7 +161,7 @@ export default function Home() {
     }
 
     // Effect 7: Custom Cursor
-    let cursorElement: HTMLDivElement | null = null
+    let cursorElement: HTMLElement | null = null
     const handleMouseMove = (e: MouseEvent) => {
       if (!effects.cursor) return
       if (!cursorElement) {
@@ -175,11 +175,11 @@ export default function Home() {
     }
 
     const handleMouseEnter = () => {
-      cursorElement?.classList.add('hover')
+      if (cursorElement) cursorElement.classList.add('hover')
     }
 
     const handleMouseLeave = () => {
-      cursorElement?.classList.remove('hover')
+      if (cursorElement) cursorElement.classList.remove('hover')
     }
 
     if (effects.cursor) {
@@ -191,7 +191,7 @@ export default function Home() {
       })
     } else {
       document.body.classList.remove('cursor-enabled')
-      cursorElement?.classList.remove('active')
+      if (cursorElement) cursorElement.classList.remove('active')
     }
 
     if (effects.parallax) {
