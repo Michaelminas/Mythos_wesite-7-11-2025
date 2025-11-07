@@ -1,20 +1,37 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import './globals.css'
 
 export default function Home() {
+  const [effects, setEffects] = useState({
+    parallax: false,
+    particles: false,
+    gradientHover: false,
+    stagger: false,
+    typography: false,
+    videoGrain: false,
+    cursor: false,
+  })
+
+  const toggleEffect = (effect: keyof typeof effects) => {
+    setEffects(prev => ({ ...prev, [effect]: !prev[effect] }))
+  }
   useEffect(() => {
-    // Slow down hero videos
+    // Set default hero video speeds
     const heroVideos = document.querySelectorAll('.hero-split video') as NodeListOf<HTMLVideoElement>
-    heroVideos.forEach((video, index) => {
-      if (index === 0) {
-        video.playbackRate = 0.75
-      } else {
-        video.playbackRate = 0.5
-      }
+    heroVideos.forEach((video) => {
+      video.playbackRate = 1
     })
+
+    // Force mobile video to autoplay
+    const mobileVideo = document.querySelector('.mobile-hero-video') as HTMLVideoElement
+    if (mobileVideo) {
+      mobileVideo.play().catch(error => {
+        console.log('Mobile video autoplay prevented:', error)
+      })
+    }
 
     // Seamless logo morph from center to sticky header
     const heroContent = document.getElementById('heroContent')
@@ -111,8 +128,124 @@ export default function Home() {
     }
   }, [])
 
+  // Effects implementation
+  useEffect(() => {
+    // Effect 1: Parallax Scrolling
+    const handleParallax = () => {
+      if (!effects.parallax) return
+      const scrolled = window.scrollY
+      document.querySelectorAll('.atmosphere-img').forEach((img, index) => {
+        const speed = index % 2 === 0 ? 0.5 : -0.3
+        ;(img as HTMLElement).style.transform = `translateY(${scrolled * speed}px)`
+      })
+    }
+
+    // Effect 2: Particle System
+    let particlesInterval: NodeJS.Timeout
+    if (effects.particles) {
+      const container = document.querySelector('.particles-container')
+      container?.classList.add('active')
+
+      particlesInterval = setInterval(() => {
+        const particle = document.createElement('div')
+        particle.className = 'particle'
+        particle.style.left = Math.random() * 100 + '%'
+        particle.style.setProperty('--drift', (Math.random() * 40 - 20) + 'px')
+        particle.style.animationDuration = (Math.random() * 10 + 10) + 's'
+        container?.appendChild(particle)
+
+        setTimeout(() => particle.remove(), 20000)
+      }, 300)
+    } else {
+      document.querySelector('.particles-container')?.classList.remove('active')
+    }
+
+    // Effect 7: Custom Cursor
+    let cursorElement: HTMLDivElement | null = null
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!effects.cursor) return
+      if (!cursorElement) {
+        cursorElement = document.querySelector('.custom-cursor')
+      }
+      if (cursorElement) {
+        cursorElement.style.left = e.clientX + 'px'
+        cursorElement.style.top = e.clientY + 'px'
+        cursorElement.classList.add('active')
+      }
+    }
+
+    const handleMouseEnter = () => {
+      cursorElement?.classList.add('hover')
+    }
+
+    const handleMouseLeave = () => {
+      cursorElement?.classList.remove('hover')
+    }
+
+    if (effects.cursor) {
+      document.body.classList.add('cursor-enabled')
+      document.addEventListener('mousemove', handleMouseMove)
+      document.querySelectorAll('a, button').forEach(el => {
+        el.addEventListener('mouseenter', handleMouseEnter)
+        el.addEventListener('mouseleave', handleMouseLeave)
+      })
+    } else {
+      document.body.classList.remove('cursor-enabled')
+      cursorElement?.classList.remove('active')
+    }
+
+    if (effects.parallax) {
+      window.addEventListener('scroll', handleParallax)
+    }
+
+    return () => {
+      window.removeEventListener('scroll', handleParallax)
+      if (particlesInterval) clearInterval(particlesInterval)
+      document.removeEventListener('mousemove', handleMouseMove)
+      document.querySelectorAll('a, button').forEach(el => {
+        el.removeEventListener('mouseenter', handleMouseEnter)
+        el.removeEventListener('mouseleave', handleMouseLeave)
+      })
+    }
+  }, [effects])
+
   return (
     <>
+      {/* Custom Cursor */}
+      <div className="custom-cursor"></div>
+
+      {/* Particles Container */}
+      <div className="particles-container"></div>
+
+      {/* Effects Control Panel */}
+      <div className="fixed top-[120px] right-5 z-[10001] bg-black/90 p-5 rounded-xl text-white font-cormorant min-w-[280px] max-[600px]:top-[80px] max-[600px]:right-2.5 max-[600px]:min-w-[240px]">
+        <h4 className="m-0 mb-4 text-base uppercase tracking-[0.15em] text-gold border-b border-gold/30 pb-2">Visual Effects</h4>
+
+        {[
+          { key: 'parallax', label: 'Parallax Scroll' },
+          { key: 'particles', label: 'Floating Particles' },
+          { key: 'gradientHover', label: 'Gradient Hover' },
+          { key: 'stagger', label: 'Stagger Animation' },
+          { key: 'typography', label: 'Enhanced Typography' },
+          { key: 'videoGrain', label: 'Video Grain' },
+          { key: 'cursor', label: 'Custom Cursor' },
+        ].map(({ key, label }) => (
+          <div key={key} className="flex items-center justify-between mb-3 last:mb-0">
+            <span className="text-sm tracking-[0.05em]">{label}</span>
+            <button
+              onClick={() => toggleEffect(key as keyof typeof effects)}
+              className={`px-3 py-1 text-xs rounded-full transition-all duration-300 ${
+                effects[key as keyof typeof effects]
+                  ? 'bg-gold text-black font-semibold'
+                  : 'bg-white/10 text-white border border-white/30'
+              }`}
+            >
+              {effects[key as keyof typeof effects] ? 'ON' : 'OFF'}
+            </button>
+          </div>
+        ))}
+      </div>
+
       {/* Background elements */}
       <div className="bg-circles"></div>
       <div className="fixed w-[600px] h-[600px] bg-gradient-radial from-gold/15 to-transparent pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 opacity-0 z-[1]" id="spotlight"></div>
@@ -132,22 +265,22 @@ export default function Home() {
         <h4 className="m-0 mb-[15px] text-[0.9rem] uppercase tracking-[0.1em] text-gold max-[600px]:text-[0.75rem] max-[430px]:text-[0.7rem] max-[430px]:mb-2.5">Video Speed Test</h4>
         <div className="mb-[15px] max-[430px]:mb-2.5">
           <label className="block text-[0.85rem] mb-[5px] tracking-[0.05em] max-[600px]:text-[0.75rem] max-[430px]:text-[0.7rem]">
-            Left Video: <span className="inline-block ml-2.5 text-gold font-bold" id="leftSpeedValue">0.75x</span>
+            Left Video: <span className="inline-block ml-2.5 text-gold font-bold" id="leftSpeedValue">1.0x</span>
           </label>
-          <input type="range" id="leftSpeedSlider" min="0.1" max="2" step="0.1" defaultValue="0.75" className="w-full cursor-pointer" />
+          <input type="range" id="leftSpeedSlider" min="0.1" max="2" step="0.1" defaultValue="1" className="w-full cursor-pointer" />
         </div>
         <div className="mb-[15px] max-[430px]:mb-2.5">
           <label className="block text-[0.85rem] mb-[5px] tracking-[0.05em] max-[600px]:text-[0.75rem] max-[430px]:text-[0.7rem]">
-            Right Video: <span className="inline-block ml-2.5 text-gold font-bold" id="rightSpeedValue">0.5x</span>
+            Right Video: <span className="inline-block ml-2.5 text-gold font-bold" id="rightSpeedValue">1.0x</span>
           </label>
-          <input type="range" id="rightSpeedSlider" min="0.1" max="2" step="0.1" defaultValue="0.5" className="w-full cursor-pointer" />
+          <input type="range" id="rightSpeedSlider" min="0.1" max="2" step="0.1" defaultValue="1" className="w-full cursor-pointer" />
         </div>
       </div>
 
       {/* Hero Section - Split Screen */}
-      <section className="min-h-screen flex relative overflow-hidden max-md:block">
+      <section className={`min-h-screen flex relative overflow-hidden max-md:block ${effects.parallax ? 'parallax-enabled' : ''}`}>
         {/* Desktop: Split Screen Videos */}
-        <div className="hero-split flex-1 relative overflow-hidden max-md:hidden">
+        <div className={`hero-split flex-1 relative overflow-hidden max-md:hidden ${effects.videoGrain ? 'video-grain' : ''}`}>
           <video autoPlay loop muted playsInline preload="metadata" className="absolute top-0 left-0 w-full h-full object-cover">
             <source src="/Videos/First half.webm" type="video/webm" />
             Your browser does not support the video tag.
@@ -155,7 +288,7 @@ export default function Home() {
           <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
         </div>
 
-        <div className="hero-split flex-1 relative overflow-hidden max-md:hidden">
+        <div className={`hero-split flex-1 relative overflow-hidden max-md:hidden ${effects.videoGrain ? 'video-grain' : ''}`}>
           <video autoPlay loop muted playsInline preload="metadata" className="absolute top-0 left-0 w-full h-full object-cover">
             <source src="/Videos/Second half.webm" type="video/webm" />
             Your browser does not support the video tag.
@@ -164,15 +297,14 @@ export default function Home() {
         </div>
 
         {/* Mobile: Single Full-Screen Video */}
-        <div className="hidden max-md:block relative w-full h-screen overflow-hidden">
+        <div className={`hidden max-md:block relative w-full h-screen overflow-hidden ${effects.videoGrain ? 'video-grain' : ''}`}>
           <video
             autoPlay
             loop
             muted
             playsInline
-            webkit-playsinline="true"
             preload="auto"
-            className="absolute top-0 left-0 w-full h-full object-cover"
+            className="absolute top-0 left-0 w-full h-full object-cover mobile-hero-video"
           >
             <source src="/Videos/Mobile video.webm" type="video/webm" />
             Your browser does not support the video tag.
@@ -188,6 +320,7 @@ export default function Home() {
             className="hero-logo-img w-auto h-[clamp(80px,15vw,180px)] mb-10 block mx-auto max-md:h-[clamp(60px,12vw,120px)] max-md:mb-[30px] max-[430px]:h-[clamp(50px,10vw,100px)] max-[430px]:mb-5"
             width={500}
             height={180}
+            style={{ width: 'auto', height: 'auto' }}
             priority
           />
           <div className="hero-date font-cormorant text-[clamp(1.2rem,2.5vw,1.8rem)] font-normal tracking-[0.2em] text-white mb-2.5 max-md:text-[0.9rem] max-md:mb-2 max-[430px]:text-[0.85rem] max-[430px]:mb-1.5">
@@ -208,7 +341,7 @@ export default function Home() {
       </section>
 
       {/* Lineup Section */}
-      <section className="reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
+      <section className={`reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''} ${effects.gradientHover ? 'gradient-hover-enabled' : ''} ${effects.typography ? 'typography-enhanced' : ''}`}>
         <div className="atmosphere-img absolute w-[700px] h-[800px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] right-[-5%] top-[12%] rotate-[8deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0675-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
@@ -219,7 +352,7 @@ export default function Home() {
           <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] text-center mb-20 text-section-dark-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
             Lineup
           </h2>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10 max-w-[1200px] mx-auto max-md:grid-cols-1 max-md:gap-[25px]">
+          <div className={`grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10 max-w-[1200px] mx-auto max-md:grid-cols-1 max-md:gap-[25px] ${effects.stagger ? 'stagger-enabled' : ''}`}>
             <div className="bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[35px_25px]">
               <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5">DJ</div>
               <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.5rem]">DJ 1</h3>
@@ -244,7 +377,7 @@ export default function Home() {
       </section>
 
       {/* Event Details Section */}
-      <section className="reveal text-center py-20 px-5 bg-section-light-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
+      <section className={`reveal text-center py-20 px-5 bg-section-light-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''} ${effects.typography ? 'typography-enhanced' : ''}`}>
         <div className="atmosphere-img absolute w-[720px] h-[820px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] left-[-10%] top-[8%] -rotate-[3deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0662 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
@@ -265,7 +398,7 @@ export default function Home() {
       </section>
 
       {/* VIP Bookings Section */}
-      <section className="reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]" id="tickets">
+      <section className={`reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''} ${effects.typography ? 'typography-enhanced' : ''}`} id="tickets">
         <div className="atmosphere-img absolute w-[680px] h-[780px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] right-[-12%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0814-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
@@ -313,7 +446,7 @@ export default function Home() {
       {/* Footer */}
       <footer className="bg-gradient-to-b from-cream to-dark-terracotta py-20 px-5 pb-10 text-center text-light-cream max-md:py-[60px_20px_30px]">
         <div className="font-playfair text-[2.5rem] font-light tracking-[0.3em] mb-5 max-md:text-[2rem] max-[430px]:text-[1.8rem]">MYTHOS</div>
-        <div className="text-[1.1rem] tracking-[0.2em] mb-[60px] opacity-80 max-md:text-[0.95rem]">An Intimate Odyssey</div>
+        <div className="text-[1.1rem] tracking-[0.2em] mb-[60px] opacity-80 max-md:text-[0.95rem]">House Meets Heritage</div>
 
         {/* Sponsors in Footer */}
         <div className="py-[50px] mb-10 border-t border-b border-gold/30 max-[600px]:py-10">

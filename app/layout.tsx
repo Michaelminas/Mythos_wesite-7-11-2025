@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-  title: 'MYTHOS - An Intimate Odyssey',
+  title: 'MYTHOS - House Meets Heritage',
   description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Friday 19 December, 9:00pm – 3:00am',
   icons: {
     icon: '/Mythos Branding/Mythos-o no bg.png',
