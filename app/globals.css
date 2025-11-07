@@ -394,6 +394,8 @@ body::before {
   text-align: center;
   padding: 80px 20px;
   background: var(--section-light-bg);
+  position: relative;
+  z-index: 2;
 }
 
 .experience h2 {
@@ -423,6 +425,8 @@ body::before {
 .three-sounds {
   padding: 80px 20px;
   background: var(--section-dark-bg);
+  position: relative;
+  z-index: 2;
 }
 
 .three-sounds h2 {
@@ -526,7 +530,7 @@ body::before {
 
 .section-atmosphere {
   position: relative;
-  overflow: hidden;
+  overflow: visible;
 }
 
 .atmosphere-img {
@@ -555,48 +559,72 @@ body::before {
 }
 
 .atmosphere-left {
-  left: 50%;
+  left: 0;
   top: 50%;
-  transform: translate(-120%, -50%) scale(0.95);
+  transform: translate(-40%, -50%) scale(0.95);
 }
 
 .atmosphere-left.visible {
-  transform: translate(-120%, -50%) scale(1);
+  transform: translate(-40%, -50%) scale(1);
 }
 
 .atmosphere-right {
-  right: 50%;
+  right: 0;
   top: 50%;
-  transform: translate(120%, -50%) scale(0.95);
+  transform: translate(40%, -50%) scale(0.95);
 }
 
 .atmosphere-right.visible {
-  transform: translate(120%, -50%) scale(1);
+  transform: translate(40%, -50%) scale(1);
 }
 
 .atmosphere-center-left {
-  left: 50%;
+  left: 15%;
   top: 50%;
-  transform: translate(-70%, -50%) scale(0.95);
+  transform: translate(-50%, -50%) scale(0.95);
 }
 
 .atmosphere-center-left.visible {
-  transform: translate(-70%, -50%) scale(1);
+  transform: translate(-50%, -50%) scale(1);
 }
 
 .atmosphere-center-right {
-  right: 50%;
+  right: 15%;
   top: 50%;
-  transform: translate(70%, -50%) scale(0.95);
+  transform: translate(50%, -50%) scale(0.95);
 }
 
 .atmosphere-center-right.visible {
-  transform: translate(70%, -50%) scale(1);
+  transform: translate(50%, -50%) scale(1);
+}
+
+.atmosphere-bottom-left {
+  left: 10%;
+  bottom: -150px;
+  top: auto;
+  transform: translateX(0) scale(0.95);
+}
+
+.atmosphere-bottom-left.visible {
+  transform: translateX(0) scale(1);
+}
+
+.atmosphere-bottom-right {
+  right: 10%;
+  bottom: -150px;
+  top: auto;
+  transform: translateX(0) scale(0.95);
+}
+
+.atmosphere-bottom-right.visible {
+  transform: translateX(0) scale(1);
 }
 
 .tickets {
   padding: 80px 20px;
   background: var(--section-dark-bg);
+  position: relative;
+  z-index: 2;
 }
 
 .tickets h2 {
@@ -704,6 +732,7 @@ body::before {
   background: linear-gradient(135deg, var(--terracotta), var(--dark-terracotta));
   overflow: hidden;
   position: relative;
+  z-index: 3;
 }
 
 .sponsors::before {

@@ -279,10 +279,10 @@ export default function Home() {
 
       {/* VIP Bookings Section */}
       <section className="tickets reveal section-atmosphere" id="tickets">
-        <div className="atmosphere-img atmosphere-center-right">
+        <div className="atmosphere-img atmosphere-right">
           <Image src="/Event Photos/Compressed/0N6A0814-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
         </div>
-        <div className="atmosphere-img atmosphere-left" style={{ bottom: '5%', top: 'auto' }}>
+        <div className="atmosphere-img atmosphere-bottom-left">
           <Image src="/Event Photos/Compressed/0N6A0817 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
         </div>
         <div className="content-wrapper">
