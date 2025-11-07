@@ -209,10 +209,10 @@ export default function Home() {
 
       {/* Lineup Section */}
       <section className="reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
-        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] right-[5%] top-[20%] scale-95 max-[600px]:hidden">
+        <div className="atmosphere-img absolute w-[700px] h-[800px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] right-[-5%] top-[12%] rotate-[8deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0675-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
-        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] left-[5%] bottom-[10%] scale-95 max-[600px]:hidden">
+        <div className="atmosphere-img absolute w-[650px] h-[750px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] left-[-8%] bottom-[5%] -rotate-[5deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0704-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
@@ -245,7 +245,7 @@ export default function Home() {
 
       {/* Event Details Section */}
       <section className="reveal text-center py-20 px-5 bg-section-light-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
-        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] left-[8%] top-[15%] scale-95 max-[600px]:hidden">
+        <div className="atmosphere-img absolute w-[720px] h-[820px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] left-[-10%] top-[8%] -rotate-[3deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0662 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
@@ -266,10 +266,10 @@ export default function Home() {
 
       {/* VIP Bookings Section */}
       <section className="reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]" id="tickets">
-        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] right-[8%] top-[25%] scale-95 max-[600px]:hidden">
+        <div className="atmosphere-img absolute w-[680px] h-[780px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] right-[-12%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0814-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
-        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] left-[8%] bottom-[15%] scale-95 max-[600px]:hidden">
+        <div className="atmosphere-img absolute w-[630px] h-[730px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] left-[-6%] bottom-[8%] -rotate-[7deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0817 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
