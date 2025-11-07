@@ -21,7 +21,8 @@
       "Bash(git mv \"ss for context\" docs/)",
       "Bash(git mv debug docs/)",
       "Bash(git rm index.html)",
-      "Bash(git rm -r \"Event Photos\" \"Mythos Branding\" Videos)"
+      "Bash(git rm -r \"Event Photos\" \"Mythos Branding\" Videos)",
+      "Bash(git commit -m \"Organize project structure and add documentation\n\n- Create docs/ folder for all documentation and reference files\n- Move Context, requirements, style guide, and screenshots to docs/\n- Move debug logs to docs/debug/\n- Remove old index.html (replaced by Next.js)\n- Add comprehensive README.md with project overview\n- Clean up root directory for better organization\n\nRoot directory now contains only essential config files and app/ + public/ folders.\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\")"
     ],
     "deny": [],
     "ask": []

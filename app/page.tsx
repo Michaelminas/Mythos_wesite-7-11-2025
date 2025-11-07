@@ -157,7 +157,14 @@ export default function Home() {
       <section className="hero">
         {/* Left Panel */}
         <div className="hero-split">
-          <video autoPlay loop muted playsInline>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            webkit-playsinline="true"
+            preload="auto"
+          >
             <source src="/Videos/First half.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
@@ -166,7 +173,14 @@ export default function Home() {
 
         {/* Right Panel */}
         <div className="hero-split">
-          <video autoPlay loop muted playsInline>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            webkit-playsinline="true"
+            preload="auto"
+          >
             <source src="/Videos/Second half.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
@@ -210,8 +224,6 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="divider"><span>◆</span></div>
-
       {/* Lineup Section */}
       <section className="three-sounds reveal section-atmosphere">
         <div className="atmosphere-img atmosphere-right">
@@ -246,36 +258,24 @@ export default function Home() {
         </div>
       </section>
 
-      <div className="divider"><span>◆</span></div>
-
-      {/* Sponsors Section */}
-      <section className="sponsors reveal section-atmosphere">
-        <div className="atmosphere-img atmosphere-left">
-          <Image src="/Event Photos/Compressed/0N6A0712-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
-        </div>
-        <div className="atmosphere-img atmosphere-right">
-          <Image src="/Event Photos/Compressed/0N6A0750-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
-        </div>
-        <div className="content-wrapper">
-          <h3>Our Sponsors</h3>
-          <div className="sponsor-logos">
-            <div className="sponsor-logo">
-              <div className="logo-placeholder">SPONSOR 1</div>
-            </div>
-            <div className="sponsor-logo">
-              <div className="logo-placeholder">SPONSOR 2</div>
-            </div>
-            <div className="sponsor-logo">
-              <div className="logo-placeholder">SPONSOR 3</div>
-            </div>
-            <div className="sponsor-logo">
-              <div className="logo-placeholder">SPONSOR 4</div>
-            </div>
+      {/* Sponsors Banner */}
+      <section className="sponsors">
+        <h3>In Partnership With</h3>
+        <div className="sponsor-logos">
+          <div className="sponsor-logo">
+            <div className="logo-placeholder">SPONSOR 1</div>
+          </div>
+          <div className="sponsor-logo">
+            <div className="logo-placeholder">SPONSOR 2</div>
+          </div>
+          <div className="sponsor-logo">
+            <div className="logo-placeholder">SPONSOR 3</div>
+          </div>
+          <div className="sponsor-logo">
+            <div className="logo-placeholder">SPONSOR 4</div>
           </div>
         </div>
       </section>
-
-      <div className="divider"><span>◆</span></div>
 
       {/* VIP Bookings Section */}
       <section className="tickets reveal section-atmosphere" id="tickets">
@@ -318,8 +318,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      <div className="divider"><span>◆</span></div>
 
       {/* Footer */}
       <footer>

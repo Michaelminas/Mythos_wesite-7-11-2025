@@ -377,25 +377,9 @@ body::before {
 .divider {
   width: 100%;
   max-width: 1200px;
-  margin: 80px auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  opacity: 0.3;
-}
-
-.divider::before,
-.divider::after {
-  content: '';
-  flex: 1;
-  height: 1px;
-  background: var(--terracotta);
-}
-
-.divider span {
-  color: var(--terracotta);
-  font-size: 0.8rem;
+  margin: 0 auto;
+  height: 0;
+  display: none;
 }
 
 .content-wrapper {
@@ -408,7 +392,7 @@ body::before {
 
 .experience {
   text-align: center;
-  padding: 120px 20px;
+  padding: 80px 20px;
   background: var(--section-light-bg);
 }
 
@@ -437,7 +421,7 @@ body::before {
 }
 
 .three-sounds {
-  padding: 120px 20px;
+  padding: 80px 20px;
   background: var(--section-dark-bg);
 }
 
@@ -547,8 +531,8 @@ body::before {
 
 .atmosphere-img {
   position: absolute;
-  width: 300px;
-  height: 400px;
+  width: 500px;
+  height: 600px;
   opacity: 0;
   transition: opacity 1s ease-in-out, transform 0.8s ease-out;
   pointer-events: none;
@@ -559,7 +543,7 @@ body::before {
 }
 
 .atmosphere-img.visible {
-  opacity: 0.2;
+  opacity: 0.5;
   transform: scale(1);
 }
 
@@ -571,27 +555,47 @@ body::before {
 }
 
 .atmosphere-left {
-  left: -50px;
-  top: 20%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-120%, -50%) scale(0.95);
+}
+
+.atmosphere-left.visible {
+  transform: translate(-120%, -50%) scale(1);
 }
 
 .atmosphere-right {
-  right: -50px;
-  top: 30%;
+  right: 50%;
+  top: 50%;
+  transform: translate(120%, -50%) scale(0.95);
+}
+
+.atmosphere-right.visible {
+  transform: translate(120%, -50%) scale(1);
 }
 
 .atmosphere-center-left {
-  left: 10%;
-  bottom: 10%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-70%, -50%) scale(0.95);
+}
+
+.atmosphere-center-left.visible {
+  transform: translate(-70%, -50%) scale(1);
 }
 
 .atmosphere-center-right {
-  right: 10%;
-  bottom: 15%;
+  right: 50%;
+  top: 50%;
+  transform: translate(70%, -50%) scale(0.95);
+}
+
+.atmosphere-center-right.visible {
+  transform: translate(70%, -50%) scale(1);
 }
 
 .tickets {
-  padding: 120px 20px;
+  padding: 80px 20px;
   background: var(--section-dark-bg);
 }
 
@@ -696,57 +700,80 @@ body::before {
 }
 
 .sponsors {
-  padding: 80px 20px;
-  background: var(--section-light-bg);
+  padding: 40px 0;
+  background: linear-gradient(135deg, var(--terracotta), var(--dark-terracotta));
+  overflow: hidden;
+  position: relative;
+}
+
+.sponsors::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
 }
 
 .sponsors h3 {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.5rem, 3vw, 2rem);
-  font-weight: 300;
+  font-size: clamp(0.9rem, 2vw, 1.2rem);
+  font-weight: 400;
   letter-spacing: 0.3em;
   text-align: center;
-  margin-bottom: 50px;
-  color: var(--section-light-text);
+  margin-bottom: 30px;
+  color: var(--gold);
   text-transform: uppercase;
 }
 
 .sponsor-logos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 40px;
-  max-width: 900px;
-  margin: 0 auto;
+  display: flex;
+  justify-content: center;
   align-items: center;
+  gap: 60px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px;
+  flex-wrap: wrap;
 }
 
 .sponsor-logo {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px;
-  transition: transform 0.3s;
+  padding: 0;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0.9;
 }
 
 .sponsor-logo:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
+  opacity: 1;
 }
 
 .logo-placeholder {
-  background: rgba(166, 123, 91, 0.1);
-  border: 2px dashed var(--terracotta);
-  padding: 40px 30px;
-  border-radius: 15px;
+  background: rgba(255, 255, 255, 0.15);
+  border: 2px solid rgba(212, 165, 116, 0.4);
+  padding: 20px 40px;
+  border-radius: 10px;
   font-family: 'Playfair Display', serif;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   letter-spacing: 0.2em;
-  color: var(--terracotta);
+  color: var(--light-cream);
   text-align: center;
-  width: 100%;
-  min-height: 100px;
+  min-width: 150px;
+  min-height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
+  backdrop-filter: blur(5px);
 }
 
 footer {
