@@ -258,25 +258,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sponsors Banner */}
-      <section className="sponsors">
-        <h3>In Partnership With</h3>
-        <div className="sponsor-logos">
-          <div className="sponsor-logo">
-            <div className="logo-placeholder">SPONSOR 1</div>
-          </div>
-          <div className="sponsor-logo">
-            <div className="logo-placeholder">SPONSOR 2</div>
-          </div>
-          <div className="sponsor-logo">
-            <div className="logo-placeholder">SPONSOR 3</div>
-          </div>
-          <div className="sponsor-logo">
-            <div className="logo-placeholder">SPONSOR 4</div>
-          </div>
-        </div>
-      </section>
-
       {/* VIP Bookings Section */}
       <section className="tickets reveal section-atmosphere" id="tickets">
         <div className="atmosphere-img atmosphere-right">
@@ -323,6 +304,26 @@ export default function Home() {
       <footer>
         <div className="footer-logo">MYTHOS</div>
         <div className="footer-tagline">An Intimate Odyssey</div>
+
+        {/* Sponsors in Footer */}
+        <div className="footer-sponsors">
+          <h3>In Partnership With</h3>
+          <div className="sponsor-logos">
+            <div className="sponsor-logo">
+              <div className="logo-placeholder">SPONSOR 1</div>
+            </div>
+            <div className="sponsor-logo">
+              <div className="logo-placeholder">SPONSOR 2</div>
+            </div>
+            <div className="sponsor-logo">
+              <div className="logo-placeholder">SPONSOR 3</div>
+            </div>
+            <div className="sponsor-logo">
+              <div className="logo-placeholder">SPONSOR 4</div>
+            </div>
+          </div>
+        </div>
+
         <div className="social-links">
           <a href="#" className="magnetic">Instagram</a>
           <a href="#" className="magnetic">Facebook</a>

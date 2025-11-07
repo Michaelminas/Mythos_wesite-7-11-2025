@@ -727,83 +727,7 @@ body::before {
   background: linear-gradient(135deg, var(--terracotta), var(--gold));
 }
 
-.sponsors {
-  padding: 40px 0;
-  background: linear-gradient(135deg, var(--terracotta), var(--dark-terracotta));
-  overflow: hidden;
-  position: relative;
-  z-index: 3;
-}
-
-.sponsors::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.05), transparent);
-  animation: shimmer 3s infinite;
-}
-
-@keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
-}
-
-.sponsors h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: clamp(0.9rem, 2vw, 1.2rem);
-  font-weight: 400;
-  letter-spacing: 0.3em;
-  text-align: center;
-  margin-bottom: 30px;
-  color: var(--gold);
-  text-transform: uppercase;
-}
-
-.sponsor-logos {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 40px;
-  flex-wrap: wrap;
-}
-
-.sponsor-logo {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 0;
-  transition: transform 0.3s, opacity 0.3s;
-  opacity: 0.9;
-}
-
-.sponsor-logo:hover {
-  transform: scale(1.05);
-  opacity: 1;
-}
-
-.logo-placeholder {
-  background: rgba(255, 255, 255, 0.15);
-  border: 2px solid rgba(212, 165, 116, 0.4);
-  padding: 20px 40px;
-  border-radius: 10px;
-  font-family: 'Playfair Display', serif;
-  font-size: 0.85rem;
-  letter-spacing: 0.2em;
-  color: var(--light-cream);
-  text-align: center;
-  min-width: 150px;
-  min-height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  backdrop-filter: blur(5px);
-}
+/* Old sponsors section styles removed - now integrated in footer */
 
 footer {
   background: linear-gradient(180deg, var(--cream) 0%, var(--dark-terracotta) 100%);
@@ -823,8 +747,67 @@ footer {
 .footer-tagline {
   font-size: 1.1rem;
   letter-spacing: 0.2em;
-  margin-bottom: 40px;
+  margin-bottom: 60px;
   opacity: 0.8;
+}
+
+.footer-sponsors {
+  padding: 50px 0;
+  margin-bottom: 40px;
+  border-top: 1px solid rgba(212, 165, 116, 0.3);
+  border-bottom: 1px solid rgba(212, 165, 116, 0.3);
+}
+
+.footer-sponsors h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(0.85rem, 1.5vw, 1rem);
+  font-weight: 400;
+  letter-spacing: 0.3em;
+  text-align: center;
+  margin-bottom: 40px;
+  color: var(--gold);
+  text-transform: uppercase;
+}
+
+.footer-sponsors .sponsor-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-sponsors .sponsor-logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  transition: transform 0.3s, opacity 0.3s;
+  opacity: 0.85;
+}
+
+.footer-sponsors .sponsor-logo:hover {
+  transform: scale(1.05);
+  opacity: 1;
+}
+
+.footer-sponsors .logo-placeholder {
+  background: rgba(212, 196, 176, 0.1);
+  border: 1px solid rgba(212, 165, 116, 0.4);
+  padding: 15px 35px;
+  border-radius: 8px;
+  font-family: 'Playfair Display', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  color: var(--light-cream);
+  text-align: center;
+  min-width: 140px;
+  min-height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .social-links {
@@ -1009,18 +992,22 @@ footer {
     font-size: 0.9rem;
   }
 
-  .sponsors h3 {
-    font-size: 1.3rem;
-    margin-bottom: 35px;
+  .footer-sponsors {
+    padding: 40px 0;
   }
 
-  .sponsor-logos {
-    grid-template-columns: 1fr;
-    gap: 15px;
+  .footer-sponsors h3 {
+    font-size: 0.8rem;
+    margin-bottom: 30px;
   }
 
-  .sponsor-logo {
-    padding: 20px;
+  .footer-sponsors .sponsor-logos {
+    gap: 20px;
+    flex-direction: column;
+  }
+
+  .footer-sponsors .logo-placeholder {
+    min-width: 200px;
   }
 
   footer {
