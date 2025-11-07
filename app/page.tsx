@@ -68,21 +68,48 @@ export default function Home() {
       video.playbackRate = 1
     })
 
-    // Force mobile video to autoplay
-    const mobileVideo = document.querySelector('.mobile-hero-video') as HTMLVideoElement
-    if (mobileVideo) {
-      // Try immediate play
-      mobileVideo.play().catch(() => {
-        // If blocked, try again on user interaction
-        const playOnInteraction = () => {
-          mobileVideo.play()
-          document.removeEventListener('touchstart', playOnInteraction)
-          document.removeEventListener('click', playOnInteraction)
-        }
-        document.addEventListener('touchstart', playOnInteraction, { once: true })
-        document.addEventListener('click', playOnInteraction, { once: true })
-      })
+    // Force mobile video to autoplay with multiple attempts
+    const tryPlayMobileVideo = () => {
+      const mobileVideo = document.querySelector('.mobile-hero-video') as HTMLVideoElement
+      if (!mobileVideo) return
+
+      // Set video attributes for better mobile compatibility
+      mobileVideo.setAttribute('playsinline', 'true')
+      mobileVideo.setAttribute('webkit-playsinline', 'true')
+      mobileVideo.muted = true
+      mobileVideo.defaultMuted = true
+
+      // Force load the video
+      mobileVideo.load()
+
+      // Try to play immediately
+      const playPromise = mobileVideo.play()
+
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          // If autoplay fails, try again after a short delay
+          setTimeout(() => {
+            mobileVideo.play().catch(() => {
+              // If still blocked, add interaction listeners
+              const playOnInteraction = () => {
+                mobileVideo.play()
+                document.body.removeEventListener('touchstart', playOnInteraction)
+                document.body.removeEventListener('click', playOnInteraction)
+                document.body.removeEventListener('scroll', playOnInteraction)
+              }
+              document.body.addEventListener('touchstart', playOnInteraction, { once: true, passive: true })
+              document.body.addEventListener('click', playOnInteraction, { once: true })
+              document.body.addEventListener('scroll', playOnInteraction, { once: true, passive: true })
+            })
+          }, 100)
+        })
+      }
     }
+
+    // Try playing video immediately and on DOM ready
+    tryPlayMobileVideo()
+    setTimeout(tryPlayMobileVideo, 500)
+    setTimeout(tryPlayMobileVideo, 1000)
 
     // Seamless logo morph from center to sticky header
     const heroContent = document.getElementById('heroContent')
@@ -393,9 +420,12 @@ export default function Home() {
             muted
             playsInline
             preload="auto"
+            defaultMuted
             className="absolute top-0 left-0 w-full h-full object-cover mobile-hero-video"
+            style={{ backgroundColor: '#000' }}
+            poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect fill='%23000' width='1' height='1'/%3E%3C/svg%3E"
           >
-            <source src="/Videos/Mobile video.webm" type="video/webm" />
+            <source src="/Videos/website video.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
           <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
@@ -449,10 +479,10 @@ export default function Home() {
       {/* Lineup Section */}
       <section className={`reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''}`}>
         <div className="atmosphere-img absolute w-[700px] h-[800px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] right-[-5%] top-[12%] rotate-[8deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0675-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
+          <Image src="/Event Photos/Compressed/0N6A0675-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="atmosphere-img absolute w-[650px] h-[750px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] left-[-8%] bottom-[5%] -rotate-[5deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0704-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
+          <Image src="/Event Photos/Compressed/0N6A0704-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
           <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] text-center mb-20 text-section-dark-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
@@ -485,7 +515,7 @@ export default function Home() {
       {/* Event Details Section */}
       <section className={`reveal text-center py-20 px-5 bg-section-light-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''}`}>
         <div className="atmosphere-img absolute w-[720px] h-[820px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] left-[-10%] top-[8%] -rotate-[3deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0662 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
+          <Image src="/Event Photos/Compressed/0N6A0662 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
           <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] mb-10 text-section-light-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
@@ -506,10 +536,10 @@ export default function Home() {
       {/* VIP Bookings Section */}
       <section className={`reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''}`} id="tickets">
         <div className="atmosphere-img absolute w-[680px] h-[780px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] right-[-12%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0814-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
+          <Image src="/Event Photos/Compressed/0N6A0814-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="atmosphere-img absolute w-[630px] h-[730px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] left-[-6%] bottom-[8%] -rotate-[7deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0817 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
+          <Image src="/Event Photos/Compressed/0N6A0817 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
           <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] text-center mb-20 text-section-dark-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
