@@ -13,10 +13,54 @@ export default function Home() {
   })
 
   const [showControls, setShowControls] = useState(true)
+  const [countdown, setCountdown] = useState('')
+  const [eventStatus, setEventStatus] = useState<'upcoming' | 'live' | 'ended'>('upcoming')
 
   const toggleEffect = (effect: keyof typeof effects) => {
     setEffects(prev => ({ ...prev, [effect]: !prev[effect] }))
   }
+
+  // Countdown timer
+  useEffect(() => {
+    const updateCountdown = () => {
+      // Event: Friday 19 December 2025, 9:00pm - 3:00am
+      const eventStart = new Date('2025-12-19T21:00:00')
+      const eventEnd = new Date('2025-12-20T03:00:00')
+      const now = new Date()
+
+      if (now >= eventStart && now <= eventEnd) {
+        // Event is happening now
+        setEventStatus('live')
+        setCountdown('EVENT HAPPENING NOW!')
+      } else if (now > eventEnd) {
+        // Event has ended
+        setEventStatus('ended')
+        setCountdown('Event has concluded')
+      } else {
+        // Event is upcoming - show countdown
+        setEventStatus('upcoming')
+        const diff = eventStart.getTime() - now.getTime()
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24))
+        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
+        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
+        const seconds = Math.floor((diff % (1000 * 60)) / 1000)
+
+        if (days > 0) {
+          setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`)
+        } else if (hours > 0) {
+          setCountdown(`${hours}h ${minutes}m ${seconds}s`)
+        } else {
+          setCountdown(`${minutes}m ${seconds}s`)
+        }
+      }
+    }
+
+    updateCountdown()
+    const interval = setInterval(updateCountdown, 1000)
+
+    return () => clearInterval(interval)
+  }, [])
   useEffect(() => {
     // Set default hero video speeds
     const heroVideos = document.querySelectorAll('.hero-split video') as NodeListOf<HTMLVideoElement>
@@ -374,13 +418,30 @@ export default function Home() {
           <div className="hero-time font-cormorant text-[clamp(1rem,2vw,1.4rem)] font-light tracking-[0.15em] text-white/90 max-md:text-[0.8rem] max-md:tracking-[0.1em] max-[430px]:text-[0.75rem]">
             9:00pm – 3:00am | VENUE
           </div>
+
+          {/* Countdown Timer */}
+          <div className={`font-playfair text-[clamp(1.2rem,2.5vw,1.6rem)] font-bold tracking-[0.2em] mt-4 mb-2 ${
+            eventStatus === 'live' ? 'text-gold animate-pulse' :
+            eventStatus === 'ended' ? 'text-white/60' :
+            'text-white'
+          } max-md:text-[1rem] max-[430px]:text-[0.9rem]`}>
+            {countdown}
+          </div>
+
           <a
             href="https://moshtix.com.au/placeholder"
             target="_blank"
             rel="noopener noreferrer"
-            className="hero-cta inline-block mt-5 px-[50px] py-[18px] bg-gradient-to-br from-gold to-terracotta text-white no-underline font-playfair font-semibold tracking-[0.2em] text-base uppercase rounded-full shadow-[0_8px_30px_rgba(166,123,91,0.5)] transition-all duration-400 hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(166,123,91,0.7)] max-md:px-[30px] max-md:py-3 max-md:text-[0.85rem] max-md:tracking-[0.15em] max-md:mt-[15px] max-[430px]:px-[25px] max-[430px]:py-2.5 max-[430px]:text-[0.8rem] max-[430px]:mt-3"
+            className={`hero-cta inline-block mt-3 px-[50px] py-[18px] no-underline font-playfair font-semibold tracking-[0.2em] text-base uppercase rounded-full transition-all duration-400 max-md:px-[30px] max-md:py-3 max-md:text-[0.85rem] max-md:tracking-[0.15em] max-md:mt-[15px] max-[430px]:px-[25px] max-[430px]:py-2.5 max-[430px]:text-[0.8rem] max-[430px]:mt-3 ${
+              eventStatus === 'live'
+                ? 'bg-gradient-to-br from-gold to-terracotta text-white shadow-[0_8px_30px_rgba(212,165,116,0.8)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(212,165,116,1)] animate-pulse'
+                : eventStatus === 'ended'
+                ? 'bg-gray-600 text-white/50 cursor-not-allowed shadow-[0_4px_20px_rgba(0,0,0,0.3)]'
+                : 'bg-gradient-to-br from-gold to-terracotta text-white shadow-[0_8px_30px_rgba(166,123,91,0.5)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(166,123,91,0.7)]'
+            }`}
+            {...(eventStatus === 'ended' ? { onClick: (e: React.MouseEvent) => e.preventDefault() } : {})}
           >
-            Get Tickets
+            {eventStatus === 'live' ? 'Get Tickets Now!' : eventStatus === 'ended' ? 'Event Ended' : 'Get Tickets'}
           </a>
         </div>
       </section>
