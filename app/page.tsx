@@ -137,24 +137,39 @@ export default function Home() {
 
   // Effects implementation
   useEffect(() => {
-    // Effect 1: Improved Parallax Scrolling
+    // Effect 1: Improved Parallax Scrolling - Constrained to Section
     const handleParallax = () => {
       if (!effects.parallax) return
       const scrolled = window.scrollY
       document.querySelectorAll('.atmosphere-img').forEach((img) => {
         const element = img as HTMLElement
+        const section = element.closest('section')
+        if (!section) return
+
         const rect = element.getBoundingClientRect()
-        const elementTop = rect.top + scrolled
+        const sectionRect = section.getBoundingClientRect()
         const elementVisible = rect.top < window.innerHeight && rect.bottom > 0
 
         if (elementVisible) {
-          // Calculate parallax based on viewport position
-          const relativeScroll = scrolled - elementTop + window.innerHeight
-          const speed = 0.15 // Subtle parallax
-          const parallaxOffset = relativeScroll * speed
+          // Calculate parallax based on section position
+          const sectionTop = sectionRect.top + scrolled
+          const sectionHeight = section.offsetHeight
+          const relativeScroll = scrolled - sectionTop
+
+          // Constrain parallax to section boundaries
+          const maxOffset = sectionHeight * 0.1 // Maximum 10% of section height
+          const speed = 0.08 // Very subtle parallax
+          let parallaxOffset = relativeScroll * speed
+
+          // Clamp the offset to prevent escaping section
+          parallaxOffset = Math.max(-maxOffset, Math.min(maxOffset, parallaxOffset))
 
           // Preserve original transform while adding parallax
-          const originalTransform = element.style.transform || ''
+          const originalTransform = element.getAttribute('data-original-transform') || ''
+          if (!element.getAttribute('data-original-transform')) {
+            element.setAttribute('data-original-transform', element.style.transform || '')
+          }
+
           const transformWithoutTranslateY = originalTransform.replace(/translateY\([^)]*\)/g, '').trim()
           element.style.transform = `${transformWithoutTranslateY} translateY(${parallaxOffset}px)`.trim()
         }

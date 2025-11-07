@@ -94,9 +94,13 @@
     @apply opacity-50 scale-100;
   }
 
-  /* Prevent atmosphere images from overlapping hero section */
-  section:first-of-type ~ section .atmosphere-img {
-    clip-path: inset(0);
+  /* Prevent atmosphere images from overlapping hero section and other sections */
+  section {
+    overflow: hidden;
+  }
+
+  section:first-of-type {
+    overflow: visible; /* Allow hero section to be full */
   }
 
   /* Fixed tickets button visibility */
