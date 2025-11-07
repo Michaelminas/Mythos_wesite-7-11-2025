@@ -145,20 +145,36 @@ export default function Home() {
       </div>
 
       {/* Hero Section - Split Screen */}
-      <section className="min-h-screen flex relative overflow-hidden max-md:flex-col">
-        {/* Left Panel */}
-        <div className="hero-split flex-1 relative overflow-hidden max-md:min-h-[50vh] max-md:w-full">
-          <video autoPlay loop muted playsInline webkit-playsinline="true" preload="auto" className="absolute top-0 left-0 w-full h-full object-cover">
+      <section className="min-h-screen flex relative overflow-hidden max-md:block">
+        {/* Desktop: Split Screen Videos */}
+        <div className="hero-split flex-1 relative overflow-hidden max-md:hidden">
+          <video autoPlay loop muted playsInline preload="metadata" className="absolute top-0 left-0 w-full h-full object-cover">
             <source src="/Videos/First half.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
           <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
         </div>
 
-        {/* Right Panel */}
-        <div className="hero-split flex-1 relative overflow-hidden max-md:min-h-[50vh] max-md:w-full">
-          <video autoPlay loop muted playsInline webkit-playsinline="true" preload="auto" className="absolute top-0 left-0 w-full h-full object-cover">
+        <div className="hero-split flex-1 relative overflow-hidden max-md:hidden">
+          <video autoPlay loop muted playsInline preload="metadata" className="absolute top-0 left-0 w-full h-full object-cover">
             <source src="/Videos/Second half.webm" type="video/webm" />
+            Your browser does not support the video tag.
+          </video>
+          <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
+        </div>
+
+        {/* Mobile: Single Full-Screen Video */}
+        <div className="hidden max-md:block relative w-full h-screen overflow-hidden">
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            webkit-playsinline="true"
+            preload="auto"
+            className="absolute top-0 left-0 w-full h-full object-cover"
+          >
+            <source src="/Videos/Mobile video.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
           <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
@@ -194,10 +210,10 @@ export default function Home() {
       {/* Lineup Section */}
       <section className="reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
         <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] right-[5%] top-[20%] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0675-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
+          <Image src="/Event Photos/Compressed/0N6A0675-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
         <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] left-[5%] bottom-[10%] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0704-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
+          <Image src="/Event Photos/Compressed/0N6A0704-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
           <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] text-center mb-20 text-section-dark-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
@@ -230,7 +246,7 @@ export default function Home() {
       {/* Event Details Section */}
       <section className="reveal text-center py-20 px-5 bg-section-light-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
         <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] left-[8%] top-[15%] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0662 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
+          <Image src="/Event Photos/Compressed/0N6A0662 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
           <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] mb-10 text-section-light-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
@@ -251,10 +267,10 @@ export default function Home() {
       {/* VIP Bookings Section */}
       <section className="reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]" id="tickets">
         <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] right-[8%] top-[25%] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0814-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
+          <Image src="/Event Photos/Compressed/0N6A0814-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
         <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] left-[8%] bottom-[15%] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0817 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
+          <Image src="/Event Photos/Compressed/0N6A0817 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
           <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] text-center mb-20 text-section-dark-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
