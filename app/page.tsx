@@ -169,7 +169,7 @@ export default function Home() {
           <Image
             src="/Mythos Branding/logo final PMS 876C_cmyk copy.png"
             alt="MYTHOS"
-            className="hero-logo-img w-auto h-[clamp(80px,15vw,180px)] mb-10 block mx-auto relative -left-[9%] max-md:h-[clamp(60px,12vw,120px)] max-md:mb-[30px] max-[430px]:h-[clamp(50px,10vw,100px)] max-[430px]:mb-5"
+            className="hero-logo-img w-auto h-[clamp(80px,15vw,180px)] mb-10 block mx-auto max-md:h-[clamp(60px,12vw,120px)] max-md:mb-[30px] max-[430px]:h-[clamp(50px,10vw,100px)] max-[430px]:mb-5"
             width={500}
             height={180}
             priority
@@ -191,33 +191,12 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Event Details Section */}
-      <section className="reveal text-center py-20 px-5 bg-section-light-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
-        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] left-0 top-1/2 -translate-x-[40%] -translate-y-1/2 scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0662 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
-        </div>
-        <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
-          <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] mb-10 text-section-light-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
-            Event Details
-          </h2>
-          <p className="text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] max-w-[800px] mx-auto mb-[25px] font-light text-section-light-text max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-            After a sold-out event, Mythos is taking over VENUE this summer for the next chapter of Sydney&apos;s modern European nightlife.
-          </p>
-          <p className="text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] max-w-[800px] mx-auto mb-[25px] font-light text-section-light-text max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-            Experience live Greek music, European anthems, and high-energy performances from dancers and live acts. Every set blends the best of Europe and Greece, creating a night built for rhythm, energy, and connection.
-          </p>
-          <p className="text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] max-w-[800px] mx-auto mb-[25px] font-light text-section-light-text max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-            Join us for a full sensory takeover with world-class sound, lighting, and production that defines the Mythos experience.
-          </p>
-        </div>
-      </section>
-
       {/* Lineup Section */}
       <section className="reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
-        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] right-0 top-1/2 translate-x-[40%] -translate-y-1/2 scale-95 max-[600px]:hidden">
+        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] right-[5%] top-[20%] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0675-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
         </div>
-        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] left-[15%] top-1/2 -translate-x-1/2 -translate-y-1/2 scale-95 max-[600px]:hidden">
+        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] left-[5%] bottom-[10%] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0704-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
@@ -248,12 +227,33 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Event Details Section */}
+      <section className="reveal text-center py-20 px-5 bg-section-light-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
+        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] left-[8%] top-[15%] scale-95 max-[600px]:hidden">
+          <Image src="/Event Photos/Compressed/0N6A0662 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
+        </div>
+        <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
+          <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] mb-10 text-section-light-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
+            Event Details
+          </h2>
+          <p className="text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] max-w-[800px] mx-auto mb-[25px] font-light text-section-light-text max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
+            After a sold-out event, Mythos is taking over VENUE this summer for the next chapter of Sydney&apos;s modern European nightlife.
+          </p>
+          <p className="text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] max-w-[800px] mx-auto mb-[25px] font-light text-section-light-text max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
+            Experience live Greek music, European anthems, and high-energy performances from dancers and live acts. Every set blends the best of Europe and Greece, creating a night built for rhythm, energy, and connection.
+          </p>
+          <p className="text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] max-w-[800px] mx-auto mb-[25px] font-light text-section-light-text max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
+            Join us for a full sensory takeover with world-class sound, lighting, and production that defines the Mythos experience.
+          </p>
+        </div>
+      </section>
+
       {/* VIP Bookings Section */}
       <section className="reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]" id="tickets">
-        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] right-0 top-1/2 translate-x-[40%] -translate-y-1/2 scale-95 max-[600px]:hidden">
+        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] right-[8%] top-[25%] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0814-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
         </div>
-        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] left-[10%] bottom-[-150px] top-auto scale-95 max-[600px]:hidden">
+        <div className="atmosphere-img absolute w-[500px] h-[600px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[15px] overflow-hidden z-[1] left-[8%] bottom-[15%] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0817 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
