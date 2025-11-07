@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git init)",
+      "Bash(git add .)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: MYTHOS landing page with interactive features\n\n- Single-file HTML landing page for MYTHOS Sydney clubbing event\n- Split-screen hero with video backgrounds and logo morph animation\n- Event details, DJ lineup, VIP booking form, and sponsors sections\n- Atmosphere photos integrated into sections with scroll animations\n- Video playback speed controls for testing purposes\n- Fully responsive design for desktop, tablet, and mobile\n- Mediterranean-inspired color palette with terracotta, cream, and gold\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git remote add origin https://github.com/Michaelminas/Mythos_wesite-7-11-2025.git)",
+      "Bash(git remote set-url origin https://github.com/Michaelminas/Mythos_wesite-7-11-2025.git)",
+      "Bash(git push -u origin main)",
+      "Bash(git rm --cached \"Videos/*.mov\")",
+      "Bash(git log --all --pretty=format: --name-only --diff-filter=A)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
