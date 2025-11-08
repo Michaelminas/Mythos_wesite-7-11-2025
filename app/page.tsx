@@ -531,7 +531,7 @@ Special Requests: ${message}
         <div className="font-playfair text-[2.5rem] font-light tracking-[0.3em] mb-5 max-md:text-[2rem] max-[430px]:text-[1.8rem]">MYTHOS</div>
         <div className="text-[1.1rem] tracking-[0.2em] mb-[60px] opacity-80 max-md:text-[0.95rem]">House Meets Heritage</div>
 
-        <div className="flex justify-center gap-10 mb-10 max-md:flex-col max-md:gap-[15px]">
+        <div className="flex justify-center gap-10 mb-10 max-md:gap-5">
           <a href="https://www.instagram.com/mythos.syd/" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-base tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.9rem]">Instagram</a>
           <a href="https://www.tiktok.com/@mythos.syd" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-base tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.9rem]">TikTok</a>
           <a href="https://www.facebook.com/profile.php?id=61571632207446" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-base tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.9rem]">Facebook</a>
