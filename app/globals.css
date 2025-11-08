@@ -196,4 +196,22 @@
     @apply fixed w-2 h-2 bg-gold rounded-full pointer-events-none z-[9999] opacity-60;
     transform: translate(-50%, -50%);
   }
+
+  /* Sponsors Carousel Animation */
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .sponsors-carousel {
+    animation: scroll-left 30s linear infinite;
+  }
+
+  .sponsors-carousel:hover {
+    animation-play-state: paused;
+  }
 }

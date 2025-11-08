@@ -5,20 +5,8 @@ import Image from 'next/image'
 import './globals.css'
 
 export default function Home() {
-  const [effects, setEffects] = useState({
-    parallax: false,
-    particles: false,
-    stagger: false,
-    cursor: false,
-  })
-
-  const [showControls, setShowControls] = useState(true)
   const [countdown, setCountdown] = useState('')
   const [eventStatus, setEventStatus] = useState<'upcoming' | 'live' | 'ended'>('upcoming')
-
-  const toggleEffect = (effect: keyof typeof effects) => {
-    setEffects(prev => ({ ...prev, [effect]: !prev[effect] }))
-  }
 
   // Countdown timer
   useEffect(() => {
@@ -172,7 +160,7 @@ export default function Home() {
       }
 
       const infoFadePercent = Math.min(scrollY / (transitionEnd * 0.4), 1)
-      const dateElements = heroContent?.querySelectorAll('.hero-date, .hero-time, .hero-cta')
+      const dateElements = heroContent?.querySelectorAll('.hero-date, .hero-time, .hero-countdown, .hero-cta')
       dateElements?.forEach((el) => {
         const element = el as HTMLElement
         element.style.opacity = (1 - infoFadePercent).toString()
@@ -244,160 +232,8 @@ export default function Home() {
     }
   }, [])
 
-  // Effects implementation
-  useEffect(() => {
-    // Effect 1: Improved Parallax Scrolling - Constrained to Section
-    const handleParallax = () => {
-      if (!effects.parallax) return
-      const scrolled = window.scrollY
-      document.querySelectorAll('.atmosphere-img').forEach((img) => {
-        const element = img as HTMLElement
-        const section = element.closest('section')
-        if (!section) return
-
-        const rect = element.getBoundingClientRect()
-        const sectionRect = section.getBoundingClientRect()
-        const elementVisible = rect.top < window.innerHeight && rect.bottom > 0
-
-        if (elementVisible) {
-          // Calculate parallax based on section position
-          const sectionTop = sectionRect.top + scrolled
-          const sectionHeight = section.offsetHeight
-          const relativeScroll = scrolled - sectionTop
-
-          // Constrain parallax to section boundaries
-          const maxOffset = sectionHeight * 0.1 // Maximum 10% of section height
-          const speed = 0.08 // Very subtle parallax
-          let parallaxOffset = relativeScroll * speed
-
-          // Clamp the offset to prevent escaping section
-          parallaxOffset = Math.max(-maxOffset, Math.min(maxOffset, parallaxOffset))
-
-          // Preserve original transform while adding parallax
-          const originalTransform = element.getAttribute('data-original-transform') || ''
-          if (!element.getAttribute('data-original-transform')) {
-            element.setAttribute('data-original-transform', element.style.transform || '')
-          }
-
-          const transformWithoutTranslateY = originalTransform.replace(/translateY\([^)]*\)/g, '').trim()
-          element.style.transform = `${transformWithoutTranslateY} translateY(${parallaxOffset}px)`.trim()
-        }
-      })
-    }
-
-    // Effect 2: Particle System
-    let particlesInterval: NodeJS.Timeout
-    if (effects.particles) {
-      const container = document.querySelector('.particles-container')
-      container?.classList.add('active')
-
-      particlesInterval = setInterval(() => {
-        const particle = document.createElement('div')
-        particle.className = 'particle'
-        particle.style.left = Math.random() * 100 + '%'
-        particle.style.setProperty('--drift', (Math.random() * 40 - 20) + 'px')
-        particle.style.animationDuration = (Math.random() * 10 + 10) + 's'
-        container?.appendChild(particle)
-
-        setTimeout(() => particle.remove(), 20000)
-      }, 300)
-    } else {
-      document.querySelector('.particles-container')?.classList.remove('active')
-    }
-
-    // Effect 7: Custom Cursor
-    const handleMouseMove = (e: MouseEvent) => {
-      if (!effects.cursor) return
-      const cursor = document.querySelector('.custom-cursor') as HTMLElement | null
-      if (cursor) {
-        cursor.style.left = e.clientX + 'px'
-        cursor.style.top = e.clientY + 'px'
-        cursor.classList.add('active')
-      }
-    }
-
-    const handleMouseEnter = () => {
-      const cursor = document.querySelector('.custom-cursor') as HTMLElement | null
-      if (cursor) cursor.classList.add('hover')
-    }
-
-    const handleMouseLeave = () => {
-      const cursor = document.querySelector('.custom-cursor') as HTMLElement | null
-      if (cursor) cursor.classList.remove('hover')
-    }
-
-    if (effects.cursor) {
-      document.body.classList.add('cursor-enabled')
-      document.addEventListener('mousemove', handleMouseMove)
-      document.querySelectorAll('a, button').forEach(el => {
-        el.addEventListener('mouseenter', handleMouseEnter)
-        el.addEventListener('mouseleave', handleMouseLeave)
-      })
-    } else {
-      document.body.classList.remove('cursor-enabled')
-      const cursor = document.querySelector('.custom-cursor') as HTMLElement | null
-      if (cursor) cursor.classList.remove('active')
-    }
-
-    if (effects.parallax) {
-      window.addEventListener('scroll', handleParallax)
-    }
-
-    return () => {
-      window.removeEventListener('scroll', handleParallax)
-      if (particlesInterval) clearInterval(particlesInterval)
-      document.removeEventListener('mousemove', handleMouseMove)
-      document.querySelectorAll('a, button').forEach(el => {
-        el.removeEventListener('mouseenter', handleMouseEnter)
-        el.removeEventListener('mouseleave', handleMouseLeave)
-      })
-    }
-  }, [effects])
-
   return (
     <>
-      {/* Custom Cursor */}
-      <div className="custom-cursor"></div>
-
-      {/* Particles Container */}
-      <div className="particles-container"></div>
-
-      {/* Toggle Button for Controls */}
-      <button
-        onClick={() => setShowControls(!showControls)}
-        className="fixed top-5 right-5 z-[10002] bg-black/90 px-4 py-2 rounded-lg text-white font-cormorant text-sm uppercase tracking-[0.1em] transition-all duration-300 hover:bg-gold hover:text-black border border-gold/30"
-      >
-        {showControls ? 'Hide Controls' : 'Show Controls'}
-      </button>
-
-      {/* Effects Control Panel */}
-      {showControls && (
-        <div className="fixed top-[60px] right-5 z-[10001] bg-black/90 p-5 rounded-xl text-white font-cormorant min-w-[280px] max-[600px]:top-[50px] max-[600px]:right-2.5 max-[600px]:min-w-[240px] transition-all duration-300">
-          <h4 className="m-0 mb-4 text-base uppercase tracking-[0.15em] text-gold border-b border-gold/30 pb-2">Visual Effects</h4>
-
-          {[
-            { key: 'parallax', label: 'Parallax Scroll' },
-            { key: 'particles', label: 'Floating Particles' },
-            { key: 'stagger', label: 'Stagger Animation' },
-            { key: 'cursor', label: 'Custom Cursor' },
-          ].map(({ key, label }) => (
-            <div key={key} className="flex items-center justify-between mb-3 last:mb-0">
-              <span className="text-sm tracking-[0.05em]">{label}</span>
-              <button
-                onClick={() => toggleEffect(key as keyof typeof effects)}
-                className={`px-3 py-1 text-xs rounded-full transition-all duration-300 ${
-                  effects[key as keyof typeof effects]
-                    ? 'bg-gold text-black font-semibold'
-                    : 'bg-white/10 text-white border border-white/30'
-                }`}
-              >
-                {effects[key as keyof typeof effects] ? 'ON' : 'OFF'}
-              </button>
-            </div>
-          ))}
-        </div>
-      )}
-
       {/* Background elements */}
       <div className="bg-circles"></div>
       <div className="fixed w-[600px] h-[600px] bg-gradient-radial from-gold/15 to-transparent pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 opacity-0 z-[1]" id="spotlight"></div>
@@ -409,27 +245,8 @@ export default function Home() {
         rel="noopener noreferrer"
         className="fixed-tickets-btn fixed top-[30px] right-[30px] z-[1000] px-[35px] py-3 bg-gradient-to-br from-gold to-terracotta text-white no-underline font-playfair font-semibold tracking-[0.2em] text-[0.85rem] uppercase rounded-full shadow-[0_4px_20px_rgba(166,123,91,0.3)] transition-all duration-600 opacity-0 -translate-y-5 pointer-events-none hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(166,123,91,0.5)] hover:bg-gradient-to-br hover:from-terracotta hover:to-gold max-md:top-[10px] max-md:right-[10px] max-md:px-4 max-md:py-2 max-md:text-[0.65rem] max-md:tracking-[0.15em] max-[430px]:top-2 max-[430px]:right-2 max-[430px]:px-3 max-[430px]:py-1.5 max-[430px]:text-[0.6rem]"
       >
-        Get Tickets
+        Want a Ticket?
       </a>
-
-      {/* Video Speed Testing Controls */}
-      {showControls && (
-        <div className="fixed bottom-5 left-5 z-[10000] bg-black/80 p-5 rounded-xl text-white font-cormorant min-w-[300px] max-[600px]:left-2.5 max-[600px]:bottom-2.5 max-[600px]:min-w-[250px] max-[600px]:p-[15px] max-[430px]:min-w-[200px] max-[430px]:p-2.5 max-[430px]:left-[5px] max-[430px]:bottom-[5px] transition-all duration-300">
-          <h4 className="m-0 mb-[15px] text-[0.9rem] uppercase tracking-[0.1em] text-gold max-[600px]:text-[0.75rem] max-[430px]:text-[0.7rem] max-[430px]:mb-2.5">Video Speed Test</h4>
-          <div className="mb-[15px] max-[430px]:mb-2.5">
-            <label className="block text-[0.85rem] mb-[5px] tracking-[0.05em] max-[600px]:text-[0.75rem] max-[430px]:text-[0.7rem]">
-              Left Video: <span className="inline-block ml-2.5 text-gold font-bold" id="leftSpeedValue">1.0x</span>
-            </label>
-            <input type="range" id="leftSpeedSlider" min="0.1" max="2" step="0.1" defaultValue="1" className="w-full cursor-pointer" />
-          </div>
-          <div className="mb-[15px] max-[430px]:mb-2.5">
-            <label className="block text-[0.85rem] mb-[5px] tracking-[0.05em] max-[600px]:text-[0.75rem] max-[430px]:text-[0.7rem]">
-              Right Video: <span className="inline-block ml-2.5 text-gold font-bold" id="rightSpeedValue">1.0x</span>
-            </label>
-            <input type="range" id="rightSpeedSlider" min="0.1" max="2" step="0.1" defaultValue="1" className="w-full cursor-pointer" />
-          </div>
-        </div>
-      )}
 
       {/* Hero Section - Split Screen */}
       <section className="min-h-screen flex relative overflow-hidden max-md:block">
@@ -485,7 +302,7 @@ export default function Home() {
           </div>
 
           {/* Countdown Timer */}
-          <div className={`font-playfair text-[clamp(1.2rem,2.5vw,1.6rem)] font-bold tracking-[0.2em] mt-4 mb-2 ${
+          <div className={`hero-countdown font-playfair text-[clamp(1.2rem,2.5vw,1.6rem)] font-bold tracking-[0.2em] mt-4 mb-2 ${
             eventStatus === 'live' ? 'text-gold animate-pulse' :
             eventStatus === 'ended' ? 'text-white/60' :
             'text-white'
@@ -506,13 +323,13 @@ export default function Home() {
             }`}
             {...(eventStatus === 'ended' ? { onClick: (e: React.MouseEvent) => e.preventDefault() } : {})}
           >
-            {eventStatus === 'live' ? 'Get Tickets Now!' : eventStatus === 'ended' ? 'Event Ended' : 'Get Tickets'}
+            {eventStatus === 'live' ? 'Get Tickets Now!' : eventStatus === 'ended' ? 'Event Ended' : 'Want a Ticket?'}
           </a>
         </div>
       </section>
 
       {/* Lineup Section */}
-      <section className={`reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''}`}>
+      <section className="reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
         <div className="atmosphere-img absolute w-[700px] h-[800px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] right-[-5%] top-[12%] rotate-[8deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0675-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
@@ -523,7 +340,7 @@ export default function Home() {
           <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] text-center mb-20 text-section-dark-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
             Lineup
           </h2>
-          <div className={`grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10 max-w-[1200px] mx-auto max-md:grid-cols-3 max-md:gap-5 max-md:overflow-x-auto max-md:pb-4 max-md:snap-x max-md:snap-mandatory ${effects.stagger ? 'stagger-enabled' : ''}`}>
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10 max-w-[1200px] mx-auto max-md:grid-cols-3 max-md:gap-5 max-md:overflow-x-auto max-md:pb-4 max-md:snap-x max-md:snap-mandatory">
             <div className="bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[35px_25px] max-md:min-w-[280px] max-md:snap-center">
               <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm">DJ</div>
               <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem]">DJ 1</h3>
@@ -548,7 +365,7 @@ export default function Home() {
       </section>
 
       {/* Event Details Section */}
-      <section className={`reveal text-center py-20 px-5 bg-section-light-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''}`}>
+      <section className="reveal text-center py-20 px-5 bg-section-light-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
         <div className="atmosphere-img absolute w-[720px] h-[820px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] left-[-10%] top-[8%] -rotate-[3deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0662 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
@@ -569,7 +386,7 @@ export default function Home() {
       </section>
 
       {/* VIP Bookings Section */}
-      <section className={`reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px] ${effects.parallax ? 'parallax-enabled' : ''}`} id="tickets">
+      <section className="reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]" id="tickets">
         <div className="atmosphere-img absolute w-[680px] h-[780px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] right-[-12%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Compressed/0N6A0814-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
@@ -614,44 +431,43 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-gradient-to-b from-cream to-dark-terracotta py-20 px-5 pb-10 text-center text-light-cream max-md:py-[60px_20px_30px]">
-        <div className="font-playfair text-[2.5rem] font-light tracking-[0.3em] mb-5 max-md:text-[2rem] max-[430px]:text-[1.8rem]">MYTHOS</div>
-        <div className="text-[1.1rem] tracking-[0.2em] mb-[60px] opacity-80 max-md:text-[0.95rem]">House Meets Heritage</div>
-
-        {/* Sponsors in Footer */}
-        <div className="py-[50px] mb-10 border-t border-b border-gold/30 max-[600px]:py-10">
-          <h3 className="font-playfair text-[clamp(0.85rem,1.5vw,1rem)] font-normal tracking-[0.3em] text-center mb-10 text-gold uppercase max-[600px]:text-[0.8rem] max-[600px]:mb-[30px]">
-            In Partnership With
-          </h3>
-          <div className="flex justify-center items-center gap-[50px] flex-wrap max-w-[1200px] mx-auto max-[600px]:gap-5">
-            <div className="flex justify-center items-center p-0 transition-all duration-300 hover:scale-105">
-              <div className="bg-cream/10 border border-gold/40 px-[35px] py-[15px] rounded-lg font-playfair text-[0.85rem] tracking-[0.2em] text-white text-center min-w-[140px] min-h-[50px] flex items-center justify-center max-[600px]:min-w-[200px] max-[600px]:text-[0.8rem]">
+      {/* Sponsors Carousel Banner - Fixed at Bottom */}
+      <div className="fixed bottom-0 left-0 right-0 z-[100] bg-gradient-to-r from-dark-terracotta via-cream to-dark-terracotta border-t border-gold/40 overflow-hidden">
+        <div className="sponsors-carousel flex items-center py-3 gap-[60px]">
+          {/* Duplicate the sponsors array for seamless infinite scroll */}
+          {[...Array(2)].map((_, setIndex) => (
+            <div key={setIndex} className="flex items-center gap-[60px] animate-scroll">
+              <div className="flex items-center gap-2 whitespace-nowrap">
+                <span className="text-gold text-sm">★</span>
+                <span className="font-playfair text-white text-sm tracking-[0.2em] uppercase">In Partnership With</span>
+                <span className="text-gold text-sm">★</span>
+              </div>
+              <div className="bg-white/10 border border-gold/40 px-6 py-2 rounded-lg font-playfair text-sm tracking-[0.2em] text-white whitespace-nowrap">
                 SPONSOR 1
               </div>
-            </div>
-            <div className="flex justify-center items-center p-0 transition-all duration-300 hover:scale-105">
-              <div className="bg-cream/10 border border-gold/40 px-[35px] py-[15px] rounded-lg font-playfair text-[0.85rem] tracking-[0.2em] text-white text-center min-w-[140px] min-h-[50px] flex items-center justify-center max-[600px]:min-w-[200px] max-[600px]:text-[0.8rem]">
+              <div className="bg-white/10 border border-gold/40 px-6 py-2 rounded-lg font-playfair text-sm tracking-[0.2em] text-white whitespace-nowrap">
                 SPONSOR 2
               </div>
-            </div>
-            <div className="flex justify-center items-center p-0 transition-all duration-300 hover:scale-105">
-              <div className="bg-cream/10 border border-gold/40 px-[35px] py-[15px] rounded-lg font-playfair text-[0.85rem] tracking-[0.2em] text-white text-center min-w-[140px] min-h-[50px] flex items-center justify-center max-[600px]:min-w-[200px] max-[600px]:text-[0.8rem]">
+              <div className="bg-white/10 border border-gold/40 px-6 py-2 rounded-lg font-playfair text-sm tracking-[0.2em] text-white whitespace-nowrap">
                 SPONSOR 3
               </div>
-            </div>
-            <div className="flex justify-center items-center p-0 transition-all duration-300 hover:scale-105">
-              <div className="bg-cream/10 border border-gold/40 px-[35px] py-[15px] rounded-lg font-playfair text-[0.85rem] tracking-[0.2em] text-white text-center min-w-[140px] min-h-[50px] flex items-center justify-center max-[600px]:min-w-[200px] max-[600px]:text-[0.8rem]">
+              <div className="bg-white/10 border border-gold/40 px-6 py-2 rounded-lg font-playfair text-sm tracking-[0.2em] text-white whitespace-nowrap">
                 SPONSOR 4
               </div>
             </div>
-          </div>
+          ))}
         </div>
+      </div>
+
+      {/* Footer */}
+      <footer className="bg-gradient-to-b from-cream to-dark-terracotta py-20 px-5 pb-[100px] text-center text-light-cream max-md:py-[60px_20px_30px]">
+        <div className="font-playfair text-[2.5rem] font-light tracking-[0.3em] mb-5 max-md:text-[2rem] max-[430px]:text-[1.8rem]">MYTHOS</div>
+        <div className="text-[1.1rem] tracking-[0.2em] mb-[60px] opacity-80 max-md:text-[0.95rem]">House Meets Heritage</div>
 
         <div className="flex justify-center gap-10 mb-10 max-md:flex-col max-md:gap-[15px]">
-          <a href="#" className="text-light-cream no-underline text-base tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.9rem]">Instagram</a>
-          <a href="#" className="text-light-cream no-underline text-base tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.9rem]">Facebook</a>
-          <a href="#" className="text-light-cream no-underline text-base tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.9rem]">Contact</a>
+          <a href="https://www.instagram.com/mythos.syd/" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-base tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.9rem]">Instagram</a>
+          <a href="https://www.tiktok.com/@mythos.syd" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-base tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.9rem]">TikTok</a>
+          <a href="https://www.facebook.com/profile.php?id=61571632207446" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-base tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.9rem]">Facebook</a>
         </div>
         <div className="inline-block border border-light-cream px-[30px] py-2.5 rounded-full text-[0.9rem] tracking-[0.2em] mt-[30px] max-md:text-[0.8rem] max-md:px-[25px]">
           18+ EVENT
