@@ -432,22 +432,15 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sponsors Carousel Banner - Fixed at Bottom */}
-      <div className="fixed bottom-0 left-0 right-0 z-[100] bg-black/60 backdrop-blur-md border-t border-gold/20 overflow-hidden max-md:relative max-md:bottom-auto">
-        <div className="sponsors-carousel flex items-center py-3 gap-[60px]">
-          {/* Duplicate the sponsors array for seamless infinite scroll */}
-          {[...Array(2)].map((_, setIndex) => (
-            <div key={setIndex} className="flex items-center gap-[60px] animate-scroll">
-              <span className="font-cormorant text-light-cream/60 text-xs tracking-[0.3em] uppercase whitespace-nowrap">In Partnership With</span>
-              <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={120} height={60} className="h-[50px] w-auto object-contain" />
-              <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={120} height={60} className="h-[50px] w-auto object-contain" />
-            </div>
-          ))}
-        </div>
+      {/* Sponsors Banner - Fixed Bottom Right */}
+      <div className="fixed bottom-6 right-6 z-[100] bg-black/60 backdrop-blur-md border border-gold/20 rounded-lg px-4 py-2 flex items-center gap-4">
+        <span className="font-cormorant text-light-cream/60 text-xs tracking-[0.3em] uppercase whitespace-nowrap">In Partnership With</span>
+        <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={80} height={40} className="h-[35px] w-auto object-contain" />
+        <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={80} height={40} className="h-[35px] w-auto object-contain" />
       </div>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-b from-cream to-dark-terracotta py-8 px-5 pb-[60px] text-center text-light-cream max-md:py-6 max-md:pb-[80px]">
+      <footer className="bg-gradient-to-b from-cream to-dark-terracotta py-8 px-5 text-center text-light-cream">
         <div className="font-playfair text-[1.5rem] font-light tracking-[0.3em] mb-2 max-md:text-[1.3rem]">MYTHOS</div>
         <div className="text-[0.85rem] tracking-[0.2em] mb-5 opacity-80 max-md:text-[0.75rem]">House Meets Heritage</div>
 

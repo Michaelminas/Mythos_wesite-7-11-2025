@@ -198,21 +198,4 @@
     transform: translate(-50%, -50%);
   }
 
-  /* Sponsors Carousel Animation */
-  @keyframes scroll-left {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-50%);
-    }
-  }
-
-  .sponsors-carousel {
-    animation: scroll-left 30s linear infinite;
-  }
-
-  .sponsors-carousel:hover {
-    animation-play-state: paused;
-  }
 }
