@@ -418,7 +418,7 @@ export default function Home() {
       </section>
 
       {/* VIP Bookings Section */}
-      <section className="reveal py-20 px-5 bg-bronze relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]" id="tickets">
+      <section className="reveal py-20 px-5 bg-bronze relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-md:px-[15px] max-[430px]:py-10 max-[430px]:px-[10px]" id="tickets">
         {/* Desktop Images */}
         <div className="atmosphere-img absolute w-[48vw] max-w-[720px] h-[54vw] max-h-[820px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-8%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Webp/vip 1.webp" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 48vw" quality={85} />
@@ -430,42 +430,42 @@ export default function Home() {
         <div className="hidden max-[600px]:block atmosphere-img absolute w-[68vw] h-[78vw] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-10%] top-[8%] rotate-[5deg]">
           <Image src="/Event Photos/Webp/vip 1.webp" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="68vw" quality={85} />
         </div>
-        <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
-          <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[0.2em] text-center mb-20 text-beige capitalize max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
+        <div className="max-w-[1200px] mx-auto px-10 relative z-[2] max-md:px-0">
+          <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[0.2em] text-center mb-20 text-beige capitalize max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-5 max-[375px]:text-[1.3rem] max-[320px]:text-[1.2rem]">
             VIP Table Bookings
           </h2>
-          <div className="max-w-[800px] mx-auto bg-white/[0.08] backdrop-blur-[20px] p-[60px_50px] border border-beige/30 max-md:p-[35px_20px] max-[430px]:p-[30px_15px]">
+          <div className="max-w-[800px] mx-auto bg-white/[0.08] backdrop-blur-[20px] p-[60px_50px] border border-beige/30 max-md:p-[30px_20px] max-[430px]:p-[25px_15px] max-[375px]:p-[20px_12px] max-[320px]:p-[18px_10px]">
             {formSubmitted && (
               <div className="mb-6 p-4 bg-beige/20 border border-beige text-center">
                 <p className="text-beige font-helvetica tracking-wide">Thank you! Your booking request has been sent.</p>
               </div>
             )}
-            <form className="flex flex-col gap-[25px]" onSubmit={handleFormSubmit}>
-              <div className="grid grid-cols-2 gap-[25px] max-md:grid-cols-1 max-md:gap-[15px]">
-                <div className="flex flex-col gap-2.5">
-                  <label htmlFor="name" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.85rem]">Full Name</label>
-                  <input type="text" id="name" name="name" autoComplete="name" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]" />
+            <form className="flex flex-col gap-[25px] max-md:gap-5 max-[430px]:gap-4" onSubmit={handleFormSubmit}>
+              <div className="grid grid-cols-2 gap-[25px] max-md:grid-cols-1 max-md:gap-4">
+                <div className="flex flex-col gap-2 max-[430px]:gap-1.5">
+                  <label htmlFor="name" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.8rem] max-[375px]:text-[0.75rem] max-[320px]:text-[0.7rem]">Full Name</label>
+                  <input type="text" id="name" name="name" autoComplete="name" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-[0.95rem] max-md:p-[10px_12px] max-[375px]:text-[0.9rem] max-[375px]:p-[8px_10px] max-[320px]:text-[0.85rem]" />
                 </div>
-                <div className="flex flex-col gap-2.5">
-                  <label htmlFor="email" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.85rem]">Email</label>
-                  <input type="email" id="email" name="email" autoComplete="email" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]" />
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-[25px] max-md:grid-cols-1 max-md:gap-[15px]">
-                <div className="flex flex-col gap-2.5">
-                  <label htmlFor="phone" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.85rem]">Phone Number</label>
-                  <input type="tel" id="phone" name="phone" autoComplete="tel" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]" />
-                </div>
-                <div className="flex flex-col gap-2.5">
-                  <label htmlFor="guests" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.85rem]">Number of Guests</label>
-                  <input type="number" id="guests" name="guests" min="1" autoComplete="off" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]" />
+                <div className="flex flex-col gap-2 max-[430px]:gap-1.5">
+                  <label htmlFor="email" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.8rem] max-[375px]:text-[0.75rem] max-[320px]:text-[0.7rem]">Email</label>
+                  <input type="email" id="email" name="email" autoComplete="email" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-[0.95rem] max-md:p-[10px_12px] max-[375px]:text-[0.9rem] max-[375px]:p-[8px_10px] max-[320px]:text-[0.85rem]" />
                 </div>
               </div>
-              <div className="flex flex-col gap-2.5">
-                <label htmlFor="message" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.85rem]">Special Requests & Details</label>
-                <textarea id="message" name="message" rows={4} autoComplete="off" className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 resize-y min-h-[100px] max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]"></textarea>
+              <div className="grid grid-cols-2 gap-[25px] max-md:grid-cols-1 max-md:gap-4">
+                <div className="flex flex-col gap-2 max-[430px]:gap-1.5">
+                  <label htmlFor="phone" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.8rem] max-[375px]:text-[0.75rem] max-[320px]:text-[0.7rem]">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" autoComplete="tel" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-[0.95rem] max-md:p-[10px_12px] max-[375px]:text-[0.9rem] max-[375px]:p-[8px_10px] max-[320px]:text-[0.85rem]" />
+                </div>
+                <div className="flex flex-col gap-2 max-[430px]:gap-1.5">
+                  <label htmlFor="guests" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.8rem] max-[375px]:text-[0.75rem] max-[320px]:text-[0.7rem]">Number of Guests</label>
+                  <input type="number" id="guests" name="guests" min="1" autoComplete="off" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-[0.95rem] max-md:p-[10px_12px] max-[375px]:text-[0.9rem] max-[375px]:p-[8px_10px] max-[320px]:text-[0.85rem]" />
+                </div>
               </div>
-              <button type="submit" disabled={formLoading} className="px-[50px] py-[18px] bg-beige text-bronze border-none rounded-full font-helvetica text-base font-semibold tracking-[0.2em] uppercase cursor-pointer transition-all duration-400 shadow-[0_4px_20px_rgba(223,213,200,0.3)] self-center mt-5 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(223,213,200,0.5)] hover:bg-beige/90 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-[0_4px_20px_rgba(223,213,200,0.3)] max-md:px-10 max-md:py-3.5 max-md:text-[0.9rem] max-[430px]:px-[35px] max-[430px]:py-3 max-[430px]:text-[0.85rem]">
+              <div className="flex flex-col gap-2 max-[430px]:gap-1.5">
+                <label htmlFor="message" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.8rem] max-[375px]:text-[0.75rem] max-[320px]:text-[0.7rem]">Special Requests & Details</label>
+                <textarea id="message" name="message" rows={4} autoComplete="off" className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 resize-y min-h-[100px] max-md:text-[0.95rem] max-md:p-[10px_12px] max-md:min-h-[80px] max-[375px]:text-[0.9rem] max-[375px]:p-[8px_10px] max-[375px]:min-h-[70px] max-[320px]:text-[0.85rem]"></textarea>
+              </div>
+              <button type="submit" disabled={formLoading} className="px-[50px] py-[18px] bg-beige text-bronze border-none rounded-full font-helvetica text-base font-semibold tracking-[0.2em] uppercase cursor-pointer transition-all duration-400 shadow-[0_4px_20px_rgba(223,213,200,0.3)] self-center mt-5 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(223,213,200,0.5)] hover:bg-beige/90 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-[0_4px_20px_rgba(223,213,200,0.3)] max-md:px-10 max-md:py-3 max-md:text-[0.85rem] max-md:mt-3 max-[430px]:px-8 max-[430px]:py-2.5 max-[430px]:text-[0.8rem] max-[375px]:px-7 max-[375px]:py-2 max-[375px]:text-[0.75rem] max-[375px]:tracking-[0.15em] max-[320px]:px-6 max-[320px]:text-[0.7rem]">
                 {formLoading ? 'Submitting...' : 'Submit VIP Booking'}
               </button>
             </form>
