@@ -171,25 +171,28 @@ export default function Home() {
         element.style.pointerEvents = infoFadePercent > 0.5 ? 'none' : 'all'
       })
 
+      // Fade out mobile corner sponsors on scroll
+      const mobileSponsors = document.querySelectorAll('.hero-sponsor-left, .hero-sponsor-right')
+      mobileSponsors?.forEach((el) => {
+        const element = el as HTMLElement
+        element.style.opacity = (1 - infoFadePercent).toString()
+      })
+
       // Check if user is near footer
       const footer = document.querySelector('footer')
       const footerTop = footer?.getBoundingClientRect().top || 0
       const windowHeight = window.innerHeight
       const isNearFooter = footerTop < windowHeight
 
-      // Handle sponsors visibility on mobile < 950px
-      const isMobile = window.innerWidth < 950
+      // Handle fixed sponsors badge - show when scrolled on all screens
       const fixedSponsorsBadge = document.querySelector('.fixed-sponsors-badge') as HTMLElement
-
-      if (isMobile && fixedSponsorsBadge) {
+      if (fixedSponsorsBadge) {
         if (scrollPercent > 0.3 && !isNearFooter) {
-          // Show fixed badge when scrolled past hero on mobile
-          fixedSponsorsBadge.classList.remove('max-[950px]:hidden')
-          fixedSponsorsBadge.classList.add('max-[950px]:flex')
+          fixedSponsorsBadge.classList.add('opacity-100')
+          fixedSponsorsBadge.classList.remove('opacity-0', 'pointer-events-none')
         } else {
-          // Hide fixed badge when in hero on mobile
-          fixedSponsorsBadge.classList.add('max-[950px]:hidden')
-          fixedSponsorsBadge.classList.remove('max-[950px]:flex')
+          fixedSponsorsBadge.classList.add('opacity-0', 'pointer-events-none')
+          fixedSponsorsBadge.classList.remove('opacity-100')
         }
       }
 
@@ -309,14 +312,18 @@ export default function Home() {
           <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
         </div>
 
+        {/* Mobile Top Corner Sponsors - Fixed position */}
+        <div className="hidden max-md:block">
+          <div className="hero-sponsor-left fixed top-6 left-6 z-[998]">
+            <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={80} height={40} className="h-[35px] w-auto object-contain max-[425px]:h-[30px] max-[375px]:h-[25px] max-[320px]:h-[22px]" />
+          </div>
+          <div className="hero-sponsor-right fixed top-6 right-6 z-[998]">
+            <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={80} height={40} className="h-[35px] w-auto object-contain max-[425px]:h-[30px] max-[375px]:h-[25px] max-[320px]:h-[22px]" />
+          </div>
+        </div>
+
         {/* Centered Content Overlay */}
         <div className="hero-content fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[999] text-center w-full max-w-[1200px] px-10 will-change-transform max-md:px-5" id="heroContent">
-          {/* Hero Sponsors - Only visible on mobile when in hero */}
-          <div className="hero-sponsors hidden max-[950px]:flex items-center justify-center gap-6 mb-6 max-[375px]:gap-4 max-[320px]:gap-3">
-            <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={80} height={40} className="h-[40px] w-auto object-contain max-[425px]:h-[35px] max-[375px]:h-[30px] max-[320px]:h-[25px]" />
-            <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={80} height={40} className="h-[40px] w-auto object-contain max-[425px]:h-[35px] max-[375px]:h-[30px] max-[320px]:h-[25px]" />
-          </div>
-
           <Image
             src="/Mythos Branding/logo final PMS 876C_cmyk copy.png"
             alt="MYTHOS"
@@ -326,6 +333,13 @@ export default function Home() {
             style={{ width: 'auto', height: 'auto' }}
             priority
           />
+
+          {/* Hero Sponsors - Centered between logo and date (Desktop/Tablet only) */}
+          <div className="hero-sponsors flex items-center justify-center gap-8 mb-8 max-md:hidden">
+            <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={100} height={50} className="h-[50px] w-auto object-contain" />
+            <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={100} height={50} className="h-[50px] w-auto object-contain" />
+          </div>
+
           <div className="hero-date font-cormorant text-[clamp(1.2rem,2.5vw,1.8rem)] font-normal tracking-[0.2em] text-white mb-2.5 max-md:text-[0.9rem] max-md:mb-2 max-[430px]:text-[0.85rem] max-[430px]:mb-1.5 max-[375px]:text-[0.8rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.75rem] max-[320px]:tracking-[0.1em]">
             Friday 19 December
           </div>
@@ -460,23 +474,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sponsors Banner - Fixed Bottom Right (Desktop > 950px or Mobile after scroll) */}
-      <div className="fixed-sponsors-badge fixed bottom-6 right-6 z-[100] bg-black/60 backdrop-blur-md border border-gold/20 rounded-lg px-4 py-2 items-center gap-4 transition-opacity duration-300 max-[950px]:hidden max-[425px]:bottom-4 max-[425px]:right-4 max-[425px]:px-3 max-[425px]:py-1.5 max-[425px]:gap-3 max-[375px]:bottom-3 max-[375px]:right-3 max-[375px]:px-2 max-[375px]:gap-2 max-[320px]:px-1.5 max-[320px]:gap-1.5 flex">
+      {/* Sponsors Banner - Fixed Bottom Right (appears on scroll) */}
+      <div className="fixed-sponsors-badge fixed bottom-6 right-6 z-[100] bg-black/60 backdrop-blur-md border border-gold/20 rounded-lg px-4 py-2 flex items-center gap-4 transition-opacity duration-300 opacity-0 pointer-events-none max-[425px]:bottom-4 max-[425px]:right-4 max-[425px]:px-3 max-[425px]:py-1.5 max-[425px]:gap-3 max-[375px]:bottom-3 max-[375px]:right-3 max-[375px]:px-2 max-[375px]:gap-2 max-[320px]:px-1.5 max-[320px]:gap-1.5">
         <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={80} height={40} className="h-[35px] w-auto object-contain max-[425px]:h-[28px] max-[375px]:h-[24px] max-[320px]:h-[20px]" />
         <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={80} height={40} className="h-[35px] w-auto object-contain max-[425px]:h-[28px] max-[375px]:h-[24px] max-[320px]:h-[20px]" />
       </div>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-b from-cream to-dark-terracotta py-8 px-5 text-center text-light-cream">
-        <div className="font-playfair text-[1.5rem] font-light tracking-[0.3em] mb-2 max-md:text-[1.3rem] max-[375px]:text-[1.15rem] max-[375px]:tracking-[0.25em] max-[320px]:text-[1.05rem] max-[320px]:tracking-[0.2em]">MYTHOS</div>
-        <div className="text-[0.85rem] tracking-[0.2em] mb-5 opacity-80 max-md:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.65rem] max-[320px]:mb-4">House Meets Heritage</div>
+      <footer className="bg-gradient-to-b from-cream to-dark-terracotta py-4 px-5 text-center text-light-cream">
+        <div className="font-playfair text-[1.1rem] font-light tracking-[0.25em] mb-1.5 max-md:text-base max-[375px]:text-[0.95rem] max-[375px]:tracking-[0.2em] max-[320px]:text-[0.9rem] max-[320px]:tracking-[0.15em]">MYTHOS</div>
+        <div className="text-[0.7rem] tracking-[0.15em] mb-3 opacity-70 max-md:text-[0.65rem] max-[375px]:text-[0.6rem] max-[375px]:mb-2.5 max-[320px]:text-[0.55rem] max-[320px]:mb-2">House Meets Heritage</div>
 
-        <div className="flex justify-center gap-8 mb-5 max-md:gap-6 max-[375px]:gap-5 max-[375px]:mb-4 max-[320px]:gap-4 max-[320px]:mb-3">
-          <a href="https://www.instagram.com/mythos.syd/" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.8rem] tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.65rem]">Instagram</a>
-          <a href="https://www.tiktok.com/@mythos.syd" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.8rem] tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.65rem]">TikTok</a>
-          <a href="https://www.facebook.com/profile.php?id=61571632207446" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.8rem] tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.65rem]">Facebook</a>
+        <div className="flex justify-center gap-6 mb-3 max-md:gap-5 max-[375px]:gap-4 max-[375px]:mb-2.5 max-[320px]:gap-3 max-[320px]:mb-2">
+          <a href="https://www.instagram.com/mythos.syd/" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.7rem] tracking-[0.15em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.65rem] max-[375px]:text-[0.6rem] max-[375px]:tracking-[0.1em] max-[320px]:text-[0.55rem]">Instagram</a>
+          <a href="https://www.tiktok.com/@mythos.syd" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.7rem] tracking-[0.15em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.65rem] max-[375px]:text-[0.6rem] max-[375px]:tracking-[0.1em] max-[320px]:text-[0.55rem]">TikTok</a>
+          <a href="https://www.facebook.com/profile.php?id=61571632207446" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.7rem] tracking-[0.15em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.65rem] max-[375px]:text-[0.6rem] max-[375px]:tracking-[0.1em] max-[320px]:text-[0.55rem]">Facebook</a>
         </div>
-        <div className="inline-block border border-light-cream/50 px-5 py-1.5 rounded-full text-[0.7rem] tracking-[0.2em] opacity-70 max-md:text-[0.65rem] max-md:px-4 max-[375px]:text-[0.6rem] max-[375px]:px-3 max-[375px]:py-1 max-[320px]:text-[0.55rem] max-[320px]:px-2.5">
+        <div className="inline-block border border-light-cream/40 px-4 py-1 rounded-full text-[0.6rem] tracking-[0.15em] opacity-60 max-md:text-[0.55rem] max-md:px-3 max-[375px]:text-[0.5rem] max-[375px]:px-2.5 max-[375px]:py-0.5 max-[320px]:text-[0.45rem] max-[320px]:px-2">
           18+ EVENT
         </div>
       </footer>
