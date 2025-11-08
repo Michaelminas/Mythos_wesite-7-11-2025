@@ -10,31 +10,29 @@ export default function Home() {
   const [isMuted, setIsMuted] = useState(true)
   const [formSubmitted, setFormSubmitted] = useState(false)
 
-  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const form = e.currentTarget
-    const formData = new FormData(form)
 
-    const name = formData.get('name')
-    const email = formData.get('email')
-    const phone = formData.get('phone')
-    const guests = formData.get('guests')
-    const message = formData.get('message')
+    try {
+      const response = await fetch('https://formspree.io/f/mnnlajzz', {
+        method: 'POST',
+        body: new FormData(form),
+        headers: {
+          'Accept': 'application/json'
+        }
+      })
 
-    const subject = `VIP Booking Request - ${name}`
-    const body = `
-Name: ${name}
-Email: ${email}
-Phone: ${phone}
-Number of Guests: ${guests}
-Special Requests: ${message}
-    `.trim()
-
-    const mailtoLink = `mailto:vip@mythos.syd?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
-    window.location.href = mailtoLink
-
-    setFormSubmitted(true)
-    setTimeout(() => setFormSubmitted(false), 5000)
+      if (response.ok) {
+        setFormSubmitted(true)
+        form.reset()
+        setTimeout(() => setFormSubmitted(false), 5000)
+      } else {
+        alert('There was an error submitting the form. Please try again.')
+      }
+    } catch (error) {
+      alert('There was an error submitting the form. Please try again.')
+    }
   }
 
   // Countdown timer
