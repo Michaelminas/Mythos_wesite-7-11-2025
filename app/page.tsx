@@ -164,18 +164,11 @@ export default function Home() {
       }
 
       const infoFadePercent = Math.min(scrollY / (transitionEnd * 0.4), 1)
-      const dateElements = heroContent?.querySelectorAll('.hero-date, .hero-time, .hero-countdown, .hero-cta, .hero-sponsors')
+      const dateElements = heroContent?.querySelectorAll('.hero-date, .hero-time, .hero-countdown, .hero-cta')
       dateElements?.forEach((el) => {
         const element = el as HTMLElement
         element.style.opacity = (1 - infoFadePercent).toString()
         element.style.pointerEvents = infoFadePercent > 0.5 ? 'none' : 'all'
-      })
-
-      // Fade out mobile corner sponsors on scroll
-      const mobileSponsors = document.querySelectorAll('.hero-sponsor-left, .hero-sponsor-right')
-      mobileSponsors?.forEach((el) => {
-        const element = el as HTMLElement
-        element.style.opacity = (1 - infoFadePercent).toString()
       })
 
       // Check if user is near footer
@@ -183,20 +176,6 @@ export default function Home() {
       const footerTop = footer?.getBoundingClientRect().top || 0
       const windowHeight = window.innerHeight
       const isNearFooter = footerTop < windowHeight
-
-      // Handle fixed sponsors badge - show when scrolled on desktop only (hide on mobile)
-      const fixedSponsorsBadge = document.querySelector('.fixed-sponsors-badge') as HTMLElement
-      const isMobile = window.innerWidth < 768
-
-      if (fixedSponsorsBadge) {
-        if (!isMobile && scrollPercent > 0.3 && !isNearFooter) {
-          fixedSponsorsBadge.classList.add('opacity-100')
-          fixedSponsorsBadge.classList.remove('opacity-0', 'pointer-events-none')
-        } else {
-          fixedSponsorsBadge.classList.add('opacity-0', 'pointer-events-none')
-          fixedSponsorsBadge.classList.remove('opacity-100')
-        }
-      }
 
       if (scrollPercent > 0.3 && !isNearFooter) {
         heroContent?.classList.add('sticky-mode')
@@ -274,9 +253,9 @@ export default function Home() {
         href="https://moshtix.com.au/v2/event/mythos-home-the-venue-summer-2025/188117"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed-tickets-btn fixed bottom-[20px] left-1/2 -translate-x-1/2 z-[1000] px-[35px] py-3 bg-gradient-to-br from-gold to-terracotta text-white no-underline font-playfair font-semibold tracking-[0.2em] text-[0.85rem] uppercase rounded-full shadow-[0_4px_20px_rgba(166,123,91,0.3)] transition-all duration-600 opacity-0 translate-y-5 pointer-events-none hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(166,123,91,0.5)] hover:bg-gradient-to-br hover:from-terracotta hover:to-gold max-md:bottom-[20px] max-md:px-[30px] max-md:py-2.5 max-md:text-[0.75rem] max-md:tracking-[0.15em] max-[425px]:px-[25px] max-[425px]:py-2 max-[425px]:text-[0.7rem] max-[375px]:px-[20px] max-[375px]:py-1.5 max-[375px]:text-[0.65rem] max-[375px]:tracking-[0.1em] max-[320px]:px-[18px] max-[320px]:text-[0.6rem]"
+        className="fixed-tickets-btn fixed bottom-[20px] left-1/2 -translate-x-1/2 z-[1000] px-[35px] py-3 bg-bronze text-white no-underline font-helvetica font-semibold tracking-[0.2em] text-[0.85rem] uppercase rounded-full shadow-[0_4px_20px_rgba(150,105,76,0.3)] transition-all duration-600 opacity-0 translate-y-5 pointer-events-none hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(150,105,76,0.5)] hover:bg-bronze/90 max-md:bottom-[20px] max-md:px-[30px] max-md:py-2.5 max-md:text-[0.75rem] max-md:tracking-[0.15em] max-[425px]:px-[25px] max-[425px]:py-2 max-[425px]:text-[0.7rem] max-[375px]:px-[20px] max-[375px]:py-1.5 max-[375px]:text-[0.65rem] max-[375px]:tracking-[0.1em] max-[320px]:px-[18px] max-[320px]:text-[0.6rem]"
       >
-        Want a Ticket?
+        Get Tickets
       </a>
 
       {/* Hero Section - Split Screen */}
@@ -314,15 +293,6 @@ export default function Home() {
           <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
         </div>
 
-        {/* Mobile Top Corner Sponsors - Fixed position */}
-        <div className="hidden max-md:block">
-          <div className="hero-sponsor-left fixed top-6 left-6 z-[998]">
-            <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={80} height={40} className="h-[35px] w-auto object-contain max-[425px]:h-[30px] max-[375px]:h-[25px] max-[320px]:h-[22px]" />
-          </div>
-          <div className="hero-sponsor-right fixed top-6 right-6 z-[998]">
-            <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={80} height={40} className="h-[35px] w-auto object-contain max-[425px]:h-[30px] max-[375px]:h-[25px] max-[320px]:h-[22px]" />
-          </div>
-        </div>
 
         {/* Centered Content Overlay */}
         <div className="hero-content fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[999] text-center w-full max-w-[1200px] px-10 will-change-transform max-md:px-5" id="heroContent">
@@ -336,16 +306,11 @@ export default function Home() {
             priority
           />
 
-          {/* Hero Sponsors - Centered between logo and date (Desktop/Tablet only) */}
-          <div className="hero-sponsors flex items-center justify-center gap-8 mb-8 max-md:hidden">
-            <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={100} height={50} className="h-[50px] w-auto object-contain" />
-            <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={100} height={50} className="h-[50px] w-auto object-contain" />
-          </div>
 
-          <div className="hero-date font-cormorant text-[clamp(1.2rem,2.5vw,1.8rem)] font-normal tracking-[0.2em] text-white mb-2.5 max-md:text-[0.9rem] max-md:mb-2 max-[430px]:text-[0.85rem] max-[430px]:mb-1.5 max-[375px]:text-[0.8rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.75rem] max-[320px]:tracking-[0.1em]">
+          <div className="hero-date font-helvetica text-[clamp(1.2rem,2.5vw,1.8rem)] font-bold tracking-[0.2em] text-white mb-2.5 uppercase max-md:text-[0.9rem] max-md:mb-2 max-[430px]:text-[0.85rem] max-[430px]:mb-1.5 max-[375px]:text-[0.8rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.75rem] max-[320px]:tracking-[0.1em]">
             Friday 19 December
           </div>
-          <div className="hero-time font-cormorant text-[clamp(1rem,2vw,1.4rem)] font-light tracking-[0.15em] text-white/90 max-md:text-[0.8rem] max-md:tracking-[0.1em] max-[430px]:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.08em] max-[320px]:text-[0.65rem]">
+          <div className="hero-time font-helvetica text-[clamp(1rem,2vw,1.4rem)] font-normal tracking-[0.15em] text-white/90 max-md:text-[0.8rem] max-md:tracking-[0.1em] max-[430px]:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.08em] max-[320px]:text-[0.65rem]">
             9:00pm – 3:00am | Home The Venue, Sydney
           </div>
 
@@ -354,121 +319,121 @@ export default function Home() {
             href="https://moshtix.com.au/v2/event/mythos-home-the-venue-summer-2025/188117"
             target="_blank"
             rel="noopener noreferrer"
-            className={`hero-cta inline-block mt-3 px-[50px] py-[18px] no-underline font-playfair font-semibold tracking-[0.2em] text-base uppercase rounded-full transition-all duration-400 max-md:px-[30px] max-md:py-3 max-md:text-[0.85rem] max-md:tracking-[0.15em] max-md:mt-[15px] max-[430px]:px-[25px] max-[430px]:py-2.5 max-[430px]:text-[0.8rem] max-[430px]:mt-3 max-[375px]:px-[22px] max-[375px]:py-2 max-[375px]:text-[0.75rem] max-[375px]:tracking-[0.1em] max-[320px]:px-[20px] max-[320px]:py-1.5 max-[320px]:text-[0.7rem] ${
+            className={`hero-cta inline-block mt-3 px-[50px] py-[18px] no-underline font-helvetica font-semibold tracking-[0.2em] text-base uppercase rounded-full transition-all duration-400 max-md:px-[30px] max-md:py-3 max-md:text-[0.85rem] max-md:tracking-[0.15em] max-md:mt-[15px] max-[430px]:px-[25px] max-[430px]:py-2.5 max-[430px]:text-[0.8rem] max-[430px]:mt-3 max-[375px]:px-[22px] max-[375px]:py-2 max-[375px]:text-[0.75rem] max-[375px]:tracking-[0.1em] max-[320px]:px-[20px] max-[320px]:py-1.5 max-[320px]:text-[0.7rem] ${
               eventStatus === 'live'
-                ? 'bg-gradient-to-br from-gold to-terracotta text-white shadow-[0_8px_30px_rgba(212,165,116,0.8)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(212,165,116,1)] animate-pulse'
+                ? 'bg-bronze text-white shadow-[0_8px_30px_rgba(150,105,76,0.8)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(150,105,76,1)] animate-pulse'
                 : eventStatus === 'ended'
                 ? 'bg-gray-600 text-white/50 cursor-not-allowed shadow-[0_4px_20px_rgba(0,0,0,0.3)]'
-                : 'bg-gradient-to-br from-gold to-terracotta text-white shadow-[0_8px_30px_rgba(166,123,91,0.5)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(166,123,91,0.7)]'
+                : 'bg-bronze text-white shadow-[0_8px_30px_rgba(150,105,76,0.5)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(150,105,76,0.7)]'
             }`}
             {...(eventStatus === 'ended' ? { onClick: (e: React.MouseEvent) => e.preventDefault() } : {})}
           >
-            {eventStatus === 'live' ? 'Get Tickets Now!' : eventStatus === 'ended' ? 'Event Ended' : 'Want a Ticket?'}
+            {eventStatus === 'live' ? 'Get Tickets Now!' : eventStatus === 'ended' ? 'Event Ended' : 'Get Tickets'}
           </a>
         </div>
       </section>
 
       {/* Lineup Section */}
-      <section className="reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
-        <div className="atmosphere-img absolute w-[45vw] max-w-[700px] h-[50vw] max-h-[800px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] right-[-5%] top-[12%] rotate-[8deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0675-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
+      <section className="reveal py-20 px-5 bg-beige relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
+        <div className="atmosphere-img absolute w-[45vw] max-w-[700px] h-[50vw] max-h-[800px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-5%] top-[12%] rotate-[8deg] scale-95 max-[600px]:hidden">
+          <Image src="/Event Photos/Website worthy/0N6A0704.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
-        <div className="atmosphere-img absolute w-[42vw] max-w-[650px] h-[48vw] max-h-[750px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] left-[-8%] bottom-[5%] -rotate-[5deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0704-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
+        <div className="atmosphere-img absolute w-[42vw] max-w-[650px] h-[48vw] max-h-[750px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-8%] bottom-[5%] -rotate-[5deg] scale-95 max-[600px]:hidden">
+          <Image src="/Event Photos/Website worthy/0N6A0735.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
-          <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] text-center mb-20 text-section-dark-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px] max-[375px]:text-[1.35rem] max-[375px]:mb-5 max-[320px]:text-[1.2rem] max-[320px]:tracking-[0.1em]">
+          <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[0.2em] text-center mb-20 text-bronze uppercase max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px] max-[375px]:text-[1.35rem] max-[375px]:mb-5 max-[320px]:text-[1.2rem] max-[320px]:tracking-[0.1em]">
             Lineup
           </h2>
           <div className="flex justify-between gap-[3%] px-[5%] max-md:flex-col max-md:gap-6 max-md:px-0">
-            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
-              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">9:00 - 11:45PM</div>
-              <h3 className="font-playfair text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-section-dark-text max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">CONTROLLA</h3>
-              <p className="text-[1.1rem] leading-[1.7] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Controlla, fresh off his Ios tour in Greece, will open the night with a high-energy set of European anthems to set the tone.</p>
+            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
+              <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">9:00 - 11:45PM</div>
+              <h3 className="font-helvetica text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">CONTROLLA</h3>
+              <p className="font-helvetica text-[1.1rem] leading-[1.7] text-bronze/85 font-normal max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Controlla, fresh off his Ios tour in Greece, will open the night with a high-energy set of European anthems to set the tone.</p>
             </div>
-            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
-              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">DJ</div>
-              <h3 className="font-playfair text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-section-dark-text max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">TBC</h3>
-              <p className="text-[1.1rem] leading-[1.7] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]"></p>
+            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
+              <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">DJ</div>
+              <h3 className="font-helvetica text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">TBC</h3>
+              <p className="font-helvetica text-[1.1rem] leading-[1.7] text-bronze/85 font-normal max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]"></p>
             </div>
-            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
-              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">11:45PM - 3:00AM</div>
-              <h3 className="font-playfair text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-section-dark-text max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">KINEZOS</h3>
-              <p className="text-[1.1rem] leading-[1.7] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]"></p>
+            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
+              <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">11:45PM - 3:00AM</div>
+              <h3 className="font-helvetica text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">KINEZOS</h3>
+              <p className="font-helvetica text-[1.1rem] leading-[1.7] text-bronze/85 font-normal max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Kinezos will take control of the night with an explosive set fusing 2025's biggest summer hits with Greek music, house, RNB, and timeless throwbacks.</p>
             </div>
           </div>
-          <div className="text-center mt-[60px] p-10 bg-gold/15 rounded-[15px] max-md:mt-10 max-md:p-[30px_20px] max-[430px]:p-[25px_15px]">
-            <h3 className="font-playfair text-[clamp(1.5rem,2.5vw,2rem)] font-bold tracking-[0.2em] mb-[15px] text-gold max-[430px]:text-[1.2rem]">Plus Live Entertainment</h3>
-            <p className="text-[1.1rem] text-section-dark-text/90 font-light">Featuring dancers, live acts, and performances throughout the night</p>
+          <div className="text-center mt-[60px] p-10 bg-bronze/15 max-md:mt-10 max-md:p-[30px_20px] max-[430px]:p-[25px_15px]">
+            <h3 className="font-helvetica text-[clamp(1.5rem,2.5vw,2rem)] font-bold tracking-[0.2em] mb-[15px] text-bronze uppercase max-[430px]:text-[1.2rem]">Plus Live Entertainment</h3>
+            <p className="font-helvetica text-[1.1rem] text-bronze/90 font-normal">Featuring pyrotechnics, dancers, live acts, and surprise performances throughout the night</p>
           </div>
         </div>
       </section>
 
       {/* Event Details Section */}
-      <section className="reveal text-center py-20 px-5 bg-section-light-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
-        <div className="atmosphere-img absolute w-[46vw] max-w-[720px] h-[52vw] max-h-[820px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] left-[-10%] top-[8%] -rotate-[3deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0662 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
+      <section className="reveal text-center py-20 px-5 bg-beige relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
+        <div className="atmosphere-img absolute w-[46vw] max-w-[720px] h-[52vw] max-h-[820px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-10%] top-[8%] -rotate-[3deg] scale-95 max-[600px]:hidden">
+          <Image src="/Event Photos/Website worthy/0N6A0803.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
-          <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] mb-10 text-section-light-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
+          <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[0.2em] mb-10 text-bronze uppercase max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
             Event Details
           </h2>
-          <p className="text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] max-w-[800px] mx-auto mb-[25px] font-light text-section-light-text max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
+          <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] max-w-[800px] mx-auto mb-[25px] font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
             After a SOLD-OUT event, Mythos is taking over Home the Venue this summer for the next chapter of Sydney&apos;s modern European nightlife.
           </p>
-          <p className="text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] max-w-[800px] mx-auto mb-[25px] font-light text-section-light-text max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
+          <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] max-w-[800px] mx-auto mb-[25px] font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
             Experience live Greek music, European anthems, and high-energy performances from dancers and live acts. Every set blends the best of Europe and Greece, creating a night built for rhythm, energy, and connection.
           </p>
-          <p className="text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] max-w-[800px] mx-auto mb-[25px] font-light text-section-light-text max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
+          <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] max-w-[800px] mx-auto mb-[25px] font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
             Join us for a full sensory takeover with world-class sound, lighting, and production that defines the Mythos experience.
           </p>
         </div>
       </section>
 
       {/* VIP Bookings Section */}
-      <section className="reveal py-20 px-5 bg-section-dark-bg relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]" id="tickets">
-        <div className="atmosphere-img absolute w-[44vw] max-w-[680px] h-[50vw] max-h-[780px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] right-[-12%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0814-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
+      <section className="reveal py-20 px-5 bg-bronze relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]" id="tickets">
+        <div className="atmosphere-img absolute w-[44vw] max-w-[680px] h-[50vw] max-h-[780px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-12%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
+          <Image src="/Event Photos/Website worthy/0N6A0827.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
-        <div className="atmosphere-img absolute w-[40vw] max-w-[630px] h-[46vw] max-h-[730px] opacity-0 transition-all duration-1000 pointer-events-none rounded-[20px] overflow-hidden z-[1] left-[-6%] bottom-[8%] -rotate-[7deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Compressed/0N6A0817 (1)-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
+        <div className="atmosphere-img absolute w-[40vw] max-w-[630px] h-[46vw] max-h-[730px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-6%] bottom-[8%] -rotate-[7deg] scale-95 max-[600px]:hidden">
+          <Image src="/Event Photos/Website worthy/0N6A0962.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
-          <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] text-center mb-20 text-section-dark-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
+          <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[0.2em] text-center mb-20 text-beige capitalize max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
             VIP Table Bookings
           </h2>
-          <div className="max-w-[800px] mx-auto bg-white/[0.08] backdrop-blur-[20px] p-[60px_50px] rounded-[25px] border border-gold/30 max-md:p-[35px_20px] max-[430px]:p-[30px_15px]">
+          <div className="max-w-[800px] mx-auto bg-white/[0.08] backdrop-blur-[20px] p-[60px_50px] border border-beige/30 max-md:p-[35px_20px] max-[430px]:p-[30px_15px]">
             {formSubmitted && (
-              <div className="mb-6 p-4 bg-gold/20 border border-gold rounded-lg text-center">
-                <p className="text-gold font-playfair tracking-wide">Thank you! Your booking request has been sent.</p>
+              <div className="mb-6 p-4 bg-beige/20 border border-beige text-center">
+                <p className="text-beige font-helvetica tracking-wide">Thank you! Your booking request has been sent.</p>
               </div>
             )}
             <form className="flex flex-col gap-[25px]" onSubmit={handleFormSubmit}>
               <div className="grid grid-cols-2 gap-[25px] max-md:grid-cols-1 max-md:gap-[15px]">
                 <div className="flex flex-col gap-2.5">
-                  <label htmlFor="name" className="font-playfair text-[0.95rem] font-semibold tracking-[0.1em] text-section-dark-text uppercase max-md:text-[0.85rem]">Full Name</label>
-                  <input type="text" id="name" name="name" autoComplete="name" required className="p-[15px_20px] bg-white/10 border border-gold/40 rounded-[10px] font-cormorant text-[1.1rem] text-section-dark-text transition-all duration-300 focus:outline-none focus:border-gold focus:bg-white/15 placeholder:text-section-dark-text/50 max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]" />
+                  <label htmlFor="name" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.85rem]">Full Name</label>
+                  <input type="text" id="name" name="name" autoComplete="name" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]" />
                 </div>
                 <div className="flex flex-col gap-2.5">
-                  <label htmlFor="email" className="font-playfair text-[0.95rem] font-semibold tracking-[0.1em] text-section-dark-text uppercase max-md:text-[0.85rem]">Email</label>
-                  <input type="email" id="email" name="email" autoComplete="email" required className="p-[15px_20px] bg-white/10 border border-gold/40 rounded-[10px] font-cormorant text-[1.1rem] text-section-dark-text transition-all duration-300 focus:outline-none focus:border-gold focus:bg-white/15 placeholder:text-section-dark-text/50 max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]" />
+                  <label htmlFor="email" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.85rem]">Email</label>
+                  <input type="email" id="email" name="email" autoComplete="email" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]" />
                 </div>
               </div>
               <div className="grid grid-cols-2 gap-[25px] max-md:grid-cols-1 max-md:gap-[15px]">
                 <div className="flex flex-col gap-2.5">
-                  <label htmlFor="phone" className="font-playfair text-[0.95rem] font-semibold tracking-[0.1em] text-section-dark-text uppercase max-md:text-[0.85rem]">Phone Number</label>
-                  <input type="tel" id="phone" name="phone" autoComplete="tel" required className="p-[15px_20px] bg-white/10 border border-gold/40 rounded-[10px] font-cormorant text-[1.1rem] text-section-dark-text transition-all duration-300 focus:outline-none focus:border-gold focus:bg-white/15 placeholder:text-section-dark-text/50 max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]" />
+                  <label htmlFor="phone" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.85rem]">Phone Number</label>
+                  <input type="tel" id="phone" name="phone" autoComplete="tel" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]" />
                 </div>
                 <div className="flex flex-col gap-2.5">
-                  <label htmlFor="guests" className="font-playfair text-[0.95rem] font-semibold tracking-[0.1em] text-section-dark-text uppercase max-md:text-[0.85rem]">Number of Guests</label>
-                  <input type="number" id="guests" name="guests" min="1" autoComplete="off" required className="p-[15px_20px] bg-white/10 border border-gold/40 rounded-[10px] font-cormorant text-[1.1rem] text-section-dark-text transition-all duration-300 focus:outline-none focus:border-gold focus:bg-white/15 placeholder:text-section-dark-text/50 max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]" />
+                  <label htmlFor="guests" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.85rem]">Number of Guests</label>
+                  <input type="number" id="guests" name="guests" min="1" autoComplete="off" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]" />
                 </div>
               </div>
               <div className="flex flex-col gap-2.5">
-                <label htmlFor="message" className="font-playfair text-[0.95rem] font-semibold tracking-[0.1em] text-section-dark-text uppercase max-md:text-[0.85rem]">Special Requests & Details</label>
-                <textarea id="message" name="message" rows={4} autoComplete="off" className="p-[15px_20px] bg-white/10 border border-gold/40 rounded-[10px] font-cormorant text-[1.1rem] text-section-dark-text transition-all duration-300 focus:outline-none focus:border-gold focus:bg-white/15 placeholder:text-section-dark-text/50 resize-y min-h-[100px] max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]"></textarea>
+                <label htmlFor="message" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.85rem]">Special Requests & Details</label>
+                <textarea id="message" name="message" rows={4} autoComplete="off" className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 resize-y min-h-[100px] max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]"></textarea>
               </div>
-              <button type="submit" className="px-[50px] py-[18px] bg-gradient-to-br from-gold to-terracotta text-white border-none rounded-full font-playfair text-base font-semibold tracking-[0.2em] uppercase cursor-pointer transition-all duration-400 shadow-[0_4px_20px_rgba(166,123,91,0.3)] self-center mt-5 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(166,123,91,0.5)] hover:bg-gradient-to-br hover:from-terracotta hover:to-gold max-md:px-10 max-md:py-3.5 max-md:text-[0.9rem] max-[430px]:px-[35px] max-[430px]:py-3 max-[430px]:text-[0.85rem]">
+              <button type="submit" className="px-[50px] py-[18px] bg-beige text-bronze border-none rounded-full font-helvetica text-base font-semibold tracking-[0.2em] uppercase cursor-pointer transition-all duration-400 shadow-[0_4px_20px_rgba(223,213,200,0.3)] self-center mt-5 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(223,213,200,0.5)] hover:bg-beige/90 max-md:px-10 max-md:py-3.5 max-md:text-[0.9rem] max-[430px]:px-[35px] max-[430px]:py-3 max-[430px]:text-[0.85rem]">
                 Submit VIP Booking
               </button>
             </form>
@@ -476,24 +441,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sponsors Banner - Fixed Bottom Right (appears on scroll) */}
-      <div className="fixed-sponsors-badge fixed bottom-6 right-6 z-[100] bg-black/60 backdrop-blur-md border border-gold/20 rounded-lg px-4 py-2 flex items-center gap-4 transition-opacity duration-300 opacity-0 pointer-events-none max-[425px]:bottom-4 max-[425px]:right-4 max-[425px]:px-3 max-[425px]:py-1.5 max-[425px]:gap-3 max-[375px]:bottom-3 max-[375px]:right-3 max-[375px]:px-2 max-[375px]:gap-2 max-[320px]:px-1.5 max-[320px]:gap-1.5">
-        <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={80} height={40} className="h-[35px] w-auto object-contain max-[425px]:h-[28px] max-[375px]:h-[24px] max-[320px]:h-[20px]" />
-        <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={80} height={40} className="h-[35px] w-auto object-contain max-[425px]:h-[28px] max-[375px]:h-[24px] max-[320px]:h-[20px]" />
-      </div>
+      {/* Sponsors Section */}
+      <section className="py-8 px-5 bg-beige text-center relative z-[2]">
+        <div className="max-w-[1200px] mx-auto">
+          <h3 className="font-helvetica text-[1.5rem] font-bold tracking-[0.2em] mb-6 text-bronze uppercase">In Partnership With</h3>
+          <div className="flex items-center justify-center gap-12 max-md:gap-8 max-[425px]:gap-6">
+            <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={120} height={60} className="h-[60px] w-auto object-contain max-md:h-[50px] max-[425px]:h-[40px]" />
+            <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={120} height={60} className="h-[60px] w-auto object-contain max-md:h-[50px] max-[425px]:h-[40px]" />
+          </div>
+        </div>
+      </section>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-b from-cream to-dark-terracotta py-4 px-5 text-center text-light-cream">
-        <div className="font-playfair text-[1.1rem] font-light tracking-[0.25em] mb-1.5 max-md:text-base max-[375px]:text-[0.95rem] max-[375px]:tracking-[0.2em] max-[320px]:text-[0.9rem] max-[320px]:tracking-[0.15em]">MYTHOS</div>
-        <div className="text-[0.7rem] tracking-[0.15em] mb-3 opacity-70 max-md:text-[0.65rem] max-[375px]:text-[0.6rem] max-[375px]:mb-2.5 max-[320px]:text-[0.55rem] max-[320px]:mb-2">House Meets Heritage</div>
-
-        <div className="flex justify-center gap-6 mb-3 max-md:gap-5 max-[375px]:gap-4 max-[375px]:mb-2.5 max-[320px]:gap-3 max-[320px]:mb-2">
-          <a href="https://www.instagram.com/mythos.syd/" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.7rem] tracking-[0.15em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.65rem] max-[375px]:text-[0.6rem] max-[375px]:tracking-[0.1em] max-[320px]:text-[0.55rem]">Instagram</a>
-          <a href="https://www.tiktok.com/@mythos.syd" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.7rem] tracking-[0.15em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.65rem] max-[375px]:text-[0.6rem] max-[375px]:tracking-[0.1em] max-[320px]:text-[0.55rem]">TikTok</a>
-          <a href="https://www.facebook.com/profile.php?id=61571632207446" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.7rem] tracking-[0.15em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.65rem] max-[375px]:text-[0.6rem] max-[375px]:tracking-[0.1em] max-[320px]:text-[0.55rem]">Facebook</a>
-        </div>
-        <div className="inline-block border border-light-cream/40 px-4 py-1 rounded-full text-[0.6rem] tracking-[0.15em] opacity-60 max-md:text-[0.55rem] max-md:px-3 max-[375px]:text-[0.5rem] max-[375px]:px-2.5 max-[375px]:py-0.5 max-[320px]:text-[0.45rem] max-[320px]:px-2">
-          18+ EVENT
+      <footer className="bg-bronze py-6 px-5 text-center">
+        <div className="flex justify-center gap-8 max-md:gap-6">
+          <a href="https://www.instagram.com/mythos.syd/" target="_blank" rel="noopener noreferrer" className="text-beige no-underline text-[2rem] transition-all duration-300 hover:text-beige/70 hover:scale-110 max-md:text-[1.5rem]">📷</a>
+          <a href="https://www.tiktok.com/@mythos.syd" target="_blank" rel="noopener noreferrer" className="text-beige no-underline text-[2rem] transition-all duration-300 hover:text-beige/70 hover:scale-110 max-md:text-[1.5rem]">🎵</a>
+          <a href="https://www.facebook.com/profile.php?id=61571632207446" target="_blank" rel="noopener noreferrer" className="text-beige no-underline text-[2rem] transition-all duration-300 hover:text-beige/70 hover:scale-110 max-md:text-[1.5rem]">👍</a>
         </div>
       </footer>
     </>
