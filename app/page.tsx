@@ -288,11 +288,18 @@ export default function Home() {
             onClick={() => {
               const video = document.querySelector('.mobile-hero-video') as HTMLVideoElement
               if (video) {
-                video.muted = !isMuted
-                setIsMuted(!isMuted)
+                const newMutedState = !isMuted
+                video.muted = newMutedState
+                video.volume = newMutedState ? 0 : 1
+                setIsMuted(newMutedState)
+
+                // Force play in case it was paused
+                video.play().catch(() => {
+                  console.log('Play blocked')
+                })
               }
             }}
-            className="absolute bottom-6 right-6 z-[998] w-12 h-12 rounded-full bg-black/40 backdrop-blur-sm border border-gold/50 flex items-center justify-center transition-all duration-300 hover:bg-gold/20 hover:border-gold active:scale-95"
+            className="absolute bottom-6 right-6 z-[998] w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-gold/40 flex items-center justify-center transition-all duration-300 hover:bg-black/70 hover:border-gold active:scale-90"
             aria-label={isMuted ? 'Unmute video' : 'Mute video'}
           >
             {isMuted ? (
@@ -457,28 +464,16 @@ export default function Home() {
       </section>
 
       {/* Sponsors Carousel Banner - Fixed at Bottom */}
-      <div className="fixed bottom-0 left-0 right-0 z-[100] bg-gradient-to-r from-dark-terracotta via-cream to-dark-terracotta border-t border-gold/40 overflow-hidden">
-        <div className="sponsors-carousel flex items-center py-3 gap-[60px]">
+      <div className="fixed bottom-0 left-0 right-0 z-[100] bg-black/60 backdrop-blur-md border-t border-gold/20 overflow-hidden">
+        <div className="sponsors-carousel flex items-center py-2.5 gap-[80px]">
           {/* Duplicate the sponsors array for seamless infinite scroll */}
           {[...Array(2)].map((_, setIndex) => (
-            <div key={setIndex} className="flex items-center gap-[60px] animate-scroll">
-              <div className="flex items-center gap-2 whitespace-nowrap">
-                <span className="text-gold text-sm">★</span>
-                <span className="font-playfair text-white text-sm tracking-[0.2em] uppercase">In Partnership With</span>
-                <span className="text-gold text-sm">★</span>
-              </div>
-              <div className="bg-white/10 border border-gold/40 px-6 py-2 rounded-lg font-playfair text-sm tracking-[0.2em] text-white whitespace-nowrap">
-                SPONSOR 1
-              </div>
-              <div className="bg-white/10 border border-gold/40 px-6 py-2 rounded-lg font-playfair text-sm tracking-[0.2em] text-white whitespace-nowrap">
-                SPONSOR 2
-              </div>
-              <div className="bg-white/10 border border-gold/40 px-6 py-2 rounded-lg font-playfair text-sm tracking-[0.2em] text-white whitespace-nowrap">
-                SPONSOR 3
-              </div>
-              <div className="bg-white/10 border border-gold/40 px-6 py-2 rounded-lg font-playfair text-sm tracking-[0.2em] text-white whitespace-nowrap">
-                SPONSOR 4
-              </div>
+            <div key={setIndex} className="flex items-center gap-[80px] animate-scroll">
+              <span className="font-cormorant text-light-cream/60 text-xs tracking-[0.3em] uppercase whitespace-nowrap">In Partnership With</span>
+              <span className="font-playfair text-light-cream/80 text-sm tracking-[0.15em] whitespace-nowrap">SPONSOR 1</span>
+              <span className="font-playfair text-light-cream/80 text-sm tracking-[0.15em] whitespace-nowrap">SPONSOR 2</span>
+              <span className="font-playfair text-light-cream/80 text-sm tracking-[0.15em] whitespace-nowrap">SPONSOR 3</span>
+              <span className="font-playfair text-light-cream/80 text-sm tracking-[0.15em] whitespace-nowrap">SPONSOR 4</span>
             </div>
           ))}
         </div>
