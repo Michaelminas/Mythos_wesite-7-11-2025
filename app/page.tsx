@@ -164,7 +164,7 @@ export default function Home() {
       }
 
       const infoFadePercent = Math.min(scrollY / (transitionEnd * 0.4), 1)
-      const dateElements = heroContent?.querySelectorAll('.hero-date, .hero-time, .hero-countdown, .hero-cta')
+      const dateElements = heroContent?.querySelectorAll('.hero-date, .hero-time, .hero-countdown, .hero-cta, .hero-sponsors')
       dateElements?.forEach((el) => {
         const element = el as HTMLElement
         element.style.opacity = (1 - infoFadePercent).toString()
@@ -176,6 +176,22 @@ export default function Home() {
       const footerTop = footer?.getBoundingClientRect().top || 0
       const windowHeight = window.innerHeight
       const isNearFooter = footerTop < windowHeight
+
+      // Handle sponsors visibility on mobile < 950px
+      const isMobile = window.innerWidth < 950
+      const fixedSponsorsBadge = document.querySelector('.fixed-sponsors-badge') as HTMLElement
+
+      if (isMobile && fixedSponsorsBadge) {
+        if (scrollPercent > 0.3 && !isNearFooter) {
+          // Show fixed badge when scrolled past hero on mobile
+          fixedSponsorsBadge.classList.remove('max-[950px]:hidden')
+          fixedSponsorsBadge.classList.add('max-[950px]:flex')
+        } else {
+          // Hide fixed badge when in hero on mobile
+          fixedSponsorsBadge.classList.add('max-[950px]:hidden')
+          fixedSponsorsBadge.classList.remove('max-[950px]:flex')
+        }
+      }
 
       if (scrollPercent > 0.3 && !isNearFooter) {
         heroContent?.classList.add('sticky-mode')
@@ -295,6 +311,12 @@ export default function Home() {
 
         {/* Centered Content Overlay */}
         <div className="hero-content fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[999] text-center w-full max-w-[1200px] px-10 will-change-transform max-md:px-5" id="heroContent">
+          {/* Hero Sponsors - Only visible on mobile when in hero */}
+          <div className="hero-sponsors hidden max-[950px]:flex items-center justify-center gap-6 mb-6 max-[375px]:gap-4 max-[320px]:gap-3">
+            <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={80} height={40} className="h-[40px] w-auto object-contain max-[425px]:h-[35px] max-[375px]:h-[30px] max-[320px]:h-[25px]" />
+            <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={80} height={40} className="h-[40px] w-auto object-contain max-[425px]:h-[35px] max-[375px]:h-[30px] max-[320px]:h-[25px]" />
+          </div>
+
           <Image
             src="/Mythos Branding/logo final PMS 876C_cmyk copy.png"
             alt="MYTHOS"
@@ -345,17 +367,17 @@ export default function Home() {
           <div className="flex justify-between gap-[5%] px-[10%] max-md:flex-col max-md:gap-6 max-md:px-0">
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
               <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">9:00 - 11:45PM</div>
-              <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem] max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">CONTROLLA</h3>
+              <h3 className="font-playfair text-[2.2rem] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem] max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">CONTROLLA</h3>
               <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Controlla, fresh off his Ios tour in Greece, will open the night with a high-energy set of European anthems to set the tone.</p>
             </div>
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
               <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">DJ</div>
-              <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem] max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">TBC</h3>
+              <h3 className="font-playfair text-[2.2rem] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem] max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">TBC</h3>
               <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]"></p>
             </div>
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
               <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">11:45PM - 3:00AM</div>
-              <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem] max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">KINEZOS</h3>
+              <h3 className="font-playfair text-[2.2rem] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem] max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">KINEZOS</h3>
               <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]"></p>
             </div>
           </div>
@@ -438,8 +460,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Sponsors Banner - Fixed Bottom Right */}
-      <div className="fixed bottom-6 right-6 z-[100] bg-black/60 backdrop-blur-md border border-gold/20 rounded-lg px-4 py-2 flex items-center gap-4 max-[425px]:bottom-4 max-[425px]:right-4 max-[425px]:px-3 max-[425px]:py-1.5 max-[425px]:gap-3 max-[375px]:bottom-3 max-[375px]:right-3 max-[375px]:px-2 max-[375px]:gap-2 max-[320px]:px-1.5 max-[320px]:gap-1.5">
+      {/* Sponsors Banner - Fixed Bottom Right (Desktop > 950px or Mobile after scroll) */}
+      <div className="fixed-sponsors-badge fixed bottom-6 right-6 z-[100] bg-black/60 backdrop-blur-md border border-gold/20 rounded-lg px-4 py-2 items-center gap-4 transition-opacity duration-300 max-[950px]:hidden max-[425px]:bottom-4 max-[425px]:right-4 max-[425px]:px-3 max-[425px]:py-1.5 max-[425px]:gap-3 max-[375px]:bottom-3 max-[375px]:right-3 max-[375px]:px-2 max-[375px]:gap-2 max-[320px]:px-1.5 max-[320px]:gap-1.5 flex">
         <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={80} height={40} className="h-[35px] w-auto object-contain max-[425px]:h-[28px] max-[375px]:h-[24px] max-[320px]:h-[20px]" />
         <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={80} height={40} className="h-[35px] w-auto object-contain max-[425px]:h-[28px] max-[375px]:h-[24px] max-[320px]:h-[20px]" />
       </div>
