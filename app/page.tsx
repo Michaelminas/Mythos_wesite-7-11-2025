@@ -300,6 +300,13 @@ export default function Home() {
                 video.volume = newMutedState ? 0 : 1
                 setIsMuted(newMutedState)
 
+                // Ensure desktop videos are always muted
+                const desktopVideos = document.querySelectorAll('.hero-split video') as NodeListOf<HTMLVideoElement>
+                desktopVideos.forEach(v => {
+                  v.muted = true
+                  v.volume = 0
+                })
+
                 // Force play in case it was paused
                 video.play().catch(() => {
                   console.log('Play blocked')
