@@ -14,7 +14,10 @@
       "Bash(convert \"$file\" \"../Webp/$file%.jpg.webp\")",
       "Bash(echo \"Skipping $file - conversion tool not available\")",
       "Bash(done)",
-      "Bash(git commit -m \"Switch atmosphere photos to WebP format for better performance\n\nPhoto Format Update:\n- Replace all JPG atmosphere images with WebP versions\n- Lineup: 0N6A1002.webp, 0N6A0962.webp\n- Event Details: 0N6A1013.webp\n- VIP Bookings: 0N6A1014.webp, 0N6A0985.webp\n\nBenefits:\n- Significantly reduced file sizes (WebP typically 25-35% smaller than JPG)\n- Faster page load times\n- Better mobile performance\n- Maintained image quality\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\")"
+      "Bash(git commit -m \"Switch atmosphere photos to WebP format for better performance\n\nPhoto Format Update:\n- Replace all JPG atmosphere images with WebP versions\n- Lineup: 0N6A1002.webp, 0N6A0962.webp\n- Event Details: 0N6A1013.webp\n- VIP Bookings: 0N6A1014.webp, 0N6A0985.webp\n\nBenefits:\n- Significantly reduced file sizes (WebP typically 25-35% smaller than JPG)\n- Faster page load times\n- Better mobile performance\n- Maintained image quality\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\")",
+      "Bash(ffmpeg -version)",
+      "Bash(where cwebp)",
+      "Bash(npm run build)"
     ],
     "deny": [],
     "ask": []

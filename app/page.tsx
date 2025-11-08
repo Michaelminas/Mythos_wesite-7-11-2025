@@ -8,10 +8,13 @@ export default function Home() {
   const [countdown, setCountdown] = useState('')
   const [eventStatus, setEventStatus] = useState<'upcoming' | 'live' | 'ended'>('upcoming')
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [formLoading, setFormLoading] = useState(false)
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const form = e.currentTarget
+
+    setFormLoading(true)
 
     try {
       const response = await fetch('https://formspree.io/f/mnnlajzz', {
@@ -31,6 +34,8 @@ export default function Home() {
       }
     } catch (error) {
       alert('There was an error submitting the form. Please try again.')
+    } finally {
+      setFormLoading(false)
     }
   }
 
@@ -460,8 +465,8 @@ export default function Home() {
                 <label htmlFor="message" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.85rem]">Special Requests & Details</label>
                 <textarea id="message" name="message" rows={4} autoComplete="off" className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 resize-y min-h-[100px] max-md:text-base max-md:p-[12px_15px] max-[430px]:text-[0.95rem] max-[430px]:p-[10px_12px]"></textarea>
               </div>
-              <button type="submit" className="px-[50px] py-[18px] bg-beige text-bronze border-none rounded-full font-helvetica text-base font-semibold tracking-[0.2em] uppercase cursor-pointer transition-all duration-400 shadow-[0_4px_20px_rgba(223,213,200,0.3)] self-center mt-5 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(223,213,200,0.5)] hover:bg-beige/90 max-md:px-10 max-md:py-3.5 max-md:text-[0.9rem] max-[430px]:px-[35px] max-[430px]:py-3 max-[430px]:text-[0.85rem]">
-                Submit VIP Booking
+              <button type="submit" disabled={formLoading} className="px-[50px] py-[18px] bg-beige text-bronze border-none rounded-full font-helvetica text-base font-semibold tracking-[0.2em] uppercase cursor-pointer transition-all duration-400 shadow-[0_4px_20px_rgba(223,213,200,0.3)] self-center mt-5 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(223,213,200,0.5)] hover:bg-beige/90 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-[0_4px_20px_rgba(223,213,200,0.3)] max-md:px-10 max-md:py-3.5 max-md:text-[0.9rem] max-[430px]:px-[35px] max-[430px]:py-3 max-[430px]:text-[0.85rem]">
+                {formLoading ? 'Submitting...' : 'Submit VIP Booking'}
               </button>
             </form>
           </div>
