@@ -253,7 +253,7 @@ export default function Home() {
         href="https://moshtix.com.au/v2/event/mythos-home-the-venue-summer-2025/188117"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed-tickets-btn fixed bottom-[20px] left-1/2 -translate-x-1/2 z-[1000] px-[35px] py-3 bg-gradient-to-br from-gold to-terracotta text-white no-underline font-playfair font-semibold tracking-[0.2em] text-[0.85rem] uppercase rounded-full shadow-[0_4px_20px_rgba(166,123,91,0.3)] transition-all duration-600 opacity-0 translate-y-5 pointer-events-none hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(166,123,91,0.5)] hover:bg-gradient-to-br hover:from-terracotta hover:to-gold max-md:bottom-[20px] max-md:px-[30px] max-md:py-2.5 max-md:text-[0.75rem] max-md:tracking-[0.15em]"
+        className="fixed-tickets-btn fixed bottom-[20px] left-1/2 -translate-x-1/2 z-[1000] px-[35px] py-3 bg-gradient-to-br from-gold to-terracotta text-white no-underline font-playfair font-semibold tracking-[0.2em] text-[0.85rem] uppercase rounded-full shadow-[0_4px_20px_rgba(166,123,91,0.3)] transition-all duration-600 opacity-0 translate-y-5 pointer-events-none hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(166,123,91,0.5)] hover:bg-gradient-to-br hover:from-terracotta hover:to-gold max-md:bottom-[20px] max-md:px-[30px] max-md:py-2.5 max-md:text-[0.75rem] max-md:tracking-[0.15em] max-[425px]:px-[25px] max-[425px]:py-2 max-[425px]:text-[0.7rem] max-[375px]:px-[20px] max-[375px]:py-1.5 max-[375px]:text-[0.65rem] max-[375px]:tracking-[0.1em] max-[320px]:px-[18px] max-[320px]:text-[0.6rem]"
       >
         Want a Ticket?
       </a>
@@ -298,16 +298,16 @@ export default function Home() {
           <Image
             src="/Mythos Branding/logo final PMS 876C_cmyk copy.png"
             alt="MYTHOS"
-            className="hero-logo-img w-auto h-[clamp(80px,15vw,180px)] mb-10 block mx-auto max-md:h-[clamp(60px,12vw,120px)] max-md:mb-[30px] max-[430px]:h-[clamp(50px,10vw,100px)] max-[430px]:mb-5"
+            className="hero-logo-img w-auto h-[clamp(80px,15vw,180px)] mb-10 block mx-auto max-md:h-[clamp(60px,12vw,120px)] max-md:mb-[30px] max-[430px]:h-[clamp(50px,10vw,100px)] max-[430px]:mb-5 max-[375px]:h-[clamp(45px,9vw,90px)] max-[375px]:mb-4 max-[320px]:h-[clamp(40px,8vw,80px)] max-[320px]:mb-3"
             width={500}
             height={180}
             style={{ width: 'auto', height: 'auto' }}
             priority
           />
-          <div className="hero-date font-cormorant text-[clamp(1.2rem,2.5vw,1.8rem)] font-normal tracking-[0.2em] text-white mb-2.5 max-md:text-[0.9rem] max-md:mb-2 max-[430px]:text-[0.85rem] max-[430px]:mb-1.5">
+          <div className="hero-date font-cormorant text-[clamp(1.2rem,2.5vw,1.8rem)] font-normal tracking-[0.2em] text-white mb-2.5 max-md:text-[0.9rem] max-md:mb-2 max-[430px]:text-[0.85rem] max-[430px]:mb-1.5 max-[375px]:text-[0.8rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.75rem] max-[320px]:tracking-[0.1em]">
             Friday 19 December
           </div>
-          <div className="hero-time font-cormorant text-[clamp(1rem,2vw,1.4rem)] font-light tracking-[0.15em] text-white/90 max-md:text-[0.8rem] max-md:tracking-[0.1em] max-[430px]:text-[0.75rem]">
+          <div className="hero-time font-cormorant text-[clamp(1rem,2vw,1.4rem)] font-light tracking-[0.15em] text-white/90 max-md:text-[0.8rem] max-md:tracking-[0.1em] max-[430px]:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.08em] max-[320px]:text-[0.65rem]">
             9:00pm – 3:00am | Home The Venue, Sydney
           </div>
 
@@ -316,7 +316,7 @@ export default function Home() {
             href="https://moshtix.com.au/v2/event/mythos-home-the-venue-summer-2025/188117"
             target="_blank"
             rel="noopener noreferrer"
-            className={`hero-cta inline-block mt-3 px-[50px] py-[18px] no-underline font-playfair font-semibold tracking-[0.2em] text-base uppercase rounded-full transition-all duration-400 max-md:px-[30px] max-md:py-3 max-md:text-[0.85rem] max-md:tracking-[0.15em] max-md:mt-[15px] max-[430px]:px-[25px] max-[430px]:py-2.5 max-[430px]:text-[0.8rem] max-[430px]:mt-3 ${
+            className={`hero-cta inline-block mt-3 px-[50px] py-[18px] no-underline font-playfair font-semibold tracking-[0.2em] text-base uppercase rounded-full transition-all duration-400 max-md:px-[30px] max-md:py-3 max-md:text-[0.85rem] max-md:tracking-[0.15em] max-md:mt-[15px] max-[430px]:px-[25px] max-[430px]:py-2.5 max-[430px]:text-[0.8rem] max-[430px]:mt-3 max-[375px]:px-[22px] max-[375px]:py-2 max-[375px]:text-[0.75rem] max-[375px]:tracking-[0.1em] max-[320px]:px-[20px] max-[320px]:py-1.5 max-[320px]:text-[0.7rem] ${
               eventStatus === 'live'
                 ? 'bg-gradient-to-br from-gold to-terracotta text-white shadow-[0_8px_30px_rgba(212,165,116,0.8)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(212,165,116,1)] animate-pulse'
                 : eventStatus === 'ended'
@@ -339,24 +339,24 @@ export default function Home() {
           <Image src="/Event Photos/Compressed/0N6A0704-min.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
-          <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] text-center mb-20 text-section-dark-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
+          <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] text-center mb-20 text-section-dark-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px] max-[375px]:text-[1.35rem] max-[375px]:mb-5 max-[320px]:text-[1.2rem] max-[320px]:tracking-[0.1em]">
             Lineup
           </h2>
           <div className="flex justify-between gap-[5%] px-[10%] max-md:flex-col max-md:gap-6 max-md:px-0">
-            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px]">
-              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm">9:00 - 11:45PM</div>
-              <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem]">CONTROLLA</h3>
-              <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6]">Controlla, fresh off his Ios tour in Greece, will open the night with a high-energy set of European anthems to set the tone.</p>
+            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
+              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">9:00 - 11:45PM</div>
+              <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem] max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">CONTROLLA</h3>
+              <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Controlla, fresh off his Ios tour in Greece, will open the night with a high-energy set of European anthems to set the tone.</p>
             </div>
-            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px]">
-              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm">DJ</div>
-              <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem]">TBC</h3>
-              <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6]"></p>
+            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
+              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">DJ</div>
+              <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem] max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">TBC</h3>
+              <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]"></p>
             </div>
-            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px]">
-              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm">11:45PM - 3:00AM</div>
-              <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem]">KINEZOS</h3>
-              <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6]"></p>
+            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
+              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">11:45PM - 3:00AM</div>
+              <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem] max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">KINEZOS</h3>
+              <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]"></p>
             </div>
           </div>
           <div className="text-center mt-[60px] p-10 bg-gold/15 rounded-[15px] max-md:mt-10 max-md:p-[30px_20px] max-[430px]:p-[25px_15px]">
@@ -439,22 +439,22 @@ export default function Home() {
       </section>
 
       {/* Sponsors Banner - Fixed Bottom Right */}
-      <div className="fixed bottom-6 right-6 z-[100] bg-black/60 backdrop-blur-md border border-gold/20 rounded-lg px-4 py-2 flex items-center gap-4">
-        <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={80} height={40} className="h-[35px] w-auto object-contain" />
-        <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={80} height={40} className="h-[35px] w-auto object-contain" />
+      <div className="fixed bottom-6 right-6 z-[100] bg-black/60 backdrop-blur-md border border-gold/20 rounded-lg px-4 py-2 flex items-center gap-4 max-[425px]:bottom-4 max-[425px]:right-4 max-[425px]:px-3 max-[425px]:py-1.5 max-[425px]:gap-3 max-[375px]:bottom-3 max-[375px]:right-3 max-[375px]:px-2 max-[375px]:gap-2 max-[320px]:px-1.5 max-[320px]:gap-1.5">
+        <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={80} height={40} className="h-[35px] w-auto object-contain max-[425px]:h-[28px] max-[375px]:h-[24px] max-[320px]:h-[20px]" />
+        <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={80} height={40} className="h-[35px] w-auto object-contain max-[425px]:h-[28px] max-[375px]:h-[24px] max-[320px]:h-[20px]" />
       </div>
 
       {/* Footer */}
       <footer className="bg-gradient-to-b from-cream to-dark-terracotta py-8 px-5 text-center text-light-cream">
-        <div className="font-playfair text-[1.5rem] font-light tracking-[0.3em] mb-2 max-md:text-[1.3rem]">MYTHOS</div>
-        <div className="text-[0.85rem] tracking-[0.2em] mb-5 opacity-80 max-md:text-[0.75rem]">House Meets Heritage</div>
+        <div className="font-playfair text-[1.5rem] font-light tracking-[0.3em] mb-2 max-md:text-[1.3rem] max-[375px]:text-[1.15rem] max-[375px]:tracking-[0.25em] max-[320px]:text-[1.05rem] max-[320px]:tracking-[0.2em]">MYTHOS</div>
+        <div className="text-[0.85rem] tracking-[0.2em] mb-5 opacity-80 max-md:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.65rem] max-[320px]:mb-4">House Meets Heritage</div>
 
-        <div className="flex justify-center gap-8 mb-5 max-md:gap-6">
-          <a href="https://www.instagram.com/mythos.syd/" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.8rem] tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.75rem]">Instagram</a>
-          <a href="https://www.tiktok.com/@mythos.syd" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.8rem] tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.75rem]">TikTok</a>
-          <a href="https://www.facebook.com/profile.php?id=61571632207446" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.8rem] tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.75rem]">Facebook</a>
+        <div className="flex justify-center gap-8 mb-5 max-md:gap-6 max-[375px]:gap-5 max-[375px]:mb-4 max-[320px]:gap-4 max-[320px]:mb-3">
+          <a href="https://www.instagram.com/mythos.syd/" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.8rem] tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.65rem]">Instagram</a>
+          <a href="https://www.tiktok.com/@mythos.syd" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.8rem] tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.65rem]">TikTok</a>
+          <a href="https://www.facebook.com/profile.php?id=61571632207446" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.8rem] tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.65rem]">Facebook</a>
         </div>
-        <div className="inline-block border border-light-cream/50 px-5 py-1.5 rounded-full text-[0.7rem] tracking-[0.2em] opacity-70 max-md:text-[0.65rem] max-md:px-4">
+        <div className="inline-block border border-light-cream/50 px-5 py-1.5 rounded-full text-[0.7rem] tracking-[0.2em] opacity-70 max-md:text-[0.65rem] max-md:px-4 max-[375px]:text-[0.6rem] max-[375px]:px-3 max-[375px]:py-1 max-[320px]:text-[0.55rem] max-[320px]:px-2.5">
           18+ EVENT
         </div>
       </footer>
