@@ -277,7 +277,7 @@ export default function Home() {
         href="https://moshtix.com.au/placeholder"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed-tickets-btn fixed top-[30px] right-[30px] z-[1000] px-[35px] py-3 bg-gradient-to-br from-gold to-terracotta text-white no-underline font-playfair font-semibold tracking-[0.2em] text-[0.85rem] uppercase rounded-full shadow-[0_4px_20px_rgba(166,123,91,0.3)] transition-all duration-600 opacity-0 -translate-y-5 pointer-events-none hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(166,123,91,0.5)] hover:bg-gradient-to-br hover:from-terracotta hover:to-gold max-md:top-[50%] max-md:-translate-y-1/2 max-md:right-3 max-md:px-3 max-md:py-1.5 max-md:text-[0.6rem] max-md:tracking-[0.1em]"
+        className="fixed-tickets-btn fixed top-[30px] right-[30px] z-[1000] px-[35px] py-3 bg-gradient-to-br from-gold to-terracotta text-white no-underline font-playfair font-semibold tracking-[0.2em] text-[0.85rem] uppercase rounded-full shadow-[0_4px_20px_rgba(166,123,91,0.3)] transition-all duration-600 opacity-0 -translate-y-5 pointer-events-none hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(166,123,91,0.5)] hover:bg-gradient-to-br hover:from-terracotta hover:to-gold max-md:top-[25px] max-md:right-3 max-md:px-3 max-md:py-1.5 max-md:text-[0.6rem] max-md:tracking-[0.1em]"
       >
         Want a Ticket?
       </a>
