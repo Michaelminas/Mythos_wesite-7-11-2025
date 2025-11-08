@@ -105,7 +105,8 @@
 
   /* Fixed tickets button visibility */
   .fixed-tickets-btn.visible {
-    @apply opacity-100 translate-y-0 pointer-events-auto;
+    @apply opacity-100 pointer-events-auto;
+    transform: translate(-50%, 0);
   }
 
   /* Effect 1: Parallax Scrolling */
