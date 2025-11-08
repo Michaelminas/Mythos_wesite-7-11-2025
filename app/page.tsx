@@ -7,7 +7,6 @@ import './globals.css'
 export default function Home() {
   const [countdown, setCountdown] = useState('')
   const [eventStatus, setEventStatus] = useState<'upcoming' | 'live' | 'ended'>('upcoming')
-  const [isMuted, setIsMuted] = useState(false) // Start unmuted on mobile
   const [formSubmitted, setFormSubmitted] = useState(false)
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -102,59 +101,32 @@ export default function Home() {
         mobileVideo.load()
       }
 
-      // Attempt to play WITH SOUND first
-      const attemptPlayWithSound = () => {
-        mobileVideo.muted = false
-        mobileVideo.volume = 1
+      // Attempt to autoplay muted video
+      const attemptPlay = () => {
+        mobileVideo.muted = true
+        mobileVideo.volume = 0
 
-        const playPromise = mobileVideo.play()
-        if (playPromise !== undefined) {
-          playPromise
-            .then(() => {
-              console.log('Mobile video playing with sound!')
-              setIsMuted(false)
-            })
-            .catch((error) => {
-              console.log('Autoplay with sound blocked, trying muted:', error)
+        mobileVideo.play()
+          .then(() => {
+            console.log('Mobile video playing muted')
+          })
+          .catch(() => {
+            console.log('Autoplay blocked, waiting for user interaction')
 
-              // If sound is blocked, fall back to muted autoplay
-              mobileVideo.muted = true
-              mobileVideo.volume = 0
-              mobileVideo.play()
-                .then(() => {
-                  console.log('Mobile video playing muted')
-                  setIsMuted(true)
-                })
-                .catch(() => {
-                  console.log('All autoplay blocked, waiting for user interaction')
+            // Add interaction listener as fallback
+            const playOnInteraction = () => {
+              mobileVideo.play().catch(() => console.log('Play failed'))
+            }
 
-                  // Add interaction listeners as last resort
-                  const playOnInteraction = () => {
-                    mobileVideo.muted = false
-                    mobileVideo.volume = 1
-                    mobileVideo.play()
-                      .then(() => {
-                        console.log('Video started with sound after interaction')
-                        setIsMuted(false)
-                      })
-                      .catch(() => {
-                        mobileVideo.muted = true
-                        mobileVideo.play()
-                      })
-                  }
-
-                  document.addEventListener('touchstart', playOnInteraction, { once: true, passive: true })
-                  document.addEventListener('click', playOnInteraction, { once: true })
-                })
-            })
-        }
+            document.addEventListener('touchstart', playOnInteraction, { once: true, passive: true })
+            document.addEventListener('click', playOnInteraction, { once: true })
+          })
       }
 
       // Multiple rapid-fire attempts
-      attemptPlayWithSound()
-      setTimeout(attemptPlayWithSound, 100)
-      setTimeout(attemptPlayWithSound, 300)
-      setTimeout(attemptPlayWithSound, 600)
+      attemptPlay()
+      setTimeout(attemptPlay, 100)
+      setTimeout(attemptPlay, 300)
     }
 
     // Start attempts immediately
@@ -199,14 +171,7 @@ export default function Home() {
         element.style.pointerEvents = infoFadePercent > 0.5 ? 'none' : 'all'
       })
 
-      // Fade out mobile audio button on scroll
-      const audioButton = document.querySelector('.mobile-audio-btn') as HTMLElement
-      if (audioButton) {
-        audioButton.style.opacity = (1 - infoFadePercent).toString()
-        audioButton.style.pointerEvents = infoFadePercent > 0.5 ? 'none' : 'all'
-      }
-
-      if (scrollPercent > 0.8) {
+      if (scrollPercent > 0.3) {
         heroContent?.classList.add('sticky-mode')
         fixedTicketsBtn?.classList.add('visible')
       } else {
@@ -320,44 +285,6 @@ export default function Home() {
             Your browser does not support the video tag.
           </video>
           <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
-
-          {/* Mobile Audio Toggle Button */}
-          <button
-            onClick={() => {
-              const video = document.querySelector('.mobile-hero-video') as HTMLVideoElement
-              if (video) {
-                const newMutedState = !isMuted
-                video.muted = newMutedState
-                video.volume = newMutedState ? 0 : 1
-                setIsMuted(newMutedState)
-
-                // Ensure desktop videos are always muted
-                const desktopVideos = document.querySelectorAll('.hero-split video') as NodeListOf<HTMLVideoElement>
-                desktopVideos.forEach(v => {
-                  v.muted = true
-                  v.volume = 0
-                })
-
-                // Force play in case it was paused
-                video.play().catch(() => {
-                  console.log('Play blocked')
-                })
-              }
-            }}
-            className="mobile-audio-btn absolute top-6 left-6 z-[998] w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-gold/40 flex items-center justify-center transition-all duration-300 hover:bg-black/70 hover:border-gold active:scale-90"
-            aria-label={isMuted ? 'Unmute video' : 'Mute video'}
-          >
-            {isMuted ? (
-              <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
-              </svg>
-            ) : (
-              <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
-              </svg>
-            )}
-          </button>
         </div>
 
         {/* Centered Content Overlay */}
@@ -411,9 +338,9 @@ export default function Home() {
           </h2>
           <div className="flex justify-between gap-[5%] px-[10%] max-md:flex-col max-md:gap-6 max-md:px-0">
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px]">
-              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm">DJ</div>
-              <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem]">KINEZOS</h3>
-              <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6]"></p>
+              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm">9:00 - 11:45PM</div>
+              <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem]">CONTROLLA</h3>
+              <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6]">Controlla, fresh off his Ios tour in Greece, will open the night with a high-energy set of European anthems to set the tone.</p>
             </div>
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px]">
               <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm">DJ</div>
@@ -421,9 +348,9 @@ export default function Home() {
               <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6]"></p>
             </div>
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px]">
-              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm">DJ</div>
-              <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem]">CONTROLLA</h3>
-              <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6]">Controlla, fresh off his Ios tour in Greece, will open the night with a high-energy set of European anthems to set the tone.</p>
+              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm">11:45PM - 3:00AM</div>
+              <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem]">KINEZOS</h3>
+              <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6]"></p>
             </div>
           </div>
           <div className="text-center mt-[60px] p-10 bg-gold/15 rounded-[15px] max-md:mt-10 max-md:p-[30px_20px] max-[430px]:p-[25px_15px]">
@@ -507,31 +434,29 @@ export default function Home() {
 
       {/* Sponsors Carousel Banner - Fixed at Bottom */}
       <div className="fixed bottom-0 left-0 right-0 z-[100] bg-black/60 backdrop-blur-md border-t border-gold/20 overflow-hidden max-md:relative max-md:bottom-auto">
-        <div className="sponsors-carousel flex items-center py-2.5 gap-[80px]">
+        <div className="sponsors-carousel flex items-center py-3 gap-[60px]">
           {/* Duplicate the sponsors array for seamless infinite scroll */}
           {[...Array(2)].map((_, setIndex) => (
-            <div key={setIndex} className="flex items-center gap-[80px] animate-scroll">
+            <div key={setIndex} className="flex items-center gap-[60px] animate-scroll">
               <span className="font-cormorant text-light-cream/60 text-xs tracking-[0.3em] uppercase whitespace-nowrap">In Partnership With</span>
-              <span className="font-playfair text-light-cream/80 text-sm tracking-[0.15em] whitespace-nowrap">SPONSOR 1</span>
-              <span className="font-playfair text-light-cream/80 text-sm tracking-[0.15em] whitespace-nowrap">SPONSOR 2</span>
-              <span className="font-playfair text-light-cream/80 text-sm tracking-[0.15em] whitespace-nowrap">SPONSOR 3</span>
-              <span className="font-playfair text-light-cream/80 text-sm tracking-[0.15em] whitespace-nowrap">SPONSOR 4</span>
+              <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={120} height={60} className="h-[50px] w-auto object-contain" />
+              <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={120} height={60} className="h-[50px] w-auto object-contain" />
             </div>
           ))}
         </div>
       </div>
 
       {/* Footer */}
-      <footer className="bg-gradient-to-b from-cream to-dark-terracotta py-20 px-5 pb-[100px] text-center text-light-cream max-md:py-[60px_20px_30px]">
-        <div className="font-playfair text-[2.5rem] font-light tracking-[0.3em] mb-5 max-md:text-[2rem] max-[430px]:text-[1.8rem]">MYTHOS</div>
-        <div className="text-[1.1rem] tracking-[0.2em] mb-[60px] opacity-80 max-md:text-[0.95rem]">House Meets Heritage</div>
+      <footer className="bg-gradient-to-b from-cream to-dark-terracotta py-8 px-5 pb-[60px] text-center text-light-cream max-md:py-6 max-md:pb-[80px]">
+        <div className="font-playfair text-[1.5rem] font-light tracking-[0.3em] mb-2 max-md:text-[1.3rem]">MYTHOS</div>
+        <div className="text-[0.85rem] tracking-[0.2em] mb-5 opacity-80 max-md:text-[0.75rem]">House Meets Heritage</div>
 
-        <div className="flex justify-center gap-10 mb-10 max-md:gap-5">
-          <a href="https://www.instagram.com/mythos.syd/" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-base tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.9rem]">Instagram</a>
-          <a href="https://www.tiktok.com/@mythos.syd" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-base tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.9rem]">TikTok</a>
-          <a href="https://www.facebook.com/profile.php?id=61571632207446" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-base tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.9rem]">Facebook</a>
+        <div className="flex justify-center gap-8 mb-5 max-md:gap-6">
+          <a href="https://www.instagram.com/mythos.syd/" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.8rem] tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.75rem]">Instagram</a>
+          <a href="https://www.tiktok.com/@mythos.syd" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.8rem] tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.75rem]">TikTok</a>
+          <a href="https://www.facebook.com/profile.php?id=61571632207446" target="_blank" rel="noopener noreferrer" className="text-light-cream no-underline text-[0.8rem] tracking-[0.2em] uppercase transition-colors duration-300 font-light hover:text-gold max-md:text-[0.75rem]">Facebook</a>
         </div>
-        <div className="inline-block border border-light-cream px-[30px] py-2.5 rounded-full text-[0.9rem] tracking-[0.2em] mt-[30px] max-md:text-[0.8rem] max-md:px-[25px]">
+        <div className="inline-block border border-light-cream/50 px-5 py-1.5 rounded-full text-[0.7rem] tracking-[0.2em] opacity-70 max-md:text-[0.65rem] max-md:px-4">
           18+ EVENT
         </div>
       </footer>
