@@ -440,7 +440,6 @@ export default function Home() {
 
       {/* Sponsors Banner - Fixed Bottom Right */}
       <div className="fixed bottom-6 right-6 z-[100] bg-black/60 backdrop-blur-md border border-gold/20 rounded-lg px-4 py-2 flex items-center gap-4">
-        <span className="font-cormorant text-light-cream/60 text-xs tracking-[0.3em] uppercase whitespace-nowrap">In Partnership With</span>
         <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={80} height={40} className="h-[35px] w-auto object-contain" />
         <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={80} height={40} className="h-[35px] w-auto object-contain" />
       </div>
