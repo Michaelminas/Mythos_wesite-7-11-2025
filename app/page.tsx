@@ -351,16 +351,13 @@ export default function Home() {
 
       {/* Lineup Section */}
       <section className="reveal py-20 px-5 bg-beige relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
-        {/* Desktop Images */}
+        {/* Desktop Image */}
         <div className="atmosphere-img absolute w-[50vw] max-w-[750px] h-[55vw] max-h-[850px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-5%] top-[12%] rotate-[8deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Webp/0N6A1002.webp" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
+          <Image src="/Event Photos/Webp/lineup.webp" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 50vw" quality={85} />
         </div>
-        <div className="atmosphere-img absolute w-[48vw] max-w-[700px] h-[53vw] max-h-[800px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-5%] bottom-[5%] -rotate-[5deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Webp/0N6A0962.webp" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
-        </div>
-        {/* Mobile Images */}
+        {/* Mobile Image */}
         <div className="hidden max-[600px]:block atmosphere-img absolute w-[70vw] h-[80vw] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-10%] top-[5%] rotate-[3deg]">
-          <Image src="/Event Photos/Webp/0N6A1002.webp" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
+          <Image src="/Event Photos/Webp/lineup.webp" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="70vw" quality={85} />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
           <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[0.2em] text-center mb-20 text-bronze uppercase max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px] max-[375px]:text-[1.35rem] max-[375px]:mb-5 max-[320px]:text-[1.2rem] max-[320px]:tracking-[0.1em]">
@@ -382,18 +379,21 @@ export default function Home() {
       </section>
 
       {/* Plus Live Entertainment Divider */}
-      <section className="relative w-full py-12 bg-gradient-to-r from-transparent via-bronze to-transparent max-md:py-8">
-        <div className="text-center px-5">
-          <h3 className="font-helvetica text-[clamp(1.5rem,2.5vw,2rem)] font-bold tracking-[0.2em] mb-[15px] text-beige uppercase max-[430px]:text-[1.2rem]">Plus Live Entertainment</h3>
-          <p className="font-helvetica text-[1.1rem] text-beige/90 font-normal max-w-[800px] mx-auto">Featuring pyrotechnics, dancers, live acts, and surprise performances throughout the night</p>
+      <section className="relative w-full py-12 bg-gradient-to-r from-transparent via-bronze to-transparent max-md:py-8 max-md:bg-gradient-to-r max-md:from-beige max-md:via-bronze max-md:to-beige">
+        <div className="text-center px-5 max-md:relative max-md:z-10">
+          <h3 className="font-helvetica text-[clamp(1.5rem,2.5vw,2rem)] font-bold tracking-[0.2em] mb-[15px] text-beige uppercase max-[430px]:text-[1.2rem] max-md:mb-3">Plus Live Entertainment</h3>
+          <p className="font-helvetica text-[1.1rem] text-beige/90 font-normal max-w-[800px] mx-auto max-md:text-[0.95rem] max-md:leading-[1.6]">Featuring pyrotechnics, dancers, live acts, and surprise performances throughout the night</p>
         </div>
+        {/* Decorative lines for mobile */}
+        <div className="hidden max-md:block absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-beige via-bronze to-beige opacity-40"></div>
+        <div className="hidden max-md:block absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-beige via-bronze to-beige opacity-40"></div>
       </section>
 
       {/* Event Details Section */}
       <section className="reveal text-center py-20 px-5 bg-beige relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
         {/* Desktop Image */}
         <div className="atmosphere-img absolute w-[52vw] max-w-[800px] h-[58vw] max-h-[900px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-8%] top-[8%] -rotate-[3deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Webp/0N6A1013.webp" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
+          <Image src="/Event Photos/Webp/event details.webp" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 52vw" quality={85} />
         </div>
         {/* Mobile Image - removed for better text readability */}
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
@@ -416,14 +416,14 @@ export default function Home() {
       <section className="reveal py-20 px-5 bg-bronze relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]" id="tickets">
         {/* Desktop Images */}
         <div className="atmosphere-img absolute w-[48vw] max-w-[720px] h-[54vw] max-h-[820px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-8%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Webp/0N6A1014.webp" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
+          <Image src="/Event Photos/Webp/vip 1.webp" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 48vw" quality={85} />
         </div>
         <div className="atmosphere-img absolute w-[45vw] max-w-[680px] h-[51vw] max-h-[780px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-6%] bottom-[8%] -rotate-[7deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Webp/0N6A0985.webp" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
+          <Image src="/Event Photos/Webp/vip 2.webp" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 45vw" quality={85} />
         </div>
         {/* Mobile Image */}
         <div className="hidden max-[600px]:block atmosphere-img absolute w-[68vw] h-[78vw] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-10%] top-[8%] rotate-[5deg]">
-          <Image src="/Event Photos/Webp/0N6A1014.webp" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
+          <Image src="/Event Photos/Webp/vip 1.webp" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="68vw" quality={85} />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
           <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[0.2em] text-center mb-20 text-beige capitalize max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
@@ -483,19 +483,19 @@ export default function Home() {
       <footer className="bg-bronze py-6 px-5 text-center">
         <div className="flex justify-center gap-8 max-md:gap-6">
           {/* Instagram */}
-          <a href="https://www.instagram.com/mythos.syd/" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:opacity-70 hover:scale-110">
+          <a href="https://www.instagram.com/mythos.syd/" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram" className="transition-all duration-300 hover:opacity-70 hover:scale-110 p-2 -m-2">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
             </svg>
           </a>
           {/* TikTok */}
-          <a href="https://www.tiktok.com/@mythos.syd" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:opacity-70 hover:scale-110">
+          <a href="https://www.tiktok.com/@mythos.syd" target="_blank" rel="noopener noreferrer" aria-label="Follow us on TikTok" className="transition-all duration-300 hover:opacity-70 hover:scale-110 p-2 -m-2">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
               <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
             </svg>
           </a>
           {/* Facebook */}
-          <a href="https://www.facebook.com/profile.php?id=61571632207446" target="_blank" rel="noopener noreferrer" className="transition-all duration-300 hover:opacity-70 hover:scale-110">
+          <a href="https://www.facebook.com/profile.php?id=61571632207446" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook" className="transition-all duration-300 hover:opacity-70 hover:scale-110 p-2 -m-2">
             <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
               <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
             </svg>
