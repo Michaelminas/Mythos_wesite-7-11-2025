@@ -8,6 +8,34 @@ export default function Home() {
   const [countdown, setCountdown] = useState('')
   const [eventStatus, setEventStatus] = useState<'upcoming' | 'live' | 'ended'>('upcoming')
   const [isMuted, setIsMuted] = useState(true)
+  const [formSubmitted, setFormSubmitted] = useState(false)
+
+  const handleFormSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    const form = e.currentTarget
+    const formData = new FormData(form)
+
+    const name = formData.get('name')
+    const email = formData.get('email')
+    const phone = formData.get('phone')
+    const guests = formData.get('guests')
+    const message = formData.get('message')
+
+    const subject = `VIP Booking Request - ${name}`
+    const body = `
+Name: ${name}
+Email: ${email}
+Phone: ${phone}
+Number of Guests: ${guests}
+Special Requests: ${message}
+    `.trim()
+
+    const mailtoLink = `mailto:vip@mythos.syd?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`
+    window.location.href = mailtoLink
+
+    setFormSubmitted(true)
+    setTimeout(() => setFormSubmitted(false), 5000)
+  }
 
   // Countdown timer
   useEffect(() => {
@@ -386,18 +414,18 @@ export default function Home() {
           <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] text-center mb-20 text-section-dark-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
             Lineup
           </h2>
-          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10 max-w-[1200px] mx-auto max-md:grid-cols-3 max-md:gap-5 max-md:overflow-x-auto max-md:pb-4 max-md:snap-x max-md:snap-mandatory">
-            <div className="bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[35px_25px] max-md:min-w-[280px] max-md:snap-center">
+          <div className="grid grid-cols-[repeat(auto-fit,minmax(300px,1fr))] gap-10 max-w-[1200px] mx-auto max-md:grid-cols-1 max-md:gap-6">
+            <div className="bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px]">
               <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm">DJ</div>
               <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem]">DJ 1</h3>
               <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6]">Bringing European anthems and high-energy beats to the dance floor</p>
             </div>
-            <div className="bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[35px_25px] max-md:min-w-[280px] max-md:snap-center">
+            <div className="bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px]">
               <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm">DJ</div>
               <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem]">DJ 2</h3>
               <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6]">Mixing the best of Greek and European sounds for an unforgettable night</p>
             </div>
-            <div className="bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[35px_25px] max-md:min-w-[280px] max-md:snap-center">
+            <div className="bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px]">
               <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm">DJ</div>
               <h3 className="font-playfair text-[clamp(1.8rem,3vw,2.5rem)] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem]">DJ 3</h3>
               <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6]">Delivering modern beats that celebrate cultural fusion</p>
@@ -444,7 +472,12 @@ export default function Home() {
             VIP Bookings
           </h2>
           <div className="max-w-[800px] mx-auto bg-white/[0.08] backdrop-blur-[20px] p-[60px_50px] rounded-[25px] border border-gold/30 max-md:p-[35px_20px] max-[430px]:p-[30px_15px]">
-            <form className="flex flex-col gap-[25px]" action="mailto:your-email@example.com" method="post" encType="text/plain">
+            {formSubmitted && (
+              <div className="mb-6 p-4 bg-gold/20 border border-gold rounded-lg text-center">
+                <p className="text-gold font-playfair tracking-wide">Thank you! Your booking request has been sent.</p>
+              </div>
+            )}
+            <form className="flex flex-col gap-[25px]" onSubmit={handleFormSubmit}>
               <div className="grid grid-cols-2 gap-[25px] max-md:grid-cols-1 max-md:gap-[15px]">
                 <div className="flex flex-col gap-2.5">
                   <label htmlFor="name" className="font-playfair text-[0.95rem] font-semibold tracking-[0.1em] text-section-dark-text uppercase max-md:text-[0.85rem]">Full Name</label>
