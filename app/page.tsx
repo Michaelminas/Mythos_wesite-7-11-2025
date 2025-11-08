@@ -68,48 +68,86 @@ export default function Home() {
       video.playbackRate = 1
     })
 
-    // Force mobile video to autoplay with multiple attempts
+    // Aggressive mobile video autoplay with iOS detection
     const tryPlayMobileVideo = () => {
       const mobileVideo = document.querySelector('.mobile-hero-video') as HTMLVideoElement
       if (!mobileVideo) return
 
-      // Set video attributes for better mobile compatibility
+      // Detect iOS
+      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
+
+      // Set all possible attributes for compatibility
       mobileVideo.setAttribute('playsinline', 'true')
       mobileVideo.setAttribute('webkit-playsinline', 'true')
+      mobileVideo.setAttribute('x-webkit-airplay', 'allow')
       mobileVideo.muted = true
       mobileVideo.defaultMuted = true
+      mobileVideo.volume = 0
 
-      // Force load the video
-      mobileVideo.load()
-
-      // Try to play immediately
-      const playPromise = mobileVideo.play()
-
-      if (playPromise !== undefined) {
-        playPromise.catch(() => {
-          // If autoplay fails, try again after a short delay
-          setTimeout(() => {
-            mobileVideo.play().catch(() => {
-              // If still blocked, add interaction listeners
-              const playOnInteraction = () => {
-                mobileVideo.play()
-                document.body.removeEventListener('touchstart', playOnInteraction)
-                document.body.removeEventListener('click', playOnInteraction)
-                document.body.removeEventListener('scroll', playOnInteraction)
-              }
-              document.body.addEventListener('touchstart', playOnInteraction, { once: true, passive: true })
-              document.body.addEventListener('click', playOnInteraction, { once: true })
-              document.body.addEventListener('scroll', playOnInteraction, { once: true, passive: true })
-            })
-          }, 100)
-        })
+      // For iOS, we need to be even more aggressive
+      if (isIOS) {
+        mobileVideo.removeAttribute('controls')
+        mobileVideo.load()
       }
+
+      // Attempt to play
+      const attemptPlay = () => {
+        const playPromise = mobileVideo.play()
+        if (playPromise !== undefined) {
+          playPromise
+            .then(() => {
+              console.log('Mobile video playing successfully')
+            })
+            .catch((error) => {
+              console.log('Autoplay blocked, waiting for user interaction:', error)
+
+              // Add multiple interaction listeners
+              const playOnInteraction = () => {
+                mobileVideo.muted = true
+                mobileVideo.play()
+                  .then(() => console.log('Video started after interaction'))
+                  .catch((e) => console.log('Failed to play after interaction:', e))
+              }
+
+              // Remove listeners after first successful play
+              const removeListeners = () => {
+                document.removeEventListener('touchstart', playOnInteraction)
+                document.removeEventListener('touchmove', playOnInteraction)
+                document.removeEventListener('touchend', playOnInteraction)
+                document.removeEventListener('click', playOnInteraction)
+                document.removeEventListener('scroll', playOnInteraction)
+                window.removeEventListener('scroll', playOnInteraction)
+              }
+
+              document.addEventListener('touchstart', () => { playOnInteraction(); removeListeners() }, { once: true, passive: true })
+              document.addEventListener('touchmove', () => { playOnInteraction(); removeListeners() }, { once: true, passive: true })
+              document.addEventListener('touchend', () => { playOnInteraction(); removeListeners() }, { once: true, passive: true })
+              document.addEventListener('click', () => { playOnInteraction(); removeListeners() }, { once: true })
+              document.addEventListener('scroll', () => { playOnInteraction(); removeListeners() }, { once: true, passive: true })
+              window.addEventListener('scroll', () => { playOnInteraction(); removeListeners() }, { once: true, passive: true })
+            })
+        }
+      }
+
+      // Multiple rapid-fire attempts
+      attemptPlay()
+      setTimeout(attemptPlay, 100)
+      setTimeout(attemptPlay, 300)
+      setTimeout(attemptPlay, 600)
+      setTimeout(attemptPlay, 1000)
     }
 
-    // Try playing video immediately and on DOM ready
-    tryPlayMobileVideo()
-    setTimeout(tryPlayMobileVideo, 500)
-    setTimeout(tryPlayMobileVideo, 1000)
+    // Start attempts immediately
+    if (typeof window !== 'undefined') {
+      tryPlayMobileVideo()
+
+      // Also try when page is fully loaded
+      if (document.readyState === 'complete') {
+        tryPlayMobileVideo()
+      } else {
+        window.addEventListener('load', tryPlayMobileVideo)
+      }
+    }
 
     // Seamless logo morph from center to sticky header
     const heroContent = document.getElementById('heroContent')
@@ -413,17 +451,14 @@ export default function Home() {
         </div>
 
         {/* Mobile: Single Full-Screen Video */}
-        <div className="hidden max-md:block relative w-full h-screen overflow-hidden">
+        <div className="hidden max-md:block relative w-full h-screen overflow-hidden bg-black">
           <video
             autoPlay
             loop
             muted
             playsInline
             preload="auto"
-            defaultMuted
             className="absolute top-0 left-0 w-full h-full object-cover mobile-hero-video"
-            style={{ backgroundColor: '#000' }}
-            poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'%3E%3Crect fill='%23000' width='1' height='1'/%3E%3C/svg%3E"
           >
             <source src="/Videos/website video.webm" type="video/webm" />
             Your browser does not support the video tag.
