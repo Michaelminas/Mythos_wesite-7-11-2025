@@ -7,7 +7,7 @@ import './globals.css'
 export default function Home() {
   const [countdown, setCountdown] = useState('')
   const [eventStatus, setEventStatus] = useState<'upcoming' | 'live' | 'ended'>('upcoming')
-  const [isMuted, setIsMuted] = useState(true)
+  const [isMuted, setIsMuted] = useState(false) // Start unmuted on mobile
   const [formSubmitted, setFormSubmitted] = useState(false)
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -95,9 +95,6 @@ export default function Home() {
       mobileVideo.setAttribute('playsinline', 'true')
       mobileVideo.setAttribute('webkit-playsinline', 'true')
       mobileVideo.setAttribute('x-webkit-airplay', 'allow')
-      mobileVideo.muted = true
-      mobileVideo.defaultMuted = true
-      mobileVideo.volume = 0
 
       // For iOS, we need to be even more aggressive
       if (isIOS) {
@@ -105,51 +102,59 @@ export default function Home() {
         mobileVideo.load()
       }
 
-      // Attempt to play
-      const attemptPlay = () => {
+      // Attempt to play WITH SOUND first
+      const attemptPlayWithSound = () => {
+        mobileVideo.muted = false
+        mobileVideo.volume = 1
+
         const playPromise = mobileVideo.play()
         if (playPromise !== undefined) {
           playPromise
             .then(() => {
-              console.log('Mobile video playing successfully')
+              console.log('Mobile video playing with sound!')
+              setIsMuted(false)
             })
             .catch((error) => {
-              console.log('Autoplay blocked, waiting for user interaction:', error)
+              console.log('Autoplay with sound blocked, trying muted:', error)
 
-              // Add multiple interaction listeners
-              const playOnInteraction = () => {
-                mobileVideo.muted = true
-                mobileVideo.play()
-                  .then(() => console.log('Video started after interaction'))
-                  .catch((e) => console.log('Failed to play after interaction:', e))
-              }
+              // If sound is blocked, fall back to muted autoplay
+              mobileVideo.muted = true
+              mobileVideo.volume = 0
+              mobileVideo.play()
+                .then(() => {
+                  console.log('Mobile video playing muted')
+                  setIsMuted(true)
+                })
+                .catch(() => {
+                  console.log('All autoplay blocked, waiting for user interaction')
 
-              // Remove listeners after first successful play
-              const removeListeners = () => {
-                document.removeEventListener('touchstart', playOnInteraction)
-                document.removeEventListener('touchmove', playOnInteraction)
-                document.removeEventListener('touchend', playOnInteraction)
-                document.removeEventListener('click', playOnInteraction)
-                document.removeEventListener('scroll', playOnInteraction)
-                window.removeEventListener('scroll', playOnInteraction)
-              }
+                  // Add interaction listeners as last resort
+                  const playOnInteraction = () => {
+                    mobileVideo.muted = false
+                    mobileVideo.volume = 1
+                    mobileVideo.play()
+                      .then(() => {
+                        console.log('Video started with sound after interaction')
+                        setIsMuted(false)
+                      })
+                      .catch(() => {
+                        mobileVideo.muted = true
+                        mobileVideo.play()
+                      })
+                  }
 
-              document.addEventListener('touchstart', () => { playOnInteraction(); removeListeners() }, { once: true, passive: true })
-              document.addEventListener('touchmove', () => { playOnInteraction(); removeListeners() }, { once: true, passive: true })
-              document.addEventListener('touchend', () => { playOnInteraction(); removeListeners() }, { once: true, passive: true })
-              document.addEventListener('click', () => { playOnInteraction(); removeListeners() }, { once: true })
-              document.addEventListener('scroll', () => { playOnInteraction(); removeListeners() }, { once: true, passive: true })
-              window.addEventListener('scroll', () => { playOnInteraction(); removeListeners() }, { once: true, passive: true })
+                  document.addEventListener('touchstart', playOnInteraction, { once: true, passive: true })
+                  document.addEventListener('click', playOnInteraction, { once: true })
+                })
             })
         }
       }
 
       // Multiple rapid-fire attempts
-      attemptPlay()
-      setTimeout(attemptPlay, 100)
-      setTimeout(attemptPlay, 300)
-      setTimeout(attemptPlay, 600)
-      setTimeout(attemptPlay, 1000)
+      attemptPlayWithSound()
+      setTimeout(attemptPlayWithSound, 100)
+      setTimeout(attemptPlayWithSound, 300)
+      setTimeout(attemptPlayWithSound, 600)
     }
 
     // Start attempts immediately
