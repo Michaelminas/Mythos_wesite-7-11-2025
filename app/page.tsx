@@ -7,6 +7,7 @@ import './globals.css'
 export default function Home() {
   const [countdown, setCountdown] = useState('')
   const [eventStatus, setEventStatus] = useState<'upcoming' | 'live' | 'ended'>('upcoming')
+  const [isMuted, setIsMuted] = useState(true)
 
   // Countdown timer
   useEffect(() => {
@@ -281,6 +282,30 @@ export default function Home() {
             Your browser does not support the video tag.
           </video>
           <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
+
+          {/* Mobile Audio Toggle Button */}
+          <button
+            onClick={() => {
+              const video = document.querySelector('.mobile-hero-video') as HTMLVideoElement
+              if (video) {
+                video.muted = !isMuted
+                setIsMuted(!isMuted)
+              }
+            }}
+            className="absolute bottom-6 right-6 z-[998] w-12 h-12 rounded-full bg-black/40 backdrop-blur-sm border border-gold/50 flex items-center justify-center transition-all duration-300 hover:bg-gold/20 hover:border-gold active:scale-95"
+            aria-label={isMuted ? 'Unmute video' : 'Mute video'}
+          >
+            {isMuted ? (
+              <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2" />
+              </svg>
+            ) : (
+              <svg className="w-5 h-5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z" />
+              </svg>
+            )}
+          </button>
         </div>
 
         {/* Centered Content Overlay */}
