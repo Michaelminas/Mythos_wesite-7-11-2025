@@ -590,23 +590,23 @@ export default function Home() {
             In Partnership With
           </h3>
           <div className="flex justify-center items-center gap-[50px] flex-wrap max-w-[1200px] mx-auto max-[600px]:gap-5">
-            <div className="flex justify-center items-center p-0 transition-all duration-300 opacity-85 hover:scale-105 hover:opacity-100">
-              <div className="bg-cream/10 border border-gold/40 px-[35px] py-[15px] rounded-lg font-playfair text-[0.8rem] tracking-[0.2em] text-light-cream text-center min-w-[140px] min-h-[50px] flex items-center justify-center max-[600px]:min-w-[200px]">
+            <div className="flex justify-center items-center p-0 transition-all duration-300 hover:scale-105">
+              <div className="bg-cream/10 border border-gold/40 px-[35px] py-[15px] rounded-lg font-playfair text-[0.85rem] tracking-[0.2em] text-white text-center min-w-[140px] min-h-[50px] flex items-center justify-center max-[600px]:min-w-[200px] max-[600px]:text-[0.8rem]">
                 SPONSOR 1
               </div>
             </div>
-            <div className="flex justify-center items-center p-0 transition-all duration-300 opacity-85 hover:scale-105 hover:opacity-100">
-              <div className="bg-cream/10 border border-gold/40 px-[35px] py-[15px] rounded-lg font-playfair text-[0.8rem] tracking-[0.2em] text-light-cream text-center min-w-[140px] min-h-[50px] flex items-center justify-center max-[600px]:min-w-[200px]">
+            <div className="flex justify-center items-center p-0 transition-all duration-300 hover:scale-105">
+              <div className="bg-cream/10 border border-gold/40 px-[35px] py-[15px] rounded-lg font-playfair text-[0.85rem] tracking-[0.2em] text-white text-center min-w-[140px] min-h-[50px] flex items-center justify-center max-[600px]:min-w-[200px] max-[600px]:text-[0.8rem]">
                 SPONSOR 2
               </div>
             </div>
-            <div className="flex justify-center items-center p-0 transition-all duration-300 opacity-85 hover:scale-105 hover:opacity-100">
-              <div className="bg-cream/10 border border-gold/40 px-[35px] py-[15px] rounded-lg font-playfair text-[0.8rem] tracking-[0.2em] text-light-cream text-center min-w-[140px] min-h-[50px] flex items-center justify-center max-[600px]:min-w-[200px]">
+            <div className="flex justify-center items-center p-0 transition-all duration-300 hover:scale-105">
+              <div className="bg-cream/10 border border-gold/40 px-[35px] py-[15px] rounded-lg font-playfair text-[0.85rem] tracking-[0.2em] text-white text-center min-w-[140px] min-h-[50px] flex items-center justify-center max-[600px]:min-w-[200px] max-[600px]:text-[0.8rem]">
                 SPONSOR 3
               </div>
             </div>
-            <div className="flex justify-center items-center p-0 transition-all duration-300 opacity-85 hover:scale-105 hover:opacity-100">
-              <div className="bg-cream/10 border border-gold/40 px-[35px] py-[15px] rounded-lg font-playfair text-[0.8rem] tracking-[0.2em] text-light-cream text-center min-w-[140px] min-h-[50px] flex items-center justify-center max-[600px]:min-w-[200px]">
+            <div className="flex justify-center items-center p-0 transition-all duration-300 hover:scale-105">
+              <div className="bg-cream/10 border border-gold/40 px-[35px] py-[15px] rounded-lg font-playfair text-[0.85rem] tracking-[0.2em] text-white text-center min-w-[140px] min-h-[50px] flex items-center justify-center max-[600px]:min-w-[200px] max-[600px]:text-[0.8rem]">
                 SPONSOR 4
               </div>
             </div>
