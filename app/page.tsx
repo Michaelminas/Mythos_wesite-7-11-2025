@@ -168,6 +168,13 @@ export default function Home() {
         element.style.pointerEvents = infoFadePercent > 0.5 ? 'none' : 'all'
       })
 
+      // Fade out mobile audio button on scroll
+      const audioButton = document.querySelector('.mobile-audio-btn') as HTMLElement
+      if (audioButton) {
+        audioButton.style.opacity = (1 - infoFadePercent).toString()
+        audioButton.style.pointerEvents = infoFadePercent > 0.5 ? 'none' : 'all'
+      }
+
       if (scrollPercent > 0.8) {
         heroContent?.classList.add('sticky-mode')
         fixedTicketsBtn?.classList.add('visible')
@@ -244,7 +251,7 @@ export default function Home() {
         href="https://moshtix.com.au/placeholder"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed-tickets-btn fixed top-[30px] right-[30px] z-[1000] px-[35px] py-3 bg-gradient-to-br from-gold to-terracotta text-white no-underline font-playfair font-semibold tracking-[0.2em] text-[0.85rem] uppercase rounded-full shadow-[0_4px_20px_rgba(166,123,91,0.3)] transition-all duration-600 opacity-0 -translate-y-5 pointer-events-none hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(166,123,91,0.5)] hover:bg-gradient-to-br hover:from-terracotta hover:to-gold max-md:top-[10px] max-md:right-[10px] max-md:px-4 max-md:py-2 max-md:text-[0.65rem] max-md:tracking-[0.15em] max-[430px]:top-2 max-[430px]:right-2 max-[430px]:px-3 max-[430px]:py-1.5 max-[430px]:text-[0.6rem]"
+        className="fixed-tickets-btn fixed top-[30px] left-1/2 -translate-x-1/2 z-[1000] px-[35px] py-3 bg-gradient-to-br from-gold to-terracotta text-white no-underline font-playfair font-semibold tracking-[0.2em] text-[0.85rem] uppercase rounded-full shadow-[0_4px_20px_rgba(166,123,91,0.3)] transition-all duration-600 opacity-0 -translate-y-5 pointer-events-none hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(166,123,91,0.5)] hover:bg-gradient-to-br hover:from-terracotta hover:to-gold max-md:top-[10px] max-md:px-4 max-md:py-2 max-md:text-[0.65rem] max-md:tracking-[0.15em] max-[430px]:top-2 max-[430px]:px-3 max-[430px]:py-1.5 max-[430px]:text-[0.6rem]"
       >
         Want a Ticket?
       </a>
@@ -299,7 +306,7 @@ export default function Home() {
                 })
               }
             }}
-            className="absolute bottom-6 right-6 z-[998] w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-gold/40 flex items-center justify-center transition-all duration-300 hover:bg-black/70 hover:border-gold active:scale-90"
+            className="mobile-audio-btn absolute top-6 left-6 z-[998] w-12 h-12 rounded-full bg-black/50 backdrop-blur-md border border-gold/40 flex items-center justify-center transition-all duration-300 hover:bg-black/70 hover:border-gold active:scale-90"
             aria-label={isMuted ? 'Unmute video' : 'Mute video'}
           >
             {isMuted ? (
