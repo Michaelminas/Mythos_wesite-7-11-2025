@@ -1,54 +1,56 @@
 # MYTHOS Landing Page
 
-A sophisticated Next.js landing page for MYTHOS, an upscale Sydney clubbing event featuring Mediterranean-inspired design and modern European nightlife.
+A sophisticated Next.js landing page for MYTHOS - Sydney's premier modern European nightlife event featuring Mediterranean-inspired design and elegant aesthetics.
 
 ## Event Details
 
-- **Date:** Friday 19 December
+- **Date:** Friday 19 December 2025
 - **Time:** 9:00pm – 3:00am
-- **Venue:** TBA
+- **Venue:** Home The Venue, Sydney
 - **Age:** 18+ Event
 
-## Tech Stack
+## Live Site
 
-- **Framework:** Next.js 14 (App Router)
-- **Language:** TypeScript
-- **Styling:** CSS (with CSS Variables)
-- **Deployment:** Vercel
+🌐 **[View Live Site](https://mythos-sydney.vercel.app)**
 
 ## Features
 
-- Split-screen hero with video backgrounds
-- Scroll-triggered logo morphing animation
-- Responsive design (desktop, tablet, mobile)
-- VIP booking form
-- DJ lineup section
-- Sponsors showcase
-- Atmosphere photos integrated into sections
-- Video playback speed controls for testing
+### User Experience
+- **Immersive Hero Section** - Split-screen video backgrounds with smooth logo morphing animation
+- **Live Countdown Timer** - Real-time countdown to event start with dynamic button states
+- **DJ Lineup** - Featured DJs CONTROLLA and KINEZOS with set times and descriptions
+- **VIP Table Bookings** - Fully functional booking form integrated with Formspree
+- **Responsive Design** - Optimized for all devices (320px to 4K displays)
 
-## Project Structure
+### Technical Highlights
+- **Performance Optimized** - 73% media compression (37.5MB → 10.1MB)
+- **SEO Ready** - robots.txt, sitemap.xml, Open Graph metadata
+- **Fast Loading** - Lazy loading, preloading, and optimized images
+- **Accessibility** - ARIA labels, proper semantic HTML, touch-friendly targets
+- **Production Ready** - Static export, optimized build
 
-```
-├── app/                    # Next.js App Router
-│   ├── layout.tsx         # Root layout with metadata
-│   ├── page.tsx           # Main page component
-│   └── globals.css        # Global styles
-├── public/                # Static assets
-│   ├── Event Photos/      # Compressed event photography
-│   ├── Mythos Branding/   # Logo and branding assets
-│   └── Videos/            # Background videos (.webm)
-├── docs/                  # Documentation and requirements
-│   ├── Context            # Client requirements
-│   ├── debug/             # Debug logs
-│   └── ss for context/    # Screenshots for reference
-├── next.config.js         # Next.js configuration
-├── tsconfig.json          # TypeScript configuration
-└── package.json           # Dependencies
+## Tech Stack
 
-```
+- **Framework:** Next.js 14.0.4 (App Router with Static Export)
+- **Language:** TypeScript 5.3.3
+- **Styling:** Tailwind CSS 3.4.0
+- **Fonts:** Helvetica Neue, Playfair Display, Cormorant Garamond
+- **Deployment:** Vercel
+- **Form Backend:** Formspree
+
+## Performance Metrics
+
+- **Bundle Size:** 94.3 kB First Load JS
+- **Mobile Video:** 6.8MB (compressed from 20MB)
+- **Images:** Optimized WebP format (80%+ compression)
+- **Total Media:** 10.1MB (saved 27.4MB)
 
 ## Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or yarn
 
 ### Installation
 
@@ -64,35 +66,89 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) to view the site.
 
-### Build
+### Build for Production
 
 ```bash
 npm run build
 ```
 
+This generates a static export in the `out/` directory.
+
 ### Deploy
 
-This project is configured for automatic deployment on Vercel. Push to the master branch to trigger a deployment.
+This project is configured for automatic deployment on Vercel:
+
+1. Push to `master` branch
+2. Vercel automatically builds and deploys
+3. Live site updates in ~2 minutes
+
+## Project Structure
+
+```
+├── app/
+│   ├── layout.tsx              # Root layout with SEO metadata
+│   ├── page.tsx                # Main landing page component
+│   └── globals.css             # Global styles and animations
+├── public/
+│   ├── Event Photos/Webp/      # Optimized event photography
+│   ├── Mythos Branding/        # Logo and branding assets
+│   ├── Sponsors/               # Sponsor logos
+│   ├── Videos/                 # Compressed background videos
+│   ├── robots.txt              # SEO crawler instructions
+│   └── sitemap.xml             # Site structure for search engines
+├── docs/                       # Project documentation
+├── next.config.js              # Next.js configuration
+├── tailwind.config.ts          # Tailwind customization
+└── package.json                # Dependencies
+```
 
 ## Design System
 
-### Colors
+### Color Palette
 
-- **Terracotta:** `#A67B5B`
-- **Cream:** `#D4C4B0`
-- **Gold:** `#D4A574`
-- **Dark Terracotta:** `#8B6543`
-- **Light Cream:** `#E8DFD0`
+- **Beige:** `#dfd5c8` - Primary background
+- **Bronze:** `#96694c` - Accent and CTAs
+- **White/Cream:** Text and overlays
 
 ### Typography
 
-- **Headings:** Playfair Display
-- **Body:** Cormorant Garamond
+- **Headings:** Helvetica Neue Bold (uppercase, wide tracking)
+- **Body Text:** Helvetica Neue Regular
+- **Dates/Times:** Cormorant Garamond Light
+- **Branding:** Playfair Display
+
+### Responsive Breakpoints
+
+- **Desktop:** 1200px+
+- **Tablet:** 600px - 1199px
+- **Mobile:** 320px - 599px
+- **Small Mobile:** 375px, 320px (optimized)
+
+## Form Integration
+
+VIP booking form submissions are sent to:
+- **Service:** Formspree (mnnlajzz)
+- **Email:** mythosgreekentertainment@gmail.com
+- **Features:** Spam protection, submission archive, email notifications
+
+## Social Media
+
+- **Instagram:** [@mythos.syd](https://www.instagram.com/mythos.syd/)
+- **TikTok:** [@mythos.syd](https://www.tiktok.com/@mythos.syd)
+- **Facebook:** [MYTHOS Sydney](https://www.facebook.com/profile.php?id=61571632207446)
+
+## Ticket Sales
+
+**[Get Tickets](https://moshtix.com.au/v2/event/mythos-home-the-venue-summer-2025/188117)** via Moshtix
+
+## Support
+
+For technical issues or questions, please contact the development team.
 
 ## License
 
-All rights reserved - MYTHOS Event
+All rights reserved © 2025 MYTHOS Entertainment
 
 ---
 
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
+🤖 Built with [Claude Code](https://claude.com/claude-code)
