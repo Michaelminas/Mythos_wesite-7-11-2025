@@ -351,11 +351,16 @@ export default function Home() {
 
       {/* Lineup Section */}
       <section className="reveal py-20 px-5 bg-beige relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
+        {/* Desktop Images */}
         <div className="atmosphere-img absolute w-[50vw] max-w-[750px] h-[55vw] max-h-[850px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-5%] top-[12%] rotate-[8deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Website worthy/0N6A0827.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="atmosphere-img absolute w-[48vw] max-w-[700px] h-[53vw] max-h-[800px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-5%] bottom-[5%] -rotate-[5deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Website worthy/0N6A0962.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
+        </div>
+        {/* Mobile Images */}
+        <div className="hidden max-[600px]:block atmosphere-img absolute w-[70vw] h-[80vw] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-10%] top-[5%] rotate-[3deg]">
+          <Image src="/Event Photos/Website worthy/0N6A0827.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
           <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[0.2em] text-center mb-20 text-bronze uppercase max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px] max-[375px]:text-[1.35rem] max-[375px]:mb-5 max-[320px]:text-[1.2rem] max-[320px]:tracking-[0.1em]">
@@ -386,9 +391,11 @@ export default function Home() {
 
       {/* Event Details Section */}
       <section className="reveal text-center py-20 px-5 bg-beige relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
+        {/* Desktop Image */}
         <div className="atmosphere-img absolute w-[52vw] max-w-[800px] h-[58vw] max-h-[900px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-8%] top-[8%] -rotate-[3deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Website worthy/0N6A0803.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
+        {/* Mobile Image - removed for better text readability */}
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
           <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[0.2em] mb-10 text-bronze uppercase max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
             Event Details
@@ -407,11 +414,16 @@ export default function Home() {
 
       {/* VIP Bookings Section */}
       <section className="reveal py-20 px-5 bg-bronze relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]" id="tickets">
+        {/* Desktop Images */}
         <div className="atmosphere-img absolute w-[48vw] max-w-[720px] h-[54vw] max-h-[820px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-8%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Website worthy/0N6A0704.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="atmosphere-img absolute w-[45vw] max-w-[680px] h-[51vw] max-h-[780px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-6%] bottom-[8%] -rotate-[7deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Website worthy/0N6A0735.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
+        </div>
+        {/* Mobile Image */}
+        <div className="hidden max-[600px]:block atmosphere-img absolute w-[68vw] h-[78vw] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-10%] top-[8%] rotate-[5deg]">
+          <Image src="/Event Photos/Website worthy/0N6A0704.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
           <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[0.2em] text-center mb-20 text-beige capitalize max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px]">
