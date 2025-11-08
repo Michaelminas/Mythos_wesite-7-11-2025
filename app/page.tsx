@@ -171,6 +171,22 @@ export default function Home() {
         element.style.pointerEvents = infoFadePercent > 0.5 ? 'none' : 'all'
       })
 
+      // Check if logo is over bronze VIP section
+      const vipSection = document.getElementById('tickets')
+      if (heroContent && vipSection) {
+        const logoRect = heroContent.getBoundingClientRect()
+        const vipRect = vipSection.getBoundingClientRect()
+
+        // Check if logo overlaps with VIP section
+        const isOverBronze = logoRect.bottom > vipRect.top && logoRect.top < vipRect.bottom
+
+        if (isOverBronze) {
+          heroContent.classList.add('over-bronze')
+        } else {
+          heroContent.classList.remove('over-bronze')
+        }
+      }
+
       // Check if user is near footer
       const footer = document.querySelector('footer')
       const footerTop = footer?.getBoundingClientRect().top || 0
@@ -310,7 +326,7 @@ export default function Home() {
           <div className="hero-date font-helvetica text-[clamp(1.2rem,2.5vw,1.8rem)] font-bold tracking-[0.2em] text-white mb-2.5 uppercase max-md:text-[0.9rem] max-md:mb-2 max-[430px]:text-[0.85rem] max-[430px]:mb-1.5 max-[375px]:text-[0.8rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.75rem] max-[320px]:tracking-[0.1em]">
             Friday 19 December
           </div>
-          <div className="hero-time font-helvetica text-[clamp(1rem,2vw,1.4rem)] font-normal tracking-[0.15em] text-white/90 max-md:text-[0.8rem] max-md:tracking-[0.1em] max-[430px]:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.08em] max-[320px]:text-[0.65rem]">
+          <div className="hero-time font-cormorant text-[clamp(1rem,2vw,1.4rem)] font-light tracking-[0.15em] text-white/90 max-md:text-[0.8rem] max-md:tracking-[0.1em] max-[430px]:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.08em] max-[320px]:text-[0.65rem]">
             9:00pm – 3:00am | Home The Venue, Sydney
           </div>
 
@@ -335,26 +351,21 @@ export default function Home() {
 
       {/* Lineup Section */}
       <section className="reveal py-20 px-5 bg-beige relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
-        <div className="atmosphere-img absolute w-[45vw] max-w-[700px] h-[50vw] max-h-[800px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-5%] top-[12%] rotate-[8deg] scale-95 max-[600px]:hidden">
+        <div className="atmosphere-img absolute w-[50vw] max-w-[750px] h-[55vw] max-h-[850px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-5%] top-[12%] rotate-[8deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Website worthy/0N6A0704.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
-        <div className="atmosphere-img absolute w-[42vw] max-w-[650px] h-[48vw] max-h-[750px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-8%] bottom-[5%] -rotate-[5deg] scale-95 max-[600px]:hidden">
+        <div className="atmosphere-img absolute w-[48vw] max-w-[700px] h-[53vw] max-h-[800px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-5%] bottom-[5%] -rotate-[5deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Website worthy/0N6A0735.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
           <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[0.2em] text-center mb-20 text-bronze uppercase max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px] max-[375px]:text-[1.35rem] max-[375px]:mb-5 max-[320px]:text-[1.2rem] max-[320px]:tracking-[0.1em]">
             Lineup
           </h2>
-          <div className="flex justify-between gap-[3%] px-[5%] max-md:flex-col max-md:gap-6 max-md:px-0">
+          <div className="flex justify-between gap-[5%] px-[5%] max-md:flex-col max-md:gap-6 max-md:px-0">
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
               <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">9:00 - 11:45PM</div>
               <h3 className="font-helvetica text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">CONTROLLA</h3>
               <p className="font-helvetica text-[1.1rem] leading-[1.7] text-bronze/85 font-normal max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Controlla, fresh off his Ios tour in Greece, will open the night with a high-energy set of European anthems to set the tone.</p>
-            </div>
-            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
-              <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">DJ</div>
-              <h3 className="font-helvetica text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">TBC</h3>
-              <p className="font-helvetica text-[1.1rem] leading-[1.7] text-bronze/85 font-normal max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]"></p>
             </div>
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
               <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">11:45PM - 3:00AM</div>
@@ -362,16 +373,20 @@ export default function Home() {
               <p className="font-helvetica text-[1.1rem] leading-[1.7] text-bronze/85 font-normal max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Kinezos will take control of the night with an explosive set fusing 2025's biggest summer hits with Greek music, house, RNB, and timeless throwbacks.</p>
             </div>
           </div>
-          <div className="text-center mt-[60px] p-10 bg-bronze/15 max-md:mt-10 max-md:p-[30px_20px] max-[430px]:p-[25px_15px]">
-            <h3 className="font-helvetica text-[clamp(1.5rem,2.5vw,2rem)] font-bold tracking-[0.2em] mb-[15px] text-bronze uppercase max-[430px]:text-[1.2rem]">Plus Live Entertainment</h3>
-            <p className="font-helvetica text-[1.1rem] text-bronze/90 font-normal">Featuring pyrotechnics, dancers, live acts, and surprise performances throughout the night</p>
-          </div>
+        </div>
+      </section>
+
+      {/* Plus Live Entertainment Divider */}
+      <section className="relative w-full py-12 bg-gradient-to-r from-transparent via-bronze to-transparent max-md:py-8">
+        <div className="text-center px-5">
+          <h3 className="font-helvetica text-[clamp(1.5rem,2.5vw,2rem)] font-bold tracking-[0.2em] mb-[15px] text-beige uppercase max-[430px]:text-[1.2rem]">Plus Live Entertainment</h3>
+          <p className="font-helvetica text-[1.1rem] text-beige/90 font-normal max-w-[800px] mx-auto">Featuring pyrotechnics, dancers, live acts, and surprise performances throughout the night</p>
         </div>
       </section>
 
       {/* Event Details Section */}
       <section className="reveal text-center py-20 px-5 bg-beige relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
-        <div className="atmosphere-img absolute w-[46vw] max-w-[720px] h-[52vw] max-h-[820px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-10%] top-[8%] -rotate-[3deg] scale-95 max-[600px]:hidden">
+        <div className="atmosphere-img absolute w-[52vw] max-w-[800px] h-[58vw] max-h-[900px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-8%] top-[8%] -rotate-[3deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Website worthy/0N6A0803.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
@@ -392,10 +407,10 @@ export default function Home() {
 
       {/* VIP Bookings Section */}
       <section className="reveal py-20 px-5 bg-bronze relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]" id="tickets">
-        <div className="atmosphere-img absolute w-[44vw] max-w-[680px] h-[50vw] max-h-[780px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-12%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
+        <div className="atmosphere-img absolute w-[48vw] max-w-[720px] h-[54vw] max-h-[820px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-8%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Website worthy/0N6A0827.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
-        <div className="atmosphere-img absolute w-[40vw] max-w-[630px] h-[46vw] max-h-[730px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-6%] bottom-[8%] -rotate-[7deg] scale-95 max-[600px]:hidden">
+        <div className="atmosphere-img absolute w-[45vw] max-w-[680px] h-[51vw] max-h-[780px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-6%] bottom-[8%] -rotate-[7deg] scale-95 max-[600px]:hidden">
           <Image src="/Event Photos/Website worthy/0N6A0962.jpg" alt="" fill style={{ objectFit: 'cover' }} loading="eager" />
         </div>
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">

@@ -84,6 +84,11 @@
     filter: none;
   }
 
+  /* Make logo white when over bronze section */
+  .hero-content.over-bronze .hero-logo-img {
+    filter: brightness(0) invert(1);
+  }
+
   /* Reveal animation */
   .reveal.active {
     @apply opacity-100 translate-y-0;
