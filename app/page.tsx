@@ -171,7 +171,13 @@ export default function Home() {
         element.style.pointerEvents = infoFadePercent > 0.5 ? 'none' : 'all'
       })
 
-      if (scrollPercent > 0.3) {
+      // Check if user is near footer
+      const footer = document.querySelector('footer')
+      const footerTop = footer?.getBoundingClientRect().top || 0
+      const windowHeight = window.innerHeight
+      const isNearFooter = footerTop < windowHeight
+
+      if (scrollPercent > 0.3 && !isNearFooter) {
         heroContent?.classList.add('sticky-mode')
         fixedTicketsBtn?.classList.add('visible')
       } else {
@@ -247,7 +253,7 @@ export default function Home() {
         href="https://moshtix.com.au/v2/event/mythos-home-the-venue-summer-2025/188117"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed-tickets-btn fixed bottom-[30px] left-1/2 -translate-x-1/2 z-[1000] px-[35px] py-3 bg-gradient-to-br from-gold to-terracotta text-white no-underline font-playfair font-semibold tracking-[0.2em] text-[0.85rem] uppercase rounded-full shadow-[0_4px_20px_rgba(166,123,91,0.3)] transition-all duration-600 opacity-0 translate-y-5 pointer-events-none hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(166,123,91,0.5)] hover:bg-gradient-to-br hover:from-terracotta hover:to-gold max-md:bottom-[70px] max-md:px-[30px] max-md:py-2.5 max-md:text-[0.75rem] max-md:tracking-[0.15em]"
+        className="fixed-tickets-btn fixed bottom-[20px] left-1/2 -translate-x-1/2 z-[1000] px-[35px] py-3 bg-gradient-to-br from-gold to-terracotta text-white no-underline font-playfair font-semibold tracking-[0.2em] text-[0.85rem] uppercase rounded-full shadow-[0_4px_20px_rgba(166,123,91,0.3)] transition-all duration-600 opacity-0 translate-y-5 pointer-events-none hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(166,123,91,0.5)] hover:bg-gradient-to-br hover:from-terracotta hover:to-gold max-md:bottom-[20px] max-md:px-[30px] max-md:py-2.5 max-md:text-[0.75rem] max-md:tracking-[0.15em]"
       >
         Want a Ticket?
       </a>
