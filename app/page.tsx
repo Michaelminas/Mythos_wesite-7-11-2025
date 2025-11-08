@@ -184,10 +184,12 @@ export default function Home() {
       const windowHeight = window.innerHeight
       const isNearFooter = footerTop < windowHeight
 
-      // Handle fixed sponsors badge - show when scrolled on all screens
+      // Handle fixed sponsors badge - show when scrolled on desktop only (hide on mobile)
       const fixedSponsorsBadge = document.querySelector('.fixed-sponsors-badge') as HTMLElement
+      const isMobile = window.innerWidth < 768
+
       if (fixedSponsorsBadge) {
-        if (scrollPercent > 0.3 && !isNearFooter) {
+        if (!isMobile && scrollPercent > 0.3 && !isNearFooter) {
           fixedSponsorsBadge.classList.add('opacity-100')
           fixedSponsorsBadge.classList.remove('opacity-0', 'pointer-events-none')
         } else {
@@ -378,21 +380,21 @@ export default function Home() {
           <h2 className="font-playfair text-[clamp(2.5rem,5vw,4rem)] font-light tracking-[0.2em] text-center mb-20 text-section-dark-text max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px] max-[375px]:text-[1.35rem] max-[375px]:mb-5 max-[320px]:text-[1.2rem] max-[320px]:tracking-[0.1em]">
             Lineup
           </h2>
-          <div className="flex justify-between gap-[5%] px-[10%] max-md:flex-col max-md:gap-6 max-md:px-0">
-            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
-              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">9:00 - 11:45PM</div>
-              <h3 className="font-playfair text-[2.2rem] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem] max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">CONTROLLA</h3>
-              <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Controlla, fresh off his Ios tour in Greece, will open the night with a high-energy set of European anthems to set the tone.</p>
+          <div className="flex justify-between gap-[3%] px-[5%] max-md:flex-col max-md:gap-6 max-md:px-0">
+            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
+              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">9:00 - 11:45PM</div>
+              <h3 className="font-playfair text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-section-dark-text max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">CONTROLLA</h3>
+              <p className="text-[1.1rem] leading-[1.7] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Controlla, fresh off his Ios tour in Greece, will open the night with a high-energy set of European anthems to set the tone.</p>
             </div>
-            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
-              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">DJ</div>
-              <h3 className="font-playfair text-[2.2rem] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem] max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">TBC</h3>
-              <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]"></p>
+            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
+              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">DJ</div>
+              <h3 className="font-playfair text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-section-dark-text max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">TBC</h3>
+              <p className="text-[1.1rem] leading-[1.7] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]"></p>
             </div>
-            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[50px_35px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
-              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-5 max-md:text-sm max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">11:45PM - 3:00AM</div>
-              <h3 className="font-playfair text-[2.2rem] font-bold tracking-[0.1em] mb-5 text-section-dark-text max-md:text-[1.3rem] max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">KINEZOS</h3>
-              <p className="text-[1.1rem] leading-[1.8] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]"></p>
+            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] rounded-[20px] border border-gold/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-gold before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-gold/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
+              <div className="font-playfair text-base font-semibold tracking-[0.3em] text-gold uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">11:45PM - 3:00AM</div>
+              <h3 className="font-playfair text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-section-dark-text max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">KINEZOS</h3>
+              <p className="text-[1.1rem] leading-[1.7] text-section-dark-text/85 font-light max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]"></p>
             </div>
           </div>
           <div className="text-center mt-[60px] p-10 bg-gold/15 rounded-[15px] max-md:mt-10 max-md:p-[30px_20px] max-[430px]:p-[25px_15px]">
