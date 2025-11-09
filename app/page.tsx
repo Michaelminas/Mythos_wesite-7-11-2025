@@ -359,18 +359,18 @@ export default function Home() {
         {/* Desktop Image - REMOVED */}
         {/* Mobile Image - REMOVED */}
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
-          <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[0.2em] text-center mb-20 text-bronze uppercase max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px] max-[375px]:text-[1.35rem] max-[375px]:mb-5 max-[320px]:text-[1.2rem] max-[320px]:tracking-[0.1em]">
+          <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold text-center mb-20 text-bronze uppercase max-md:text-[1.8rem] max-md:mb-[30px] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px] max-[375px]:text-[1.35rem] max-[375px]:mb-5 max-[320px]:text-[1.2rem]">
             Lineup
           </h2>
           <div className="flex justify-between gap-[5%] px-[5%] max-md:flex-col max-md:gap-6 max-md:px-0">
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
               <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">9:00 - 11:45PM</div>
-              <h3 className="font-helvetica text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">CONTROLLA</h3>
+              <h3 className="font-helvetica text-[2.2rem] font-bold mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">CONTROLLA</h3>
               <p className="font-helvetica text-[1.1rem] leading-[1.7] text-bronze/85 font-normal max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Controlla, fresh off his Ios tour in Greece, will open the night with a high-energy set of European anthems to set the&nbsp;tone.</p>
             </div>
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
               <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">11:45PM - 3:00AM</div>
-              <h3 className="font-helvetica text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">KINEZOS</h3>
+              <h3 className="font-helvetica text-[2.2rem] font-bold mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">KINEZOS</h3>
               <p className="font-helvetica text-[1.1rem] leading-[1.7] text-bronze/85 font-normal max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Kinezos will take control of the night with an explosive set fusing 2025's biggest summer hits with Greek music, house, RNB, and timeless&nbsp;throwbacks.</p>
             </div>
           </div>
@@ -439,7 +439,7 @@ export default function Home() {
         </div>
         {/* Mobile Image - REMOVED */}
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2] max-md:px-0">
-          <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[0.2em] text-center mb-20 text-beige capitalize max-md:text-[1.8rem] max-md:mb-[30px] max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-5 max-[375px]:text-[1.3rem] max-[320px]:text-[1.2rem]">
+          <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold text-center mb-20 text-beige capitalize max-md:text-[1.8rem] max-md:mb-[30px] max-[430px]:text-[1.5rem] max-[430px]:mb-5 max-[375px]:text-[1.3rem] max-[320px]:text-[1.2rem]">
             VIP Table Bookings
           </h2>
           <div className="max-w-[800px] mx-auto bg-white/[0.08] backdrop-blur-[20px] p-[60px_50px] border border-beige/30 max-md:p-[30px_20px] max-[430px]:p-[25px_15px] max-[375px]:p-[20px_12px] max-[320px]:p-[18px_10px]">
