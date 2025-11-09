@@ -308,7 +308,7 @@ export default function Home() {
             preload="auto"
             className="absolute top-0 left-0 w-full h-full object-cover mobile-hero-video"
           >
-            <source src="/Videos/website video.webm" type="video/webm" />
+            <source src="/Videos/mobile-video.webm" type="video/webm" />
             Your browser does not support the video tag.
           </video>
           <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
