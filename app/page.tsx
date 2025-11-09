@@ -4,30 +4,11 @@ import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import './globals.css'
 
-// Extend Window interface for Instagram embed
-declare global {
-  interface Window {
-    instgrm?: {
-      Embeds: {
-        process: () => void
-      }
-    }
-  }
-}
-
 export default function Home() {
   const [countdown, setCountdown] = useState('')
   const [eventStatus, setEventStatus] = useState<'upcoming' | 'live' | 'ended'>('upcoming')
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [formLoading, setFormLoading] = useState(false)
-  const [currentGalleryIndex, setCurrentGalleryIndex] = useState(0)
-
-  const galleryImages = [
-    '/Event Photos/Webp/lineup.webp',
-    '/Event Photos/Webp/event details.webp',
-    '/Event Photos/Webp/vip 1.webp',
-    '/Event Photos/Webp/vip 2.webp'
-  ]
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -57,29 +38,6 @@ export default function Home() {
       setFormLoading(false)
     }
   }
-
-  // Load Instagram embed script
-  useEffect(() => {
-    // Load Instagram embed script
-    const script = document.createElement('script')
-    script.src = 'https://www.instagram.com/embed.js'
-    script.async = true
-    document.body.appendChild(script)
-
-    // Process embeds when script loads
-    script.onload = () => {
-      if (window.instgrm) {
-        window.instgrm.Embeds.process()
-      }
-    }
-
-    return () => {
-      // Cleanup
-      if (document.body.contains(script)) {
-        document.body.removeChild(script)
-      }
-    }
-  }, [])
 
   // Countdown timer
   useEffect(() => {
@@ -408,12 +366,12 @@ export default function Home() {
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
               <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">9:00 - 11:45PM</div>
               <h3 className="font-helvetica text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">CONTROLLA</h3>
-              <p className="font-helvetica text-[1.1rem] leading-[1.7] text-bronze/85 font-normal max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Controlla, fresh off his Ios tour in Greece, will open the night with a high-energy set of European anthems to set the tone.</p>
+              <p className="font-helvetica text-[1.1rem] leading-[1.7] text-bronze/85 font-normal max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Controlla, fresh off his Ios tour in Greece, will open the night with a high-energy set of European anthems to set the&nbsp;tone.</p>
             </div>
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
               <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">11:45PM - 3:00AM</div>
               <h3 className="font-helvetica text-[2.2rem] font-bold tracking-[0.1em] mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">KINEZOS</h3>
-              <p className="font-helvetica text-[1.1rem] leading-[1.7] text-bronze/85 font-normal max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Kinezos will take control of the night with an explosive set fusing 2025's biggest summer hits with Greek music, house, RNB, and timeless throwbacks.</p>
+              <p className="font-helvetica text-[1.1rem] leading-[1.7] text-bronze/85 font-normal max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Kinezos will take control of the night with an explosive set fusing 2025's biggest summer hits with Greek music, house, RNB, and timeless&nbsp;throwbacks.</p>
             </div>
           </div>
         </div>
@@ -423,7 +381,7 @@ export default function Home() {
       <section className="relative w-full py-12 bg-gradient-to-r from-transparent via-bronze to-transparent max-md:py-8 max-md:bg-bronze">
         <div className="text-center px-5 max-md:relative max-md:z-10">
           <h3 className="font-helvetica text-[clamp(1.5rem,2.5vw,2rem)] font-bold mb-[15px] text-beige uppercase max-[430px]:text-[1.2rem] max-md:mb-3">Plus Live Entertainment</h3>
-          <p className="font-helvetica text-[1.1rem] text-beige/90 font-normal max-w-[800px] mx-auto max-md:text-[0.95rem] max-md:leading-[1.6]">Featuring pyrotechnics, dancers, live acts, and surprise performances throughout the night</p>
+          <p className="font-helvetica text-[1.1rem] text-beige/90 font-normal max-w-[800px] mx-auto max-md:text-[0.95rem] max-md:leading-[1.6]">Featuring pyrotechnics, dancers, live acts, and surprise performances throughout the&nbsp;night</p>
         </div>
         {/* Decorative lines for mobile */}
         <div className="hidden max-md:block absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-beige via-bronze to-beige opacity-40"></div>
@@ -442,59 +400,16 @@ export default function Home() {
           {/* Desktop: Two columns - Instagram left, Text right */}
           <div className="flex gap-12 items-start max-md:flex-col max-md:gap-8">
             {/* Instagram Embed - Desktop only */}
-            <div className="flex-shrink-0 w-[540px] max-w-full max-md:hidden" dangerouslySetInnerHTML={{__html: `
-              <blockquote class="instagram-media" data-instgrm-captioned data-instgrm-permalink="https://www.instagram.com/p/DN7nKtPklRV/?utm_source=ig_embed&amp;utm_campaign=loading" data-instgrm-version="14" style=" background:#FFF; border:0; border-radius:3px; box-shadow:0 0 1px 0 rgba(0,0,0,0.5),0 1px 10px 0 rgba(0,0,0,0.15); margin: 1px; max-width:540px; min-width:326px; padding:0; width:99.375%; width:-webkit-calc(100% - 2px); width:calc(100% - 2px);"><div style="padding:16px;"> <a href="https://www.instagram.com/p/DN7nKtPklRV/?utm_source=ig_embed&amp;utm_campaign=loading" style=" background:#FFFFFF; line-height:0; padding:0 0; text-align:center; text-decoration:none; width:100%;" target="_blank"> <div style=" display: flex; flex-direction: row; align-items: center;"> <div style="background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 40px; margin-right: 14px; width: 40px;"></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 100px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 60px;"></div></div></div><div style="padding: 19% 0;"></div> <div style="display:block; height:50px; margin:0 auto 12px; width:50px;"><svg width="50px" height="50px" viewBox="0 0 60 60" version="1.1" xmlns="https://www.w3.org/2000/svg" xmlns:xlink="https://www.w3.org/1999/xlink"><g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd"><g transform="translate(-511.000000, -20.000000)" fill="#000000"><g><path d="M556.869,30.41 C554.814,30.41 553.148,32.076 553.148,34.131 C553.148,36.186 554.814,37.852 556.869,37.852 C558.924,37.852 560.59,36.186 560.59,34.131 C560.59,32.076 558.924,30.41 556.869,30.41 M541,60.657 C535.114,60.657 530.342,55.887 530.342,50 C530.342,44.114 535.114,39.342 541,39.342 C546.887,39.342 551.658,44.114 551.658,50 C551.658,55.887 546.887,60.657 541,60.657 M541,33.886 C532.1,33.886 524.886,41.1 524.886,50 C524.886,58.899 532.1,66.113 541,66.113 C549.9,66.113 557.115,58.899 557.115,50 C557.115,41.1 549.9,33.886 541,33.886 M565.378,62.101 C565.244,65.022 564.756,66.606 564.346,67.663 C563.803,69.06 563.154,70.057 562.106,71.106 C561.058,72.155 560.06,72.803 558.662,73.347 C557.607,73.757 556.021,74.244 553.102,74.378 C549.944,74.521 548.997,74.552 541,74.552 C533.003,74.552 532.056,74.521 528.898,74.378 C525.979,74.244 524.393,73.757 523.338,73.347 C521.94,72.803 520.942,72.155 519.894,71.106 C518.846,70.057 518.197,69.06 517.654,67.663 C517.244,66.606 516.755,65.022 516.623,62.101 C516.479,58.943 516.448,57.996 516.448,50 C516.448,42.003 516.479,41.056 516.623,37.899 C516.755,34.978 517.244,33.391 517.654,32.338 C518.197,30.938 518.846,29.942 519.894,28.894 C520.942,27.846 521.94,27.196 523.338,26.654 C524.393,26.244 525.979,25.756 528.898,25.623 C532.057,25.479 533.004,25.448 541,25.448 C548.997,25.448 549.943,25.479 553.102,25.623 C556.021,25.756 557.607,26.244 558.662,26.654 C560.06,27.196 561.058,27.846 562.106,28.894 C563.154,29.942 563.803,30.938 564.346,32.338 C564.756,33.391 565.244,34.978 565.378,37.899 C565.522,41.056 565.552,42.003 565.552,50 C565.552,57.996 565.522,58.943 565.378,62.101 M570.82,37.631 C570.674,34.438 570.167,32.258 569.425,30.349 C568.659,28.377 567.633,26.702 565.965,25.035 C564.297,23.368 562.623,22.342 560.652,21.575 C558.743,20.834 556.562,20.326 553.369,20.18 C550.169,20.033 549.148,20 541,20 C532.853,20 531.831,20.033 528.631,20.18 C525.438,20.326 523.257,20.834 521.349,21.575 C519.376,22.342 517.703,23.368 516.035,25.035 C514.368,26.702 513.342,28.377 512.574,30.349 C511.834,32.258 511.326,34.438 511.181,37.631 C511.035,40.831 511,41.851 511,50 C511,58.147 511.035,59.17 511.181,62.369 C511.326,65.562 511.834,67.743 512.574,69.651 C513.342,71.625 514.368,73.296 516.035,74.965 C517.703,76.634 519.376,77.658 521.349,78.425 C523.257,79.167 525.438,79.673 528.631,79.82 C531.831,79.965 532.853,80.001 541,80.001 C549.148,80.001 550.169,79.965 553.369,79.82 C556.562,79.673 558.743,79.167 560.652,78.425 C562.623,77.658 564.297,76.634 565.965,74.965 C567.633,73.296 568.659,71.625 569.425,69.651 C570.167,67.743 570.674,65.562 570.82,62.369 C570.966,59.17 571,58.147 571,50 C571,41.851 570.966,40.831 570.82,37.631"></path></g></g></g></svg></div><div style="padding-top: 8px;"> <div style=" color:#3897f0; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:550; line-height:18px;">View this post on Instagram</div></div><div style="padding: 12.5% 0;"></div> <div style="display: flex; flex-direction: row; margin-bottom: 14px; align-items: center;"><div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(0px) translateY(7px);"></div> <div style="background-color: #F4F4F4; height: 12.5px; transform: rotate(-45deg) translateX(3px) translateY(1px); width: 12.5px; flex-grow: 0; margin-right: 14px; margin-left: 2px;"></div> <div style="background-color: #F4F4F4; border-radius: 50%; height: 12.5px; width: 12.5px; transform: translateX(9px) translateY(-18px);"></div></div><div style="margin-left: 8px;"> <div style=" background-color: #F4F4F4; border-radius: 50%; flex-grow: 0; height: 20px; width: 20px;"></div> <div style=" width: 0; height: 0; border-top: 2px solid transparent; border-left: 6px solid #f4f4f4; border-bottom: 2px solid transparent; transform: translateX(16px) translateY(-4px) rotate(30deg)"></div></div><div style="margin-left: auto;"> <div style=" width: 0px; border-top: 8px solid #F4F4F4; border-right: 8px solid transparent; transform: translateY(16px);"></div> <div style=" background-color: #F4F4F4; flex-grow: 0; height: 12px; width: 16px; transform: translateY(-4px);"></div> <div style=" width: 0; height: 0; border-top: 8px solid #F4F4F4; border-left: 8px solid transparent; transform: translateY(-4px) translateX(8px);"></div></div></div> <div style="display: flex; flex-direction: column; flex-grow: 1; justify-content: center; margin-bottom: 24px;"> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; margin-bottom: 6px; width: 224px;"></div> <div style=" background-color: #F4F4F4; border-radius: 4px; flex-grow: 0; height: 14px; width: 144px;"></div></div></a><p style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; line-height:17px; margin-bottom:0; margin-top:8px; overflow:hidden; padding:8px 0 7px; text-align:center; text-overflow:ellipsis; white-space:nowrap;"><a href="https://www.instagram.com/p/DN7nKtPklRV/?utm_source=ig_embed&amp;utm_campaign=loading" style=" color:#c9c8cd; font-family:Arial,sans-serif; font-size:14px; font-style:normal; font-weight:normal; line-height:17px; text-decoration:none;" target="_blank">A post shared by Mythos Entertainment (@mythos.syd)</a></p></div></blockquote>
-            `}} />
-
-            {/* Mobile Gallery - Mobile only */}
-            <div className="hidden max-md:block w-full mb-8">
-              <div className="relative w-full h-[400px] bg-white/5 overflow-hidden">
-                {/* Gallery Image */}
-                <Image
-                  src={galleryImages[currentGalleryIndex]}
-                  alt={`Event photo ${currentGalleryIndex + 1}`}
-                  fill
-                  style={{ objectFit: 'cover' }}
-                  className="transition-opacity duration-300"
-                  quality={85}
-                />
-
-                {/* Navigation Arrows */}
-                <button
-                  onClick={() => setCurrentGalleryIndex((prev) => (prev === 0 ? galleryImages.length - 1 : prev - 1))}
-                  className="absolute left-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-bronze/80 backdrop-blur-sm text-beige rounded-full shadow-lg active:scale-95 transition-all"
-                  aria-label="Previous image"
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-                <button
-                  onClick={() => setCurrentGalleryIndex((prev) => (prev === galleryImages.length - 1 ? 0 : prev + 1))}
-                  className="absolute right-4 top-1/2 -translate-y-1/2 z-10 w-10 h-10 flex items-center justify-center bg-bronze/80 backdrop-blur-sm text-beige rounded-full shadow-lg active:scale-95 transition-all"
-                  aria-label="Next image"
-                >
-                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </button>
-
-                {/* Dot Indicators */}
-                <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
-                  {galleryImages.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentGalleryIndex(index)}
-                      className={`w-2 h-2 rounded-full transition-all ${
-                        index === currentGalleryIndex
-                          ? 'bg-bronze w-6'
-                          : 'bg-beige/50'
-                      }`}
-                      aria-label={`Go to image ${index + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
+            <div className="flex-shrink-0 w-[540px] max-w-full max-md:hidden">
+              <iframe
+                src="https://www.instagram.com/p/DN7nKtPklRV/embed"
+                width="540"
+                height="720"
+                frameBorder="0"
+                scrolling="no"
+                allowTransparency={true}
+                className="w-full border-0 rounded-[3px] shadow-[0_0_1px_0_rgba(0,0,0,0.5),0_1px_10px_0_rgba(0,0,0,0.15)]"
+              />
             </div>
 
             {/* Description Text - Right side on desktop, bottom on mobile */}
@@ -503,10 +418,10 @@ export default function Home() {
                 After a SOLD-OUT event, Mythos is taking over Home the Venue this summer for the next chapter of&nbsp;Sydney&apos;s modern European&nbsp;nightlife.
               </p>
               <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] mb-6 font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-                Experience live Greek music, European anthems, and high-energy performances from dancers and live acts. Every set blends the best of Europe and Greece, creating a night built for rhythm, energy, and&nbsp;connection.
+                Experience live Greek music, European anthems, and high-energy performances from dancers and live acts. Every set blends the best of Europe and Greece, creating a night built for rhythm,&nbsp;energy, and&nbsp;connection.
               </p>
               <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-                Join us for a full sensory takeover with world-class sound, lighting, and production that defines the Mythos&nbsp;experience.
+                Join us for a full sensory takeover with world-class sound, lighting, and production that defines the&nbsp;Mythos&nbsp;experience.
               </p>
             </div>
           </div>
