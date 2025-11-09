@@ -331,8 +331,8 @@ export default function Home() {
           <div className="hero-date font-helvetica text-[clamp(1.2rem,2.5vw,1.8rem)] font-bold tracking-[0.2em] text-white mb-2.5 uppercase max-md:text-[0.9rem] max-md:mb-2 max-[430px]:text-[0.85rem] max-[430px]:mb-1.5 max-[375px]:text-[0.8rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.75rem] max-[320px]:tracking-[0.1em]">
             Friday 19 December
           </div>
-          <div className="hero-time font-cormorant text-[clamp(1rem,2vw,1.4rem)] font-light tracking-[0.15em] text-white/90 max-md:text-[0.8rem] max-md:tracking-[0.1em] max-[430px]:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.08em] max-[320px]:text-[0.65rem]">
-            9:00pm – 3:00am | Home The Venue, Sydney
+          <div className="hero-time font-helvetica text-[clamp(1rem,2vw,1.4rem)] font-normal tracking-[0.15em] text-white/90 uppercase max-md:text-[0.8rem] max-md:tracking-[0.1em] max-[430px]:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.08em] max-[320px]:text-[0.65rem]">
+            9:00pm – 3:00am | HOME THE VENUE, SYDNEY
           </div>
 
 
@@ -380,7 +380,7 @@ export default function Home() {
       {/* Plus Live Entertainment Divider */}
       <section className="relative w-full py-12 bg-gradient-to-r from-transparent via-bronze to-transparent max-md:py-8 max-md:bg-gradient-to-r max-md:from-beige max-md:via-bronze max-md:to-beige">
         <div className="text-center px-5 max-md:relative max-md:z-10">
-          <h3 className="font-helvetica text-[clamp(1.5rem,2.5vw,2rem)] font-bold tracking-[0.2em] mb-[15px] text-beige uppercase max-[430px]:text-[1.2rem] max-md:mb-3">Plus Live Entertainment</h3>
+          <h3 className="font-helvetica text-[clamp(1.5rem,2.5vw,2rem)] font-bold mb-[15px] text-beige uppercase max-[430px]:text-[1.2rem] max-md:mb-3">Plus Live Entertainment</h3>
           <p className="font-helvetica text-[1.1rem] text-beige/90 font-normal max-w-[800px] mx-auto max-md:text-[0.95rem] max-md:leading-[1.6]">Featuring pyrotechnics, dancers, live acts, and surprise performances throughout the night</p>
         </div>
         {/* Decorative lines for mobile */}
@@ -393,7 +393,7 @@ export default function Home() {
         {/* Desktop Image - REMOVED */}
         {/* Mobile Image - REMOVED */}
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
-          <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-[0.2em] text-center mb-16 text-bronze uppercase max-md:text-[1.8rem] max-md:mb-10 max-md:tracking-[0.15em] max-[430px]:text-[1.5rem] max-[430px]:mb-8">
+          <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold text-center mb-16 text-bronze uppercase max-md:text-[1.8rem] max-md:mb-10 max-[430px]:text-[1.5rem] max-[430px]:mb-8">
             Event Details
           </h2>
 
@@ -408,13 +408,13 @@ export default function Home() {
             {/* Description Text - Right side on desktop, bottom on mobile */}
             <div className="flex-1 flex flex-col justify-center text-left max-md:text-center">
               <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] mb-6 font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-                After a SOLD-OUT event, Mythos is taking over Home the Venue this summer for the next chapter of Sydney&apos;s modern European nightlife.
+                After a SOLD-OUT event, Mythos is taking over Home the Venue this summer for the next chapter of&nbsp;Sydney&apos;s modern European&nbsp;nightlife.
               </p>
               <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] mb-6 font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-                Experience live Greek music, European anthems, and high-energy performances from dancers and live acts. Every set blends the best of Europe and Greece, creating a night built for rhythm, energy, and connection.
+                Experience live Greek music, European anthems, and high-energy performances from dancers and live acts. Every set blends the best of Europe and Greece, creating a night built for rhythm, energy, and&nbsp;connection.
               </p>
               <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-                Join us for a full sensory takeover with world-class sound, lighting, and production that defines the Mythos experience.
+                Join us for a full sensory takeover with world-class sound, lighting, and production that defines the Mythos&nbsp;experience.
               </p>
             </div>
           </div>
@@ -463,7 +463,7 @@ export default function Home() {
                 </div>
               </div>
               <div className="flex flex-col gap-2 max-[430px]:gap-1.5">
-                <label htmlFor="message" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.8rem] max-[375px]:text-[0.75rem] max-[320px]:text-[0.7rem]">Special Requests & Details</label>
+                <label htmlFor="message" className="font-helvetica text-[0.95rem] font-normal text-beige uppercase max-md:text-[0.8rem] max-[375px]:text-[0.75rem] max-[320px]:text-[0.7rem]">Special Requests & Details</label>
                 <textarea id="message" name="message" rows={4} autoComplete="off" className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 resize-y min-h-[100px] max-md:text-[0.95rem] max-md:p-[10px_12px] max-md:min-h-[80px] max-[375px]:text-[0.9rem] max-[375px]:p-[8px_10px] max-[375px]:min-h-[70px] max-[320px]:text-[0.85rem]"></textarea>
               </div>
               <button type="submit" disabled={formLoading} className="px-[50px] py-[18px] bg-beige text-bronze border-none rounded-full font-helvetica text-base font-semibold tracking-[0.2em] uppercase cursor-pointer transition-all duration-400 shadow-[0_4px_20px_rgba(223,213,200,0.3)] self-center mt-5 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(223,213,200,0.5)] hover:bg-beige/90 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-[0_4px_20px_rgba(223,213,200,0.3)] max-md:px-10 max-md:py-3 max-md:text-[0.85rem] max-md:mt-3 max-[430px]:px-8 max-[430px]:py-2.5 max-[430px]:text-[0.8rem] max-[375px]:px-7 max-[375px]:py-2 max-[375px]:text-[0.75rem] max-[375px]:tracking-[0.15em] max-[320px]:px-6 max-[320px]:text-[0.7rem]">
@@ -477,7 +477,7 @@ export default function Home() {
       {/* Sponsors Section */}
       <section className="py-8 px-5 bg-beige text-center relative z-[2]">
         <div className="max-w-[1200px] mx-auto">
-          <h3 className="font-helvetica text-[1.5rem] font-bold tracking-[0.2em] mb-6 text-bronze uppercase">In Partnership With</h3>
+          <h3 className="font-helvetica text-[1.5rem] font-bold mb-6 text-bronze uppercase">In Partnership With</h3>
           <div className="flex items-center justify-center gap-12 max-md:gap-8 max-[425px]:gap-6">
             <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={120} height={60} className="h-[60px] w-auto object-contain max-md:h-[50px] max-[425px]:h-[40px]" />
             <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={120} height={60} className="h-[60px] w-auto object-contain max-md:h-[50px] max-[425px]:h-[40px]" />
