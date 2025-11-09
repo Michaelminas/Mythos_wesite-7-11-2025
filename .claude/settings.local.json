@@ -22,7 +22,8 @@
       "Bash(\"public/ffmpeg-8.0-essentials_build/bin/ffmpeg.exe\" -i \"public/Videos/website video.webm\" -c:v libvpx-vp9 -b:v 1.2M -crf 35 -c:a libopus -b:a 64k \"public/Videos/website video compressed.webm\")",
       "Bash(\"public/ffmpeg-8.0-essentials_build/bin/ffmpeg.exe\" -i \"public/Event Photos/Webp/lineup.webp\" -c:v libwebp -quality 75 -compression_level 6 \"public/Event Photos/Webp/lineup-compressed.webp\")",
       "Bash(\"public/ffmpeg-8.0-essentials_build/bin/ffmpeg.exe\" -i \"public/Event Photos/Webp/vip 2.webp\" -c:v libwebp -quality 75 -compression_level 6 \"public/Event Photos/Webp/vip2-compressed.webp\")",
-      "Bash(git reset HEAD public/ffmpeg public/ffmpeg-8.0-essentials_build)"
+      "Bash(git reset HEAD public/ffmpeg public/ffmpeg-8.0-essentials_build)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nRemove background photos and add Instagram embed to Event Details\n\nPhoto Removal:\n- Remove ALL atmosphere photos from mobile version (max-[600px])\n- Remove desktop photos from Lineup section\n- Remove desktop photos from Event Details section\n- Keep VIP section photos on desktop only\n\nEvent Details Redesign:\n- Add Instagram embed on left side (desktop) / top (mobile)\n- Move description text to right side (desktop) / bottom (mobile)\n- Two-column layout with flex on desktop\n- Stacked layout on mobile for better readability\n- Instagram post: https://www.instagram.com/p/DQtOAthks1K/\n\nBenefits:\n- Cleaner mobile experience without background images\n- More focused content sections on desktop\n- Social proof with Instagram embed\n- Better text readability without competing backgrounds\n- Responsive layout adapts perfectly to all screen sizes\n\nBundle size increased slightly to 96.5 kB (Instagram embed HTML)\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")"
     ],
     "deny": [],
     "ask": []
