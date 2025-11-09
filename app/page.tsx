@@ -405,8 +405,8 @@ export default function Home() {
 
           {/* Desktop: Two columns - Instagram left, Text right */}
           <div className="flex gap-12 items-start max-md:flex-col max-md:gap-8">
-            {/* Instagram Embed - Desktop only */}
-            <div className="flex-shrink-0 w-[540px] max-w-full max-md:hidden">
+            {/* Instagram Embed - Hidden at 768px and below */}
+            <div className="flex-shrink-0 w-[540px] max-w-full max-[768px]:hidden">
               <iframe
                 src="https://www.instagram.com/p/DN7nKtPklRV/embed"
                 width="540"
