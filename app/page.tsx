@@ -17,7 +17,7 @@ export default function Home() {
     setFormLoading(true)
 
     try {
-      const response = await fetch('https://formspree.io/f/mnnlajzz', {
+      const response = await fetch('https://formspree.io/f/xdkynlwj', {
         method: 'POST',
         body: new FormData(form),
         headers: {
