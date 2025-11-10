@@ -490,7 +490,7 @@ export default function Home() {
       {/* Sponsors Section */}
       <section className="py-8 px-5 bg-beige text-center relative z-[2]">
         <div className="max-w-[1200px] mx-auto">
-          <h3 className="font-helvetica text-[1.5rem] font-bold mb-6 text-bronze uppercase">In Partnership With</h3>
+          <h3 className="font-helvetica text-[1.5rem] font-bold mb-6 text-bronze uppercase">Sponsored By</h3>
           <div className="flex items-center justify-center gap-12 max-md:gap-8 max-[425px]:gap-6">
             <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={120} height={60} className="h-[60px] w-auto object-contain max-md:h-[50px] max-[425px]:h-[40px]" />
             <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={120} height={60} className="h-[60px] w-auto object-contain max-md:h-[50px] max-[425px]:h-[40px]" />
