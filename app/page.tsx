@@ -446,7 +446,7 @@ export default function Home() {
         {/* Mobile Image - REMOVED */}
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2] max-md:px-0">
           <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold text-center mb-20 text-beige max-md:text-[1.8rem] max-md:mb-[30px] max-[430px]:text-[1.5rem] max-[430px]:mb-5 max-[375px]:text-[1.3rem] max-[320px]:text-[1.2rem]">
-            VIP Table Bookings
+            VIP Booth Bookings
           </h2>
           <div className="max-w-[800px] mx-auto bg-white/[0.08] backdrop-blur-[20px] p-[60px_50px] border border-beige/30 max-md:p-[30px_20px] max-[430px]:p-[25px_15px] max-[375px]:p-[20px_12px] max-[320px]:p-[18px_10px]">
             {formSubmitted && (
