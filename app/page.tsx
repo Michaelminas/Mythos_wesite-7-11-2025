@@ -38,7 +38,7 @@ export default function Home() {
             "longitude": "151.1992"
           }
         },
-        "image": "https://mythosentertainment.com.au/Mythos Branding/Mythos-o no bg.png",
+        "image": "https://mythosentertainment.com.au/mythos-branding/mythos-o-no-bg.png",
         "organizer": {
           "@type": "Organization",
           "name": "MYTHOS Entertainment",
@@ -67,7 +67,7 @@ export default function Home() {
         "@type": "Organization",
         "name": "MYTHOS Entertainment",
         "url": "https://mythosentertainment.com.au",
-        "logo": "https://mythosentertainment.com.au/Mythos Branding/Mythos-o no bg.png",
+        "logo": "https://mythosentertainment.com.au/mythos-branding/mythos-o-no-bg.png",
         "sameAs": [
           "https://www.instagram.com/mythosentertainment.com.au"
         ]
@@ -403,7 +403,7 @@ export default function Home() {
         <div className="hero-content fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[999] text-center w-full max-w-[1200px] px-10 will-change-transform max-md:px-5" id="heroContent">
           <h1 className="sr-only">MYTHOS - House Meets Heritage - Sydney Nightlife Event</h1>
           <Image
-            src="/Mythos Branding/logo final PMS 876C_cmyk copy.png"
+            src="/mythos-branding/logo-final.png"
             alt="MYTHOS - House Meets Heritage"
             className="hero-logo-img w-auto h-[clamp(80px,15vw,180px)] mb-10 block mx-auto max-md:h-[clamp(60px,12vw,120px)] max-md:mb-[30px] max-[430px]:h-[clamp(50px,10vw,100px)] max-[430px]:mb-5 max-[375px]:h-[clamp(45px,9vw,90px)] max-[375px]:mb-4 max-[320px]:h-[clamp(40px,8vw,80px)] max-[320px]:mb-3"
             width={500}
@@ -450,7 +450,7 @@ export default function Home() {
           <div className="flex justify-between gap-[5%] px-[5%] max-md:flex-col max-md:gap-6 max-md:px-0">
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
               <div className="relative w-full aspect-square mb-6 overflow-hidden">
-                <Image src="/Dj Photos/Controlla.jpg" alt="CONTROLLA" fill style={{ objectFit: 'cover' }} quality={85} />
+                <Image src="/dj-photos/Controlla.jpg" alt="CONTROLLA" fill style={{ objectFit: 'cover' }} quality={85} />
               </div>
               <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">9:00 - 11:45PM</div>
               <h3 className="font-helvetica text-[2.2rem] font-bold mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">CONTROLLA</h3>
@@ -458,7 +458,7 @@ export default function Home() {
             </div>
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
               <div className="relative w-full aspect-square mb-6 overflow-hidden">
-                <Image src="/Dj Photos/Kinezos.jpg" alt="KINEZOS" fill style={{ objectFit: 'cover' }} quality={85} />
+                <Image src="/dj-photos/Kinezos.jpg" alt="KINEZOS" fill style={{ objectFit: 'cover' }} quality={85} />
               </div>
               <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">11:45PM - 3:00AM</div>
               <h3 className="font-helvetica text-[2.2rem] font-bold mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">KINEZOS</h3>
@@ -523,10 +523,10 @@ export default function Home() {
       <section className="reveal py-20 px-5 bg-bronze relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-md:px-[15px] max-[430px]:py-10 max-[430px]:px-[10px]" id="tickets">
         {/* Desktop Images */}
         <div className="atmosphere-img absolute w-[48vw] max-w-[720px] h-[54vw] max-h-[820px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-8%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Webp/vip 1.webp" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 48vw" quality={85} />
+          <Image src="/event-photos/Webp/vip 1.webp" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 48vw" quality={85} />
         </div>
         <div className="atmosphere-img absolute w-[45vw] max-w-[680px] h-[51vw] max-h-[780px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-6%] bottom-[8%] -rotate-[7deg] scale-95 max-[600px]:hidden">
-          <Image src="/Event Photos/Webp/vip 2.webp" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 45vw" quality={85} />
+          <Image src="/event-photos/Webp/vip 2.webp" alt="" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 45vw" quality={85} />
         </div>
         {/* Mobile Image - REMOVED */}
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2] max-md:px-0">
@@ -577,8 +577,8 @@ export default function Home() {
         <div className="max-w-[1200px] mx-auto">
           <h3 className="font-helvetica text-[1.5rem] font-bold mb-6 text-bronze uppercase">Sponsored By</h3>
           <div className="flex items-center justify-center gap-12 max-md:gap-8 max-[425px]:gap-6">
-            <Image src="/Sponsors/bayvista logo.png" alt="Bayvista" width={120} height={60} className="h-[60px] w-auto object-contain max-md:h-[50px] max-[425px]:h-[40px]" />
-            <Image src="/Sponsors/Nieos Grille Logo.png" alt="Nieos Grille" width={120} height={60} className="h-[60px] w-auto object-contain max-md:h-[50px] max-[425px]:h-[40px]" />
+            <Image src="/sponsors/bayvista-logo.png" alt="Bayvista" width={120} height={60} className="h-[60px] w-auto object-contain max-md:h-[50px] max-[425px]:h-[40px]" />
+            <Image src="/sponsors/nieos-grille-logo.png" alt="Nieos Grille" width={120} height={60} className="h-[60px] w-auto object-contain max-md:h-[50px] max-[425px]:h-[40px]" />
           </div>
         </div>
       </section>
