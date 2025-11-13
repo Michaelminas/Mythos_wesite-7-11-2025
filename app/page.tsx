@@ -8,6 +8,84 @@ export default function Home() {
   const [countdown, setCountdown] = useState('')
   const [eventStatus, setEventStatus] = useState<'upcoming' | 'live' | 'ended'>('upcoming')
   const [formSubmitted, setFormSubmitted] = useState(false)
+
+  // JSON-LD Structured Data for SEO
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "MusicEvent",
+        "name": "MYTHOS - House Meets Heritage",
+        "description": "Experience MYTHOS - Sydney's modern European nightlife featuring DJs CONTROLLA and KINEZOS with live Greek music, European anthems, and high-energy performances.",
+        "startDate": "2025-12-19T21:00:00+11:00",
+        "endDate": "2025-12-20T03:00:00+11:00",
+        "eventStatus": "https://schema.org/EventScheduled",
+        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+        "location": {
+          "@type": "Place",
+          "name": "Home The Venue",
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "101 Cockle Bay Wharf",
+            "addressLocality": "Sydney",
+            "addressRegion": "NSW",
+            "postalCode": "2000",
+            "addressCountry": "AU"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": "-33.8698",
+            "longitude": "151.1992"
+          }
+        },
+        "image": "https://mythosentertainment.com.au/Mythos Branding/Mythos-o no bg.png",
+        "organizer": {
+          "@type": "Organization",
+          "name": "MYTHOS Entertainment",
+          "url": "https://mythosentertainment.com.au"
+        },
+        "performer": [
+          {
+            "@type": "Person",
+            "name": "CONTROLLA"
+          },
+          {
+            "@type": "Person",
+            "name": "KINEZOS"
+          }
+        ],
+        "offers": {
+          "@type": "Offer",
+          "url": "https://moshtix.com.au/v2/event/mythos-home-the-venue-summer-2025/188117",
+          "price": "0",
+          "priceCurrency": "AUD",
+          "availability": "https://schema.org/InStock",
+          "validFrom": "2025-11-01T00:00:00+11:00"
+        }
+      },
+      {
+        "@type": "Organization",
+        "name": "MYTHOS Entertainment",
+        "url": "https://mythosentertainment.com.au",
+        "logo": "https://mythosentertainment.com.au/Mythos Branding/Mythos-o no bg.png",
+        "sameAs": [
+          "https://www.instagram.com/mythosentertainment.com.au"
+        ]
+      },
+      {
+        "@type": "NightClub",
+        "name": "Home The Venue",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "101 Cockle Bay Wharf",
+          "addressLocality": "Sydney",
+          "addressRegion": "NSW",
+          "postalCode": "2000",
+          "addressCountry": "AU"
+        }
+      }
+    ]
+  }
   const [formLoading, setFormLoading] = useState(false)
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -265,6 +343,12 @@ export default function Home() {
 
   return (
     <>
+      {/* JSON-LD Structured Data for SEO */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
+      />
+
       {/* Background elements */}
       <div className="bg-circles"></div>
       <div className="fixed w-[600px] h-[600px] bg-gradient-radial from-gold/15 to-transparent pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 opacity-0 z-[1]" id="spotlight"></div>
