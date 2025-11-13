@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Friday 19 December, 9:00pm – 3:00am at Home The Venue, Sydney',
   keywords: 'MYTHOS, Sydney nightlife, Greek music, European anthems, Home The Venue, VIP table booking, CONTROLLA, KINEZOS',
   authors: [{ name: 'MYTHOS Entertainment' }],
+  verification: {
+    google: '_bSUsETV80XS12d_O4pxna5Reiw5WRB1VsdTP_OGQYQ',
+  },
   openGraph: {
     title: 'MYTHOS - House Meets Heritage',
     description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Friday 19 December, 9:00pm – 3:00am at Home The Venue, Sydney',
