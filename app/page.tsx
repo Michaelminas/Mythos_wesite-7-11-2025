@@ -317,9 +317,10 @@ export default function Home() {
 
         {/* Centered Content Overlay */}
         <div className="hero-content fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[999] text-center w-full max-w-[1200px] px-10 will-change-transform max-md:px-5" id="heroContent">
+          <h1 className="sr-only">MYTHOS - House Meets Heritage - Sydney Nightlife Event</h1>
           <Image
             src="/Mythos Branding/logo final PMS 876C_cmyk copy.png"
-            alt="MYTHOS"
+            alt="MYTHOS - House Meets Heritage"
             className="hero-logo-img w-auto h-[clamp(80px,15vw,180px)] mb-10 block mx-auto max-md:h-[clamp(60px,12vw,120px)] max-md:mb-[30px] max-[430px]:h-[clamp(50px,10vw,100px)] max-[430px]:mb-5 max-[375px]:h-[clamp(45px,9vw,90px)] max-[375px]:mb-4 max-[320px]:h-[clamp(40px,8vw,80px)] max-[320px]:mb-3"
             width={500}
             height={180}

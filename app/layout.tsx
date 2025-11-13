@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://mythosentertainment.com.au'),
   title: 'MYTHOS - House Meets Heritage',
   description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Friday 19 December, 9:00pm – 3:00am at Home The Venue, Sydney',
   keywords: 'MYTHOS, Sydney nightlife, Greek music, European anthems, Home The Venue, VIP table booking, CONTROLLA, KINEZOS',
