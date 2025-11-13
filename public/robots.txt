@@ -3,4 +3,4 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://mythos-sydney.vercel.app/sitemap.xml
+Sitemap: https://mythosentertainment.com.au/sitemap.xml
