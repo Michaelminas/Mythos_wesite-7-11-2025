@@ -18,6 +18,7 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://mythosentertainment.com.au',
     siteName: 'MYTHOS',
+    locale: 'en_AU',
     images: [
       {
         url: '/mythos-branding/mythos-o-no-bg.png',
@@ -48,7 +49,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en-AU">
       <head>
         {/* DNS Prefetch for external domains */}
         <link rel="dns-prefetch" href="https://moshtix.com.au" />
