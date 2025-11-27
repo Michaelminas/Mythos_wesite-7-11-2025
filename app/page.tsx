@@ -234,7 +234,7 @@ export default function Home() {
       const transitionEnd = heroHeight * 0.6
       const scrollPercent = Math.min(scrollY / transitionEnd, 1)
 
-      const startY = 0
+      const startY = heroHeight * 0.03
       const targetY = -(heroHeight / 2 - 80)
       const currentY = startY + (targetY * scrollPercent)
 
@@ -400,7 +400,7 @@ export default function Home() {
 
 
         {/* Centered Content Overlay */}
-        <div className="hero-content fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-[999] text-center w-full max-w-[1200px] px-10 will-change-transform max-md:px-5" id="heroContent">
+        <div className="hero-content fixed top-1/2 left-1/2 -translate-x-1/2 translate-y-[-28%] z-[999] text-center w-full max-w-[1200px] px-10 will-change-transform max-md:px-5" id="heroContent">
           <h1 className="sr-only">MYTHOS - House Meets Heritage - Sydney Nightlife Event</h1>
           <Image
             src="/mythos-branding/logo-final.png"
@@ -420,12 +420,27 @@ export default function Home() {
             9:00pm – 3:00am | HOME THE VENUE, SYDNEY
           </div>
 
+          {/* Countdown Timer */}
+          {countdown && (
+            <div className="hero-countdown mt-3 -mb-12 max-md:mt-2 max-md:-mb-10">
+              <div className="inline-block bg-gradient-to-br from-bronze/30 via-bronze/20 to-bronze/30 backdrop-blur-lg border-2 border-bronze/60 shadow-[0_6px_24px_rgba(150,105,76,0.35)] px-8 py-4 max-md:px-6 max-md:py-3 max-[430px]:px-5 max-[430px]:py-2.5 transition-all duration-300 hover:shadow-[0_8px_32px_rgba(150,105,76,0.5)] hover:border-bronze/80">
+                <div className="font-helvetica text-[clamp(1.4rem,3vw,2.2rem)] font-bold text-white tracking-[0.15em] mb-1.5 max-md:text-[1.2rem] max-md:mb-1 max-[430px]:text-[1rem] max-[430px]:mb-0.5 max-[375px]:text-[0.95rem]" style={{ textShadow: '0 2px 10px rgba(150,105,76,0.5)' }}>
+                  {countdown}
+                </div>
+                {eventStatus === 'upcoming' && (
+                  <div className="font-helvetica text-[clamp(0.7rem,1.3vw,0.85rem)] text-beige/90 tracking-[0.2em] uppercase font-semibold max-md:text-[0.65rem] max-[430px]:text-[0.6rem]">
+                    Until Event Starts
+                  </div>
+                )}
+              </div>
+            </div>
+          )}
 
           <a
             href="https://moshtix.com.au/v2/event/mythos-home-the-venue-summer-2025/188117"
             target="_blank"
             rel="noopener noreferrer"
-            className={`hero-cta inline-block mt-3 px-[50px] py-[18px] no-underline font-helvetica font-semibold tracking-[0.2em] text-base uppercase rounded-full transition-all duration-400 max-md:px-[30px] max-md:py-3 max-md:text-[0.85rem] max-md:tracking-[0.15em] max-md:mt-[15px] max-[430px]:px-[25px] max-[430px]:py-2.5 max-[430px]:text-[0.8rem] max-[430px]:mt-3 max-[375px]:px-[22px] max-[375px]:py-2 max-[375px]:text-[0.75rem] max-[375px]:tracking-[0.1em] max-[320px]:px-[20px] max-[320px]:py-1.5 max-[320px]:text-[0.7rem] ${
+            className={`hero-cta inline-block mt-[60px] px-[50px] py-[18px] no-underline font-helvetica font-semibold tracking-[0.2em] text-base uppercase rounded-full transition-all duration-400 max-md:px-[30px] max-md:py-3 max-md:text-[0.85rem] max-md:tracking-[0.15em] max-md:mt-[50px] max-[430px]:px-[25px] max-[430px]:py-2.5 max-[430px]:text-[0.8rem] max-[430px]:mt-[45px] max-[375px]:px-[22px] max-[375px]:py-2 max-[375px]:text-[0.75rem] max-[375px]:tracking-[0.1em] max-[320px]:px-[20px] max-[320px]:py-1.5 max-[320px]:text-[0.7rem] ${
               eventStatus === 'live'
                 ? 'bg-bronze text-white shadow-[0_8px_30px_rgba(150,105,76,0.8)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(150,105,76,1)] animate-pulse'
                 : eventStatus === 'ended'
