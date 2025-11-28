@@ -8,6 +8,7 @@ export default function Home() {
   const [countdown, setCountdown] = useState('')
   const [eventStatus, setEventStatus] = useState<'upcoming' | 'live' | 'ended'>('upcoming')
   const [formSubmitted, setFormSubmitted] = useState(false)
+  const [videosLoaded, setVideosLoaded] = useState(false)
 
   // JSON-LD Structured Data for SEO
   const structuredData = {
@@ -117,7 +118,7 @@ export default function Home() {
     }
   }
 
-  // Countdown timer
+  // Countdown timer - optimized to prevent unnecessary re-renders
   useEffect(() => {
     const updateCountdown = () => {
       // Event: Friday 19 December 2025, 9:00pm - 3:00am
@@ -143,13 +144,14 @@ export default function Home() {
         const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
         const seconds = Math.floor((diff % (1000 * 60)) / 1000)
 
-        if (days > 0) {
-          setCountdown(`${days}d ${hours}h ${minutes}m ${seconds}s`)
-        } else if (hours > 0) {
-          setCountdown(`${hours}h ${minutes}m ${seconds}s`)
-        } else {
-          setCountdown(`${minutes}m ${seconds}s`)
-        }
+        const newCountdown = days > 0
+          ? `${days}d ${hours}h ${minutes}m ${seconds}s`
+          : hours > 0
+            ? `${hours}h ${minutes}m ${seconds}s`
+            : `${minutes}m ${seconds}s`
+
+        // Only update if countdown text changed (prevents unnecessary re-renders)
+        setCountdown(prev => prev !== newCountdown ? newCountdown : prev)
       }
     }
 
@@ -159,6 +161,9 @@ export default function Home() {
     return () => clearInterval(interval)
   }, [])
   useEffect(() => {
+    // Load videos after page loads for better performance
+    setTimeout(() => setVideosLoaded(true), 100)
+
     // Set default hero video speeds
     const heroVideos = document.querySelectorAll('.hero-split video') as NodeListOf<HTMLVideoElement>
     heroVideos.forEach((video) => {
@@ -367,34 +372,40 @@ export default function Home() {
       <section className="min-h-screen flex relative overflow-hidden max-md:block">
         {/* Desktop: Split Screen Videos */}
         <div className="hero-split flex-1 relative overflow-hidden max-md:hidden">
-          <video autoPlay loop muted playsInline preload="metadata" className="absolute top-0 left-0 w-full h-full object-cover">
-            <source src="/Videos/First half.webm" type="video/webm" />
-            Your browser does not support the video tag.
-          </video>
+          {videosLoaded && (
+            <video autoPlay loop muted playsInline preload="metadata" className="absolute top-0 left-0 w-full h-full object-cover">
+              <source src="/Videos/First half.webm" type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+          )}
           <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
         </div>
 
         <div className="hero-split flex-1 relative overflow-hidden max-md:hidden">
-          <video autoPlay loop muted playsInline preload="metadata" className="absolute top-0 left-0 w-full h-full object-cover">
-            <source src="/Videos/Second half.webm" type="video/webm" />
-            Your browser does not support the video tag.
-          </video>
+          {videosLoaded && (
+            <video autoPlay loop muted playsInline preload="metadata" className="absolute top-0 left-0 w-full h-full object-cover">
+              <source src="/Videos/Second half.webm" type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+          )}
           <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
         </div>
 
         {/* Mobile: Single Full-Screen Video */}
         <div className="hidden max-md:block relative w-full h-screen overflow-hidden bg-black">
-          <video
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="auto"
-            className="absolute top-0 left-0 w-full h-full object-cover mobile-hero-video"
-          >
-            <source src="/Videos/mobile-video.webm" type="video/webm" />
-            Your browser does not support the video tag.
-          </video>
+          {videosLoaded && (
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="none"
+              className="absolute top-0 left-0 w-full h-full object-cover mobile-hero-video"
+            >
+              <source src="/Videos/mobile-video.webm" type="video/webm" />
+              Your browser does not support the video tag.
+            </video>
+          )}
           <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
         </div>
 
@@ -465,7 +476,7 @@ export default function Home() {
           <div className="flex justify-between gap-[5%] px-[5%] max-md:flex-col max-md:gap-6 max-md:px-0">
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
               <div className="relative w-full aspect-square mb-6 overflow-hidden">
-                <Image src="/dj-photos/Controlla.jpg" alt="DJ CONTROLLA performing at MYTHOS event in Sydney" fill style={{ objectFit: 'cover' }} quality={85} />
+                <Image src="/dj-photos/Controlla.jpg" alt="DJ CONTROLLA performing at MYTHOS event in Sydney" fill style={{ objectFit: 'cover' }} quality={85} loading="lazy" />
               </div>
               <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">9:00 - 11:45PM</div>
               <h3 className="font-helvetica text-[2.2rem] font-bold mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">CONTROLLA</h3>
@@ -473,7 +484,7 @@ export default function Home() {
             </div>
             <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
               <div className="relative w-full aspect-square mb-6 overflow-hidden">
-                <Image src="/dj-photos/Kinezos.jpg" alt="DJ KINEZOS performing at MYTHOS event in Sydney" fill style={{ objectFit: 'cover' }} quality={85} />
+                <Image src="/dj-photos/Kinezos.jpg" alt="DJ KINEZOS performing at MYTHOS event in Sydney" fill style={{ objectFit: 'cover' }} quality={85} loading="lazy" />
               </div>
               <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">11:45PM - 3:00AM</div>
               <h3 className="font-helvetica text-[2.2rem] font-bold mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">KINEZOS</h3>
@@ -514,6 +525,7 @@ export default function Home() {
                 frameBorder="0"
                 scrolling="no"
                 allowTransparency={true}
+                loading="lazy"
                 className="w-full border-0 rounded-[3px] shadow-[0_0_1px_0_rgba(0,0,0,0.5),0_1px_10px_0_rgba(0,0,0,0.15)]"
               />
             </div>
