@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from 'next'
+import { TICKET_DOMAIN } from './config'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://mythosentertainment.com.au'),
@@ -6,15 +7,15 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: 'MYTHOS - House Meets Heritage',
-  description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Friday 19 December, 9:00pm – 3:00am at Home The Venue, Sydney',
-  keywords: 'MYTHOS, Sydney nightlife, Greek music, European anthems, Home The Venue, VIP table booking, CONTROLLA, KINEZOS',
+  description: 'Experience MYTHOS at VIVID - Sydney\'s modern European nightlife. Friday 29 May, 7:30pm – Late at Cafe Del Mar, Darling Harbour',
+  keywords: 'MYTHOS, Sydney nightlife, Greek music, European anthems, Cafe Del Mar, Darling Harbour, VIVID Sydney, VIP table booking',
   authors: [{ name: 'MYTHOS Entertainment' }],
   verification: {
     google: '_bSUsETV80XS12d_O4pxna5Reiw5WRB1VsdTP_OGQYQ',
   },
   openGraph: {
     title: 'MYTHOS - House Meets Heritage',
-    description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Friday 19 December, 9:00pm – 3:00am at Home The Venue, Sydney',
+    description: 'Experience MYTHOS at VIVID - Sydney\'s modern European nightlife. Friday 29 May, 7:30pm – Late at Cafe Del Mar, Darling Harbour',
     type: 'website',
     url: 'https://mythosentertainment.com.au',
     siteName: 'MYTHOS',
@@ -31,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary',
     title: 'MYTHOS - House Meets Heritage',
-    description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Friday 19 December, 9:00pm – 3:00am at Home The Venue, Sydney',
+    description: 'Experience MYTHOS at VIVID - Sydney\'s modern European nightlife. Friday 29 May, 7:30pm – Late at Cafe Del Mar, Darling Harbour',
     images: ['/mythos-branding/mythos-o-no-bg.png'],
   },
 }
@@ -52,7 +53,7 @@ export default function RootLayout({
     <html lang="en-AU">
       <head>
         {/* DNS Prefetch for external domains */}
-        <link rel="dns-prefetch" href="https://moshtix.com.au" />
+        <link rel="dns-prefetch" href={TICKET_DOMAIN} />
         <link rel="dns-prefetch" href="https://formspree.io" />
 
         {/* Preconnect for critical resources */}

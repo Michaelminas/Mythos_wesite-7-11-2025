@@ -4,9 +4,10 @@ A sophisticated Next.js landing page for MYTHOS - Sydney's premier modern Europe
 
 ## Event Details
 
-- **Date:** Friday 19 December 2025
-- **Time:** 9:00pm – 3:00am
-- **Venue:** Home The Venue, Sydney
+- **Date:** Friday 29 May 2026
+- **Time:** 7:30pm – Late
+- **Venue:** Cafe Del Mar, Darling Harbour, Sydney
+- **Occasion:** VIVID Sydney rooftop party
 - **Age:** 18+ Event
 
 ## Live Site
@@ -18,7 +19,6 @@ A sophisticated Next.js landing page for MYTHOS - Sydney's premier modern Europe
 ### User Experience
 - **Immersive Hero Section** - Split-screen video backgrounds with smooth logo morphing animation
 - **Live Countdown Timer** - Real-time countdown to event start with dynamic button states
-- **DJ Lineup** - Featured DJs CONTROLLA and KINEZOS with set times and descriptions
 - **VIP Table Bookings** - Fully functional booking form integrated with Formspree
 - **Responsive Design** - Optimized for all devices (320px to 4K displays)
 
@@ -139,7 +139,7 @@ VIP booking form submissions are sent to:
 
 ## Ticket Sales
 
-**[Get Tickets](https://moshtix.com.au/v2/event/mythos-home-the-venue-summer-2025/188117)** via Moshtix
+**[Get Tickets](https://www.eventbrite.com/e/1987109182055?aff=oddtdtcreator)** via Eventbrite
 
 ## Support
 

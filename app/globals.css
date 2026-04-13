@@ -42,38 +42,6 @@
     @apply w-3/4 h-3/4;
   }
 
-  /* Float animation for particles */
-  @keyframes float-up {
-    0% {
-      transform: translateY(0) translateX(0);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.8;
-    }
-    90% {
-      opacity: 0.8;
-    }
-    100% {
-      transform: translateY(-100vh) translateX(var(--drift));
-      opacity: 0;
-    }
-  }
-
-  .particle {
-    animation: float-up 15s infinite ease-in;
-  }
-
-  /* Shimmer animation for sponsors */
-  @keyframes shimmer {
-    0% {
-      transform: translateX(-100%);
-    }
-    100% {
-      transform: translateX(100%);
-    }
-  }
-
   /* Logo filter transition fix */
   .hero-logo-img {
     filter: brightness(0) invert(1);
@@ -112,95 +80,6 @@
   .fixed-tickets-btn.visible {
     @apply opacity-100 pointer-events-auto;
     transform: translate(-50%, 0);
-  }
-
-  /* Effect 1: Parallax Scrolling */
-  .parallax-enabled .atmosphere-img {
-    will-change: transform;
-  }
-
-  /* Effect 2: Animated Particles */
-  .particles-container {
-    @apply fixed top-0 left-0 w-full h-full pointer-events-none z-[100] opacity-0 transition-opacity duration-500;
-  }
-
-  .particles-container.active {
-    @apply opacity-100;
-  }
-
-  .particle {
-    @apply absolute w-2 h-2 bg-gold rounded-full;
-    animation: float-up linear infinite;
-  }
-
-  @keyframes float-up {
-    0% {
-      transform: translateY(0) translateX(0) scale(0);
-      opacity: 0;
-    }
-    10% {
-      opacity: 0.8;
-      transform: translateY(-10vh) translateX(var(--drift)) scale(1);
-    }
-    90% {
-      opacity: 0.6;
-    }
-    100% {
-      transform: translateY(-100vh) translateX(var(--drift)) scale(0.5);
-      opacity: 0;
-    }
-  }
-
-  /* Effect 4: Improved Staggered Reveal Animations */
-  @keyframes stagger-fade-in {
-    from {
-      opacity: 0;
-      transform: translateY(50px) scale(0.95);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-    }
-  }
-
-  .stagger-enabled .grid > div {
-    animation: stagger-fade-in 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    opacity: 0;
-  }
-
-  .stagger-enabled .grid > div:nth-child(1) {
-    animation-delay: 0.2s;
-  }
-
-  .stagger-enabled .grid > div:nth-child(2) {
-    animation-delay: 0.4s;
-  }
-
-  .stagger-enabled .grid > div:nth-child(3) {
-    animation-delay: 0.6s;
-  }
-
-  /* Effect 7: Interactive Cursor */
-  .cursor-enabled {
-    cursor: none;
-  }
-
-  .custom-cursor {
-    @apply fixed w-6 h-6 border-2 border-gold rounded-full pointer-events-none z-[10000] opacity-0 transition-all duration-200 ease-out;
-    transform: translate(-50%, -50%);
-  }
-
-  .custom-cursor.active {
-    @apply opacity-100;
-  }
-
-  .custom-cursor.hover {
-    @apply w-12 h-12 bg-gold/20;
-  }
-
-  .custom-cursor-trail {
-    @apply fixed w-2 h-2 bg-gold rounded-full pointer-events-none z-[9999] opacity-60;
-    transform: translate(-50%, -50%);
   }
 
 }

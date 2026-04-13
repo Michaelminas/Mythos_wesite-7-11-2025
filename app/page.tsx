@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Image from 'next/image'
+import { TICKET_URL, INSTAGRAM_EMBED_URL } from './config'
 import './globals.css'
 
 export default function Home() {
@@ -17,17 +18,17 @@ export default function Home() {
       {
         "@type": "MusicEvent",
         "name": "MYTHOS - House Meets Heritage",
-        "description": "Experience MYTHOS - Sydney's modern European nightlife featuring DJs CONTROLLA and KINEZOS with live Greek music, European anthems, and high-energy performances.",
-        "startDate": "2025-12-19T21:00:00+11:00",
-        "endDate": "2025-12-20T03:00:00+11:00",
+        "description": "Experience MYTHOS at VIVID - Sydney's modern European nightlife at Cafe Del Mar, Darling Harbour. Live Greek music, European anthems, and high-energy performances.",
+        "startDate": "2026-05-29T19:30:00+10:00",
+        "endDate": "2026-05-30T02:00:00+10:00",
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
         "location": {
           "@type": "Place",
-          "name": "Home The Venue",
+          "name": "Cafe Del Mar",
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "101 Cockle Bay Wharf",
+            "streetAddress": "35 Wheat Road",
             "addressLocality": "Sydney",
             "addressRegion": "NSW",
             "postalCode": "2000",
@@ -35,8 +36,8 @@ export default function Home() {
           },
           "geo": {
             "@type": "GeoCoordinates",
-            "latitude": "-33.8698",
-            "longitude": "151.1992"
+            "latitude": "-33.8705",
+            "longitude": "151.2020"
           }
         },
         "image": "https://mythosentertainment.com.au/mythos-branding/mythos-o-no-bg.png",
@@ -45,23 +46,11 @@ export default function Home() {
           "name": "MYTHOS Entertainment",
           "url": "https://mythosentertainment.com.au"
         },
-        "performer": [
-          {
-            "@type": "Person",
-            "name": "CONTROLLA"
-          },
-          {
-            "@type": "Person",
-            "name": "KINEZOS"
-          }
-        ],
         "offers": {
           "@type": "Offer",
-          "url": "https://moshtix.com.au/v2/event/mythos-home-the-venue-summer-2025/188117",
-          "price": "0",
           "priceCurrency": "AUD",
           "availability": "https://schema.org/InStock",
-          "validFrom": "2025-11-01T00:00:00+11:00"
+          "validFrom": "2026-04-10T00:00:00+10:00"
         }
       },
       {
@@ -75,10 +64,10 @@ export default function Home() {
       },
       {
         "@type": "NightClub",
-        "name": "Home The Venue",
+        "name": "Cafe Del Mar",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "101 Cockle Bay Wharf",
+          "streetAddress": "35 Wheat Road",
           "addressLocality": "Sydney",
           "addressRegion": "NSW",
           "postalCode": "2000",
@@ -121,9 +110,9 @@ export default function Home() {
   // Countdown timer - optimized to prevent unnecessary re-renders
   useEffect(() => {
     const updateCountdown = () => {
-      // Event: Friday 19 December 2025, 9:00pm - 3:00am
-      const eventStart = new Date('2025-12-19T21:00:00')
-      const eventEnd = new Date('2025-12-20T03:00:00')
+      // Event: Friday 29 May 2026, 7:30pm - 2:00am (Cafe Del Mar, VIVID Sydney)
+      const eventStart = new Date('2026-05-29T19:30:00')
+      const eventEnd = new Date('2026-05-30T02:00:00')
       const now = new Date()
 
       if (now >= eventStart && now <= eventEnd) {
@@ -150,8 +139,7 @@ export default function Home() {
             ? `${hours}h ${minutes}m ${seconds}s`
             : `${minutes}m ${seconds}s`
 
-        // Only update if countdown text changed (prevents unnecessary re-renders)
-        setCountdown(prev => prev !== newCountdown ? newCountdown : prev)
+        setCountdown(newCountdown)
       }
     }
 
@@ -225,7 +213,7 @@ export default function Home() {
       if (document.readyState === 'complete') {
         tryPlayMobileVideo()
       } else {
-        window.addEventListener('load', tryPlayMobileVideo)
+        window.addEventListener('load', tryPlayMobileVideo, { once: true })
       }
     }
 
@@ -290,7 +278,7 @@ export default function Home() {
       }
     }
 
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
 
     const revealElements = document.querySelectorAll('.reveal')
     const revealOnScroll = () => {
@@ -303,7 +291,7 @@ export default function Home() {
       })
     }
 
-    window.addEventListener('scroll', revealOnScroll)
+    window.addEventListener('scroll', revealOnScroll, { passive: true })
     revealOnScroll()
 
     const atmosphereImages = document.querySelectorAll('.atmosphere-img')
@@ -317,27 +305,8 @@ export default function Home() {
       })
     }
 
-    window.addEventListener('scroll', revealAtmosphereImages)
+    window.addEventListener('scroll', revealAtmosphereImages, { passive: true })
     revealAtmosphereImages()
-
-    const leftSpeedSlider = document.getElementById('leftSpeedSlider') as HTMLInputElement
-    const rightSpeedSlider = document.getElementById('rightSpeedSlider') as HTMLInputElement
-    const leftSpeedValue = document.getElementById('leftSpeedValue')
-    const rightSpeedValue = document.getElementById('rightSpeedValue')
-
-    if (leftSpeedSlider && rightSpeedSlider) {
-      leftSpeedSlider.addEventListener('input', (e) => {
-        const speed = parseFloat((e.target as HTMLInputElement).value)
-        if (heroVideos[0]) heroVideos[0].playbackRate = speed
-        if (leftSpeedValue) leftSpeedValue.textContent = speed.toFixed(1) + 'x'
-      })
-
-      rightSpeedSlider.addEventListener('input', (e) => {
-        const speed = parseFloat((e.target as HTMLInputElement).value)
-        if (heroVideos[1]) heroVideos[1].playbackRate = speed
-        if (rightSpeedValue) rightSpeedValue.textContent = speed.toFixed(1) + 'x'
-      })
-    }
 
     return () => {
       window.removeEventListener('scroll', handleScroll)
@@ -356,11 +325,10 @@ export default function Home() {
 
       {/* Background elements */}
       <div className="bg-circles"></div>
-      <div className="fixed w-[600px] h-[600px] bg-gradient-radial from-gold/15 to-transparent pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-opacity duration-300 opacity-0 z-[1]" id="spotlight"></div>
 
       {/* Fixed Get Tickets Button */}
       <a
-        href="https://moshtix.com.au/v2/event/mythos-home-the-venue-summer-2025/188117"
+        href={TICKET_URL}
         target="_blank"
         rel="noopener noreferrer"
         className="fixed-tickets-btn fixed bottom-[20px] left-1/2 -translate-x-1/2 z-[1000] px-[35px] py-3 bg-bronze text-white no-underline font-helvetica font-semibold tracking-[0.2em] text-[0.85rem] uppercase rounded-full shadow-[0_4px_20px_rgba(150,105,76,0.3)] transition-all duration-600 opacity-0 translate-y-5 pointer-events-none hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(150,105,76,0.5)] hover:bg-bronze/90 max-md:bottom-[20px] max-md:px-[30px] max-md:py-2.5 max-md:text-[0.75rem] max-md:tracking-[0.15em] max-[425px]:px-[25px] max-[425px]:py-2 max-[425px]:text-[0.7rem] max-[375px]:px-[20px] max-[375px]:py-1.5 max-[375px]:text-[0.65rem] max-[375px]:tracking-[0.1em] max-[320px]:px-[18px] max-[320px]:text-[0.6rem]"
@@ -368,6 +336,7 @@ export default function Home() {
         Get Tickets
       </a>
 
+      <main>
       {/* Hero Section - Split Screen */}
       <section className="min-h-screen flex relative overflow-hidden max-md:block">
         {/* Desktop: Split Screen Videos */}
@@ -425,10 +394,10 @@ export default function Home() {
 
 
           <div className="hero-date font-helvetica text-[clamp(1.2rem,2.5vw,1.8rem)] font-bold tracking-[0.2em] text-white mb-2.5 uppercase max-md:text-[0.9rem] max-md:mb-2 max-[430px]:text-[0.85rem] max-[430px]:mb-1.5 max-[375px]:text-[0.8rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.75rem] max-[320px]:tracking-[0.1em]">
-            Friday 19 December
+            Friday 29 May
           </div>
           <div className="hero-time font-helvetica text-[clamp(1rem,2vw,1.4rem)] font-normal tracking-[0.15em] text-white/90 uppercase max-md:text-[0.8rem] max-md:tracking-[0.1em] max-[430px]:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.08em] max-[320px]:text-[0.65rem]">
-            9:00pm – 3:00am | HOME THE VENUE, SYDNEY
+            7:30pm – Late | CAFE DEL MAR, SYDNEY
           </div>
 
           {/* Countdown Timer */}
@@ -448,7 +417,7 @@ export default function Home() {
           )}
 
           <a
-            href="https://moshtix.com.au/v2/event/mythos-home-the-venue-summer-2025/188117"
+            href={TICKET_URL}
             target="_blank"
             rel="noopener noreferrer"
             className={`hero-cta inline-block mt-[60px] px-[50px] py-[18px] no-underline font-helvetica font-semibold tracking-[0.2em] text-base uppercase rounded-full transition-all duration-400 max-md:px-[30px] max-md:py-3 max-md:text-[0.85rem] max-md:tracking-[0.15em] max-md:mt-[50px] max-[430px]:px-[25px] max-[430px]:py-2.5 max-[430px]:text-[0.8rem] max-[430px]:mt-[45px] max-[375px]:px-[22px] max-[375px]:py-2 max-[375px]:text-[0.75rem] max-[375px]:tracking-[0.1em] max-[320px]:px-[20px] max-[320px]:py-1.5 max-[320px]:text-[0.7rem] ${
@@ -465,46 +434,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Lineup Section */}
-      <section className="reveal py-20 px-5 bg-beige relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
-        {/* Desktop Image - REMOVED */}
-        {/* Mobile Image - REMOVED */}
-        <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
-          <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold text-center mb-20 text-bronze uppercase max-md:text-[1.8rem] max-md:mb-[30px] max-[430px]:text-[1.5rem] max-[430px]:mb-[25px] max-[375px]:text-[1.35rem] max-[375px]:mb-5 max-[320px]:text-[1.2rem]">
-            Lineup
-          </h2>
-          <div className="flex justify-between gap-[5%] px-[5%] max-md:flex-col max-md:gap-6 max-md:px-0">
-            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
-              <div className="relative w-full aspect-square mb-6 overflow-hidden">
-                <Image src="/dj-photos/Controlla.jpg" alt="DJ CONTROLLA performing at MYTHOS event in Sydney" fill style={{ objectFit: 'cover' }} quality={85} loading="lazy" />
-              </div>
-              <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">9:00 - 11:45PM</div>
-              <h3 className="font-helvetica text-[2.2rem] font-bold mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">CONTROLLA</h3>
-              <p className="font-helvetica text-[1.1rem] leading-[1.7] text-bronze/85 font-normal max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Controlla, fresh off his Ios tour in Greece, will open the night with a high-energy set of European anthems to set the&nbsp;tone.</p>
-            </div>
-            <div className="flex-1 bg-white/[0.08] backdrop-blur-[10px] p-[40px_25px] border border-bronze/30 transition-all duration-500 relative overflow-hidden hover:-translate-y-2.5 hover:shadow-[0_20px_40px_rgba(0,0,0,0.3)] hover:border-bronze before:content-[''] before:absolute before:top-0 before:-left-full before:w-full before:h-full before:bg-gradient-to-r before:from-transparent before:via-bronze/15 before:to-transparent before:transition-all before:duration-800 hover:before:left-full max-md:p-[40px_30px] max-[375px]:p-[30px_20px] max-[320px]:p-[25px_15px]">
-              <div className="relative w-full aspect-square mb-6 overflow-hidden">
-                <Image src="/dj-photos/Kinezos.jpg" alt="DJ KINEZOS performing at MYTHOS event in Sydney" fill style={{ objectFit: 'cover' }} quality={85} loading="lazy" />
-              </div>
-              <div className="font-helvetica text-base font-semibold tracking-[0.3em] text-bronze uppercase mb-4 max-md:text-sm max-md:mb-3 max-[375px]:text-xs max-[375px]:tracking-[0.2em] max-[375px]:mb-3 max-[320px]:text-[0.65rem]">11:45PM - 3:00AM</div>
-              <h3 className="font-helvetica text-[2.2rem] font-bold mb-3 text-bronze uppercase max-md:text-[1.3rem] max-md:mb-3 max-[375px]:text-[1.15rem] max-[375px]:mb-3 max-[320px]:text-[1.05rem] max-[320px]:mb-2">KINEZOS</h3>
-              <p className="font-helvetica text-[1.1rem] leading-[1.7] text-bronze/85 font-normal max-md:text-[0.9rem] max-md:leading-[1.6] max-[375px]:text-[0.85rem] max-[375px]:leading-[1.5] max-[320px]:text-[0.8rem] max-[320px]:leading-[1.4]">Kinezos will take control of the night with an explosive set fusing 2025's biggest summer hits with Greek music, house, RNB, and timeless&nbsp;throwbacks.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Plus Live Entertainment Divider */}
-      <section className="relative w-full py-12 bg-gradient-to-r from-transparent via-bronze to-transparent max-md:py-8 max-md:bg-bronze">
-        <div className="text-center px-5 max-md:relative max-md:z-10">
-          <h3 className="font-helvetica text-[clamp(1.5rem,2.5vw,2rem)] font-bold mb-[15px] text-beige uppercase max-[430px]:text-[1.2rem] max-md:mb-3">Plus Live Entertainment</h3>
-          <p className="font-helvetica text-[1.1rem] text-beige/90 font-normal max-w-[800px] mx-auto max-md:text-[0.95rem] max-md:leading-[1.6]">Featuring pyrotechnics, dancers, live acts, and surprise performances throughout the&nbsp;night</p>
-        </div>
-        {/* Decorative lines for mobile */}
-        <div className="hidden max-md:block absolute top-0 left-0 w-full h-[2px] bg-gradient-to-r from-beige via-bronze to-beige opacity-40"></div>
-        <div className="hidden max-md:block absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-beige via-bronze to-beige opacity-40"></div>
-      </section>
-
       {/* Event Details Section */}
       <section className="reveal py-20 px-5 bg-beige relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
         {/* Desktop Image - REMOVED */}
@@ -519,12 +448,12 @@ export default function Home() {
             {/* Instagram Embed - Hidden at 768px and below */}
             <div className="flex-shrink-0 w-[540px] max-w-full max-[768px]:hidden">
               <iframe
-                src="https://www.instagram.com/p/DN7nKtPklRV/embed"
+                src={INSTAGRAM_EMBED_URL}
                 width="540"
                 height="720"
                 frameBorder="0"
                 scrolling="no"
-                allowTransparency={true}
+                title="MYTHOS Instagram post"
                 loading="lazy"
                 className="w-full border-0 rounded-[3px] shadow-[0_0_1px_0_rgba(0,0,0,0.5),0_1px_10px_0_rgba(0,0,0,0.15)]"
               />
@@ -533,7 +462,7 @@ export default function Home() {
             {/* Description Text - Right side on desktop, bottom on mobile */}
             <div className="flex-1 flex flex-col justify-center text-left max-md:text-center">
               <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] mb-6 font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-                After a SOLD-OUT event, Mythos is taking over Home the Venue this summer for the next chapter of&nbsp;Sydney&apos;s modern European&nbsp;nightlife.
+                Mythos is returning to Darling Harbour to transform Cafe Del Mar during VIVID into a rooftop party for the next chapter of&nbsp;Sydney&apos;s modern European&nbsp;nightlife.
               </p>
               <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] mb-6 font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
                 Experience live Greek music, European anthems, and high-energy performances from dancers and live acts. Every set blends the best of Europe and Greece, creating a night built for rhythm,&nbsp;energy, and&nbsp;connection.
@@ -550,10 +479,10 @@ export default function Home() {
       <section className="reveal py-20 px-5 bg-bronze relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-md:px-[15px] max-[430px]:py-10 max-[430px]:px-[10px]" id="tickets">
         {/* Desktop Images */}
         <div className="atmosphere-img absolute w-[48vw] max-w-[720px] h-[54vw] max-h-[820px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-8%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
-          <Image src="/event-photos/Webp/vip 1.webp" alt="VIP booth experience at MYTHOS nightlife event" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 48vw" quality={85} />
+          <Image src="/event-photos/Webp/vip 1.webp" alt="Guests enjoying MYTHOS nightlife event in Sydney" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 48vw" quality={85} />
         </div>
         <div className="atmosphere-img absolute w-[45vw] max-w-[680px] h-[51vw] max-h-[780px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-6%] bottom-[8%] -rotate-[7deg] scale-95 max-[600px]:hidden">
-          <Image src="/event-photos/Webp/vip 2.webp" alt="Luxury VIP booth seating at Home The Venue Sydney" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 45vw" quality={85} />
+          <Image src="/event-photos/Webp/vip 2.webp" alt="Luxury VIP booth seating at Cafe Del Mar Sydney" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 45vw" quality={85} />
         </div>
         {/* Mobile Image - REMOVED */}
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2] max-md:px-0">
@@ -609,6 +538,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      </main>
 
       {/* Footer */}
       <footer className="bg-bronze py-6 px-5 text-center">
