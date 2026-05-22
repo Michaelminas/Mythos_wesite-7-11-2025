@@ -19,7 +19,7 @@ export default function Home() {
         "@type": "MusicEvent",
         "name": "MYTHOS - House Meets Heritage",
         "description": "Experience MYTHOS - Sydney's modern European nightlife at Pelicano, Potts Point. Live Greek music, European anthems, and high-energy performances.",
-        "startDate": "2026-05-29T19:30:00+10:00",
+        "startDate": "2026-05-29T20:00:00+10:00",
         "endDate": "2026-05-30T02:00:00+10:00",
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
@@ -110,8 +110,8 @@ export default function Home() {
   // Countdown timer - optimized to prevent unnecessary re-renders
   useEffect(() => {
     const updateCountdown = () => {
-      // Event: Friday 29 May 2026, 7:30pm - 2:00am (Pelicano, Potts Point)
-      const eventStart = new Date('2026-05-29T19:30:00')
+      // Event: Friday 29 May 2026, 8:00pm - 2:00am (Pelicano, Potts Point)
+      const eventStart = new Date('2026-05-29T20:00:00')
       const eventEnd = new Date('2026-05-30T02:00:00')
       const now = new Date()
 
@@ -397,7 +397,7 @@ export default function Home() {
             Friday 29 May
           </div>
           <div className="hero-time font-helvetica text-[clamp(1rem,2vw,1.4rem)] font-normal tracking-[0.15em] text-white/90 uppercase max-md:text-[0.8rem] max-md:tracking-[0.1em] max-[430px]:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.08em] max-[320px]:text-[0.65rem]">
-            7:30pm – Late | PELICANO, POTTS POINT
+            8pm – Late | PELICANO, POTTS POINT
           </div>
 
           {/* Countdown Timer */}
