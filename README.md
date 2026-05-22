@@ -6,8 +6,8 @@ A sophisticated Next.js landing page for MYTHOS - Sydney's premier modern Europe
 
 - **Date:** Friday 29 May 2026
 - **Time:** 7:30pm – Late
-- **Venue:** Cafe Del Mar, Darling Harbour, Sydney
-- **Occasion:** VIVID Sydney rooftop party
+- **Venue:** Pelicano, Potts Point, Sydney
+- **Occasion:** Rooftop party
 - **Age:** 18+ Event
 
 ## Live Site

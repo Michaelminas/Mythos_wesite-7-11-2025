@@ -7,15 +7,15 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: 'MYTHOS - House Meets Heritage',
-  description: 'Experience MYTHOS at VIVID - Sydney\'s modern European nightlife. Friday 29 May, 7:30pm – Late at Cafe Del Mar, Darling Harbour',
-  keywords: 'MYTHOS, Sydney nightlife, Greek music, European anthems, Cafe Del Mar, Darling Harbour, VIVID Sydney, VIP table booking',
+  description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Friday 29 May, 7:30pm – Late at Pelicano, Potts Point',
+  keywords: 'MYTHOS, Sydney nightlife, Greek music, European anthems, Pelicano, Potts Point, VIP table booking',
   authors: [{ name: 'MYTHOS Entertainment' }],
   verification: {
     google: '_bSUsETV80XS12d_O4pxna5Reiw5WRB1VsdTP_OGQYQ',
   },
   openGraph: {
     title: 'MYTHOS - House Meets Heritage',
-    description: 'Experience MYTHOS at VIVID - Sydney\'s modern European nightlife. Friday 29 May, 7:30pm – Late at Cafe Del Mar, Darling Harbour',
+    description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Friday 29 May, 7:30pm – Late at Pelicano, Potts Point',
     type: 'website',
     url: 'https://mythosentertainment.com.au',
     siteName: 'MYTHOS',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary',
     title: 'MYTHOS - House Meets Heritage',
-    description: 'Experience MYTHOS at VIVID - Sydney\'s modern European nightlife. Friday 29 May, 7:30pm – Late at Cafe Del Mar, Darling Harbour',
+    description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Friday 29 May, 7:30pm – Late at Pelicano, Potts Point',
     images: ['/mythos-branding/mythos-o-no-bg.png'],
   },
 }

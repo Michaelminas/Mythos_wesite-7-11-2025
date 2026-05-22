@@ -18,26 +18,26 @@ export default function Home() {
       {
         "@type": "MusicEvent",
         "name": "MYTHOS - House Meets Heritage",
-        "description": "Experience MYTHOS at VIVID - Sydney's modern European nightlife at Cafe Del Mar, Darling Harbour. Live Greek music, European anthems, and high-energy performances.",
+        "description": "Experience MYTHOS - Sydney's modern European nightlife at Pelicano, Potts Point. Live Greek music, European anthems, and high-energy performances.",
         "startDate": "2026-05-29T19:30:00+10:00",
         "endDate": "2026-05-30T02:00:00+10:00",
         "eventStatus": "https://schema.org/EventScheduled",
         "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
         "location": {
           "@type": "Place",
-          "name": "Cafe Del Mar",
+          "name": "Pelicano",
           "address": {
             "@type": "PostalAddress",
-            "streetAddress": "35 Wheat Road",
-            "addressLocality": "Sydney",
+            "streetAddress": "11/13 Springfield Avenue",
+            "addressLocality": "Potts Point",
             "addressRegion": "NSW",
-            "postalCode": "2000",
+            "postalCode": "2011",
             "addressCountry": "AU"
           },
           "geo": {
             "@type": "GeoCoordinates",
-            "latitude": "-33.8705",
-            "longitude": "151.2020"
+            "latitude": "-33.8712",
+            "longitude": "151.2231"
           }
         },
         "image": "https://mythosentertainment.com.au/mythos-branding/mythos-o-no-bg.png",
@@ -64,13 +64,13 @@ export default function Home() {
       },
       {
         "@type": "NightClub",
-        "name": "Cafe Del Mar",
+        "name": "Pelicano",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "35 Wheat Road",
-          "addressLocality": "Sydney",
+          "streetAddress": "11/13 Springfield Avenue",
+          "addressLocality": "Potts Point",
           "addressRegion": "NSW",
-          "postalCode": "2000",
+          "postalCode": "2011",
           "addressCountry": "AU"
         }
       }
@@ -110,7 +110,7 @@ export default function Home() {
   // Countdown timer - optimized to prevent unnecessary re-renders
   useEffect(() => {
     const updateCountdown = () => {
-      // Event: Friday 29 May 2026, 7:30pm - 2:00am (Cafe Del Mar, VIVID Sydney)
+      // Event: Friday 29 May 2026, 7:30pm - 2:00am (Pelicano, Potts Point)
       const eventStart = new Date('2026-05-29T19:30:00')
       const eventEnd = new Date('2026-05-30T02:00:00')
       const now = new Date()
@@ -397,7 +397,7 @@ export default function Home() {
             Friday 29 May
           </div>
           <div className="hero-time font-helvetica text-[clamp(1rem,2vw,1.4rem)] font-normal tracking-[0.15em] text-white/90 uppercase max-md:text-[0.8rem] max-md:tracking-[0.1em] max-[430px]:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.08em] max-[320px]:text-[0.65rem]">
-            7:30pm – Late | CAFE DEL MAR, SYDNEY
+            7:30pm – Late | PELICANO, POTTS POINT
           </div>
 
           {/* Countdown Timer */}
@@ -462,7 +462,7 @@ export default function Home() {
             {/* Description Text - Right side on desktop, bottom on mobile */}
             <div className="flex-1 flex flex-col justify-center text-left max-md:text-center">
               <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] mb-6 font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-                Mythos is returning to Darling Harbour to transform Cafe Del Mar during VIVID into a rooftop party for the next chapter of&nbsp;Sydney&apos;s modern European&nbsp;nightlife.
+                Mythos is taking over Pelicano in Potts Point, transforming the venue into a rooftop party for the next chapter of&nbsp;Sydney&apos;s modern European&nbsp;nightlife.
               </p>
               <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] mb-6 font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
                 Experience live Greek music, European anthems, and high-energy performances from dancers and live acts. Every set blends the best of Europe and Greece, creating a night built for rhythm,&nbsp;energy, and&nbsp;connection.
@@ -482,7 +482,7 @@ export default function Home() {
           <Image src="/event-photos/Webp/vip 1.webp" alt="Guests enjoying MYTHOS nightlife event in Sydney" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 48vw" quality={85} />
         </div>
         <div className="atmosphere-img absolute w-[45vw] max-w-[680px] h-[51vw] max-h-[780px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-6%] bottom-[8%] -rotate-[7deg] scale-95 max-[600px]:hidden">
-          <Image src="/event-photos/Webp/vip 2.webp" alt="Luxury VIP booth seating at Cafe Del Mar Sydney" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 45vw" quality={85} />
+          <Image src="/event-photos/Webp/vip 2.webp" alt="Luxury VIP booth seating at Pelicano Potts Point Sydney" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 45vw" quality={85} />
         </div>
         {/* Mobile Image - REMOVED */}
         <div className="max-w-[1200px] mx-auto px-10 relative z-[2] max-md:px-0">
