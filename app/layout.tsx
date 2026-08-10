@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'MYTHOS - House Meets Heritage',
-    description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Friday 29 May, 8pm – Late at Pelicano, Potts Point',
+    description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Saturday 19 September, 9pm – Late at Pelicano, Potts Point',
     type: 'website',
     url: 'https://mythosentertainment.com.au',
     siteName: 'MYTHOS',
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary',
     title: 'MYTHOS - House Meets Heritage',
-    description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Friday 29 May, 8pm – Late at Pelicano, Potts Point',
+    description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Saturday 19 September, 9pm – Late at Pelicano, Potts Point',
     images: ['/mythos-branding/mythos-o-no-bg.png'],
   },
 }
