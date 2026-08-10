@@ -111,8 +111,8 @@ export default function Home() {
   useEffect(() => {
     const updateCountdown = () => {
       // Event: Friday 29 May 2026, 8:00pm - 2:00am (Pelicano, Potts Point)
-      const eventStart = new Date('2026-05-29T20:00:00')
-      const eventEnd = new Date('2026-05-30T02:00:00')
+      const eventStart = new Date('2026-09-19T21:00:00')
+      const eventEnd = new Date('2026-09-20T03:00:00')
       const now = new Date()
 
       if (now >= eventStart && now <= eventEnd) {
