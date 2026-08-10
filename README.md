@@ -4,7 +4,7 @@ A sophisticated Next.js landing page for MYTHOS - Sydney's premier modern Europe
 
 ## Event Details
 
-- **Date:** Friday 19 September 2026
+- **Date:** Saturday 19 September 2026
 - **Time:** 9pm – Late
 - **Venue:** Pelicano, Potts Point, Sydney
 - **Occasion:** Rooftop party
