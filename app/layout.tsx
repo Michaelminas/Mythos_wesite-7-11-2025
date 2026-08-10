@@ -7,7 +7,7 @@ export const metadata: Metadata = {
     canonical: '/',
   },
   title: 'MYTHOS - House Meets Heritage',
-  description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Friday 29 May, 8pm – Late at Pelicano, Potts Point',
+  description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Saturday 19 September, 9pm – Late at Pelicano, Potts Point',
   keywords: 'MYTHOS, Sydney nightlife, Greek music, European anthems, Pelicano, Potts Point, VIP table booking',
   authors: [{ name: 'MYTHOS Entertainment' }],
   verification: {
