@@ -2,7 +2,7 @@ import type { Metadata, Viewport } from 'next'
 import { TICKET_DOMAIN } from './config'
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://mythosentertainment.com.au'),
+  metadataBase: new URL('https://www.mythosentertainment.com.au'),
   alternates: {
     canonical: '/',
   },
@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     title: 'MYTHOS - House Meets Heritage',
     description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Saturday 19 September, 9pm – Late at Pelicano, Potts Point',
     type: 'website',
-    url: 'https://mythosentertainment.com.au',
+    url: 'https://www.mythosentertainment.com.au',
     siteName: 'MYTHOS',
     locale: 'en_AU',
     images: [
