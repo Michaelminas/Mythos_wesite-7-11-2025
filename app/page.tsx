@@ -394,10 +394,10 @@ export default function Home() {
 
 
           <div className="hero-date font-helvetica text-[clamp(1.2rem,2.5vw,1.8rem)] font-bold tracking-[0.2em] text-white mb-2.5 uppercase max-md:text-[0.9rem] max-md:mb-2 max-[430px]:text-[0.85rem] max-[430px]:mb-1.5 max-[375px]:text-[0.8rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.75rem] max-[320px]:tracking-[0.1em]">
-            Saturday 19 September
+            FRIDAY 27 NOVEMBER
           </div>
           <div className="hero-time font-helvetica text-[clamp(1rem,2vw,1.4rem)] font-normal tracking-[0.15em] text-white/90 uppercase max-md:text-[0.8rem] max-md:tracking-[0.1em] max-[430px]:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.08em] max-[320px]:text-[0.65rem]">
-            9pm – Late | PELICANO, POTTS POINT
+            7:30PM - 11:45PM | SEADECK, KING STREET WHARF 9
           </div>
 
           {/* Countdown Timer */}
