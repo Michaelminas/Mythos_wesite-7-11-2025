@@ -6,76 +6,55 @@ import { TICKET_URL, INSTAGRAM_EMBED_URL } from './config'
 import './globals.css'
 
 export default function Home() {
-  const [countdown, setCountdown] = useState('')
-  const [eventStatus, setEventStatus] = useState<'upcoming' | 'live' | 'ended'>('upcoming')
   const [formSubmitted, setFormSubmitted] = useState(false)
   const [videosLoaded, setVideosLoaded] = useState(false)
 
   // JSON-LD Structured Data for SEO
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "MusicEvent",
-        "name": "MYTHOS - House Meets Heritage",
-        "description": "Experience MYTHOS - Sydney's modern European nightlife at Pelicano, Potts Point. Live Greek music, European anthems, and high-energy performances.",
-        "startDate": "2026-05-29T20:00:00+10:00",
-        "endDate": "2026-05-30T02:00:00+10:00",
-        "eventStatus": "https://schema.org/EventScheduled",
-        "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-        "location": {
-          "@type": "Place",
-          "name": "Pelicano",
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "11/13 Springfield Avenue",
-            "addressLocality": "Potts Point",
-            "addressRegion": "NSW",
-            "postalCode": "2011",
-            "addressCountry": "AU"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": "-33.8712",
-            "longitude": "151.2231"
-          }
-        },
-        "image": "https://mythosentertainment.com.au/mythos-branding/mythos-o-no-bg.png",
-        "organizer": {
-          "@type": "Organization",
-          "name": "MYTHOS Entertainment",
-          "url": "https://mythosentertainment.com.au"
-        },
-        "offers": {
-          "@type": "Offer",
-          "priceCurrency": "AUD",
-          "availability": "https://schema.org/InStock",
-          "validFrom": "2026-04-10T00:00:00+10:00"
-        }
-      },
-      {
-        "@type": "Organization",
-        "name": "MYTHOS Entertainment",
-        "url": "https://mythosentertainment.com.au",
-        "logo": "https://mythosentertainment.com.au/mythos-branding/mythos-o-no-bg.png",
-        "sameAs": [
-          "https://www.instagram.com/mythosentertainment.com.au"
-        ]
-      },
-      {
-        "@type": "NightClub",
-        "name": "Pelicano",
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "MusicEvent",
+      "name": "MYTHOS | WHITE BOAT PARTY | SEADECK",
+      "description": "MYTHOS takes over SEADECK for our first event on Sydney Harbour, bringing Greek, Eurohouse and Ibiza anthems to the water. The theme is WHITE.",
+      "startDate": "2026-11-27T19:30:00+11:00",
+      "endDate": "2026-11-27T23:45:00+11:00",
+      "eventStatus": "https://schema.org/EventScheduled",
+      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
+      "location": {
+        "@type": "Place",
+        "name": "SEADECK - King Street Wharf 9",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "11/13 Springfield Avenue",
-          "addressLocality": "Potts Point",
+          "streetAddress": "King Street Wharf 9, Lime Street",
+          "addressLocality": "Sydney",
           "addressRegion": "NSW",
-          "postalCode": "2011",
+          "postalCode": "2000",
           "addressCountry": "AU"
         }
+      },
+      "image": "https://www.mythosentertainment.com.au/mythos-branding/mythos-o-no-bg.png",
+      "organizer": {
+        "@type": "Organization",
+        "name": "MYTHOS Entertainment",
+        "url": "https://www.mythosentertainment.com.au"
+      },
+      "offers": {
+        "@type": "Offer",
+        "priceCurrency": "AUD",
+        "availability": "https://schema.org/InStock",
+        "url": TICKET_URL,
+        "validFrom": "2026-10-15T00:00:00+11:00"
       }
-    ]
-  }
+    },
+    {
+      "@type": "Organization",
+      "name": "MYTHOS Entertainment",
+      "url": "https://www.mythosentertainment.com.au",
+      "logo": "https://www.mythosentertainment.com.au/mythos-branding/mythos-o-no-bg.png"
+    }
+  ]
+}
   const [formLoading, setFormLoading] = useState(false)
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -106,48 +85,7 @@ export default function Home() {
       setFormLoading(false)
     }
   }
-
-  // Countdown timer - optimized to prevent unnecessary re-renders
-  useEffect(() => {
-    const updateCountdown = () => {
-      // Event: Friday 29 May 2026, 8:00pm - 2:00am (Pelicano, Potts Point)
-      const eventStart = new Date('2026-09-19T21:00:00')
-      const eventEnd = new Date('2026-09-20T03:00:00')
-      const now = new Date()
-
-      if (now >= eventStart && now <= eventEnd) {
-        // Event is happening now
-        setEventStatus('live')
-        setCountdown('EVENT HAPPENING NOW!')
-      } else if (now > eventEnd) {
-        // Event has ended
-        setEventStatus('ended')
-        setCountdown('Event has concluded')
-      } else {
-        // Event is upcoming - show countdown
-        setEventStatus('upcoming')
-        const diff = eventStart.getTime() - now.getTime()
-
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24))
-        const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60))
-        const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60))
-        const seconds = Math.floor((diff % (1000 * 60)) / 1000)
-
-        const newCountdown = days > 0
-          ? `${days}d ${hours}h ${minutes}m ${seconds}s`
-          : hours > 0
-            ? `${hours}h ${minutes}m ${seconds}s`
-            : `${minutes}m ${seconds}s`
-
-        setCountdown(newCountdown)
-      }
-    }
-
-    updateCountdown()
-    const interval = setInterval(updateCountdown, 1000)
-
-    return () => clearInterval(interval)
-  }, [])
+  
   useEffect(() => {
     // Load videos after page loads for better performance
     setTimeout(() => setVideosLoaded(true), 100)
@@ -400,37 +338,14 @@ export default function Home() {
             7:30PM - 11:45PM | SEADECK, KING STREET WHARF 9
           </div>
 
-          {/* Countdown Timer */}
-          {countdown && (
-            <div className="hero-countdown mt-3 -mb-12 max-md:mt-2 max-md:-mb-10">
-              <div className="inline-block bg-gradient-to-br from-bronze/30 via-bronze/20 to-bronze/30 backdrop-blur-lg border-2 border-bronze/60 shadow-[0_6px_24px_rgba(150,105,76,0.35)] px-8 py-4 max-md:px-6 max-md:py-3 max-[430px]:px-5 max-[430px]:py-2.5 transition-all duration-300 hover:shadow-[0_8px_32px_rgba(150,105,76,0.5)] hover:border-bronze/80">
-                <div className="font-helvetica text-[clamp(1.4rem,3vw,2.2rem)] font-bold text-white tracking-[0.15em] mb-1.5 max-md:text-[1.2rem] max-md:mb-1 max-[430px]:text-[1rem] max-[430px]:mb-0.5 max-[375px]:text-[0.95rem]" style={{ textShadow: '0 2px 10px rgba(150,105,76,0.5)' }}>
-                  {countdown}
-                </div>
-                {eventStatus === 'upcoming' && (
-                  <div className="font-helvetica text-[clamp(0.7rem,1.3vw,0.85rem)] text-beige/90 tracking-[0.2em] uppercase font-semibold max-md:text-[0.65rem] max-[430px]:text-[0.6rem]">
-                    Until Event Starts
-                  </div>
-                )}
-              </div>
-            </div>
-          )}
-
           <a
-            href={TICKET_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className={`hero-cta inline-block mt-[60px] px-[50px] py-[18px] no-underline font-helvetica font-semibold tracking-[0.2em] text-base uppercase rounded-full transition-all duration-400 max-md:px-[30px] max-md:py-3 max-md:text-[0.85rem] max-md:tracking-[0.15em] max-md:mt-[50px] max-[430px]:px-[25px] max-[430px]:py-2.5 max-[430px]:text-[0.8rem] max-[430px]:mt-[45px] max-[375px]:px-[22px] max-[375px]:py-2 max-[375px]:text-[0.75rem] max-[375px]:tracking-[0.1em] max-[320px]:px-[20px] max-[320px]:py-1.5 max-[320px]:text-[0.7rem] ${
-              eventStatus === 'live'
-                ? 'bg-bronze text-white shadow-[0_8px_30px_rgba(150,105,76,0.8)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(150,105,76,1)] animate-pulse'
-                : eventStatus === 'ended'
-                ? 'bg-gray-600 text-white/50 cursor-not-allowed shadow-[0_4px_20px_rgba(0,0,0,0.3)]'
-                : 'bg-bronze text-white shadow-[0_8px_30px_rgba(150,105,76,0.5)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(150,105,76,0.7)]'
-            }`}
-            {...(eventStatus === 'ended' ? { onClick: (e: React.MouseEvent) => e.preventDefault() } : {})}
-          >
-            {eventStatus === 'live' ? 'Get Tickets Now!' : eventStatus === 'ended' ? 'Event Ended' : 'Get Tickets'}
-          </a>
+  href={TICKET_URL}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="hero-cta inline-block mt-[60px] px-[50px] py-[18px] no-underline font-helvetica font-semibold tracking-[0.2em] text-base uppercase bg-bronze text-white shadow-[0_8px_30px_rgba(150,105,76,0.8)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(150,105,76,1)]"
+>
+  Get Tickets
+</a>
         </div>
       </section>
 
