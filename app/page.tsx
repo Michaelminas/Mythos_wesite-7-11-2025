@@ -534,8 +534,35 @@ export default function Home() {
         <div className="max-w-[1200px] mx-auto">
           <h3 className="font-helvetica text-[1.5rem] font-bold mb-6 text-bronze uppercase">Sponsored By</h3>
           <div className="flex items-center justify-center gap-12 max-md:gap-8 max-[425px]:gap-6">
-            <Image src="/Sponsors/bayvista-logo.png" alt="Bayvista - Official Sponsor of MYTHOS Sydney" width={120} height={60} className="h-[60px] w-auto object-contain max-md:h-[50px] max-[425px]:h-[40px]" />
-            <Image src="/Sponsors/nieos-grille-logo.png" alt="Nieos Grille - Official Sponsor of MYTHOS Sydney" width={120} height={60} className="h-[60px] w-auto object-contain max-md:h-[50px] max-[425px]:h-[40px]" />
+           <a
+  href="https://www.bayvista.com.au/"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Visit Bay Vista website"
+>
+  <Image
+    src="/Sponsors/bayvista-logo.png"
+    alt="BayVista – Official Sponsor of MYTHOS Sydney"
+    width={120}
+    height={60}
+    className="h-[60px] w-auto"
+  />
+</a>
+
+<a
+  href="https://www.nieosgrille.com.au/"
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label="Visit NIEO'S Grille website"
+>
+  <Image
+    src="/Sponsors/nieos-grille-logo.png"
+    alt="Nieos Grille – Official Sponsor of MYTHOS Sydney"
+    width={120}
+    height={60}
+    className="h-[60px] w-auto"
+  />
+</a>
           </div>
         </div>
       </section>
