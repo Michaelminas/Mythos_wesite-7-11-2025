@@ -462,13 +462,14 @@ export default function Home() {
             {/* Description Text - Right side on desktop, bottom on mobile */}
             <div className="flex-1 flex flex-col justify-center text-left max-md:text-center">
               <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] mb-6 font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-                After our last SOLD OUT event MYTHOS returns to Pelicano, now taking over both the rooftop and club room for a FULL VENUE takeover.
+                On 27 November, MYTHOS takes over SEADECK for our first event on Sydney Harbour. Set against the city skyline, we’re bringing Greek, Eurohouse and Ibiza Anthems to the water for one of our biggest nights yet.
               </p>
               <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] mb-6 font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-                Experience live Greek music, European anthems, and high-energy performances from dancers and live acts. Every set blends the best of Europe and Greece, creating a night built for rhythm,&nbsp;energy, and&nbsp;connection.
+                Expect the full MYTHOS lineup of DJs and live acts, with the music moving across Greece, Europe and Ibiza throughout the night. All of it aboard one of Sydney’s most recognised floating venues.
               </p>
               <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-                Join us for a full sensory takeover with world-class sound, lighting, and production that defines the&nbsp;Mythos&nbsp;experience.
+                The theme is WHITE. Dress in your best white.
+                Summer is here. See you on the harbour.
               </p>
             </div>
           </div>
