@@ -1,3 +1,4 @@
+import './globals.css'
 import type { Metadata, Viewport } from 'next'
 import { TICKET_DOMAIN } from './config'
 
