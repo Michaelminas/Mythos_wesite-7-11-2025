@@ -126,9 +126,9 @@ export default function PlanningPage() {
         }
       `}</style>
 
-      <div className="planning-page">
+      <div className="planning-page pt-[80px]">
         {/* NAVIGATION */}
-        <header className="sticky top-0 z-50 border-b border-[#D9CDC0] bg-[#F5F1EA]/95 backdrop-blur">
+        <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#D9CDC0] bg-[#F5F1EA]/95 backdrop-blur">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5 md:px-12">
             <a
               href="/"
