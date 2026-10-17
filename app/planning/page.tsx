@@ -159,14 +159,16 @@ export default function PlanningPage() {
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5 md:px-12">
             <a
               href="/"
-              className="text-xs uppercase tracking-[0.18em] text-[#96694C]"
+              aria-label="MYTHOS Planning — visit MYTHOS Entertainment"
+              className="flex shrink-0 flex-col items-start gap-1.5"
             >
-              MYTHOS ENTERTAINMENT
+              <img src="/mythos-branding/logo-final.png" alt="MYTHOS" width="160" height="23" className="h-auto w-32 sm:w-40" />
+              <span className="text-[9px] uppercase tracking-[0.3em] text-[#96694C]">Planning</span>
             </a>
 
             <a
               href="#enquiry"
-              className="bg-[#96694C] px-5 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-[#754B35]"
+              className="shrink-0 whitespace-nowrap bg-[#96694C] px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-[#754B35]"
             >
               Plan Your Event
             </a>
@@ -180,7 +182,7 @@ export default function PlanningPage() {
 
           <div className="relative mx-auto w-full max-w-7xl">
             <p className="mb-8 text-xs uppercase tracking-[0.35em] text-[#96694C]">
-              MYTHOS PLANNING
+              MYTHOS PLANNING · SYDNEY
             </p>
 
             <h1 className="editorial max-w-4xl text-5xl leading-[1.08] md:text-7xl lg:text-8xl">
@@ -251,9 +253,7 @@ export default function PlanningPage() {
                 <p className="text-xs uppercase tracking-[0.3em] text-[#96694C]">
                   The People Behind The Moments
                 </p>
-                <p className="editorial mt-6 text-5xl italic text-[#96694C]">
-                  MYTHOS
-                </p>
+                <img src="/mythos-branding/logo-final.png" alt="MYTHOS" width="320" height="46" loading="lazy" className="mx-auto mt-8 h-auto w-full max-w-xs" />
                 <p className="mt-3 text-xs uppercase tracking-[0.3em]">
                   Planning
                 </p>
@@ -569,7 +569,7 @@ export default function PlanningPage() {
         <footer className="bg-[#49362D] px-6 py-14 text-[#F5F1EA] md:px-12">
           <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-end">
             <div>
-              <p className="editorial text-3xl">MYTHOS</p>
+              <img src="/mythos-branding/logo-final.png" alt="MYTHOS" width="180" height="26" loading="lazy" className="h-auto w-44 brightness-0 invert" />
               <p className="mt-2 text-xs uppercase tracking-[0.3em]">
                 Planning
               </p>
