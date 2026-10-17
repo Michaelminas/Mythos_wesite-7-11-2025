@@ -78,3 +78,5 @@
 @media(max-width:700px){.sectionAside{margin-top:28px;margin-left:auto;max-width:390px;padding-top:16px}.sectionAside p{font-size:20px}.sponsors img{width:130px;max-width:130px;height:42px}}
 
 .posterDetails summary{list-style:none}.posterDetails summary::-webkit-details-marker{display:none}.posterDetails summary::marker{content:""}
+
+.hero{overflow:clip}.heroImage{will-change:transform}@media(prefers-reduced-motion:reduce){.heroImage{transform:none!important;will-change:auto}}

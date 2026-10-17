@@ -5,6 +5,7 @@ import { pastEvents } from './events-data'
 import VipForm from './components/VipForm'
 import Reveal from './components/Reveal'
 import SiteHeader from './components/SiteHeader'
+import HeroImage from './components/HeroImage'
 import styles from './refresh.module.css'
 
 const event = {
@@ -33,7 +34,7 @@ export default function Home() {
     <SiteHeader overlay />
     <main id="main">
       <section id="event-hero" className={styles.hero} aria-labelledby="event-title">
-        <Image src="/seadeck/white-boat-party-ocean.webp" alt="" fill priority sizes="100vw" className={styles.heroImage} />
+        <HeroImage />
         <div className={styles.heroShade} />
         <div className={styles.heroContent}>
           <p className={styles.eyebrow}>MYTHOS PRESENTS · FRIDAY 27 NOVEMBER 2026</p>
