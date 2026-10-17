@@ -269,7 +269,7 @@ export default function PlanningPage() {
             </h1>
             <div aria-hidden="true" className="mx-auto my-7 h-px w-20 bg-[#96694C]/80 md:my-9" />
             <p className="text-[10px] uppercase leading-6 tracking-[0.28em] text-[#49362D] sm:text-xs md:tracking-[0.38em]">Event Planning &amp; Experiences</p>
-            <a href="#enquiry" className="mt-8 inline-flex min-h-12 items-center justify-center bg-[#834B2C] px-8 py-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#65371F]">Plan Your Event <span aria-hidden="true" className="ml-4">→</span></a>
+            <a href="#enquiry" className="mt-8 inline-flex min-h-12 items-center justify-center bg-[#834B2C] px-8 py-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#65371F]">Plan Your Event</a>
           </div>
         </section>
 
