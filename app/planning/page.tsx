@@ -248,8 +248,8 @@ export default function PlanningPage() {
             </a>
             <nav aria-label="Planning sections" className="hidden items-center gap-6 text-[10px] uppercase tracking-[0.16em] text-[#49362D] lg:flex">
               <a href="#services" tabIndex={headerVisible ? undefined : -1}>Services</a>
-              <a href="#work" tabIndex={headerVisible ? undefined : -1}>Our Work</a>
               <a href="#about" tabIndex={headerVisible ? undefined : -1}>About</a>
+              <a href="#work" tabIndex={headerVisible ? undefined : -1}>Our Work</a>
               <a href="#enquiry" tabIndex={headerVisible ? undefined : -1}>Contact</a>
             </nav>
             <a href="#enquiry" tabIndex={headerVisible ? undefined : -1} className="shrink-0 whitespace-nowrap bg-[#834B2C] px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-[#65371F]">Plan Your Event</a>
