@@ -54,6 +54,8 @@ const supportOptions = [
 
 export default function PlanningPage() {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [booked, setBooked] = useState<string[]>([]);
   const [support, setSupport] = useState<string[]>([]);
 
@@ -69,11 +71,28 @@ export default function PlanningPage() {
     );
   }
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-
-    // Preview mode only. Connect to Formspree before launch.
-    setSubmitted(true);
+    if (submitting) return;
+    const data = new FormData(event.currentTarget);
+    data.set("alreadyBooked", booked.join(", ") || "Not specified");
+    data.set("supportNeeded", support.join(", ") || "Not specified");
+    data.set("_subject", "New MYTHOS Planning enquiry");
+    setSubmitting(true);
+    setSubmitError("");
+    try {
+      const response = await fetch("https://formspree.io/f/meaenjjy", {
+        method: "POST",
+        body: data,
+        headers: { Accept: "application/json" },
+      });
+      if (!response.ok) throw new Error("Submission failed");
+      setSubmitted(true);
+    } catch {
+      setSubmitError("We couldn't confirm your enquiry was sent. Please try again or email planning@mythosentertainment.com.au.");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   return (
@@ -324,27 +343,35 @@ export default function PlanningPage() {
             </div>
 
             {submitted ? (
-              <div className="border border-[#C7B4A3] bg-white/50 px-8 py-14 text-center">
+              <div role="status" aria-live="polite" className="border border-[#C7B4A3] bg-white/50 px-8 py-14 text-center">
                 <h3 className="editorial text-3xl">
-                  Preview complete
+                  Thank you for your enquiry
                 </h3>
                 <p className="mt-4 text-sm leading-7">
-                  The form design is working. Submissions are not being
-                  sent yet — we'll connect Formspree before launch.
+                  Your enquiry has been received. We'll be in touch to
+                  discuss your celebration and how we can help.
                 </p>
                 <button
                   type="button"
                   onClick={() => setSubmitted(false)}
                   className="mt-8 text-xs uppercase tracking-[0.2em] text-[#96694C] underline"
                 >
-                  Back to Form
+                  Send Another Enquiry
                 </button>
               </div>
             ) : (
               <form
                 onSubmit={handleSubmit}
+                action="https://formspree.io/f/meaenjjy"
+                method="POST"
+                aria-busy={submitting}
                 className="border border-[#D0BEAD] bg-white/35 p-6 shadow-sm md:p-12"
               >
+                <div className="hidden" aria-hidden="true">
+                  <label htmlFor="website">Leave this field empty</label>
+                  <input id="website" name="_gotcha" tabIndex={-1} autoComplete="off" />
+                </div>
+                <fieldset disabled={submitting}>
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
                     <label htmlFor="fullName">Full Name *</label>
@@ -519,16 +546,20 @@ export default function PlanningPage() {
                   </select>
                 </div>
 
+                {submitError && <p role="alert" className="mt-6 text-sm text-[#754B35]">{submitError}</p>}
+
                 <button
                   type="submit"
+                  disabled={submitting}
                   className="mt-10 w-full bg-[#96694C] px-8 py-5 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#754B35]"
                 >
-                  Preview Enquiry Submission →
+                  {submitting ? "Sending…" : "Send Enquiry →"}
                 </button>
 
                 <p className="mt-5 text-center text-xs text-[#887469]">
-                  Preview mode — no information is sent or stored.
+                  We use your details to respond to your enquiry.
                 </p>
+                </fieldset>
               </form>
             )}
           </div>
