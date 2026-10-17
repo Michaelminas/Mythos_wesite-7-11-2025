@@ -175,6 +175,16 @@ export default function PlanningPage() {
           outline-offset: 4px;
         }
 
+        @keyframes planning-entrance {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
+        @media (prefers-reduced-motion: no-preference) {
+          .planning-page .brand-hero {
+            animation: planning-entrance 1800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+          }
+        }
+
         .planning-page .brand-hero {
           background: radial-gradient(ellipse at 65% 30%, #fffaf1 0%, #f5ebdc 48%, #eaddca 100%);
         }
