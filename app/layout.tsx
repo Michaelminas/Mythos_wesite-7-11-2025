@@ -6,16 +6,16 @@ export const metadata: Metadata = {
   alternates: {
     canonical: '/',
   },
-  title: 'MYTHOS - House Meets Heritage',
-  description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Saturday 19 September, 9pm – Late at Pelicano, Potts Point',
-  keywords: 'MYTHOS, Sydney nightlife, Greek music, European anthems, Pelicano, Potts Point, VIP table booking',
+  title: 'MYTHOS White Boat Party | SEADECK | 27 November 2026',
+  description: 'Join MYTHOS aboard SEADECK on Friday 27 November 2026 for the White Boat Party on Sydney Harbour. Greek, Eurohouse and Ibiza anthems. Book tickets.',
+  keywords: 'MYTHOS, SEADECK, White Boat Party, 27 November 2026, Sydney Harbour, Greek music, Eurohouse, Ibiza anthems, boat party tickets',
   authors: [{ name: 'MYTHOS Entertainment' }],
   verification: {
     google: '_bSUsETV80XS12d_O4pxna5Reiw5WRB1VsdTP_OGQYQ',
   },
   openGraph: {
-    title: 'MYTHOS - House Meets Heritage',
-    description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Saturday 19 September, 9pm – Late at Pelicano, Potts Point',
+    title: 'MYTHOS White Boat Party | SEADECK | 27 November 2026',
+    description: 'Join MYTHOS aboard SEADECK on Friday 27 November 2026 for the White Boat Party on Sydney Harbour. Greek, Eurohouse and Ibiza anthems. Book tickets.',
     type: 'website',
     url: 'https://www.mythosentertainment.com.au',
     siteName: 'MYTHOS',
@@ -31,8 +31,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary',
-    title: 'MYTHOS - House Meets Heritage',
-    description: 'Experience MYTHOS - Sydney\'s modern European nightlife. Saturday 19 September, 9pm – Late at Pelicano, Potts Point',
+    title: 'MYTHOS White Boat Party | SEADECK | 27 November 2026',
+    description: 'Join MYTHOS aboard SEADECK on Friday 27 November 2026 for the White Boat Party on Sydney Harbour. Greek, Eurohouse and Ibiza anthems. Book tickets.',
     images: ['/mythos-branding/mythos-o-no-bg.png'],
   },
 }
