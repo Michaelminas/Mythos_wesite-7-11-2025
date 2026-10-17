@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import { TICKET_DOMAIN } from './config'
+import './base.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mythosentertainment.com.au'),
@@ -41,7 +42,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#96694c',
+  themeColor: '#171614',
 }
 
 export default function RootLayout({
@@ -65,8 +66,6 @@ export default function RootLayout({
 
         {/* Preload critical assets */}
         <link rel="preload" as="image" href="/mythos-branding/logo-final.png" />
-        <link rel="preload" as="video" href="/Videos/First half.webm" />
-        <link rel="preload" as="video" href="/Videos/Second half.webm" />
       </head>
       <body>{children}</body>
     </html>

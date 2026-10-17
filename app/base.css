@@ -1,0 +1,4 @@
+html { scroll-behavior: smooth; scroll-padding-top: 100px; background: #171614; }
+body { margin: 0; }
+@media (max-width: 600px) { html { scroll-padding-top: 85px; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
