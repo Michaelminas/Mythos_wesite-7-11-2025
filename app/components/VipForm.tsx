@@ -33,7 +33,7 @@ export default function VipForm() {
       <p className={styles.formNote}>An enquiry is not a confirmed booking. Our team will be in touch.</p>
       <div role="status" aria-live="polite">
         {status === 'success' && <p>Thank you. Your VIP enquiry has been sent to MYTHOS.</p>}
-        {status === 'error' && <p>We couldn’t send your enquiry. Please try again or email <a href="mailto:mythosentertainmentgroup@gmail.com">mythosentertainmentgroup@gmail.com</a>.</p>}
+        {status === 'error' && <p>We couldn’t send your enquiry. Please try again or email <a href="mailto:planning@mythosentertainment.com.au">planning@mythosentertainment.com.au</a>.</p>}
       </div>
     </form>
   )

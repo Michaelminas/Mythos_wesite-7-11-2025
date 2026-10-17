@@ -9,3 +9,7 @@ SEADECK campaign hero: supplied Pexels ocean photograph, converted from Display 
 Event: Friday 27 November 2026. Arrive 7:30PM. Event 7:45PM–11:45PM. King Street Wharf 9, Darling Harbour, Sydney. Theme: white. Ticket destination remains the existing official Eventbrite listing. Website metadata and structured data use the event start of 7:45PM.
 
 Past-event photography remains matched to AURA (22 August 2025), HOME THE VENUE (19 December 2025), PELICANO rooftop (29 May 2026) and PELICANO full venue takeover (19 September 2026). Keep venue promotional assets distinct from past MYTHOS event photography. SSD originals and supplied PDF originals are unchanged.
+
+## Album and navigation update
+
+Each of the four archive albums contains 16 selected photos from its existing watermarked export set. The full frame and original watermark are preserved in optimized WebP copies. Cover images also use the watermarked exports. Do not substitute unwatermarked versions in the archive. Section numbering and album edition numbers are omitted. Contact links use planning@mythosentertainment.com.au; the existing Formspree routing is unchanged. The home header overlays the hero transparently, fades to black over the final 180px of the hero, and remains black below it. Scroll handling is passive and scheduled with requestAnimationFrame; reduced-motion preferences disable transitions.

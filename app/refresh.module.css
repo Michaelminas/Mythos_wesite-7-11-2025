@@ -49,3 +49,11 @@
 @media(max-width:900px){.hero{min-height:calc(100svh - 76px);padding-top:30px}.hero h1{font-size:11.3vw}.vesselSection{padding:65px 6%;gap:5%}}
 @media(max-width:600px){.hero{min-height:calc(100svh - 70px);padding:35px 6% 68px}.heroContent{padding-top:10px}.heroImage{object-position:50% 48%}.hero .eyebrow{font-size:8px;letter-spacing:.15em;margin-bottom:36px!important}.hero h1{font-size:16.9vw;line-height:.94}.hero h1 span:first-child{font-size:1.2em}.hero h1 span:last-child{max-width:5em;margin:0 auto}.heroBottom{margin-top:34px;margin-bottom:20px;gap:0;align-items:center}.seadeck{font-size:25px}.heroMeta{font-size:8px;letter-spacing:.08em}.heroTiming{font-size:10px;line-height:1.8}.heroTiming span{display:block;margin-left:0}.heroBottom .button{width:auto;min-width:240px;margin-top:25px}.heroFoot{padding:16px 0;font-size:9px}.heroFoot span:first-child{font-size:8px}.site h2{font-size:40px}.vesselSection{grid-template-columns:1fr;padding:55px 6%;gap:30px}.vesselCopy h2 br{display:none}.vesselCopy h2{font-size:38px;max-width:320px;word-spacing:.08em}.vesselCopy h2{line-height:1.1}.mobileTickets{background:#231f20f5}.mobileTickets a{border-radius:3px}.archiveHero h1{font-weight:700}.closing h2{font-size:46px}}
 @media(prefers-reduced-motion:reduce){.site *{animation:none!important;transition:none!important}}
+
+/* The home header overlays the hero, then settles into black at the next section. */
+.overlayHeader{--header-opacity:0;position:fixed;inset:0 0 auto;background:rgba(35,31,32,var(--header-opacity));backdrop-filter:blur(calc(var(--header-opacity) * 16px));border-bottom-color:rgba(255,255,255,calc(var(--header-opacity) * .12));transition:background-color .55s ease,border-color .55s ease,backdrop-filter .55s ease}
+.hero{min-height:100svh;padding-top:112px}
+.archiveImage{height:auto;aspect-ratio:3/2}.archiveImage img{object-fit:contain}
+@media(max-width:900px){.hero{min-height:100svh;padding-top:98px}}
+@media(max-width:600px){.hero{min-height:100svh;padding-top:105px}.archiveImage{height:auto;aspect-ratio:3/2}}
+@media(prefers-reduced-motion:reduce){.overlayHeader{transition:none}}
