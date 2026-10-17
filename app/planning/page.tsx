@@ -156,9 +156,9 @@ export default function PlanningPage() {
 
         @media (prefers-reduced-motion: no-preference) {
           .planning-page [data-reveal] {
-            transition: opacity 650ms ease, transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+            transition: opacity 1200ms cubic-bezier(0.22, 1, 0.36, 1), transform 1400ms cubic-bezier(0.22, 1, 0.36, 1);
           }
-          .planning-page .reveal-pending { opacity: 0; transform: translateY(18px); }
+          .planning-page .reveal-pending { opacity: 0; transform: translateY(12px); }
           .planning-page .reveal-pending:focus-within { opacity: 1; transform: none; }
         }
         @media (prefers-reduced-motion: reduce) {
@@ -239,7 +239,7 @@ export default function PlanningPage() {
         {/* SCROLL HEADER */}
         <header
           aria-hidden={!headerVisible}
-          className={`fixed top-0 left-0 right-0 z-50 border-b border-[#D9CDC0]/60 bg-[#F5F1EA]/95 backdrop-blur-md transition-[opacity,transform] duration-500 ${headerVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"}`}
+          className={`fixed top-0 left-0 right-0 z-50 border-b border-[#D9CDC0]/60 bg-[#F5F1EA]/95 backdrop-blur-md transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${headerVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"}`}
         >
           <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-5 md:px-12">
             <a href="#top" tabIndex={headerVisible ? undefined : -1} aria-label="MYTHOS Planning — back to top" className="flex shrink-0 flex-col items-center gap-1.5">
