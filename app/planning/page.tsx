@@ -198,55 +198,6 @@ export default function PlanningPage() {
           background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Cpath fill='%23836a50' filter='url(%23n)' opacity='.55' d='M0 0h180v180H0z'/%3E%3C/svg%3E");
         }
 
-        .planning-page section:not(.brand-hero), .planning-page footer {
-          position: relative;
-          isolation: isolate;
-          overflow: clip;
-        }
-        .planning-page section:not(.brand-hero) > div, .planning-page footer > div {
-          position: relative;
-          z-index: 1;
-        }
-        .planning-page section:not(.brand-hero)::after, .planning-page footer::after {
-          content: "";
-          position: absolute;
-          pointer-events: none;
-          z-index: 0;
-          top: 24px;
-          right: -45px;
-          width: clamp(170px, 20vw, 280px);
-          height: 420px;
-          background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20240%20420%22%20fill%3D%22none%22%3E%3Cg%20stroke%3D%22%23756449%22%20stroke-width%3D%221.6%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpath%20d%3D%22M30%20430C65%20330%2075%20255%20116%20184S166%2070%20183%207M87%20250C59%20223%2032%20190%2017%20150M124%20169C157%20159%20188%20143%20220%20115M66%20330C103%20316%20140%20287%20167%20255%22%2F%3E%3Cpath%20d%3D%22M178%2036Q150%2016%20169%200Q190%2013%20178%2036ZM168%2065Q194%2033%20210%2040Q207%2065%20168%2065ZM153%20103Q125%2078%20142%2061Q166%2079%20153%20103ZM142%20127Q173%2095%20189%20105Q180%20131%20142%20127ZM121%20174Q96%20147%20110%20129Q133%20147%20121%20174ZM106%20204Q137%20182%20153%20194Q143%20216%20106%20204ZM91%20244Q68%20214%2080%20200Q105%20218%2091%20244ZM77%20284Q106%20258%20121%20272Q110%20296%2077%20284ZM63%20329Q39%20303%2049%20285Q72%20301%2063%20329ZM49%20374Q80%20344%2097%20355Q89%20381%2049%20374ZM53%20200Q26%20204%2017%20183Q38%20175%2053%20200ZM34%20174Q41%20148%2026%20136Q10%20150%2034%20174ZM172%20147Q174%20122%20192%20119Q204%20137%20172%20147ZM204%20127Q205%2099%20225%2091Q240%20110%20204%20127ZM125%20291Q127%20265%20145%20262Q155%20282%20125%20291ZM153%20270Q152%20244%20171%20232Q185%20251%20153%20270Z%22%2F%3E%3Cellipse%20cx%3D%22101%22%20cy%3D%22232%22%20rx%3D%225%22%20ry%3D%228%22%20fill%3D%22%23756449%22%20stroke%3D%22none%22%2F%3E%3Cellipse%20cx%3D%22152%22%20cy%3D%22151%22%20rx%3D%225%22%20ry%3D%228%22%20fill%3D%22%23756449%22%20stroke%3D%22none%22%2F%3E%3C%2Fg%3E%3C%2Fsvg%3E") center / contain no-repeat;
-          opacity: 0.16;
-          transform: rotate(-12deg);
-        }
-        .planning-page #about::after, .planning-page #enquiry::after {
-          left: -55px;
-          right: auto;
-          transform: scaleX(-1) rotate(-12deg);
-          opacity: 0.12;
-        }
-        .planning-page footer::after {
-          top: auto;
-          bottom: -100px;
-          opacity: 0.12;
-          filter: brightness(0) invert(1);
-        }
-        .planning-page h2::after {
-          content: "";
-          display: block;
-          width: 76px;
-          height: 26px;
-          margin-top: 22px;
-          background: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%2032%22%20fill%3D%22none%22%20stroke%3D%22%238c7655%22%20stroke-width%3D%221.2%22%20stroke-linecap%3D%22round%22%3E%3Cpath%20d%3D%22M4%2028Q45%2022%2094%204M27%2023Q18%208%2032%207Q43%2016%2027%2023ZM45%2018Q40%203%2053%202Q63%2011%2045%2018ZM63%2012Q74%2028%2083%2017Q80%207%2063%2012Z%22%2F%3E%3C%2Fsvg%3E") center / contain no-repeat;
-          opacity: 0.8;
-        }
-        .planning-page #enquiry h2::after { margin-left: auto; margin-right: auto; }
-        @media (max-width: 600px) {
-          .planning-page section:not(.brand-hero)::after { width: 160px; height: 300px; opacity: 0.09; right: -65px; }
-          .planning-page #about::after, .planning-page #enquiry::after { left: -75px; right: auto; }
-        }
-
         .planning-page .olive-shadow { color: #756449; opacity: 0.22; filter: blur(6px); transform: rotate(-9deg); }
         @media (max-width: 600px) {
           .planning-page .olive-shadow { opacity: 0.13; left: -150px; }
