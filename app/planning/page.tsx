@@ -79,8 +79,16 @@ export default function PlanningPage() {
   return (
     <main className="min-h-screen bg-[#F5F1EA] text-[#49362D]">
       <style jsx global>{`
-        html {
-          scroll-behavior: smooth;
+        @media (prefers-reduced-motion: no-preference) {
+          html:has(.planning-page) { scroll-behavior: smooth; }
+        }
+
+        .planning-page section[id] { scroll-margin-top: 96px; }
+
+        .planning-page a:focus-visible,
+        .planning-page button:focus-visible {
+          outline: 2px solid #754b35;
+          outline-offset: 4px;
         }
 
         .planning-page {
@@ -168,6 +176,13 @@ export default function PlanningPage() {
               Thoughtful event planning for life's most meaningful
               celebrations. Beautifully considered, effortlessly experienced.
             </p>
+
+            <a
+              href="#enquiry"
+              className="mt-10 mr-6 inline-block bg-[#96694C] px-6 py-4 text-xs font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-[#754B35]"
+            >
+              Plan Your Event
+            </a>
 
             <a
               href="#services"
@@ -333,24 +348,25 @@ export default function PlanningPage() {
                 <div className="grid gap-6 md:grid-cols-2">
                   <div>
                     <label htmlFor="fullName">Full Name *</label>
-                    <input id="fullName" name="fullName" required />
+                    <input id="fullName" name="fullName" autoComplete="name" required />
                   </div>
                   <div>
                     <label htmlFor="email">Email *</label>
                     <input
                       id="email"
                       name="email"
+                      autoComplete="email"
                       type="email"
                       required
                     />
                   </div>
                   <div>
-                    <label htmlFor="phone">Phone *</label>
+                    <label htmlFor="phone">Phone (optional)</label>
                     <input
                       id="phone"
                       name="phone"
+                      autoComplete="tel"
                       type="tel"
-                      required
                     />
                   </div>
                   <div>
