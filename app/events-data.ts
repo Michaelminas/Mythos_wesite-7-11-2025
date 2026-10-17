@@ -29,7 +29,6 @@ export const pastEvents = [
       "wm-takeover-full-dsc00540",
       "wm-takeover-full-dsc00549",
       "wm-takeover-full-dsc00550",
-      "wm-takeover-full-dsc00552",
       "wm-takeover-full-dsc00554",
       "wm-takeover-full-dsc00556",
       "wm-takeover-full-dsc00557",
@@ -152,8 +151,6 @@ export const pastEvents = [
       "wm-takeover-full-pelicano 19th sep-21",
       "wm-takeover-full-pelicano 19th sep-22",
       "wm-takeover-full-pelicano 19th sep-23",
-      "wm-takeover-full-pelicano 19th sep-24",
-      "wm-takeover-full-pelicano 19th sep-25",
       "wm-takeover-full-pelicano 19th sep-26",
       "wm-takeover-full-pelicano 19th sep-28",
       "wm-takeover-full-pelicano 19th sep-3",
@@ -3285,11 +3282,6 @@ export const photoDetails: Record<string, { width: number; height: number; alt: 
     "height": 933,
     "alt": "MYTHOS at PELICANO, 19 September 2026 \u2014 watermarked event photograph"
   },
-  "wm-takeover-full-dsc00552": {
-    "width": 1400,
-    "height": 933,
-    "alt": "MYTHOS at PELICANO, 19 September 2026 \u2014 watermarked event photograph"
-  },
   "wm-takeover-full-dsc00554": {
     "width": 1400,
     "height": 933,
@@ -3896,16 +3888,6 @@ export const photoDetails: Record<string, { width: number; height: number; alt: 
     "alt": "MYTHOS at PELICANO, 19 September 2026 \u2014 watermarked event photograph"
   },
   "wm-takeover-full-pelicano 19th sep-23": {
-    "width": 933,
-    "height": 1400,
-    "alt": "MYTHOS at PELICANO, 19 September 2026 \u2014 watermarked event photograph"
-  },
-  "wm-takeover-full-pelicano 19th sep-24": {
-    "width": 933,
-    "height": 1400,
-    "alt": "MYTHOS at PELICANO, 19 September 2026 \u2014 watermarked event photograph"
-  },
-  "wm-takeover-full-pelicano 19th sep-25": {
     "width": 933,
     "height": 1400,
     "alt": "MYTHOS at PELICANO, 19 September 2026 \u2014 watermarked event photograph"

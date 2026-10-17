@@ -3,6 +3,8 @@
 import { useState, type FormEvent } from 'react'
 import styles from '../refresh.module.css'
 
+const VIP_FORM_ENDPOINT = 'https://formspree.io/f/mzedoqyn'
+
 export default function VipForm() {
   const [status, setStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle')
   async function submit(event: FormEvent<HTMLFormElement>) {
@@ -11,7 +13,7 @@ export default function VipForm() {
     const form = event.currentTarget
     setStatus('sending')
     try {
-      const response = await fetch('https://formspree.io/f/xdkynlwj', {
+      const response = await fetch(VIP_FORM_ENDPOINT, {
         method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' },
       })
       if (!response.ok) throw new Error('Unable to send')
@@ -20,8 +22,9 @@ export default function VipForm() {
     } catch { setStatus('error') }
   }
   return (
-    <form onSubmit={submit} action="https://formspree.io/f/xdkynlwj" method="POST" className={styles.form}>
-      <input type="hidden" name="event" value="MYTHOS White Boat Party — SEADECK, 27 November 2026" />
+    <form onSubmit={submit} action={VIP_FORM_ENDPOINT} method="POST" className={styles.form}>
+      <input type="hidden" name="_subject" value="MYTHOS Entertainment VIP enquiry" />
+      <input type="hidden" name="event" value="MYTHOS White Boat Party - SEADECK, 27 November 2026" />
       <div className={styles.fields}>
         <label>Full name<input name="name" autoComplete="name" required maxLength={120} /></label>
         <label>Email address<input name="email" type="email" autoComplete="email" required /></label>
