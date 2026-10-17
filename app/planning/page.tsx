@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent } from "react";
 
 const services = [
   {
@@ -53,6 +53,41 @@ const supportOptions = [
 ];
 
 export default function PlanningPage() {
+  const pageRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const root = pageRef.current;
+    const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
+    if (!root || preference.matches || !("IntersectionObserver" in window)) return;
+    const targets = root.querySelectorAll<HTMLElement>("[data-reveal]");
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove("reveal-pending");
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08 });
+    targets.forEach((target) => {
+      if (target.getBoundingClientRect().top >= window.innerHeight) {
+        target.classList.add("reveal-pending");
+        observer.observe(target);
+      }
+    });
+    const showAll = () => {
+      if (preference.matches) {
+        targets.forEach((target) => target.classList.remove("reveal-pending"));
+        observer.disconnect();
+      }
+    };
+    preference.addEventListener("change", showAll);
+    return () => {
+      observer.disconnect();
+      preference.removeEventListener("change", showAll);
+      targets.forEach((target) => target.classList.remove("reveal-pending"));
+    };
+  }, []);
+
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
@@ -104,6 +139,21 @@ export default function PlanningPage() {
 
         .planning-page section[id] { scroll-margin-top: 96px; }
 
+        @media (prefers-reduced-motion: no-preference) {
+          .planning-page [data-reveal] {
+            transition: opacity 650ms ease, transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+          }
+          .planning-page .reveal-pending { opacity: 0; transform: translateY(18px); }
+          .planning-page .reveal-pending:focus-within { opacity: 1; transform: none; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          html:has(.planning-page) { scroll-behavior: auto !important; }
+          .planning-page *, .planning-page *::before, .planning-page *::after {
+            animation: none !important;
+            transition: none !important;
+          }
+        }
+
         .planning-page a:focus-visible,
         .planning-page button:focus-visible {
           outline: 2px solid #754b35;
@@ -153,7 +203,7 @@ export default function PlanningPage() {
         }
       `}</style>
 
-      <div className="planning-page pt-[80px]">
+      <div ref={pageRef} className="planning-page pt-[80px]">
         {/* NAVIGATION */}
         <header className="fixed top-0 left-0 right-0 z-50 border-b border-[#D9CDC0] bg-[#F5F1EA]/95 backdrop-blur">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-5 py-5 md:px-12">
@@ -165,6 +215,12 @@ export default function PlanningPage() {
               <img src="/mythos-branding/logo-final.png" alt="MYTHOS" width="160" height="23" className="h-auto w-32 sm:w-40" />
               <span className="text-[9px] uppercase tracking-[0.3em] text-[#96694C]">Planning</span>
             </a>
+
+            <nav aria-label="Planning sections" className="hidden items-center gap-7 text-[10px] uppercase tracking-[0.16em] text-[#6B5549] lg:flex">
+              <a href="#services" className="transition hover:text-[#96694C]">Services</a>
+              <a href="#about" className="transition hover:text-[#96694C]">About</a>
+              <a href="#work" className="transition hover:text-[#96694C]">Our Work</a>
+            </nav>
 
             <a
               href="#enquiry"
@@ -216,7 +272,7 @@ export default function PlanningPage() {
 
         {/* SERVICES */}
         <section id="services" className="px-6 py-24 md:px-12 md:py-32">
-          <div className="mx-auto max-w-7xl">
+          <div data-reveal className="mx-auto max-w-7xl">
             <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#96694C]">
               What We Do
             </p>
@@ -247,7 +303,7 @@ export default function PlanningPage() {
 
         {/* ABOUT */}
         <section id="about" className="bg-[#E9DFD3] px-6 py-24 md:px-12 md:py-32">
-          <div className="mx-auto grid max-w-7xl items-center gap-14 md:grid-cols-2">
+          <div data-reveal className="mx-auto grid max-w-7xl items-center gap-14 md:grid-cols-2">
             <div className="flex aspect-[4/5] items-center justify-center border border-[#BCA58F] bg-[#D9C8B6] p-10 text-center">
               <div>
                 <p className="text-xs uppercase tracking-[0.3em] text-[#96694C]">
@@ -285,7 +341,7 @@ export default function PlanningPage() {
 
         {/* OUR WORK */}
         <section id="work" className="px-6 py-24 md:px-12 md:py-32">
-          <div className="mx-auto max-w-7xl">
+          <div data-reveal className="mx-auto max-w-7xl">
             <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#96694C]">
               Moments We've Created
             </p>
