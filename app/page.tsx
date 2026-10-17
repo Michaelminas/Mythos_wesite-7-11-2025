@@ -37,7 +37,7 @@ export default function Home() {
         <div className={styles.heroShade} />
         <div className={styles.heroContent}>
           <p className={styles.eyebrow}>MYTHOS PRESENTS · FRIDAY 27 NOVEMBER 2026</p>
-          <h1 id="event-title"><span>WHITE</span><span>BOAT PARTY</span></h1>
+          <h1 id="event-title" aria-label="White Boat Party"><span>WHITE</span><span>BOAT PART<span className={styles.partyY}>Y</span></span></h1>
           <div className={styles.heroBottom}>
             <p className={styles.seadeck}>SEADECK</p>
             <p className={styles.heroMeta}>SYDNEY HARBOUR · KING STREET WHARF 9</p>

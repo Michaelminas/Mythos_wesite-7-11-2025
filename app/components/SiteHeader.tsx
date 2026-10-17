@@ -15,7 +15,10 @@ export default function SiteHeader({ overlay = false }: { overlay?: boolean }) {
     let frame = 0
     const update = () => {
       frame = 0
-      const distance = hero.getBoundingClientRect().bottom - (header.current?.offsetHeight ?? 90)
+      const heroBottom = hero.getBoundingClientRect().bottom
+      const distance = heroBottom - (header.current?.offsetHeight ?? 90)
+      const shrinkProgress = Math.max(0, Math.min(1, (hero.offsetHeight - heroBottom) / Math.max(1, hero.offsetHeight * 0.7)))
+      header.current?.style.setProperty('--header-expansion', (1 - shrinkProgress).toFixed(3))
       const opacity = Math.max(0, Math.min(1, 1 - distance / 180))
       header.current?.style.setProperty('--header-opacity', opacity.toFixed(3))
     }
