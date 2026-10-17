@@ -1,512 +1,74 @@
-'use client'
-
-import { useEffect, useState } from 'react'
 import Image from 'next/image'
-import { TICKET_URL, INSTAGRAM_EMBED_URL } from './config'
-import './globals.css'
+import Link from 'next/link'
+import { TICKET_URL } from './config'
+import { pastEvents } from './events-data'
+import VipForm from './components/VipForm'
+import Reveal from './components/Reveal'
+import SiteHeader from './components/SiteHeader'
+import styles from './refresh.module.css'
+
+const event = {
+  '@context': 'https://schema.org', '@type': 'MusicEvent', name: 'MYTHOS | WHITE BOAT PARTY | SEADECK',
+  description: 'Greek, Eurohouse and Ibiza anthems aboard SEADECK on Sydney Harbour. The theme is WHITE.',
+  startDate: '2026-11-27T19:45:00+11:00', endDate: '2026-11-27T23:45:00+11:00',
+  eventStatus: 'https://schema.org/EventScheduled', eventAttendanceMode: 'https://schema.org/OfflineEventAttendanceMode',
+  location: { '@type': 'Place', name: 'SEADECK - King Street Wharf 9', address: { '@type': 'PostalAddress', streetAddress: 'King Street Wharf 9, Lime Street', addressLocality: 'Sydney', addressRegion: 'NSW', postalCode: '2000', addressCountry: 'AU' } },
+  image: 'https://www.mythosentertainment.com.au/mythos-branding/mythos-o-no-bg.png',
+  organizer: { '@type': 'Organization', name: 'MYTHOS Entertainment', url: 'https://www.mythosentertainment.com.au' },
+  offers: { '@type': 'Offer', url: TICKET_URL, priceCurrency: 'AUD', availability: 'https://schema.org/InStock' },
+}
+const faqs = [
+  ['When is the next MYTHOS event?', 'Friday 27 November 2026. Arrive at 7:30PM; the event runs from 7:45PM to 11:45PM.'],
+  ['Where is the event?', 'Aboard SEADECK on Sydney Harbour, at King Street Wharf 9, Sydney. Check your ticket and the organiser’s updates for boarding instructions.'],
+  ['What should I wear?', 'The theme is WHITE. Dress in your best white.'],
+  ['What music can I expect?', 'Greek, Eurohouse and Ibiza anthems, with DJs and live acts.'],
+  ['How do I enquire about VIP?', 'Send your group details using the VIP form. Our team will contact you about availability and options.'],
+]
 
 export default function Home() {
-  const [formSubmitted, setFormSubmitted] = useState(false)
-  const [videosLoaded, setVideosLoaded] = useState(false)
-
-  // JSON-LD Structured Data for SEO
-const structuredData = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "MusicEvent",
-      "name": "MYTHOS | WHITE BOAT PARTY | SEADECK",
-      "description": "MYTHOS takes over SEADECK for our first event on Sydney Harbour, bringing Greek, Eurohouse and Ibiza anthems to the water. The theme is WHITE.",
-      "startDate": "2026-11-27T19:30:00+11:00",
-      "endDate": "2026-11-27T23:45:00+11:00",
-      "eventStatus": "https://schema.org/EventScheduled",
-      "eventAttendanceMode": "https://schema.org/OfflineEventAttendanceMode",
-      "location": {
-        "@type": "Place",
-        "name": "SEADECK - King Street Wharf 9",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "King Street Wharf 9, Lime Street",
-          "addressLocality": "Sydney",
-          "addressRegion": "NSW",
-          "postalCode": "2000",
-          "addressCountry": "AU"
-        }
-      },
-      "image": "https://www.mythosentertainment.com.au/mythos-branding/mythos-o-no-bg.png",
-      "organizer": {
-        "@type": "Organization",
-        "name": "MYTHOS Entertainment",
-        "url": "https://www.mythosentertainment.com.au"
-      },
-      "offers": {
-        "@type": "Offer",
-        "priceCurrency": "AUD",
-        "availability": "https://schema.org/InStock",
-        "url": TICKET_URL,
-        "validFrom": "2026-10-15T00:00:00+11:00"
-      }
-    },
-    {
-      "@type": "Organization",
-      "name": "MYTHOS Entertainment",
-      "url": "https://www.mythosentertainment.com.au",
-      "logo": "https://www.mythosentertainment.com.au/mythos-branding/mythos-o-no-bg.png"
-    }
-  ]
-}
-  const [formLoading, setFormLoading] = useState(false)
-
-  const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault()
-    const form = e.currentTarget
-
-    setFormLoading(true)
-
-    try {
-      const response = await fetch('https://formspree.io/f/xdkynlwj', {
-        method: 'POST',
-        body: new FormData(form),
-        headers: {
-          'Accept': 'application/json'
-        }
-      })
-
-      if (response.ok) {
-        setFormSubmitted(true)
-        form.reset()
-        setTimeout(() => setFormSubmitted(false), 5000)
-      } else {
-        alert('There was an error submitting the form. Please try again.')
-      }
-    } catch (error) {
-      alert('There was an error submitting the form. Please try again.')
-    } finally {
-      setFormLoading(false)
-    }
-  }
-  
-  useEffect(() => {
-    // Load videos after page loads for better performance
-    setTimeout(() => setVideosLoaded(true), 100)
-
-    // Set default hero video speeds
-    const heroVideos = document.querySelectorAll('.hero-split video') as NodeListOf<HTMLVideoElement>
-    heroVideos.forEach((video) => {
-      video.playbackRate = 1
-    })
-
-    // Aggressive mobile video autoplay with iOS detection
-    const tryPlayMobileVideo = () => {
-      const mobileVideo = document.querySelector('.mobile-hero-video') as HTMLVideoElement
-      if (!mobileVideo) return
-
-      // Detect iOS
-      const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent)
-
-      // Set all possible attributes for compatibility
-      mobileVideo.setAttribute('playsinline', 'true')
-      mobileVideo.setAttribute('webkit-playsinline', 'true')
-      mobileVideo.setAttribute('x-webkit-airplay', 'allow')
-
-      // For iOS, we need to be even more aggressive
-      if (isIOS) {
-        mobileVideo.removeAttribute('controls')
-        mobileVideo.load()
-      }
-
-      // Attempt to autoplay muted video
-      const attemptPlay = () => {
-        mobileVideo.muted = true
-        mobileVideo.volume = 0
-
-        mobileVideo.play()
-          .then(() => {
-            console.log('Mobile video playing muted')
-          })
-          .catch(() => {
-            console.log('Autoplay blocked, waiting for user interaction')
-
-            // Add interaction listener as fallback
-            const playOnInteraction = () => {
-              mobileVideo.play().catch(() => console.log('Play failed'))
-            }
-
-            document.addEventListener('touchstart', playOnInteraction, { once: true, passive: true })
-            document.addEventListener('click', playOnInteraction, { once: true })
-          })
-      }
-
-      // Multiple rapid-fire attempts
-      attemptPlay()
-      setTimeout(attemptPlay, 100)
-      setTimeout(attemptPlay, 300)
-    }
-
-    // Start attempts immediately
-    if (typeof window !== 'undefined') {
-      tryPlayMobileVideo()
-
-      // Also try when page is fully loaded
-      if (document.readyState === 'complete') {
-        tryPlayMobileVideo()
-      } else {
-        window.addEventListener('load', tryPlayMobileVideo, { once: true })
-      }
-    }
-
-    // Seamless logo morph from center to sticky header
-    const heroContent = document.getElementById('heroContent')
-    const fixedTicketsBtn = document.querySelector('.fixed-tickets-btn')
-
-    const handleScroll = () => {
-      const scrollY = window.scrollY
-      const heroHeight = window.innerHeight
-      const transitionEnd = heroHeight * 0.6
-      const scrollPercent = Math.min(scrollY / transitionEnd, 1)
-
-      const startY = heroHeight * 0.03
-      const targetY = -(heroHeight / 2 - 80)
-      const currentY = startY + (targetY * scrollPercent)
-
-      const startScale = 1
-      const endScale = 0.35
-      const currentScale = startScale - ((startScale - endScale) * scrollPercent)
-
-      if (heroContent) {
-        heroContent.style.transform = `translate(-50%, -50%) translateY(${currentY}px) scale(${currentScale})`
-      }
-
-      const infoFadePercent = Math.min(scrollY / (transitionEnd * 0.4), 1)
-      const dateElements = heroContent?.querySelectorAll('.hero-date, .hero-time, .hero-countdown, .hero-cta')
-      dateElements?.forEach((el) => {
-        const element = el as HTMLElement
-        element.style.opacity = (1 - infoFadePercent).toString()
-        element.style.pointerEvents = infoFadePercent > 0.5 ? 'none' : 'all'
-      })
-
-      // Check if logo is over bronze VIP section
-      const vipSection = document.getElementById('tickets')
-      if (heroContent && vipSection) {
-        const logoRect = heroContent.getBoundingClientRect()
-        const vipRect = vipSection.getBoundingClientRect()
-
-        // Check if logo overlaps with VIP section
-        const isOverBronze = logoRect.bottom > vipRect.top && logoRect.top < vipRect.bottom
-
-        if (isOverBronze) {
-          heroContent.classList.add('over-bronze')
-        } else {
-          heroContent.classList.remove('over-bronze')
-        }
-      }
-
-      // Check if user is near footer
-      const footer = document.querySelector('footer')
-      const footerTop = footer?.getBoundingClientRect().top || 0
-      const windowHeight = window.innerHeight
-      const isNearFooter = footerTop < windowHeight
-
-      if (scrollPercent > 0.3 && !isNearFooter) {
-        heroContent?.classList.add('sticky-mode')
-        fixedTicketsBtn?.classList.add('visible')
-      } else {
-        heroContent?.classList.remove('sticky-mode')
-        fixedTicketsBtn?.classList.remove('visible')
-      }
-    }
-
-    window.addEventListener('scroll', handleScroll, { passive: true })
-
-    const revealElements = document.querySelectorAll('.reveal')
-    const revealOnScroll = () => {
-      revealElements.forEach((element) => {
-        const elementTop = element.getBoundingClientRect().top
-        const elementBottom = element.getBoundingClientRect().bottom
-        if (elementTop < window.innerHeight * 0.85 && elementBottom > 0) {
-          element.classList.add('active')
-        }
-      })
-    }
-
-    window.addEventListener('scroll', revealOnScroll, { passive: true })
-    revealOnScroll()
-
-    const atmosphereImages = document.querySelectorAll('.atmosphere-img')
-    const revealAtmosphereImages = () => {
-      atmosphereImages.forEach((img) => {
-        const rect = img.getBoundingClientRect()
-        const isVisible = rect.top < window.innerHeight * 0.8 && rect.bottom > 0
-        if (isVisible) {
-          img.classList.add('visible')
-        }
-      })
-    }
-
-    window.addEventListener('scroll', revealAtmosphereImages, { passive: true })
-    revealAtmosphereImages()
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('scroll', revealOnScroll)
-      window.removeEventListener('scroll', revealAtmosphereImages)
-    }
-  }, [])
-
-  return (
-    <>
-      {/* JSON-LD Structured Data for SEO */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
-      />
-
-      {/* Background elements */}
-      <div className="bg-circles"></div>
-
-      {/* Fixed Get Tickets Button */}
-      <a
-        href={TICKET_URL}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed-tickets-btn fixed bottom-[20px] left-1/2 -translate-x-1/2 z-[1000] px-[35px] py-3 bg-bronze text-white no-underline font-helvetica font-semibold tracking-[0.2em] text-[0.85rem] uppercase rounded-full shadow-[0_4px_20px_rgba(150,105,76,0.3)] transition-all duration-600 opacity-0 translate-y-5 pointer-events-none hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(150,105,76,0.5)] hover:bg-bronze/90 max-md:bottom-[20px] max-md:px-[30px] max-md:py-2.5 max-md:text-[0.75rem] max-md:tracking-[0.15em] max-[425px]:px-[25px] max-[425px]:py-2 max-[425px]:text-[0.7rem] max-[375px]:px-[20px] max-[375px]:py-1.5 max-[375px]:text-[0.65rem] max-[375px]:tracking-[0.1em] max-[320px]:px-[18px] max-[320px]:text-[0.6rem]"
-      >
-        Get Tickets
-      </a>
-
-      <main>
-      {/* Hero Section - Split Screen */}
-      <section className="min-h-screen flex relative overflow-hidden max-md:block">
-        {/* Desktop: Split Screen Videos */}
-        <div className="hero-split flex-1 relative overflow-hidden max-md:hidden">
-          {videosLoaded && (
-            <video autoPlay loop muted playsInline preload="metadata" className="absolute top-0 left-0 w-full h-full object-cover">
-              <source src="/Videos/First half.webm" type="video/webm" />
-              Your browser does not support the video tag.
-            </video>
-          )}
-          <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
-        </div>
-
-        <div className="hero-split flex-1 relative overflow-hidden max-md:hidden">
-          {videosLoaded && (
-            <video autoPlay loop muted playsInline preload="metadata" className="absolute top-0 left-0 w-full h-full object-cover">
-              <source src="/Videos/Second half.webm" type="video/webm" />
-              Your browser does not support the video tag.
-            </video>
-          )}
-          <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
-        </div>
-
-        {/* Mobile: Single Full-Screen Video */}
-        <div className="hidden max-md:block relative w-full h-screen overflow-hidden bg-black">
-          {videosLoaded && (
-            <video
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="none"
-              className="absolute top-0 left-0 w-full h-full object-cover mobile-hero-video"
-            >
-              <source src="/Videos/mobile-video.webm" type="video/webm" />
-              Your browser does not support the video tag.
-            </video>
-          )}
-          <div className="absolute top-0 left-0 w-full h-full bg-black/30 z-[1]"></div>
-        </div>
-
-
-        {/* Centered Content Overlay */}
-        <div className="hero-content fixed top-1/2 left-1/2 -translate-x-1/2 translate-y-[-28%] z-[999] text-center w-full max-w-[1200px] px-10 will-change-transform max-md:px-5" id="heroContent">
-          <h1 className="sr-only">MYTHOS - House Meets Heritage - Sydney Nightlife Event</h1>
-          <Image
-            src="/mythos-branding/logo-final.png"
-            alt="MYTHOS Entertainment Logo - House Meets Heritage Sydney Nightlife Event"
-            className="hero-logo-img w-auto h-[clamp(80px,15vw,180px)] mb-10 block mx-auto max-md:h-[clamp(60px,12vw,120px)] max-md:mb-[30px] max-[430px]:h-[clamp(50px,10vw,100px)] max-[430px]:mb-5 max-[375px]:h-[clamp(45px,9vw,90px)] max-[375px]:mb-4 max-[320px]:h-[clamp(40px,8vw,80px)] max-[320px]:mb-3"
-            width={500}
-            height={180}
-            style={{ width: 'auto', height: 'auto' }}
-            priority
-          />
-
-
-          <div className="hero-date font-helvetica text-[clamp(1.2rem,2.5vw,1.8rem)] font-bold tracking-[0.2em] text-white mb-2.5 uppercase max-md:text-[0.9rem] max-md:mb-2 max-[430px]:text-[0.85rem] max-[430px]:mb-1.5 max-[375px]:text-[0.8rem] max-[375px]:tracking-[0.15em] max-[320px]:text-[0.75rem] max-[320px]:tracking-[0.1em]">
-            FRIDAY 27 NOVEMBER
+  return <div className={styles.site}>
+    <Reveal />
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(event) }} />
+    <a className={styles.skip} href="#main">Skip to content</a>
+    <SiteHeader overlay />
+    <main id="main">
+      <section id="event-hero" className={styles.hero} aria-labelledby="event-title">
+        <Image src="/seadeck/white-boat-party-ocean.webp" alt="" fill priority sizes="100vw" className={styles.heroImage} />
+        <div className={styles.heroShade} />
+        <div className={styles.heroContent}>
+          <p className={styles.eyebrow}>MYTHOS PRESENTS · FRIDAY 27 NOVEMBER 2026</p>
+          <h1 id="event-title" aria-label="White Boat Party"><span>WHITE</span><span>BOAT PART<span className={styles.partyY}>Y</span></span></h1>
+          <div className={styles.heroBottom}>
+            <p className={styles.seadeck}>SEADECK</p>
+            <p className={styles.heroMeta}>SYDNEY HARBOUR · KING STREET WHARF 9</p>
+            <p className={styles.heroTiming}>ARRIVE 7:30PM <span>EVENT 7:45PM - 11:45PM</span></p>
+            <a href={TICKET_URL} className={styles.button}>Get tickets</a>
           </div>
-          <div className="hero-time font-helvetica text-[clamp(1rem,2vw,1.4rem)] font-normal tracking-[0.15em] text-white/90 uppercase max-md:text-[0.8rem] max-md:tracking-[0.1em] max-[430px]:text-[0.75rem] max-[375px]:text-[0.7rem] max-[375px]:tracking-[0.08em] max-[320px]:text-[0.65rem]">
-            7:30PM - 11:45PM | SEADECK, KING STREET WHARF 9
-          </div>
-
-          <a
-  href={TICKET_URL}
-  target="_blank"
-  rel="noopener noreferrer"
-  className="hero-cta inline-block mt-[60px] px-[50px] py-[18px] no-underline font-helvetica font-semibold tracking-[0.2em] text-base uppercase bg-bronze text-white shadow-[0_8px_30px_rgba(150,105,76,0.8)] hover:-translate-y-1 hover:shadow-[0_12px_40px_rgba(150,105,76,1)]"
->
-  Get Tickets
-</a>
         </div>
+        <div className={styles.heroFoot}><span>House meets heritage.</span><a href="#next-event">Explore SEADECK</a></div>
       </section>
-
-      {/* Event Details Section */}
-      <section className="reveal py-20 px-5 bg-beige relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-[430px]:py-10 max-[430px]:px-[15px]">
-        {/* Desktop Image - REMOVED */}
-        {/* Mobile Image - REMOVED */}
-        <div className="max-w-[1200px] mx-auto px-10 relative z-[2]">
-          <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold text-center mb-16 text-bronze uppercase max-md:text-[1.8rem] max-md:mb-10 max-[430px]:text-[1.5rem] max-[430px]:mb-8">
-            Event Details
-          </h2>
-
-          {/* Desktop: Two columns - Instagram left, Text right */}
-          <div className="flex gap-12 items-start max-md:flex-col max-md:gap-8">
-            {/* Instagram Embed - Hidden at 768px and below */}
-            <div className="flex-shrink-0 w-[540px] max-w-full max-[768px]:hidden">
-              <iframe
-                src={INSTAGRAM_EMBED_URL}
-                width="540"
-                height="720"
-                frameBorder="0"
-                scrolling="no"
-                title="MYTHOS Instagram post"
-                loading="lazy"
-                className="w-full border-0 rounded-[3px] shadow-[0_0_1px_0_rgba(0,0,0,0.5),0_1px_10px_0_rgba(0,0,0,0.15)]"
-              />
-            </div>
-
-            {/* Description Text - Right side on desktop, bottom on mobile */}
-            <div className="flex-1 flex flex-col justify-center text-left max-md:text-center">
-              <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] mb-6 font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-                On 27 November, MYTHOS takes over SEADECK for our first event on Sydney Harbour. Set against the city skyline, we’re bringing Greek, Eurohouse and Ibiza Anthems to the water for one of our biggest nights yet.
-              </p>
-              <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] mb-6 font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-md:mb-5 max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-                Expect the full MYTHOS lineup of DJs and live acts, with the music moving across Greece, Europe and Ibiza throughout the night. All of it aboard one of Sydney’s most recognised floating venues.
-              </p>
-              <p className="font-helvetica text-[clamp(1.1rem,2vw,1.4rem)] leading-[2] font-normal text-bronze max-md:text-base max-md:leading-[1.8] max-[430px]:text-[0.95rem] max-[430px]:leading-[1.7]">
-                The theme is WHITE. Dress in your best white.
-                Summer is here. See you on the harbour.
-              </p>
-            </div>
-          </div>
-        </div>
+      <section id="next-event" className={`${styles.section} ${styles.eventSection}`}>
+        <div data-reveal className={styles.eventIntro}><p className={styles.eyebrow}>MYTHOS ON THE HARBOUR</p><h2>THE NIGHT.<br />THE HARBOUR.<br />SEADECK.</h2><p>Our next chapter takes us aboard SEADECK. Greek, Eurohouse and Ibiza anthems, DJs and live acts, with Sydney’s skyline as the backdrop.</p><p>The theme is WHITE. Bring your people. We’ll bring the MYTHOS energy.</p><a href={TICKET_URL} className={styles.button}>Get tickets</a></div>
+        <div data-reveal className={styles.eventCard}><div className={styles.cardTop}><span>FRIDAY 27 NOVEMBER 2026</span><Image src="/mythos-branding/mythos-o-no-bg.png" width={48} height={48} alt="" /></div><h3>WHITE<br />BOAT PARTY</h3><p className={styles.cardVenue}>SEADECK</p><dl><div><dt>Arrival</dt><dd>7:30PM</dd></div><div><dt>Event</dt><dd>7:45PM - 11:45PM</dd></div><div><dt>Location</dt><dd>King Street Wharf 9<br />Darling Harbour, Sydney</dd></div><div><dt>Theme</dt><dd>White</dd></div></dl><a href={TICKET_URL} className={styles.button}>Get tickets</a></div>
       </section>
-
-      {/* VIP Bookings Section */}
-      <section className="reveal py-20 px-5 bg-bronze relative z-[2] opacity-0 translate-y-[50px] transition-all duration-800 max-md:py-[50px] max-md:px-[15px] max-[430px]:py-10 max-[430px]:px-[10px]" id="tickets">
-        {/* Desktop Images */}
-        <div className="atmosphere-img absolute w-[48vw] max-w-[720px] h-[54vw] max-h-[820px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] right-[-8%] top-[18%] rotate-[6deg] scale-95 max-[600px]:hidden">
-          <Image src="/event-photos/Webp/vip 1.webp" alt="Guests enjoying MYTHOS nightlife event in Sydney" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 48vw" quality={85} />
-        </div>
-        <div className="atmosphere-img absolute w-[45vw] max-w-[680px] h-[51vw] max-h-[780px] opacity-0 transition-all duration-1000 pointer-events-none overflow-hidden z-[1] left-[-6%] bottom-[8%] -rotate-[7deg] scale-95 max-[600px]:hidden">
-          <Image src="/event-photos/Webp/vip 2.webp" alt="Luxury VIP booth seating at Pelicano Potts Point Sydney" fill style={{ objectFit: 'cover' }} loading="lazy" sizes="(max-width: 600px) 0vw, 45vw" quality={85} />
-        </div>
-        {/* Mobile Image - REMOVED */}
-        <div className="max-w-[1200px] mx-auto px-10 relative z-[2] max-md:px-0">
-          <h2 className="font-helvetica text-[clamp(2.5rem,5vw,4rem)] font-bold text-center mb-20 text-beige uppercase max-md:text-[1.8rem] max-md:mb-[30px] max-[430px]:text-[1.5rem] max-[430px]:mb-5 max-[375px]:text-[1.3rem] max-[320px]:text-[1.2rem]">
-            VIP BOOTH BOOKINGS
-          </h2>
-          <div className="max-w-[800px] mx-auto bg-white/[0.08] backdrop-blur-[20px] p-[60px_50px] border border-beige/30 max-md:p-[30px_20px] max-[430px]:p-[25px_15px] max-[375px]:p-[20px_12px] max-[320px]:p-[18px_10px]">
-            {formSubmitted && (
-              <div className="mb-6 p-4 bg-beige/20 border border-beige text-center">
-                <p className="text-beige font-helvetica tracking-wide">Thank you! Your booking request has been sent.</p>
-              </div>
-            )}
-            <form className="flex flex-col gap-[25px] max-md:gap-5 max-[430px]:gap-4" onSubmit={handleFormSubmit}>
-              <div className="grid grid-cols-2 gap-[25px] max-md:grid-cols-1 max-md:gap-4">
-                <div className="flex flex-col gap-2 max-[430px]:gap-1.5">
-                  <label htmlFor="name" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.8rem] max-[375px]:text-[0.75rem] max-[320px]:text-[0.7rem]">Full Name</label>
-                  <input type="text" id="name" name="name" autoComplete="name" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-[0.95rem] max-md:p-[10px_12px] max-[375px]:text-[0.9rem] max-[375px]:p-[8px_10px] max-[320px]:text-[0.85rem]" />
-                </div>
-                <div className="flex flex-col gap-2 max-[430px]:gap-1.5">
-                  <label htmlFor="email" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.8rem] max-[375px]:text-[0.75rem] max-[320px]:text-[0.7rem]">Email</label>
-                  <input type="email" id="email" name="email" autoComplete="email" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-[0.95rem] max-md:p-[10px_12px] max-[375px]:text-[0.9rem] max-[375px]:p-[8px_10px] max-[320px]:text-[0.85rem]" />
-                </div>
-              </div>
-              <div className="grid grid-cols-2 gap-[25px] max-md:grid-cols-1 max-md:gap-4">
-                <div className="flex flex-col gap-2 max-[430px]:gap-1.5">
-                  <label htmlFor="phone" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.8rem] max-[375px]:text-[0.75rem] max-[320px]:text-[0.7rem]">Phone Number</label>
-                  <input type="tel" id="phone" name="phone" autoComplete="tel" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-[0.95rem] max-md:p-[10px_12px] max-[375px]:text-[0.9rem] max-[375px]:p-[8px_10px] max-[320px]:text-[0.85rem]" />
-                </div>
-                <div className="flex flex-col gap-2 max-[430px]:gap-1.5">
-                  <label htmlFor="guests" className="font-helvetica text-[0.95rem] font-normal tracking-[0.1em] text-beige uppercase max-md:text-[0.8rem] max-[375px]:text-[0.75rem] max-[320px]:text-[0.7rem]">Number of Guests</label>
-                  <input type="number" id="guests" name="guests" min="1" autoComplete="off" required className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 max-md:text-[0.95rem] max-md:p-[10px_12px] max-[375px]:text-[0.9rem] max-[375px]:p-[8px_10px] max-[320px]:text-[0.85rem]" />
-                </div>
-              </div>
-              <div className="flex flex-col gap-2 max-[430px]:gap-1.5">
-                <label htmlFor="message" className="font-helvetica text-[0.95rem] font-normal text-beige uppercase max-md:text-[0.8rem] max-[375px]:text-[0.75rem] max-[320px]:text-[0.7rem]">Special Requests & Details</label>
-                <textarea id="message" name="message" rows={4} autoComplete="off" className="p-[15px_20px] bg-white/10 border border-beige/40 font-helvetica text-[1.1rem] text-beige transition-all duration-300 focus:outline-none focus:border-beige focus:bg-white/15 placeholder:text-beige/50 resize-y min-h-[100px] max-md:text-[0.95rem] max-md:p-[10px_12px] max-md:min-h-[80px] max-[375px]:text-[0.9rem] max-[375px]:p-[8px_10px] max-[375px]:min-h-[70px] max-[320px]:text-[0.85rem]"></textarea>
-              </div>
-              <button type="submit" disabled={formLoading} className="px-[50px] py-[18px] bg-beige text-bronze border-none rounded-full font-helvetica text-base font-semibold tracking-[0.2em] uppercase cursor-pointer transition-all duration-400 shadow-[0_4px_20px_rgba(223,213,200,0.3)] self-center mt-5 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(223,213,200,0.5)] hover:bg-beige/90 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-[0_4px_20px_rgba(223,213,200,0.3)] max-md:px-10 max-md:py-3 max-md:text-[0.85rem] max-md:mt-3 max-[430px]:px-8 max-[430px]:py-2.5 max-[430px]:text-[0.8rem] max-[375px]:px-7 max-[375px]:py-2 max-[375px]:text-[0.75rem] max-[375px]:tracking-[0.15em] max-[320px]:px-6 max-[320px]:text-[0.7rem]">
-                {formLoading ? 'Submitting...' : 'Submit VIP Booking'}
-              </button>
-            </form>
-          </div>
-        </div>
+      <section className={styles.vesselSection}>
+        <figure data-reveal className={styles.vesselPhoto}><Image src="/seadeck/seadeck-exterior.webp" alt="SEADECK’s open-air decks and blue hull on Sydney Harbour" width={1800} height={1200} sizes="(max-width: 700px) 100vw, 65vw" /><figcaption>YOUR VENUE FOR THE NIGHT · SEADECK</figcaption></figure>
+        <div data-reveal className={styles.vesselCopy}><p className={styles.eyebrow}>A NEW SETTING. THE SAME MYTHOS.</p><h2>TAKE IT <br />TO THE <br />WATER.</h2><p>Open-air decks. Harbour views. A night of music on the water.</p><a href={TICKET_URL} className={styles.button}>Get tickets</a><details className={styles.posterDetails}><summary>View the event poster</summary><Image src="/seadeck/white-boat-party-poster.webp" alt="MYTHOS White Boat Party poster: SEADECK, Friday 27 November, event 7:45PM to 11:45PM, arrive 7:30PM, King Street Wharf 9 Darling Harbour" width={1132} height={1600} sizes="(max-width: 700px) 85vw, 30vw" /></details></div>
       </section>
-
-      {/* Sponsors Section */}
-      <section className="py-8 px-5 bg-beige text-center relative z-[2]">
-        <div className="max-w-[1200px] mx-auto">
-          <h3 className="font-helvetica text-[1.5rem] font-bold mb-6 text-bronze uppercase">Sponsored By</h3>
-          <div className="flex items-center justify-center gap-12 max-md:gap-8 max-[425px]:gap-6">
-           <a
-  href="https://www.bayvista.com.au/"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Visit Bay Vista website"
->
-  <Image
-    src="/Sponsors/bayvista-logo.png"
-    alt="BayVista – Official Sponsor of MYTHOS Sydney"
-    width={120}
-    height={60}
-    className="h-[60px] w-auto"
-  />
-</a>
-
-<a
-  href="https://www.nieosgrille.com.au/"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Visit NIEO'S Grille website"
->
-  <Image
-    src="/Sponsors/nieos-grille-logo.png"
-    alt="Nieos Grille – Official Sponsor of MYTHOS Sydney"
-    width={120}
-    height={60}
-    className="h-[60px] w-auto"
-  />
-</a>
-          </div>
-        </div>
+      <section className={`${styles.section} ${styles.experience}`}>
+        <div data-reveal className={styles.sectionHeading}><div><p className={styles.eyebrow}>This is MYTHOS</p><h2>YOU HAD TO<br />BE THERE.</h2></div><div className={styles.sectionAside}><p>LIVE MUSIC<br />HANDS IN THE AIR<br /><span>A ROOM THAT MOVES AS ONE</span></p></div></div>
+        <div className={styles.photoGrid}><figure data-reveal><Image src="/events/aura-live.webp" width={1200} height={800} alt="Live bouzouki performance among the crowd at AURA" sizes="(max-width: 700px) 100vw, 56vw" /><figcaption>AURA · August 2025</figcaption></figure><figure data-reveal><Image src="/events/pelicano-portrait.webp" width={800} height={1200} alt="A guest dancing at the PELICANO rooftop edition" sizes="(max-width: 700px) 100vw, 32vw" /><figcaption>PELICANO ROOFTOP · May 2026</figcaption></figure><figure data-reveal><Image src="/events/home-live.webp" width={1200} height={801} alt="Live performers on the MYTHOS stage at HOME THE VENUE" sizes="(max-width: 700px) 100vw, 56vw" /><figcaption>HOME THE VENUE · December 2025</figcaption></figure></div>
       </section>
-
-      </main>
-
-      {/* Footer */}
-      <footer className="bg-bronze py-6 px-5 text-center">
-        <div className="flex justify-center gap-8 max-md:gap-6">
-          {/* Instagram */}
-          <a href="https://www.instagram.com/mythos.syd/" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Instagram" className="transition-all duration-300 hover:opacity-70 hover:scale-110 p-2 -m-2">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
-            </svg>
-          </a>
-          {/* TikTok */}
-          <a href="https://www.tiktok.com/@mythos.syd" target="_blank" rel="noopener noreferrer" aria-label="Follow us on TikTok" className="transition-all duration-300 hover:opacity-70 hover:scale-110 p-2 -m-2">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
-            </svg>
-          </a>
-          {/* Facebook */}
-          <a href="https://www.facebook.com/profile.php?id=61571632207446" target="_blank" rel="noopener noreferrer" aria-label="Follow us on Facebook" className="transition-all duration-300 hover:opacity-70 hover:scale-110 p-2 -m-2">
-            <svg width="32" height="32" viewBox="0 0 24 24" fill="white" xmlns="http://www.w3.org/2000/svg">
-              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
-            </svg>
-          </a>
-        </div>
-      </footer>
-    </>
-  )
+      <section id="past-events" className={`${styles.section} ${styles.archive}`}>
+        <div data-reveal className={styles.sectionHeading}><div><p className={styles.eyebrow}>The archive</p><h2>NIGHTS THAT<br />MADE MYTHOS.</h2></div><div className={styles.sectionAside}><p>FOUR CHAPTERS<br /><span>ONE UNMISTAKABLE ENERGY</span></p></div></div>
+        <div className={styles.archiveGrid}>{pastEvents.map((item) => <Link data-reveal href={`/events/${item.slug}/`} className={styles.archiveCard} key={item.slug}><div className={styles.archiveImage}><Image src={`/events/${item.cover}.webp`} alt={`MYTHOS crowd at ${item.venue}, ${item.date}`} fill sizes="(max-width: 700px) 100vw, 45vw" /><span className={styles.viewPhotos}>View photos</span></div><div className={styles.archiveCaption}><div><h3>{item.venue}</h3><p>{item.edition}</p></div><time dateTime={item.iso}>{item.date}</time></div></Link>)}</div>
+      </section>
+      <section id="vip" className={`${styles.section} ${styles.vip}`}><div data-reveal><p className={styles.eyebrow}>Make it your night</p><h2>YOUR PEOPLE.<br />YOUR MYTHOS.</h2><p>Bring your group aboard. Enquire about VIP options for the White Boat Party and we’ll help you plan the night.</p></div><VipForm /></section>
+      <section className={`${styles.section} ${styles.faq}`}><div><p className={styles.eyebrow}>Before you join us</p><h2>THE DETAILS</h2></div><div>{faqs.map(([question, answer]) => <details key={question}><summary>{question}<span aria-hidden="true">+</span></summary><p>{answer}</p></details>)}<p className={styles.policyNote}>For current ticket availability and ticket terms, <a href={TICKET_URL}>visit the official Eventbrite listing</a>.</p></div></section>
+      <section className={styles.closing} data-reveal><p className={styles.eyebrow}>Friday 27 November · SEADECK</p><h2>SEE YOU<br />ON THE HARBOUR</h2><a href={TICKET_URL} className={styles.button}>Get tickets </a></section>
+      <section className={styles.sponsors} aria-label="Sponsors"><p>With the support of</p><a href="https://www.bayvista.com.au/" aria-label="Bay Vista"><Image src="/Sponsors/bayvista-black.png" alt="Bay Vista" width={120} height={60} /></a><a href="https://www.nieosgrille.com.au/" aria-label="Nieo’s Grille"><Image src="/Sponsors/nieos-black.png" alt="Nieo’s Grille" width={120} height={60} /></a></section>
+    </main>
+    <footer className={styles.footer}><Image src="/mythos-branding/logo-final.png" alt="MYTHOS" width={250} height={36} /><p>House meets heritage. Sydney, Australia.</p><div><a href="https://www.instagram.com/mythos.syd/">Instagram</a><a href="https://www.tiktok.com/@mythos.syd">TikTok</a><a href="https://www.facebook.com/profile.php?id=61571632207446">Facebook</a><a href="mailto:planning@mythosentertainment.com.au">Contact</a></div><small>© {new Date().getFullYear()} MYTHOS Entertainment</small></footer>
+    <div className={styles.mobileTickets}><span>27 NOV · SEADECK</span><a href={TICKET_URL}>Get tickets</a></div>
+  </div>
 }
