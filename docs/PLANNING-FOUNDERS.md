@@ -9,3 +9,7 @@ Anton: entertainment, logistics, supplier relationships and delivery on the day.
 Both: planning and decision-making.
 
 Private planning followed their enjoyment of creating MYTHOS events and the supplier/venue/entertainment relationships built along the way. The published story paraphrases this account, without invented quotes, dates, credentials or biographical details. No founders portrait has been supplied; use the existing MYTHOS artwork rather than an invented portrait.
+
+## Planning-first editorial update
+
+The owner requested less emphasis on nightlife and more on turning ideas into real events and the joy of seeing guests enjoy the result. The published story now leads with this motivation, retains primary-school friendship and Greek roots, and places the name's meaning in the main copy. The former meaning panel is reserved as blank space for a forthcoming founders photograph. About, Services and the enquiry dropdown include the full supported event range; Services and the dropdown share the event-types source. Specified headings use capitals without terminal full stops. Header and footer now share the same PlanningBrand component.

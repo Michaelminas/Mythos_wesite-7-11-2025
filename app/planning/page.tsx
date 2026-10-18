@@ -4,6 +4,8 @@ import { useEffect, useRef, useState, type FormEvent } from "react";
 import CinematicHero from "./CinematicHero";
 import Portfolio from "./Portfolio";
 import About from "./About";
+import PlanningBrand from "./PlanningBrand";
+import { eventTypes } from "./event-types";
 
 const services = [
   {
@@ -24,17 +26,6 @@ const services = [
     description:
       "You have made the plans. We coordinate the timeline, supplier arrivals, setup and running of the celebration, so you can spend the day with your guests.",
   },
-];
-
-const eventTypes = [
-  "Birthday / Milestone",
-  "Christening",
-  "Engagement",
-  "Wedding",
-  "Corporate Event",
-  "Formal After-Party",
-  "Live Event",
-  "Other",
 ];
 
 const bookedOptions = [
@@ -247,10 +238,9 @@ export default function PlanningPage() {
               What We Do
             </p>
             <h2 className="editorial mb-7 text-5xl md:text-6xl">
-              Planning, shaped around you
+              PLANNING, SHAPED AROUND YOU
             </h2>
-            <p className="mb-10 max-w-2xl text-sm leading-8">From christenings and birthday celebrations to formal after-parties and live events, choose the level of support that suits your occasion.</p>
-            <div className="mb-14 flex flex-wrap gap-x-8 gap-y-3 border-y border-[#9B694D]/35 py-5 text-[10px] uppercase tracking-[0.14em]"><span>Christenings &amp; family occasions</span><span>Birthdays &amp; milestones</span><span>Formal after-parties</span><span>Live events</span></div>
+            <div className="mb-14 flex flex-wrap gap-x-8 gap-y-3 border-y border-[#9B694D]/35 py-5 text-[10px] uppercase tracking-[0.14em]">{eventTypes.map(type => <span key={type}>{type}</span>)}</div>
 
             <div className="grid gap-12 md:grid-cols-3">
               {services.map((service) => (
@@ -523,12 +513,9 @@ export default function PlanningPage() {
         <footer className="bg-[#231F20] px-6 py-14 text-[#E8E1D6] md:px-12">
           <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-end">
             <div>
-              <img src="/mythos-branding/logo-final.png" alt="MYTHOS" width="180" height="26" loading="lazy" className="h-auto w-44 brightness-0 invert" />
-              <p className="mt-2 text-xs uppercase tracking-[0.3em]">
-                Planning
-              </p>
+              <PlanningBrand />
               <p className="mt-5 text-sm text-[#DED5C8]">
-                Every detail considered. Every moment remembered.
+                Every detail considered · Every moment remembered
               </p>
             </div>
 
@@ -539,7 +526,7 @@ export default function PlanningPage() {
               >
                 planning@mythosentertainment.com.au
               </a>
-              <a href="/" className="block hover:underline">
+              <a href="https://www.mythosentertainment.com.au/" className="block underline underline-offset-4">
                 Visit MYTHOS Entertainment
               </a>
             </div>

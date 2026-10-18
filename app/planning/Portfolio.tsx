@@ -9,7 +9,7 @@ const projects = [
 
 export default function Portfolio() {
   return <section id="work" className={styles.section}>
-    <div className={styles.heading}><div><p className={styles.eyebrow}>A selection of our work</p><h2>Real occasions.<br />Lasting memories.</h2></div><p>Family celebrations, milestone moments and nights that bring people together.</p></div>
+    <div className={styles.heading}><div><p className={styles.eyebrow}>A selection of our work</p><h2>REAL OCCASIONS<br />LASTING MEMORIES</h2></div><p className={styles.sideNote}><span>FAMILY CELEBRATIONS</span><span>MILESTONE MOMENTS</span><span>PEOPLE COMING TOGETHER</span></p></div>
     <div className={styles.grid}>{projects.map(project => {
       const cover = <img className={styles.cover} src={`/planning/portfolio/${project.cover}`} alt={project.alt} style={{ objectPosition: project.position }} width={1400} height={1050} loading="lazy" />;
       return <article key={project.id} className={styles.project}>

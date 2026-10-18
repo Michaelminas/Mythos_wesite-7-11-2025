@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import styles from "./CinematicHero.module.css";
+import PlanningBrand from "./PlanningBrand";
 
 export default function CinematicHero() {
   const journey = useRef<HTMLElement>(null);
@@ -58,16 +59,16 @@ export default function CinematicHero() {
 
   return <>
     <header ref={header} className={styles.header}>
-      <a className={styles.brand} href="#top" aria-label="MYTHOS Planning home"><img src="/mythos-branding/logo-final.png" width="250" height="36" alt="MYTHOS" /><span>PLANNING</span></a>
+      <PlanningBrand />
       <nav aria-label="Planning sections"><a href="#services">Services</a><a href="#about">About</a><a href="#work">Our Work</a><a href="#enquiry">Contact</a></nav>
       <a className={styles.cta} href="#enquiry">Plan your event</a>
     </header>
     <section ref={journey} className={styles.journey} id="top" aria-label="MYTHOS Planning cinematic introduction">
       <div className={styles.stage}>
         <div ref={scene} className={styles.scene} /><div ref={foreground} className={styles.foreground} /><div className={styles.sun} /><div className={styles.shade} />
-        <div ref={intro} className={styles.intro}><p className={styles.eyebrow}>Sydney · Event planning &amp; experiences</p><h1>Every detail considered.<br /><em>Every moment remembered.</em></h1><p className={styles.note}>A considered celebration.<br />A feeling that stays with you.</p></div>
-        <div ref={chapter} className={styles.chapter} aria-hidden="true"><p className={styles.eyebrow}>Made personal</p><h2>Step into<br />your next memory.</h2><p>From the first idea to the final toast,<br />we bring your celebration together.</p></div>
-        <div className={styles.bottom}><div className={styles.scrollCue}><i aria-hidden="true" /><span>Scroll to<br />step inside</span></div><span className={styles.right}>A Mediterranean spirit.<br />A celebration of you.</span></div>
+        <div ref={intro} className={styles.intro}><p className={styles.eyebrow}>Sydney · Event planning &amp; experiences</p><h1>Every detail considered<br /><em>Every moment remembered</em></h1><p className={styles.note}>A considered celebration<br />A feeling that stays with you</p></div>
+        <div ref={chapter} className={styles.chapter} aria-hidden="true"><p className={styles.eyebrow}>Made personal</p><h2>Step into<br />your next memory</h2><p>From the first idea to the final toast,<br />we bring your celebration together.</p></div>
+        <div className={styles.bottom}><div className={styles.scrollCue}><i aria-hidden="true" /><span>Scroll to<br />step inside</span></div><span className={styles.right}>A Mediterranean spirit<br />A celebration of you</span></div>
         <div className={styles.progress} aria-hidden="true"><i ref={progress} /></div>
       </div>
     </section>
