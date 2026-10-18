@@ -129,6 +129,11 @@ export default function PlanningPage() {
     <main className="min-h-screen bg-[#E8E1D6] text-[#231F20]">
       <style jsx global>{`
         html:has(.planning-page), body:has(.planning-page) { overflow-x: clip; overflow-y: visible; }
+        @media(max-width:700px){
+          html:has(.planning-page){background:#e8e1d6;scroll-padding-top:0}
+          .planning-page{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
+          .planning-page section[id]{scroll-margin-top:calc(116px + env(safe-area-inset-top,0px))!important}
+        }
         .planning-page { --planning-paper: #e8e1d6; --planning-neutral: #ded5c8; --planning-bronze: #9b694d; --planning-black: #231f20; }
         @media (prefers-reduced-motion: no-preference) {
           html:has(.planning-page) { scroll-behavior: smooth; }
