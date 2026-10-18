@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
+import CinematicHero from "./CinematicHero";
 
 const services = [
   {
@@ -54,22 +55,6 @@ const supportOptions = [
 
 export default function PlanningPage() {
   const pageRef = useRef<HTMLDivElement>(null);
-  const heroRef = useRef<HTMLElement>(null);
-  const [headerVisible, setHeaderVisible] = useState(false);
-
-  useEffect(() => {
-    const hero = heroRef.current;
-    if (!hero || !("IntersectionObserver" in window)) {
-      setHeaderVisible(true);
-      return;
-    }
-    const observer = new IntersectionObserver(([entry]) => {
-      setHeaderVisible(entry.intersectionRatio < 0.45);
-    }, { threshold: [0, 0.45, 1] });
-    observer.observe(hero);
-    return () => observer.disconnect();
-  }, []);
-
   useEffect(() => {
     const root = pageRef.current;
     const preference = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -247,42 +232,7 @@ export default function PlanningPage() {
       `}</style>
 
       <div ref={pageRef} className="planning-page">
-        {/* SCROLL HEADER */}
-        <header
-          aria-hidden={!headerVisible}
-          className={`fixed top-0 left-0 right-0 z-50 border-b border-[#D9CDC0]/60 bg-[#F5F1EA]/95 backdrop-blur-md transition-[opacity,transform] duration-[900ms] ease-[cubic-bezier(0.22,1,0.36,1)] ${headerVisible ? "translate-y-0 opacity-100" : "-translate-y-full opacity-0 pointer-events-none"}`}
-        >
-          <div className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-5 md:px-12">
-            <a href="#top" tabIndex={headerVisible ? undefined : -1} aria-label="MYTHOS Planning — back to top" className="flex shrink-0 flex-col items-center gap-1.5">
-              <img src="/mythos-branding/logo-final.png" alt="MYTHOS" width="160" height="23" className="h-auto w-28 sm:w-32" />
-              <span className="text-[8px] uppercase tracking-[0.45em] text-[#834B2C]">Planning</span>
-            </a>
-            <nav aria-label="Planning sections" className="hidden items-center gap-6 text-[10px] uppercase tracking-[0.16em] text-[#49362D] lg:flex">
-              <a href="#services" tabIndex={headerVisible ? undefined : -1}>Services</a>
-              <a href="#about" tabIndex={headerVisible ? undefined : -1}>About</a>
-              <a href="#work" tabIndex={headerVisible ? undefined : -1}>Our Work</a>
-              <a href="#enquiry" tabIndex={headerVisible ? undefined : -1}>Contact</a>
-            </nav>
-            <a href="#enquiry" tabIndex={headerVisible ? undefined : -1} className="shrink-0 whitespace-nowrap bg-[#834B2C] px-4 py-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-white transition hover:bg-[#65371F]">Plan Your Event</a>
-          </div>
-        </header>
-
-        {/* HERO */}
-        <section ref={heroRef} id="top" aria-label="MYTHOS Planning" className="brand-hero relative isolate flex min-h-[100svh] items-center justify-center overflow-hidden px-6 py-24 text-center">
-          <svg aria-hidden="true" className="olive-shadow pointer-events-none absolute -left-24 top-0 h-full w-[45%] min-w-[260px]" viewBox="0 0 300 750" fill="none" preserveAspectRatio="xMidYMid slice">
-            <path d="M-40 780 Q130 500 35 260 Q0 140 65 -30 M30 290 Q155 240 200 80 M65 490 Q185 475 245 330" stroke="currentColor" strokeWidth="5" />
-            {[{x:49,y:45,r:-30},{x:38,y:115,r:40},{x:16,y:180,r:-35},{x:51,y:250,r:48},{x:87,y:287,r:-40},{x:127,y:220,r:40},{x:170,y:150,r:-35},{x:190,y:88,r:30},{x:66,y:360,r:-40},{x:83,y:425,r:50},{x:127,y:474,r:-35},{x:179,y:433,r:35},{x:220,y:370,r:-35},{x:62,y:535,r:45},{x:24,y:600,r:-35},{x:0,y:680,r:45}].map((leaf,i)=>(<ellipse key={i} cx={leaf.x} cy={leaf.y} rx="12" ry="39" fill="currentColor" transform={`rotate(${leaf.r} ${leaf.x} ${leaf.y})`} />))}
-          </svg>
-          <div className="relative mx-auto w-full max-w-4xl">
-            <h1 className="flex flex-col items-center">
-              <img src="/mythos-branding/logo-final.png" alt="MYTHOS" width="900" height="130" fetchPriority="high" className="h-auto w-full max-w-[720px]" />
-              <span className="editorial mt-6 block pl-[0.32em] text-[clamp(1.1rem,3vw,2.4rem)] uppercase tracking-[0.32em] text-[#834B2C] md:mt-8">Planning</span>
-            </h1>
-            <div aria-hidden="true" className="mx-auto my-7 h-px w-20 bg-[#96694C]/80 md:my-9" />
-            <p className="text-[10px] uppercase leading-6 tracking-[0.28em] text-[#49362D] sm:text-xs md:tracking-[0.38em]">Event Planning &amp; Experiences</p>
-            <a href="#enquiry" className="mt-8 inline-flex min-h-12 items-center justify-center bg-[#834B2C] px-8 py-4 text-[10px] font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#65371F]">Plan Your Event</a>
-          </div>
-        </section>
+        <CinematicHero />
 
         {/* SERVICES */}
         <section id="services" className="px-6 py-24 md:px-12 md:py-32">
@@ -665,3 +615,4 @@ export default function PlanningPage() {
     </main>
   );
 }
+
