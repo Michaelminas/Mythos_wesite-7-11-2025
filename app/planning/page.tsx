@@ -2,25 +2,26 @@
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import CinematicHero from "./CinematicHero";
+import Portfolio from "./Portfolio";
 
 const services = [
   {
     number: "01",
     title: "Full Event Planning",
     description:
-      "From the first idea to the final moment, we bring every element together. Venue sourcing, suppliers, styling, timelines and on-the-day coordination — thoughtfully handled from beginning to end.",
+      "One team to bring the whole occasion together. We coordinate the venue, suppliers, entertainment, celebration details and event-day arrangements around your vision.",
   },
   {
     number: "02",
     title: "Partial Event Planning",
     description:
-      "Already started planning? We'll build on what you've organised, take care of the remaining details and make sure everything comes together seamlessly.",
+      "Keep the decisions you have already made. We help with the remaining pieces, whether that means finding a venue, arranging a photographer and DJ, or bringing suppliers together.",
   },
   {
     number: "03",
     title: "Event-Day Coordination",
     description:
-      "Enjoy the celebration you've worked so hard to create. We'll manage schedules, suppliers and the little details so you can be fully present.",
+      "You have made the plans. We coordinate the timeline, supplier arrivals, setup and running of the celebration, so you can spend the day with your guests.",
   },
 ];
 
@@ -30,6 +31,8 @@ const eventTypes = [
   "Engagement",
   "Wedding",
   "Corporate Event",
+  "Formal After-Party",
+  "Live Event",
   "Other",
 ];
 
@@ -242,9 +245,11 @@ export default function PlanningPage() {
             <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#9B694D]">
               What We Do
             </p>
-            <h2 className="editorial mb-16 text-5xl md:text-6xl">
-              Our Services
+            <h2 className="editorial mb-7 text-5xl md:text-6xl">
+              Planning, shaped around you
             </h2>
+            <p className="mb-10 max-w-2xl text-sm leading-8">From christenings and birthday celebrations to formal after-parties and live events, choose the level of support that suits your occasion.</p>
+            <div className="mb-14 flex flex-wrap gap-x-8 gap-y-3 border-y border-[#9B694D]/35 py-5 text-[10px] uppercase tracking-[0.14em]"><span>Christenings &amp; family occasions</span><span>Birthdays &amp; milestones</span><span>Formal after-parties</span><span>Live events</span></div>
 
             <div className="grid gap-12 md:grid-cols-3">
               {services.map((service) => (
@@ -293,7 +298,7 @@ export default function PlanningPage() {
                 Born from our experience creating memorable MYTHOS
                 Entertainment events, MYTHOS PLANNING brings the same
                 attention to atmosphere, organisation and guest experience
-                to personal celebrations.
+                to personal celebrations. Our planning work includes christenings, birthdays and formal after-parties, from intimate family occasions to energetic nights out.
               </p>
               <p className="text-sm leading-8 text-[#231F20]">
                 Whether you're celebrating a milestone birthday, a
@@ -305,45 +310,7 @@ export default function PlanningPage() {
           </div>
         </section>
 
-        {/* OUR WORK */}
-        <section id="work" className="px-6 py-24 md:px-12 md:py-32">
-          <div data-reveal className="mx-auto max-w-7xl">
-            <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#9B694D]">
-              Moments We've Created
-            </p>
-            <h2 className="editorial mb-6 text-5xl md:text-6xl">
-              Our Work
-            </h2>
-            <p className="mb-14 max-w-xl text-sm leading-8 text-[#231F20]">
-              A glimpse into the experiences we've brought to life
-              through MYTHOS Entertainment.
-            </p>
-
-            <div className="grid gap-5 md:grid-cols-3">
-              {[
-                "MYTHOS Events",
-                "Celebrations & Atmosphere",
-                "Unforgettable Moments",
-              ].map((title, index) => (
-                <div key={title}>
-                  <div className="flex aspect-[4/5] items-center justify-center bg-[#DED5C8] px-8 text-center">
-                    <span className="editorial text-3xl italic text-[#9B694D]">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                  </div>
-                  <p className="mt-5 text-xs uppercase tracking-[0.18em]">
-                    {title}
-                  </p>
-                </div>
-              ))}
-            </div>
-
-            <p className="mt-7 text-xs italic text-[#9B694D]">
-              Gallery placeholders — we'll replace these with your actual
-              event photographs.
-            </p>
-          </div>
-        </section>
+        <Portfolio />
 
         {/* ENQUIRY FORM */}
         <section
