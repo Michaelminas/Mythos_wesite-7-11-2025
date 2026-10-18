@@ -16,6 +16,7 @@ export default function SiteHeader({ overlay = false }: { overlay?: boolean }) {
     const update = () => {
       frame = 0
       const heroBottom = hero.getBoundingClientRect().bottom
+      document.documentElement.toggleAttribute('data-event-hero-passed', heroBottom <= 0)
       const distance = heroBottom - (header.current?.offsetHeight ?? 90)
       const shrinkProgress = Math.max(0, Math.min(1, (hero.offsetHeight - heroBottom) / Math.max(1, hero.offsetHeight * 0.7)))
       header.current?.style.setProperty('--header-expansion', (1 - shrinkProgress).toFixed(3))
@@ -30,6 +31,7 @@ export default function SiteHeader({ overlay = false }: { overlay?: boolean }) {
       window.removeEventListener('scroll', schedule)
       window.removeEventListener('resize', schedule)
       window.cancelAnimationFrame(frame)
+      document.documentElement.removeAttribute('data-event-hero-passed')
     }
   }, [overlay])
   return <header ref={header} className={`${styles.header} ${overlay ? styles.overlayHeader : ''}`}>
