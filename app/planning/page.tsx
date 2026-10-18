@@ -131,6 +131,7 @@ export default function PlanningPage() {
         html:has(.planning-page), body:has(.planning-page) { overflow-x: clip; overflow-y: visible; }
         @media(max-width:700px){
           html:has(.planning-page){background:#e8e1d6;scroll-padding-top:0}
+          body:has(.planning-page)::before{display:none}
           .planning-page{padding-bottom:calc(76px + env(safe-area-inset-bottom,0px))}
           .planning-page section[id]{scroll-margin-top:calc(116px + env(safe-area-inset-top,0px))!important}
         }

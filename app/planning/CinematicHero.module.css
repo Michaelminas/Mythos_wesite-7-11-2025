@@ -26,3 +26,9 @@
 .mobileActions .eventsLink{border-color:#9b694d;color:#231f20}
 .mobileActions .cta{background:#9b694d;border-color:#9b694d;color:#e8e1d6}
 }
+/* Extend the fixed surfaces behind Safari's status and bottom toolbar areas. */
+@media(max-width:700px){
+.header::before{content:'';position:absolute;left:0;right:0;bottom:100%;height:160px;background:#e8e1d6;pointer-events:none}
+.mobileActions::after{content:'';position:absolute;left:0;right:0;top:100%;height:200px;background:#e8e1d6;pointer-events:none}
+.header,.header.light,.mobileActions{background:#e8e1d6;opacity:1;backdrop-filter:none;-webkit-backdrop-filter:none;isolation:isolate}
+}
