@@ -131,8 +131,10 @@ export default function PlanningPage() {
   }
 
   return (
-    <main className="min-h-screen bg-[#F5F1EA] text-[#49362D]">
+    <main className="min-h-screen bg-[#E8E1D6] text-[#231F20]">
       <style jsx global>{`
+        html:has(.planning-page), body:has(.planning-page) { overflow-x: clip; overflow-y: visible; }
+        .planning-page { --planning-paper: #e8e1d6; --planning-neutral: #ded5c8; --planning-bronze: #9b694d; --planning-black: #231f20; }
         @media (prefers-reduced-motion: no-preference) {
           html:has(.planning-page) { scroll-behavior: smooth; }
         }
@@ -156,7 +158,7 @@ export default function PlanningPage() {
 
         .planning-page a:focus-visible,
         .planning-page button:focus-visible {
-          outline: 2px solid #754b35;
+          outline: 2px solid #231F20;
           outline-offset: 4px;
         }
 
@@ -189,11 +191,11 @@ export default function PlanningPage() {
         }
 
         .planning-page {
-          font-family: Arial, Helvetica, sans-serif;
+          font-family: "MYTHOS Helvetica", "Helvetica Neue", Helvetica, Arial, sans-serif;
         }
 
         .planning-page .editorial {
-          font-family: Georgia, "Times New Roman", serif;
+          font-family: "MYTHOS Helvetica", "Helvetica Neue", Helvetica, Arial, sans-serif;
           font-weight: 400;
         }
 
@@ -201,12 +203,12 @@ export default function PlanningPage() {
         .planning-page select,
         .planning-page textarea {
           width: 100%;
-          border: 1px solid #d7c7b9;
+          border: 1px solid #DED5C8;
           background: rgba(255, 255, 255, 0.72);
           padding: 14px 15px;
           border-radius: 2px;
-          color: #49362d;
-          outline-color: #96694c;
+          color: #231F20;
+          outline-color: #9B694D;
         }
 
         .planning-page label {
@@ -218,15 +220,15 @@ export default function PlanningPage() {
         }
 
         .planning-page .choice {
-          border: 1px solid #d7c7b9;
+          border: 1px solid #DED5C8;
           padding: 11px 14px;
           font-size: 13px;
           transition: all 0.2s ease;
         }
 
         .planning-page .choice.active {
-          background: #96694c;
-          border-color: #96694c;
+          background: #9B694D;
+          border-color: #9B694D;
           color: white;
         }
       `}</style>
@@ -237,7 +239,7 @@ export default function PlanningPage() {
         {/* SERVICES */}
         <section id="services" className="px-6 py-24 md:px-12 md:py-32">
           <div data-reveal className="mx-auto max-w-7xl">
-            <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#96694C]">
+            <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#9B694D]">
               What We Do
             </p>
             <h2 className="editorial mb-16 text-5xl md:text-6xl">
@@ -248,15 +250,15 @@ export default function PlanningPage() {
               {services.map((service) => (
                 <article
                   key={service.number}
-                  className="border-t border-[#BCA58F] pt-7"
+                  className="border-t border-[#9B694D] pt-7"
                 >
-                  <p className="mb-10 text-xs tracking-[0.2em] text-[#96694C]">
+                  <p className="mb-10 text-xs tracking-[0.2em] text-[#9B694D]">
                     {service.number}
                   </p>
                   <h3 className="editorial mb-6 text-3xl">
                     {service.title}
                   </h3>
-                  <p className="text-sm leading-8 text-[#756257]">
+                  <p className="text-sm leading-8 text-[#231F20]">
                     {service.description}
                   </p>
                 </article>
@@ -266,11 +268,11 @@ export default function PlanningPage() {
         </section>
 
         {/* ABOUT */}
-        <section id="about" className="bg-[#E9DFD3] px-6 py-24 md:px-12 md:py-32">
+        <section id="about" className="bg-[#DED5C8] px-6 py-24 md:px-12 md:py-32">
           <div data-reveal className="mx-auto grid max-w-7xl items-center gap-14 md:grid-cols-2">
-            <div className="flex aspect-[4/5] items-center justify-center border border-[#BCA58F] bg-[#D9C8B6] p-10 text-center">
+            <div className="flex aspect-[4/5] items-center justify-center border border-[#9B694D] bg-[#DED5C8] p-10 text-center">
               <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-[#96694C]">
+                <p className="text-xs uppercase tracking-[0.3em] text-[#9B694D]">
                   The People Behind The Moments
                 </p>
                 <img src="/mythos-branding/logo-final.png" alt="MYTHOS" width="320" height="46" loading="lazy" className="mx-auto mt-8 h-auto w-full max-w-xs" />
@@ -281,19 +283,19 @@ export default function PlanningPage() {
             </div>
 
             <div>
-              <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#96694C]">
+              <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#9B694D]">
                 Our Story
               </p>
               <h2 className="editorial mb-8 text-5xl md:text-6xl">
                 About Mythos Planning
               </h2>
-              <p className="mb-6 text-sm leading-8 text-[#6B5549]">
+              <p className="mb-6 text-sm leading-8 text-[#231F20]">
                 Born from our experience creating memorable MYTHOS
                 Entertainment events, MYTHOS PLANNING brings the same
                 attention to atmosphere, organisation and guest experience
                 to personal celebrations.
               </p>
-              <p className="text-sm leading-8 text-[#6B5549]">
+              <p className="text-sm leading-8 text-[#231F20]">
                 Whether you're celebrating a milestone birthday, a
                 christening, an engagement or something entirely your own,
                 we believe the best events feel personal, considered and
@@ -306,13 +308,13 @@ export default function PlanningPage() {
         {/* OUR WORK */}
         <section id="work" className="px-6 py-24 md:px-12 md:py-32">
           <div data-reveal className="mx-auto max-w-7xl">
-            <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#96694C]">
+            <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#9B694D]">
               Moments We've Created
             </p>
             <h2 className="editorial mb-6 text-5xl md:text-6xl">
               Our Work
             </h2>
-            <p className="mb-14 max-w-xl text-sm leading-8 text-[#756257]">
+            <p className="mb-14 max-w-xl text-sm leading-8 text-[#231F20]">
               A glimpse into the experiences we've brought to life
               through MYTHOS Entertainment.
             </p>
@@ -324,8 +326,8 @@ export default function PlanningPage() {
                 "Unforgettable Moments",
               ].map((title, index) => (
                 <div key={title}>
-                  <div className="flex aspect-[4/5] items-center justify-center bg-[#E3D5C7] px-8 text-center">
-                    <span className="editorial text-3xl italic text-[#96694C]">
+                  <div className="flex aspect-[4/5] items-center justify-center bg-[#DED5C8] px-8 text-center">
+                    <span className="editorial text-3xl italic text-[#9B694D]">
                       {String(index + 1).padStart(2, "0")}
                     </span>
                   </div>
@@ -336,7 +338,7 @@ export default function PlanningPage() {
               ))}
             </div>
 
-            <p className="mt-7 text-xs italic text-[#887469]">
+            <p className="mt-7 text-xs italic text-[#9B694D]">
               Gallery placeholders — we'll replace these with your actual
               event photographs.
             </p>
@@ -346,24 +348,24 @@ export default function PlanningPage() {
         {/* ENQUIRY FORM */}
         <section
           id="enquiry"
-          className="scroll-mt-24 bg-[#E9DFD3] px-6 py-24 md:px-12 md:py-32"
+          className="scroll-mt-24 bg-[#DED5C8] px-6 py-24 md:px-12 md:py-32"
         >
           <div className="mx-auto max-w-4xl">
             <div className="mb-14 text-center">
-              <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#96694C]">
+              <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#9B694D]">
                 Let's Create Something Memorable
               </p>
               <h2 className="editorial text-5xl md:text-6xl">
                 Plan Your Event
               </h2>
-              <p className="mx-auto mt-6 max-w-xl text-sm leading-8 text-[#756257]">
+              <p className="mx-auto mt-6 max-w-xl text-sm leading-8 text-[#231F20]">
                 Tell us a little about your celebration. We'll be in
                 touch to discuss your vision and how we can help.
               </p>
             </div>
 
             {submitted ? (
-              <div role="status" aria-live="polite" className="border border-[#C7B4A3] bg-white/50 px-8 py-14 text-center">
+              <div role="status" aria-live="polite" className="border border-[#9B694D] bg-white/50 px-8 py-14 text-center">
                 <h3 className="editorial text-3xl">
                   Thank you for your enquiry
                 </h3>
@@ -374,7 +376,7 @@ export default function PlanningPage() {
                 <button
                   type="button"
                   onClick={() => setSubmitted(false)}
-                  className="mt-8 text-xs uppercase tracking-[0.2em] text-[#96694C] underline"
+                  className="mt-8 text-xs uppercase tracking-[0.2em] text-[#9B694D] underline"
                 >
                   Send Another Enquiry
                 </button>
@@ -385,7 +387,7 @@ export default function PlanningPage() {
                 action="https://formspree.io/f/meaenjjy"
                 method="POST"
                 aria-busy={submitting}
-                className="border border-[#D0BEAD] bg-white/35 p-6 shadow-sm md:p-12"
+                className="border border-[#9B694D] bg-white/35 p-6 shadow-sm md:p-12"
               >
                 <div className="hidden" aria-hidden="true">
                   <label htmlFor="website">Leave this field empty</label>
@@ -434,7 +436,7 @@ export default function PlanningPage() {
                       name="eventDate"
                       type="date"
                     />
-                    <p className="mt-2 text-xs text-[#887469]">
+                    <p className="mt-2 text-xs text-[#9B694D]">
                       Leave blank if undecided or flexible.
                     </p>
                   </div>
@@ -566,17 +568,17 @@ export default function PlanningPage() {
                   </select>
                 </div>
 
-                {submitError && <p role="alert" className="mt-6 text-sm text-[#754B35]">{submitError}</p>}
+                {submitError && <p role="alert" className="mt-6 text-sm text-[#231F20]">{submitError}</p>}
 
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="mt-10 w-full bg-[#96694C] px-8 py-5 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#754B35]"
+                  className="mt-10 w-full bg-[#9B694D] px-8 py-5 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#231F20]"
                 >
                   {submitting ? "Sending…" : "Send Enquiry →"}
                 </button>
 
-                <p className="mt-5 text-center text-xs text-[#887469]">
+                <p className="mt-5 text-center text-xs text-[#9B694D]">
                   We use your details to respond to your enquiry.
                 </p>
                 </fieldset>
@@ -586,14 +588,14 @@ export default function PlanningPage() {
         </section>
 
         {/* FOOTER */}
-        <footer className="bg-[#49362D] px-6 py-14 text-[#F5F1EA] md:px-12">
+        <footer className="bg-[#231F20] px-6 py-14 text-[#E8E1D6] md:px-12">
           <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-end">
             <div>
               <img src="/mythos-branding/logo-final.png" alt="MYTHOS" width="180" height="26" loading="lazy" className="h-auto w-44 brightness-0 invert" />
               <p className="mt-2 text-xs uppercase tracking-[0.3em]">
                 Planning
               </p>
-              <p className="mt-5 text-sm text-[#D8C7B9]">
+              <p className="mt-5 text-sm text-[#DED5C8]">
                 Every detail considered. Every moment remembered.
               </p>
             </div>
