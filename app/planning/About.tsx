@@ -1,5 +1,4 @@
 import styles from './About.module.css';
-import { eventTypes } from './event-types';
 
 export default function About() {
   return <section id="about" className={styles.section}>
@@ -19,7 +18,7 @@ export default function About() {
     </div>
     <div className={styles.nextChapter}>
       <h3>FROM OUR CELEBRATIONS TO YOURS</h3>
-      <div><p>We both shape the planning and decisions behind every event. Our different strengths help us turn your ideas into a clear plan, bring the right people together and look after the details along the way.</p><p>We plan birthdays and milestones, christenings, engagements, weddings, corporate events, formal after-parties, live events and other occasions. Whatever you’re imagining, our aim is the same: something personal to you, thoughtfully organised, so you can be present and enjoy it.</p><ul className={styles.eventTypes} aria-label="Events we plan">{eventTypes.map(type => <li key={type}>{type}</li>)}</ul><a href="#enquiry">Let’s plan your event</a></div>
+      <div><p>We both shape the planning and decisions behind every event. Our different strengths help us turn your ideas into a clear plan, bring the right people together and look after the details along the way.</p><p>We plan birthdays and milestones, christenings, engagements, weddings, corporate events, formal after-parties, live events and other occasions. Whatever you’re imagining, our aim is the same: something personal to you, thoughtfully organised, so you can be present and enjoy it.</p><a href="#enquiry">Let’s plan your event</a></div>
     </div>
   </section>;
 }

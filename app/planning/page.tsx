@@ -497,7 +497,7 @@ export default function PlanningPage() {
                   disabled={submitting}
                   className="mt-10 w-full bg-[#9B694D] px-8 py-5 text-xs font-semibold uppercase tracking-[0.2em] text-white transition hover:bg-[#231F20]"
                 >
-                  {submitting ? "Sending…" : "Send Enquiry →"}
+                  {submitting ? "Sending…" : "Send Enquiry"}
                 </button>
 
                 <p className="mt-5 text-center text-xs text-[#9B694D]">

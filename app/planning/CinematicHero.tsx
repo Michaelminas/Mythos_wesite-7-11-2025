@@ -68,7 +68,7 @@ export default function CinematicHero() {
         <div ref={scene} className={styles.scene} /><div ref={foreground} className={styles.foreground} /><div className={styles.sun} /><div className={styles.shade} />
         <div ref={intro} className={styles.intro}><p className={styles.eyebrow}>Sydney · Event planning &amp; experiences</p><h1>Every detail considered<br /><em>Every moment remembered</em></h1></div>
         <div ref={chapter} className={styles.chapter} aria-hidden="true"><p className={styles.eyebrow}>Made personal</p><h2>Step into planning<br />your next event with us</h2></div>
-        <div className={styles.bottom}><div className={styles.scrollCue}><i aria-hidden="true" /><span>Scroll to<br />step inside</span></div><span className={styles.right}>A Mediterranean spirit<br />A celebration of you</span></div>
+        <div className={styles.bottom}><div className={styles.scrollCue}><i aria-hidden="true" /><span>Scroll to<br />step inside</span></div><span className={styles.right}>A Mediterranean spirit</span></div>
         <div className={styles.progress} aria-hidden="true"><i ref={progress} /></div>
       </div>
     </section>
