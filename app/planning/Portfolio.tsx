@@ -13,9 +13,9 @@ export default function Portfolio() {
     <div className={styles.grid}>{projects.map(project => {
       const cover = <img className={styles.cover} src={`/planning/portfolio/${project.cover}`} alt={project.alt} style={{ objectPosition: project.position }} width={1400} height={1050} loading="lazy" />;
       return <article key={project.id} className={styles.project}>
-        {project.href ? <a className={styles.coverLink} href={project.href} target="_blank" rel="noreferrer" aria-label="Visit the MYTHOS Entertainment website (opens in a new tab)">{cover}</a> : cover}
+        {project.href ? <a className={styles.coverLink} href={project.href} aria-label="Visit the MYTHOS Entertainment website">{cover}</a> : cover}
         <div className={styles.caption}><p className={styles.eyebrow}>{project.category}</p><h3>{project.title}</h3><p>{project.description}</p></div>
-        {project.href && <a className={styles.websiteLink} href={project.href} target="_blank" rel="noreferrer">Visit MYTHOS Entertainment</a>}
+        {project.href && <a className={styles.websiteLink} href={project.href}>Visit MYTHOS Entertainment</a>}
       </article>;
     })}</div>
   </section>;

@@ -10,3 +10,6 @@
 @media(max-width:1000px) and (min-width:701px){.header{padding-left:3%;padding-right:3%}.header nav{gap:15px}.headerActions{gap:8px}.eventsLink,.cta{padding:13px 12px;font-size:9px}}
 @media(max-width:700px){.header{gap:12px}.headerActions{gap:8px}.eventsLink,.cta{padding:12px 10px;font-size:8px;letter-spacing:.08em}.headerActions .cta{white-space:nowrap}}
 @media(max-width:380px){.header{padding-left:4%;padding-right:4%;gap:8px}.header>a img{width:96px}.headerActions{gap:6px}.eventsLink,.cta{padding:11px 7px;font-size:7px}}
+
+.header nav{align-items:center}
+@media(max-width:700px){.header nav{display:flex;gap:0;margin-left:auto}.header nav>a:not(.eventsLink){display:none}.headerActions{gap:0}.header{gap:8px}}
