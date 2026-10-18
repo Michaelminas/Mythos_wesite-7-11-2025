@@ -12,3 +12,7 @@ Confirmed project scopes:
 Private project sources: the user-supplied Cranbrook folder, Azaliah edited photos folder, Christopher Highlights folder and Eleni shared Dropbox folder. Selected asset paths and original filenames are recorded in the local media-review/planning-portfolio/sources.txt review file.
 
 Offer structure: full planning, partial planning, event-day coordination. Event categories: christenings/family occasions, birthdays/milestones, formal after-parties, live events. No invented prices, client testimonials, guest counts or dates are published. No wedding or corporate portfolio projects are claimed.
+
+## Cover-only update
+
+The owner requested four portfolio cards, removing Azaliah’s card and all expandable galleries. New covers: Christopher 0N6A7106.jpg (object-position centre 60%), Cranbrook _1006469.jpg (centre 35%), and MYTHOS MHerro-1206.jpg. The MYTHOS cover and a text link open the official MYTHOS Entertainment website. Four equal cards replace the former full-width final card. Original source assets remain unchanged.
