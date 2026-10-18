@@ -5,3 +5,8 @@
 
 @font-face{font-family:"MYTHOS Helvetica";src:url("/font/HelveticaNeueRoman.otf") format("opentype");font-weight:400;font-style:normal;font-display:swap}@font-face{font-family:"MYTHOS Helvetica";src:url("/font/HelveticaNeueMedium.otf") format("opentype");font-weight:500 600;font-style:normal;font-display:swap}
 .journey{overflow:visible}.intro h1{font-size:clamp(42px,6vw,88px);letter-spacing:-.04em;max-width:1200px}.chapter h2{font-size:clamp(48px,6.5vw,96px)}@media(max-width:700px){.intro h1{font-size:46px;line-height:1.08}.chapter h2{font-size:48px}}
+
+.headerActions{display:flex;align-items:center;gap:12px}.eventsLink{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;border:1px solid #ffffff80;padding:16px 18px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;transition:background .3s}.eventsLink:hover{background:#ffffff25}.header.light .eventsLink{border-color:#9b694d;color:#231f20}.header.light .eventsLink:hover{background:#9b694d18}.header nav{gap:24px}
+@media(max-width:1000px) and (min-width:701px){.header{padding-left:3%;padding-right:3%}.header nav{gap:15px}.headerActions{gap:8px}.eventsLink,.cta{padding:13px 12px;font-size:9px}}
+@media(max-width:700px){.header{gap:12px}.headerActions{gap:8px}.eventsLink,.cta{padding:12px 10px;font-size:8px;letter-spacing:.08em}.headerActions .cta{white-space:nowrap}}
+@media(max-width:380px){.header{padding-left:4%;padding-right:4%;gap:8px}.header>a img{width:96px}.headerActions{gap:6px}.eventsLink,.cta{padding:11px 7px;font-size:7px}}

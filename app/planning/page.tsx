@@ -526,7 +526,7 @@ export default function PlanningPage() {
               >
                 planning@mythosentertainment.com.au
               </a>
-              <a href="https://www.mythosentertainment.com.au/" className="block underline underline-offset-4">
+              <a href="https://mythos-wesite-7-11-2025-git-myt-9eb2fa-mythos-projects-fac54b0d.vercel.app/" className="block underline underline-offset-4">
                 Visit MYTHOS Entertainment
               </a>
             </div>

@@ -61,7 +61,7 @@ export default function CinematicHero() {
     <header ref={header} className={styles.header}>
       <PlanningBrand />
       <nav aria-label="Planning sections"><a href="#services">Services</a><a href="#about">About</a><a href="#work">Our Work</a><a href="#enquiry">Contact</a></nav>
-      <a className={styles.cta} href="#enquiry">Plan your event</a>
+      <div className={styles.headerActions}><a className={styles.eventsLink} href="https://mythos-wesite-7-11-2025-git-myt-9eb2fa-mythos-projects-fac54b0d.vercel.app/">MYTHOS Events</a><a className={styles.cta} href="#enquiry">Plan your event</a></div>
     </header>
     <section ref={journey} className={styles.journey} id="top" aria-label="MYTHOS Planning cinematic introduction">
       <div className={styles.stage}>
