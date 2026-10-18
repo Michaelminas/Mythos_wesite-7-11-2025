@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type FormEvent } from "react";
 import CinematicHero from "./CinematicHero";
 import Portfolio from "./Portfolio";
+import About from "./About";
 
 const services = [
   {
@@ -272,43 +273,7 @@ export default function PlanningPage() {
           </div>
         </section>
 
-        {/* ABOUT */}
-        <section id="about" className="bg-[#DED5C8] px-6 py-24 md:px-12 md:py-32">
-          <div data-reveal className="mx-auto grid max-w-7xl items-center gap-14 md:grid-cols-2">
-            <div className="flex aspect-[4/5] items-center justify-center border border-[#9B694D] bg-[#DED5C8] p-10 text-center">
-              <div>
-                <p className="text-xs uppercase tracking-[0.3em] text-[#9B694D]">
-                  The People Behind The Moments
-                </p>
-                <img src="/mythos-branding/logo-final.png" alt="MYTHOS" width="320" height="46" loading="lazy" className="mx-auto mt-8 h-auto w-full max-w-xs" />
-                <p className="mt-3 text-xs uppercase tracking-[0.3em]">
-                  Planning
-                </p>
-              </div>
-            </div>
-
-            <div>
-              <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#9B694D]">
-                Our Story
-              </p>
-              <h2 className="editorial mb-8 text-5xl md:text-6xl">
-                About Mythos Planning
-              </h2>
-              <p className="mb-6 text-sm leading-8 text-[#231F20]">
-                Born from our experience creating memorable MYTHOS
-                Entertainment events, MYTHOS PLANNING brings the same
-                attention to atmosphere, organisation and guest experience
-                to personal celebrations. Our planning work includes christenings, birthdays and formal after-parties, from intimate family occasions to energetic nights out.
-              </p>
-              <p className="text-sm leading-8 text-[#231F20]">
-                Whether you're celebrating a milestone birthday, a
-                christening, an engagement or something entirely your own,
-                we believe the best events feel personal, considered and
-                genuinely effortless for the people hosting them.
-              </p>
-            </div>
-          </div>
-        </section>
+        <About />
 
         <Portfolio />
 
