@@ -12,6 +12,7 @@ export default function CinematicHero() {
   const intro = useRef<HTMLDivElement>(null);
   const chapter = useRef<HTMLDivElement>(null);
   const progress = useRef<HTMLElement>(null);
+  const mobileProgress = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const section = journey.current;
@@ -40,6 +41,7 @@ export default function CinematicHero() {
         chapter.current.style.transform = `translateY(${(1 - clamp((current - 0.32) / 0.25)) * 35}px)`;
       }
       if (progress.current) progress.current.style.width = `${current * 100}%`;
+      if (mobileProgress.current) mobileProgress.current.style.width = `${current * 100}%`;
       header.current?.classList.toggle(styles.light, bounds.bottom < window.innerHeight * 0.4);
       if (current !== target) frame = window.requestAnimationFrame(render);
       else last = 0;
@@ -63,7 +65,7 @@ export default function CinematicHero() {
       <nav aria-label="Planning sections"><a href="#services">Services</a><a href="#about">About</a><a href="#work">Our Work</a><a href="#enquiry">Contact</a><a className={styles.eventsLink} href="https://mythos-wesite-7-11-2025-git-myt-9eb2fa-mythos-projects-fac54b0d.vercel.app/">MYTHOS Events</a></nav>
       <div className={styles.headerActions}><a className={styles.cta} href="#enquiry">Plan your event</a></div>
     </header>
-    <nav className={styles.mobileActions} aria-label="Planning actions"><a className={styles.eventsLink} href="https://mythos-wesite-7-11-2025-git-myt-9eb2fa-mythos-projects-fac54b0d.vercel.app/">MYTHOS Events</a><a className={styles.cta} href="#enquiry">Plan your event</a></nav>
+    <nav className={styles.mobileActions} aria-label="Planning actions"><div className={styles.mobileProgress} aria-hidden="true"><i ref={mobileProgress} /></div><a className={styles.eventsLink} href="https://mythos-wesite-7-11-2025-git-myt-9eb2fa-mythos-projects-fac54b0d.vercel.app/">MYTHOS Events</a><a className={styles.cta} href="#enquiry">Plan your event</a></nav>
     <section ref={journey} className={styles.journey} id="top" aria-label="MYTHOS Planning cinematic introduction">
       <div className={styles.stage}>
         <div ref={scene} className={styles.scene} /><div ref={foreground} className={styles.foreground} /><div className={styles.sun} /><div className={styles.shade} />
