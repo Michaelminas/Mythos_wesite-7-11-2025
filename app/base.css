@@ -5,4 +5,8 @@ body { margin: 0; }
 
 
 
-@media(max-width:600px){html,body{background:transparent}}
+/* Let the body image propagate to the canvas behind Safari's safe areas. */
+@media(max-width:600px){
+  html{background:transparent;min-height:100%}
+  body{min-height:100svh;background-color:transparent;background-image:url('/seadeck/white-boat-party-ocean.webp');background-position:center 48%;background-size:cover;background-repeat:no-repeat;background-attachment:fixed}
+}
