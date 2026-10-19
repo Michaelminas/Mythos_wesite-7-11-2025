@@ -4,3 +4,5 @@ body { margin: 0; }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 @media(max-width:600px){html{background:#087e88}body{background:#231f20}}
+
+@media(max-width:600px){html{background:#087e88 url('/seadeck/white-boat-party-ocean.webp') center top/cover no-repeat fixed}body{background:transparent}}

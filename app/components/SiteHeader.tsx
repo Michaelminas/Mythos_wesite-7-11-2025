@@ -36,7 +36,7 @@ export default function SiteHeader({ overlay = false }: { overlay?: boolean }) {
   }, [overlay])
   return <header ref={header} className={`${styles.header} ${overlay ? styles.overlayHeader : ''}`}>
     <Link href="/" aria-label="MYTHOS home" className={styles.logo}><Image src="/mythos-branding/logo-final.png" alt="MYTHOS" width={250} height={36} priority /></Link>
-    <nav aria-label="Main navigation"><Link href="/#next-event">Next event</Link><Link href="/#past-events">Past events</Link><Link href="/#vip">VIP</Link><a href="https://mythos-wesite-7-11-2025-git-myt-0cf43c-mythos-projects-fac54b0d.vercel.app/planning" className={styles.planningLink}>Plan your event</a></nav>
+    <nav aria-label="Main navigation"><Link href="/#next-event">Next event</Link><Link href="/#past-events">Past events</Link><Link href="/#vip">VIP Tables</Link><a href="https://mythos-wesite-7-11-2025-git-myt-0cf43c-mythos-projects-fac54b0d.vercel.app/planning" className={styles.planningLink}>Plan your event</a></nav>
     <a href={TICKET_URL} className={styles.smallButton}>Get tickets</a>
   </header>
 }

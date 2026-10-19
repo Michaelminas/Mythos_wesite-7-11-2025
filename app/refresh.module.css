@@ -100,3 +100,9 @@
 :global(html[data-event-hero-passed]) .mobileTickets{transform:translateY(0);visibility:visible;pointer-events:auto}
 }
 @media(max-width:360px){.header .logo,.overlayHeader .logo{width:100px;flex-basis:100px}.header nav{gap:8px}.header nav .planningLink{padding:10px 6px}}
+
+@media(max-width:600px){
+.overlayHeader{backdrop-filter:none;-webkit-backdrop-filter:none}
+.overlayHeader::before{content:'';position:absolute;left:0;right:0;bottom:100%;height:160px;background:rgba(35,31,32,var(--header-opacity));transition:background-color .55s ease;pointer-events:none}
+}
+@media(max-width:360px){.header .logo,.overlayHeader .logo{width:88px;flex-basis:88px}.header nav,.overlayHeader nav{gap:7px;font-size:7px}.header nav .planningLink{font-size:7px;padding:10px 6px}}
