@@ -108,3 +108,13 @@
 @media(max-width:360px){.header .logo,.overlayHeader .logo{width:88px;flex-basis:88px}.header nav,.overlayHeader nav{gap:7px;font-size:7px}.header nav .planningLink{font-size:7px;padding:10px 6px}}
 
 @media(max-width:600px){.overlayHeader::before{background:#231f20;transition:none}}
+
+/* Eventbrite-aligned event overview and vessel photography. */
+.hero{justify-content:center;padding-bottom:65px}
+.eventSection{position:relative;isolation:isolate;background:#231f20 url('/seadeck/seadeck-night-background.webp') center/cover no-repeat;color:#e8e1d6}
+.eventSection::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,#231f20de,#231f2080);z-index:-1}
+.eventSection .eventIntro>p:not(.eyebrow){color:#e8e1d6}
+.eventSection .eyebrow{color:#e8e1d6}
+.eventSection .eventCard{background:#e8e1d6ed;color:#231f20;backdrop-filter:blur(12px)}
+.vipIntro h2{margin-bottom:32px}.vipIntro h2 span{font-size:.55em;letter-spacing:.03em;display:inline-block;margin-top:12px}.vipDeckPhoto{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:center;border-radius:2px}
+@media(max-width:600px){.hero{padding-bottom:55px}.eventSection::before{background:#231f20b8}.vipIntro h2{margin-bottom:26px}.vipDeckPhoto{aspect-ratio:4/3}}
