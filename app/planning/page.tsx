@@ -412,10 +412,10 @@ export default function PlanningPage() {
 
             <div className="text-sm leading-8">
               <a
-                href="mailto:planning@mythosentertainment.com.au"
+                href="mailto:support@mythosentertainment.com.au"
                 className="block hover:underline"
               >
-                planning@mythosentertainment.com.au
+                support@mythosentertainment.com.au
               </a>
               <a href="/" className="block underline underline-offset-4">
                 Visit MYTHOS Entertainment
