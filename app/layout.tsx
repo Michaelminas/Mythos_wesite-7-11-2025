@@ -1,5 +1,18 @@
 import type { Metadata, Viewport } from 'next'
 import { TICKET_DOMAIN } from './config'
+import './base.css'
+import localFont from 'next/font/local'
+
+const helvetica = localFont({
+  src: [
+    { path: '../public/font/HelveticaNeueRoman.otf', weight: '400', style: 'normal' },
+    { path: '../public/font/HelveticaNeueMedium.otf', weight: '500', style: 'normal' },
+    { path: '../public/font/HelveticaNeueBold.otf', weight: '700', style: 'normal' },
+  ],
+  display: 'swap',
+  variable: '--font-helvetica-neue',
+  preload: true,
+})
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.mythosentertainment.com.au'),
@@ -41,7 +54,8 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#96694c',
+  viewportFit: 'cover',
+  themeColor: '#231f20',
 }
 
 export default function RootLayout({
@@ -56,19 +70,10 @@ export default function RootLayout({
         <link rel="dns-prefetch" href={TICKET_DOMAIN} />
         <link rel="dns-prefetch" href="https://formspree.io" />
 
-        {/* Preconnect for critical resources */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-
-        {/* Font loading with display=swap for better performance */}
-        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@300;400;700;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet" />
-
         {/* Preload critical assets */}
         <link rel="preload" as="image" href="/mythos-branding/logo-final.png" />
-        <link rel="preload" as="video" href="/Videos/First half.webm" />
-        <link rel="preload" as="video" href="/Videos/Second half.webm" />
       </head>
-      <body>{children}</body>
+      <body className={helvetica.variable}>{children}</body>
     </html>
   )
 }
