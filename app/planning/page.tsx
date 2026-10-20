@@ -5,7 +5,6 @@ import CinematicHero from "./CinematicHero";
 import Portfolio from "./Portfolio";
 import About from "./About";
 import PlanningBrand from "./PlanningBrand";
-import { eventTypes } from "./event-types";
 
 const services = [
   {
@@ -206,10 +205,9 @@ export default function PlanningPage() {
             <p className="mb-5 text-xs uppercase tracking-[0.3em] text-[#9B694D]">
               What We Do
             </p>
-            <h2 className="editorial mb-7 text-center text-5xl md:text-6xl">
+            <h2 className="editorial mb-14 text-center text-5xl md:text-6xl">
               PLANNING SHAPED AROUND YOU
             </h2>
-            <div className="mb-14 flex flex-wrap justify-center text-center gap-x-8 gap-y-3 border-y border-[#9B694D]/35 py-5 text-[10px] uppercase tracking-[0.14em]">{eventTypes.map(type => <span key={type}>{type}</span>)}</div>
 
             <div className="grid gap-12 md:grid-cols-3">
               {services.map((service) => (
@@ -311,14 +309,7 @@ export default function PlanningPage() {
                   </div>
                   <div>
                     <label htmlFor="eventType">Event Type *</label>
-                    <select id="eventType" name="eventType" required defaultValue="">
-                      <option value="" disabled>
-                        Select an event
-                      </option>
-                      {eventTypes.map((type) => (
-                        <option key={type}>{type}</option>
-                      ))}
-                    </select>
+                    <input id="eventType" name="eventType" type="text" required placeholder="Tell us what you’re planning" />
                   </div>
                   <div>
                     <label htmlFor="eventDate">Event Date</label>
