@@ -116,5 +116,5 @@
 .eventSection .eventIntro>p:not(.eyebrow){color:#e8e1d6}
 .eventSection .eyebrow{color:#e8e1d6}
 .eventSection .eventCard{background:#e8e1d6ed;color:#231f20;backdrop-filter:blur(12px)}
-.vipIntro h2{margin-bottom:32px}.vipIntro h2 span{font-size:.55em;letter-spacing:.03em;display:inline-block;margin-top:12px}.vipDeckPhoto{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:center;border-radius:2px}
+.vipIntro h2{margin-bottom:32px;text-align:left}.vipIntro h2 span{font-size:.55em;letter-spacing:.03em;display:inline-block;margin-top:12px}.vipDeckPhoto{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:center;border-radius:2px}
 @media(max-width:600px){.hero{padding-bottom:55px}.eventSection::before{background:#231f20b8}.vipIntro h2{margin-bottom:26px}.vipDeckPhoto{aspect-ratio:4/3}}
