@@ -101,7 +101,6 @@ export const pastEvents = [
       "wm-takeover-full-dsc00815",
       "wm-takeover-full-dsc00817",
       "wm-takeover-full-dsc00818",
-      "wm-takeover-full-dsc00822",
       "wm-takeover-full-dsc00823",
       "wm-takeover-full-dsc00829",
       "wm-takeover-full-dsc00833",
