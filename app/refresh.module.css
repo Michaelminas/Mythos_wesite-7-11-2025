@@ -118,3 +118,10 @@
 .eventSection .eventCard{background:#e8e1d6ed;color:#231f20;backdrop-filter:blur(12px)}
 .vipIntro h2{margin-bottom:32px;text-align:left}.vipIntro h2 span{font-size:.55em;letter-spacing:.03em;display:inline-block;margin-top:12px}.vipDeckPhoto{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:cover;object-position:center;border-radius:2px}
 @media(max-width:600px){.hero{padding-bottom:55px}.eventSection::before{background:#231f20b8}.vipIntro h2{margin-bottom:26px}.vipDeckPhoto{aspect-ratio:4/3}}
+
+/* VIP deck photograph spans the complete enquiry section. */
+.vip{position:relative;isolation:isolate;align-items:start;background:#231f20 url('/seadeck/vip-main-deck.webp') center/cover no-repeat;color:#e8e1d6}
+.vip::before{content:'';position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,rgba(35,31,32,.76),rgba(35,31,32,.3))}
+.vip .form{background:#e8e1d6f2;color:#231f20;padding:32px;border:1px solid #ffffff38}
+.vipIntro h2{margin-bottom:0;text-align:left}
+@media(max-width:600px){.vip{background-position:58% center;gap:32px}.vip::before{background:rgba(35,31,32,.58)}.vip .form{padding:24px 20px}.vipIntro h2{margin-bottom:0}}
