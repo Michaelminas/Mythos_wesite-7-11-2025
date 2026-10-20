@@ -12,7 +12,7 @@ const services = [
     number: "01",
     title: "Full Event Planning",
     description:
-      "One team to bring the whole occasion together. We coordinate the venue, suppliers, entertainment, celebration details and event-day arrangements around your vision.",
+      "One team to take the stress and hassle out of planning your event. From the venue and suppliers to entertainment, celebration details and event-day arrangements, we bring your vision to life so you can enjoy the occasion.",
   },
   {
     number: "02",
@@ -24,7 +24,7 @@ const services = [
     number: "03",
     title: "Event-Day Coordination",
     description:
-      "You have made the plans. We coordinate the timeline, supplier arrivals, setup and running of the celebration, so you can spend the day with your guests.",
+      "You have made the plans. We coordinate the timeline, supplier arrivals, setup and running of the celebration, so you can spend the day stress-free with your guests.",
   },
 ];
 
@@ -520,9 +520,6 @@ export default function PlanningPage() {
           <div className="mx-auto flex max-w-7xl flex-col justify-between gap-8 md:flex-row md:items-end">
             <div>
               <PlanningBrand />
-              <p className="mt-5 text-sm text-[#DED5C8]">
-                Every detail considered · Every moment remembered
-              </p>
             </div>
 
             <div className="text-sm leading-8">
