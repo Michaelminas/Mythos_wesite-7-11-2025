@@ -19,7 +19,7 @@ const event = {
   offers: { '@type': 'Offer', url: TICKET_URL, priceCurrency: 'AUD', availability: 'https://schema.org/InStock' },
 }
 const faqs = [
-  ['When is the next MYTHOS event?', 'Friday 27 November 2026. Arrive at 7:30PM sharp. Boarding begins at 7:45PM and the event runs until 11:45PM. Once the boat departs, it cannot wait for late arrivals — arrive on time so you do not miss the night.'],
+  ['When is the next MYTHOS event?', 'Friday 27 November 2026. Arrive at 7:30PM sharp. Boarding begins at 7:45PM and the event runs until 11:45PM. Once the boat departs, it cannot wait for late arrivals - arrive on time so you do not miss the night.'],
   ['Where is the event?', 'Aboard SEADECK on Sydney Harbour, at King Street Wharf 9, Sydney. Check your ticket and the organiser’s updates for boarding instructions.'],
   ['What should I wear?', 'The theme is WHITE. Dress in your best white, with smart, classy and sophisticated attire. Women: classy attire, two-piece sets or jumpsuits, with heels or dressy flats; no sneakers. Men: polo, linen or collared shirts; dress shorts accepted. No hoodies or hats, excessive designer wear or offensive haircuts. The dress code is enforced; patrons who do not meet it may be denied entry without a refund.'],
   ['What music can I expect?', 'Modern and classic Greek music, Eurohouse, RNB and global sounds, with live entertainment throughout the night.'],
