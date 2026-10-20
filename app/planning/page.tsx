@@ -28,26 +28,6 @@ const services = [
   },
 ];
 
-const bookedOptions = [
-  "Venue",
-  "Catering",
-  "Entertainment",
-  "Styling",
-  "Other",
-  "Nothing yet",
-];
-
-const supportOptions = [
-  "Venue sourcing",
-  "Catering",
-  "Entertainment",
-  "Styling",
-  "Supplier coordination",
-  "Logistics",
-  "Event-day management",
-  "Everything",
-];
-
 export default function PlanningPage() {
   const pageRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -86,27 +66,10 @@ export default function PlanningPage() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState("");
-  const [booked, setBooked] = useState<string[]>([]);
-  const [support, setSupport] = useState<string[]>([]);
-
-  function toggle(
-    value: string,
-    selected: string[],
-    update: (values: string[]) => void
-  ) {
-    update(
-      selected.includes(value)
-        ? selected.filter((item) => item !== value)
-        : [...selected, value]
-    );
-  }
-
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (submitting) return;
     const data = new FormData(event.currentTarget);
-    data.set("alreadyBooked", booked.join(", ") || "Not specified");
-    data.set("supportNeeded", support.join(", ") || "Not specified");
     data.set("_subject", "New MYTHOS Planning enquiry");
     setSubmitting(true);
     setSubmitError("");
@@ -403,72 +366,6 @@ export default function PlanningPage() {
                       <option>Event-Day Coordination</option>
                       <option>Not Sure Yet</option>
                     </select>
-                  </div>
-                  <div>
-                    <label htmlFor="progress">Planning Progress</label>
-                    <select id="progress" name="progress" defaultValue="">
-                      <option value="">Where are you up to?</option>
-                      <option>Just Starting</option>
-                      <option>Partly Organised</option>
-                      <option>Nearly Ready</option>
-                    </select>
-                  </div>
-                  <div>
-                    <label htmlFor="duration">Event Duration</label>
-                    <select id="duration" name="duration" defaultValue="">
-                      <option value="">Select duration</option>
-                      <option>Under 4 Hours</option>
-                      <option>4–6 Hours</option>
-                      <option>6–8 Hours</option>
-                      <option>Full Day</option>
-                      <option>Undecided</option>
-                    </select>
-                  </div>
-                  <div className="md:col-span-2">
-                    <label htmlFor="location">Venue or Preferred Area</label>
-                    <input
-                      id="location"
-                      name="location"
-                      placeholder="Venue name, suburb or preferred location"
-                    />
-                  </div>
-                </div>
-
-                <div className="mt-9">
-                  <label>What Have You Already Booked?</label>
-                  <div className="flex flex-wrap gap-2">
-                    {bookedOptions.map((option) => (
-                      <button
-                        key={option}
-                        type="button"
-                        aria-pressed={booked.includes(option)}
-                        onClick={() => toggle(option, booked, setBooked)}
-                        className={`choice ${
-                          booked.includes(option) ? "active" : ""
-                        }`}
-                      >
-                        {option}
-                      </button>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="mt-9">
-                  <label>What Would You Like Us to Handle?</label>
-                  <div className="flex flex-wrap gap-2">
-                    {supportOptions.map((option) => (
-                      <button
-                        key={option}
-                        type="button"
-                        aria-pressed={support.includes(option)}
-                        onClick={() => toggle(option, support, setSupport)}
-                        className={`choice ${
-                          support.includes(option) ? "active" : ""
-                        }`}
-                      >
-                        {option}
-                      </button>
-                    ))}
                   </div>
                 </div>
 
